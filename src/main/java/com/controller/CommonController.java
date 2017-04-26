@@ -2,6 +2,7 @@
 package com.controller;
 
 import com.tramhuong.dto.*;
+import com.tramhuong.services.AboutService;
 import com.tramhuong.services.BlogService;
 import com.tramhuong.services.CategoriesService;
 import com.tramhuong.services.ProductService;
@@ -94,6 +95,11 @@ public class CommonController {
 			model.addAttribute("blogs0", blogs0);
 			model.addAttribute("blogs1", blogs1);
 		}
+	}
+
+	public static void loadAbout(ModelMap model, AboutService aboutService) throws ServiceException {
+		AboutDto aboutDto = aboutService.find();
+		model.addAttribute("about", aboutDto);
 	}
 }
 

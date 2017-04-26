@@ -210,17 +210,10 @@
         <h3> Hỗ trợ trực tuyến</h3>
         <div class="support">
             <div class="text-center">
-                <p>
-                    <span class="supp-name"></span>
-                    <br>
-                    <span class="phone">Facebook.com/TramHuongAgarwood</span>
-                </p>
-            </div>
-            <div class="text-center">
                 <span class="supp-name">Số hotline	</span>
                 <br>
                 <p>
-                    0938 210 499
+                    ${about.hotLine}
                 </p>
             </div>
             <div class="text-center">

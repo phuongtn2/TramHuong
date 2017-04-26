@@ -3,6 +3,7 @@ package com.controller;
 import com.tramhuong.dto.BlogDto;
 import com.tramhuong.dto.CategoryDto;
 import com.tramhuong.dto.MappingCategoryDto;
+import com.tramhuong.services.AboutService;
 import com.tramhuong.services.BlogService;
 import com.tramhuong.services.CategoriesService;
 import com.tramhuong.services.ProductService;
@@ -29,6 +30,8 @@ public class IndexController {
 	private ProductService productService;
 	@Autowired
 	private BlogService blogService;
+	@Autowired
+	private AboutService aboutService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
 	public String initForm(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {
@@ -40,6 +43,7 @@ public class IndexController {
 		CommonController.loadCart(request, model);
 		//loa blog menu
 		CommonController.loadBlog(model, blogService);
+		CommonController.loadAbout(model, aboutService);
 		return "index";
 	}
 /*	@ModelAttribute("mapping_categories")

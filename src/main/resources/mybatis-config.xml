@@ -2,7 +2,6 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
-
 <configuration>
 	<settings>
 		<setting name="lazyLoadingEnabled" value="false" />
@@ -17,6 +16,7 @@
 		<typeAlias alias="district" type="com.tramhuong.dto.LocationDto"/>
 		<typeAlias alias="ward" type="com.tramhuong.dto.LocationDto"/>
 		<typeAlias alias="billingAccount" type="com.tramhuong.dto.BillingAccountDto"/>
+		<typeAlias alias="about" type="com.tramhuong.dto.AboutDto"/>
 		<typeAlias alias="blog" type="com.tramhuong.dto.BlogDto"/>
 	</typeAliases>
 </configuration>
