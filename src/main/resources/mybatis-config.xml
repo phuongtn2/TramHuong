@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<settings>
+		<setting name="lazyLoadingEnabled" value="false" />
+		<setting name="logImpl" value="LOG4J" />
+	</settings>
+	<typeAliases>
+		<typeAlias alias="empAuth" type="com.tramhuong.dto.AuthorizedUserInfo" />
+		<typeAlias alias="category" type="com.tramhuong.dto.CategoryDto"/>
+		<typeAlias alias="introduce" type="com.tramhuong.dto.IntroduceDto"/>
+		<typeAlias alias="product" type="com.tramhuong.dto.ProductDto"/>
+		<typeAlias alias="province" type="com.tramhuong.dto.LocationDto"/>
+		<typeAlias alias="district" type="com.tramhuong.dto.LocationDto"/>
+		<typeAlias alias="ward" type="com.tramhuong.dto.LocationDto"/>
+		<typeAlias alias="billingAccount" type="com.tramhuong.dto.BillingAccountDto"/>
+		<typeAlias alias="blog" type="com.tramhuong.dto.BlogDto"/>
+	</typeAliases>
+</configuration>

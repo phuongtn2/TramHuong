@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tramhuong.mapper.ProductMapper">
+
+	<!--<insert id="add" useGeneratedKeys="true" keyProperty="dto.id">
+		INSERT INTO INTRODUCE(
+		content
+		)VALUES(
+		#{dto.content}
+		)
+	</insert>
+	<update id="update">
+		UPDATE INTRODUCE SET
+		content = #{dto.content}
+		WHERE id= #{dto.id}
+	</update>-->
+	<select id="findAll" resultType="product">
+		SELECT * FROM PRODUCT ORDER BY id
+	</select>
+	<select id="findHighlights" resultType="product">
+		SELECT * FROM PRODUCT WHERE status = 1 ORDER BY count DESC LIMIT #{limit}
+	</select>
+	<select id="findByCategory" resultType="product">
+		SELECT * FROM PRODUCT WHERE categoryId = #{id} AND status = 1 ORDER BY id DESC
+		<if test="limit > 0">
+		LIMIT #{limit}
+		</if>
+	</select>
+	<select id="findBySubCategory" resultType="product">
+		SELECT * FROM PRODUCT WHERE subCategoryId = #{id} AND status = 1 ORDER BY id DESC
+		<if test="limit > 0">
+			LIMIT #{limit}
+		</if>
+	</select>
+	<select id="findById" resultType="product">
+		SELECT * FROM PRODUCT WHERE id = #{id}
+	</select>
+</mapper>

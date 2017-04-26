@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tramhuong.mapper.BlogMapper">
+
+	<!--<insert id="insertNews" useGeneratedKeys="true" keyProperty="dto.newsCode">
+		INSERT INTO M_NEWS(
+		newsType
+		, newsHeader
+		, newsShorter
+		, created
+		, lastUpdate
+		, createId
+		, updateId
+		)VALUES(
+		#{dto.newsType}
+		, #{dto.newsHeader}
+		, #{dto.newsShorter}
+		,  NOW()
+		,  NOW()
+		, #{dto.createId}
+		, #{dto.updateId}
+		)
+	</insert>
+
+	<insert id="insertNewsDetail" useGeneratedKeys="true" keyProperty="dto.newsDetailCode">
+		INSERT INTO T_NEWS_DETAIL(
+		newsType
+		, newsCode
+		, refNewsCode
+		, created
+		, lastUpdate
+		, createId
+		, updateId
+		)VALUES(
+		#{dto.newsCode}
+		, #{dto.refNewsCode}
+		,  NOW()
+		,  NOW()
+		, #{dto.createId}
+		, #{dto.updateId}
+		)
+	</insert>
+
+
+
+	<update id="update">
+		UPDATE M_NEWS SET
+		newsType = #{dto.newsType}
+		,newsHeader = #{dto.newsHeader}
+		,newsShorter = #{dto.newsShorter}
+		,refNewsCode = #{dto.refNewsCode}
+		,updateId = #{dto.updateId}
+		,lastUpdate= NOW()
+		WHERE newsCode= #{dto.newsCode}
+	</update>
+	<delete id="deleteById">
+		DELETE FROM M_NEWS WHERE newsCode = #{id}
+	</delete>-->
+	<select id="findAll" resultType="blog">
+		SELECT * FROM BLOGS ORDER BY id
+	</select>
+	<select id="findByStatus" resultType="blog">
+		SELECT * FROM BLOGS WHERE status = #{status} ORDER BY id
+	</select>
+	<!--<select id="findByNewsId" resultType="newsDetail">
+		SELECT * FROM T_NEWS_DETAIL WHERE newsCode=#{id} ORDER BY created
+	</select>
+	<select id="findById" resultType="news">
+		SELECT * FROM M_NEWS WHERE newsCode=#{id}
+	</select>-->
+
+</mapper>

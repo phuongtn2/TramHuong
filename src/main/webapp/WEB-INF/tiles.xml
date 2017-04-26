@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name="base.definition"
+		template="/WEB-INF/jsp/template/layout.jsp">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="header" value="/WEB-INF/jsp/template/header.jsp" />
+		<put-attribute name="nav_mobile" value="/WEB-INF/jsp/template/nav_mobile.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/jsp/template/nav.jsp" />
+		<put-attribute name="row_content" value="/WEB-INF/jsp/template/row_content.jsp" />
+		<put-attribute name="aside" value="/WEB-INF/jsp/template/aside.jsp" />
+		<put-attribute name="breadcurmb" value=""/>
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp" />
+	</definition>
+	<definition name="base.admin"
+				template="/WEB-INF/jsp/template/layout_admin.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="navbar" value="/WEB-INF/jsp/template/nav_admin.jsp" />
+		<put-attribute name="notify" value="/WEB-INF/jsp/template/header_admin.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer_admin.jsp" />
+	</definition>
+	<definition name="base.login"
+				template="/WEB-INF/jsp/template/layout_login.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="" />
+	</definition>
+	<definition name="base.checkout"
+				template="/WEB-INF/jsp/template/layout_checkout.jsp">
+		<put-attribute name="title" value="Thanh Toán" />
+		<put-attribute name="body" value="" />
+	</definition>
+
+	<definition name="index" extends="base.definition">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="content" value="/WEB-INF/jsp/index.jsp" />
+	</definition>
+	<definition name="cart" extends="base.definition">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="content" value="/WEB-INF/jsp/cart.jsp" />
+	</definition>
+	<definition name="introduce" extends="base.definition">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="content" value="/WEB-INF/jsp/introduce.jsp" />
+	</definition>
+	<definition name="product-detail" extends="base.definition">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="content" value="/WEB-INF/jsp/product_detail.jsp" />
+	</definition>
+
+	<definition name="login" extends="base.login">
+		<put-attribute name="title" value="Login" />
+		<put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+	</definition>
+	<definition name="categories" extends="base.admin">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="body" value="/WEB-INF/jsp/categories/view.jsp" />
+	</definition>
+	<definition name="s_categories" extends="base.admin">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="body" value="/WEB-INF/jsp/s_categories/view.jsp" />
+	</definition>
+	<definition name="introduceAdmin" extends="base.admin">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="body" value="/WEB-INF/jsp/introduce/view.jsp" />
+	</definition>
+	<definition name="checkout" extends="base.checkout">
+		<put-attribute name="title" value="Thanh Toán" />
+		<put-attribute name="body" value="/WEB-INF/jsp/billing.jsp" />
+	</definition>
+	<definition name="checkoutSuccess" extends="base.checkout">
+		<put-attribute name="title" value="Thanh Toán" />
+		<put-attribute name="body" value="/WEB-INF/jsp/checkoutSuccess.jsp" />
+	</definition>
+
+</tiles-definitions>
