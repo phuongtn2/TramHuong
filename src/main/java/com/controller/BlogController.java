@@ -1,7 +1,10 @@
 
 package com.controller;
 
+import com.tramhuong.dto.BlogDto;
+import com.tramhuong.dto.MappingCategoryDto;
 import com.tramhuong.dto.ProductDto;
+import com.tramhuong.services.BlogService;
 import com.tramhuong.services.CategoriesService;
 import com.tramhuong.services.ProductService;
 import com.tramhuong.services.error.ServiceException;
@@ -23,23 +26,19 @@ public class BlogController {
 	private ProductService productService;
 	@Autowired
 	private CategoriesService categoriesService;
+	@Autowired
+	private BlogService blogService;
 	@RequestMapping(value = "/blog/{id}", method = RequestMethod.GET)
-	public String initForm(HttpServletRequest request, ModelMap model, @PathVariable long id) throws ServiceException, UnsupportedEncodingException {
-		CommonController.loadCategory(categoriesService);
+	public String initForm(HttpServletRequest request, ModelMap model, @PathVariable int id) throws ServiceException, UnsupportedEncodingException {
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
 		CommonController.loadCart(request, model);
-		ProductDto productDto = productService.findById(id);
-		model.addAttribute("product", productDto);
-		//Get product relation
-		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
-		if(productDto.getSubCategoryId() > 0){
-			productDtoList = productService.findBySubCategory(productDto.getSubCategoryId(), 6);
-		}else {
-			productDtoList = productService.findByCategory(productDto.getCateGoryId(), 6);
-		}
-		model.addAttribute("relations", productDtoList);
-		CommonController.loadCategory(categoriesService);
 		CommonController.loadCart(request,model);
-		return "product-detail";
+		BlogDto blogDto = blogService.findById(id);
+		model.addAttribute("b", blogDto);
+		model.addAttribute("mapping_categories", mappingCategoryDtos);
+		model.addAttribute("mSize", mappingCategoryDtos.size());
+		CommonController.loadBlog(model, blogService);
+		return "blog";
 	}
 }
 

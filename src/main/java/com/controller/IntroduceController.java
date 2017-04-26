@@ -3,6 +3,7 @@ package com.controller;
 import com.tramhuong.dto.CategoryDto;
 import com.tramhuong.dto.IntroduceDto;
 import com.tramhuong.dto.MappingCategoryDto;
+import com.tramhuong.services.BlogService;
 import com.tramhuong.services.CategoriesService;
 import com.tramhuong.services.IntroduceService;
 import com.tramhuong.services.error.ServiceException;
@@ -25,6 +26,8 @@ public class IntroduceController {
 	private IntroduceService introduceService;
 	@Autowired
 	private CategoriesService categoriesService;
+	@Autowired
+	private BlogService blogService;
 
 	@RequestMapping(value = "/admin/introduce", method = RequestMethod.GET)
 	public String initForm(ModelMap model) throws ServiceException {
@@ -70,6 +73,7 @@ public class IntroduceController {
 			model.addAttribute("introduce", new IntroduceDto());
 		}
 		CommonController.loadCart(request, model);
+		CommonController.loadBlog(model, blogService);
 		return "introduce";
 	}
 }

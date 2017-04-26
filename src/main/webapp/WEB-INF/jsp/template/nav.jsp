@@ -53,7 +53,7 @@
                         </a>
                     </li>
                     <li class="dropdown">
-                        <a href="/">Bài Viết Sản Phẩm</a>
+                        <a href="#">Bài Viết Sản Phẩm</a>
                         <ul class="dropdown-menu" role="menu">
                             <c:forEach items="${blogs0}" var="b0">
                                 <li>
@@ -65,7 +65,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="/collections/all" title="Sản phẩm" class="">
+                        <a href="#" title="Sản phẩm" class="">
                             <span>Sản phẩm</span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
@@ -97,7 +97,7 @@
                         </ul>--%>
                     </li>
                     <li class="dropdown">
-                        <a href="/">THẾ GIỚI TÂM LINH</a>
+                        <a href="#">THẾ GIỚI TÂM LINH</a>
                         <ul class="dropdown-menu" role="menu">
                             <c:forEach items="${blogs1}" var="b1">
                                 <li>

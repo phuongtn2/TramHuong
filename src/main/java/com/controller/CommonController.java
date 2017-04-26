@@ -2,6 +2,7 @@
 package com.controller;
 
 import com.tramhuong.dto.*;
+import com.tramhuong.services.BlogService;
 import com.tramhuong.services.CategoriesService;
 import com.tramhuong.services.ProductService;
 import com.tramhuong.services.error.ServiceException;
@@ -76,6 +77,22 @@ public class CommonController {
 			}else{
 				cartListDto.setTotalPrice("0");
 			}
+		}
+	}
+	public static void loadBlog(ModelMap model, BlogService blogService) throws ServiceException {
+		List<BlogDto> blogDtos = blogService.findByStatus((byte) 1);
+		if(blogDtos != null){
+			List<BlogDto> blogs0 = new ArrayList<BlogDto>();
+			List<BlogDto> blogs1 = new ArrayList<BlogDto>();
+			for (BlogDto blogDto: blogDtos) {
+				if(blogDto.getType() == 0){
+					blogs0.add(blogDto);
+				}else{
+					blogs1.add(blogDto);
+				}
+			}
+			model.addAttribute("blogs0", blogs0);
+			model.addAttribute("blogs1", blogs1);
 		}
 	}
 }

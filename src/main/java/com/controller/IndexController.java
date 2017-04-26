@@ -39,20 +39,7 @@ public class IndexController {
 		model.addAttribute("pHighlights", productService.findHighlights(6));
 		CommonController.loadCart(request, model);
 		//loa blog menu
-		List<BlogDto> blogDtos = blogService.findByStatus((byte) 1);
-		if(blogDtos != null){
-			List<BlogDto> blogs0 = new ArrayList<BlogDto>();
-			List<BlogDto> blogs1 = new ArrayList<BlogDto>();
-			for (BlogDto blogDto: blogDtos) {
-				if(blogDto.getType() == 0){
-					blogs0.add(blogDto);
-				}else{
-					blogs1.add(blogDto);
-				}
-			}
-			model.addAttribute("blogs0", blogs0);
-			model.addAttribute("blogs1", blogs1);
-		}
+		CommonController.loadBlog(model, blogService);
 		return "index";
 	}
 /*	@ModelAttribute("mapping_categories")

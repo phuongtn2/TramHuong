@@ -8,7 +8,7 @@
             <li><a href="/">Trang Chủ</a></li>
             <li><a href="/introduce">Giới thiệu</a></li>
             <li class="has-children icon icon-arrow-left">
-                <a href="/">Bài Viết Sản Phẩm</a>
+                <a href="#">Bài Viết Sản Phẩm</a>
                 <div class="mp-level">
                     <h2>Bài Viết Sản Phẩm</h2>
                     <a class="mp-back" href="#">Quay lại</a>
@@ -23,7 +23,7 @@
                 </div>
             </li>
             <li class="has-children icon icon-arrow-left">
-                <a href="/">Sản phẩm</a>
+                <a href="#">Sản phẩm</a>
                 <div class="mp-level">
                     <h2>Sản phẩm</h2>
                     <a class="mp-back" href="#">Quay lại</a>
@@ -60,7 +60,7 @@
                 </div>--%>
             </li>
             <li class="has-children icon icon-arrow-left">
-                <a href="/">THẾ GIỚI TÂM LINH</a>
+                <a href="#">THẾ GIỚI TÂM LINH</a>
                 <div class="mp-level">
                     <h2>THẾ GIỚI TÂM LINH</h2>
                     <a class="mp-back" href="#">Quay lại</a>

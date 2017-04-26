@@ -9,6 +9,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="col-md-3 clearfix">
     <!-- Begin sidebar blog -->
     <div class="sidebar">
@@ -27,407 +28,262 @@
                     </a>
                 </li>
                 <li class="item has-sub  ">
-                    <a href="http://tramhuongkyanh.com/blogs/tram-huong">
+                    <a href="#">
                         <span class="lbl">Bài Viết Sản Phẩm</span>
                         <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-3"
                               class="sign">
-						<img src="//hstatic.net/0/0/global/design/theme-default/arrow-down.png">
-					</span>
+						    <img src="/resources/img/arrow-down.png">
+					    </span>
                     </a>
                     <ul class="nav children collapse" id="sub-item-3">
-                        <li class="first">
-                            <a href="http://tramhuongkyanh.com/blogs/tram-huong" title="Trầm Hương">
-                                <span>Trầm Hương</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="http://tramhuongkyanh.com/blogs/nhang-tram-huong"
-                               title="Nhang Trầm Hương">
-                                <span>Nhang Trầm Hương</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="http://tramhuongkyanh.com/blogs/lo-xong-tram-huong-dung-dien"
-                               title="Lò Xông Trầm Dùng Điện">
-                                <span>Lò Xông Trầm Dùng Điện</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="http://tramhuongkyanh.com/blogs/lo-xong-tram-huong-xe-o-to"
-                               title="Lò Xông Trầm Dùng cho xe ÔTô">
-                                <span>Lò Xông Trầm Dùng cho xe ÔTô</span>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a href="http://tramhuongkyanh.com/blogs/tuong-phat-bang-tram-huong"
-                               title="Tượng Phật Bằng Trầm Hương">
-                                <span>Tượng Phật Bằng Trầm Hương</span>
-                            </a>
-                        </li>
-                        <li class="last">
-                            <a href="/blogs/thong-tin-chung-ve-san-pham"
-                               title="Thông Tin Chung Về Sản Phẩm">
-                                <span>Thông Tin Chung Về Sản Phẩm</span>
-                            </a>
-                        </li>
+                        <c:set var="countS0" value="0" scope="page" />
+                        <c:forEach items="${blogs0}" var="b0">
+                            <c:set var="countS0" value="${countS0 + 1}" scope="page"/>
+                            <c:if test="${blogs0.size() == 1}">
+                                <li class="first">
+                                    <a href="/blog/${b0.id}">
+                                            ${b0.name}
+                                    </a>
+                                </li>
+                            </c:if>
+                            <c:if test="${blogs0.size() > 1}">
+                                <c:if test="${countS1 == 1}">
+                                    <li class="first">
+                                        <a href="/blog/${b0.id}">
+                                                ${b0.name}
+                                        </a>
+                                    </li>
+                                </c:if>
+                                <c:if test="${countS0 > 1 && countS0 < blogs0.size()}">
+                                    <li class="">
+                                        <a href="/blog/${b0.id}">
+                                                ${b0.name}
+                                        </a>
+                                    </li>
+                                </c:if>
+                                <c:if test="${countS0 == blogs0.size()}">
+                                    <li class="last">
+                                        <a href="/blog/${b0.id}">
+                                                ${b0.name}
+                                        </a>
+                                    </li>
+                                </c:if>
+                            </c:if>
+                        </c:forEach>
                     </ul>
                 </li>
                 <li class="item has-sub  ">
-                    <a href="/collections/all">
+                    <a href="#">
                         <span class="lbl">Sản phẩm</span>
                         <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-4"
                               class="sign">
-						<img src="//hstatic.net/0/0/global/design/theme-default/arrow-down.png">
+						<img src="/resources/img/arrow-down.png">
 					</span>
                     </a>
                     <ul class="nav children collapse" id="sub-item-4">
-                        <li class="has-sub first">
-                            <a href="/collections/nhang-tram-huong" title="Nhang trầm hương">
-                                <span>Nhang trầm hương</span>
-                                <span class="sign drop-down-1">
-								<img src="//hstatic.net/0/0/global/design/theme-default/arrow-down.png">
-							</span>
-                            </a>
-                            <ul class="nav children collapse lve2-blog">
-
-                                <li class="even">
-                                    <a href="/collections/nhang-tram-huong-co-tam"
-                                       title="Nhang trầm hương có tăm">
-                                        <span>Nhang trầm hương có tăm</span>
-                                    </a>
-                                </li>
-
-                                <li class="odd">
-                                    <a href="/collections/nhang-tram-huong-co-tam-size-lon-1"
-                                       title="Nhang trầm hương có tăm size lớn">
-                                        <span>Nhang trầm hương có tăm size lớn</span>
-                                    </a>
-                                </li>
-
-                                <li class="even">
-                                    <a href="/collections/nhang-tram-huong-khong-tam"
-                                       title="Nhang trầm hương không tăm">
-                                        <span>Nhang trầm hương không tăm</span>
-                                    </a>
-                                </li>
-
-                                <li class="odd">
-                                    <a href="/collections/nhang-thap" title="Nhang tháp">
-                                        <span>Nhang tháp</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class="has-sub ">
-                            <a href="/collections/tram-huong-mieng" title="Trầm hương miếng">
-                                <span>Trầm hương miếng</span>
-                                <span class="sign drop-down-1">
-								<img src="//hstatic.net/0/0/global/design/theme-default/arrow-down.png">
-							</span>
-                            </a>
-                            <ul class="nav children collapse lve2-blog">
-
-                                <li class="even">
-                                    <a href="/collections/tram-huong-mieng"
-                                       title="Trầm hương miếng">
-                                        <span>Trầm hương miếng</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-
-                        <li class="">
-                            <a href="/collections/tram-huong-bot" title="Trầm hương bột">
-                                <span>Trầm hương bột</span>
-                            </a>
-                        </li>
-
-
-                        <li class="has-sub ">
-                            <a href="/collections/lo-xong-tram" title="Lò xông trầm">
-                                <span>Lò xông trầm</span>
-                                <span class="sign drop-down-1">
-								<img src="//hstatic.net/0/0/global/design/theme-default/arrow-down.png">
-							</span>
-                            </a>
-                            <ul class="nav children collapse lve2-blog">
-
-                                <li class="odd">
-                                    <a href="/collections/lo-xong-tram-dung-dien"
-                                       title="Lò xông trầm dùng điện">
-                                        <span>Lò xông trầm dùng điện</span>
-                                    </a>
-                                </li>
-
-                                <li class="even">
-                                    <a href="/collections/lo-xong-tram-dung-trong-xe-hoi"
-                                       title="Lò xông trầm dùng trong xe hơi">
-                                        <span>Lò xông trầm dùng trong xe hơi</span>
-                                    </a>
-                                </li>
-
-                                <li class="odd">
-                                    <a href="/collections/lo-xong-tram-dung-truc-tiep"
-                                       title="Lò xông trầm dùng trực tiếp">
-                                        <span>Lò xông trầm dùng trực tiếp</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-
-                        <li class="has-sub ">
-                            <a href="/collections/de-cam-nhang-tram" title="Đế cắm nhang trầm">
-                                <span>Đế cắm nhang trầm</span>
-                                <span class="sign drop-down-1">
-								<img src="//hstatic.net/0/0/global/design/theme-default/arrow-down.png">
-							</span>
-                            </a>
-                            <ul class="nav children collapse lve2-blog">
-
-                                <li class="even">
-                                    <a href="/collections/de-cam-nhang-tram"
-                                       title="Đế cắm nhang trầm">
-                                        <span>Đế cắm nhang trầm</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-
-                        <li class="has-sub ">
-                            <a href="/collections/vong-tay-tram-huong" title="Vòng tay trầm hương">
-                                <span>Vòng tay trầm hương</span>
-                                <span class="sign drop-down-1">
-								<img src="//hstatic.net/0/0/global/design/theme-default/arrow-down.png">
-							</span>
-                            </a>
-                            <ul class="nav children collapse lve2-blog">
-
-                                <li class="odd">
-                                    <a href="/collections/vong-tay-tram-huong-chim-nuoc"
-                                       title="Vòng Tay Trầm Hương chìm nước">
-                                        <span>Vòng Tay Trầm Hương chìm nước</span>
-                                    </a>
-                                </li>
-
-                                <li class="even">
-                                    <a href="/collections/vong-tay-tram-huong-khong-chim-nuoc"
-                                       title="Vòng tay Trầm Hương không chìm nước">
-                                        <span>Vòng tay Trầm Hương không chìm nước</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-
-                        <li class="has-sub ">
-                            <a href="/collections/tinh-dau-tram-huong" title="Tinh dầu trầm hương">
-                                <span>Tinh dầu trầm hương</span>
-                                <span class="sign drop-down-1">
-								<img src="//hstatic.net/0/0/global/design/theme-default/arrow-down.png">
-							</span>
-                            </a>
-                            <ul class="nav children collapse lve2-blog">
-
-                                <li class="odd">
-                                    <a href="/products/tinh-dau-tram-huong"
-                                       title="Tinh dầu trầm hương">
-                                        <span>Tinh dầu trầm hương</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-
-                        <li class="has-sub ">
-                            <a href="/collections/tuong-phat" title="Tượng Phật">
-                                <span>Tượng Phật</span>
-                                <span class="sign drop-down-1">
-								<img src="//hstatic.net/0/0/global/design/theme-default/arrow-down.png">
-							</span>
-                            </a>
-                            <ul class="nav children collapse lve2-blog">
-
-                                <li class="even">
-                                    <a href="/collections/tuong-phat-tuong-phat-xe-hoi"
-                                       title="Tượng Phật xe hơi">
-                                        <span>Tượng Phật xe hơi</span>
-                                    </a>
-                                </li>
-
-                                <li class="odd">
-                                    <a href="/collections/tuong-phat-tuong-phat-tram-huong"
-                                       title="Tượng Phật trầm hương">
-                                        <span>Tượng Phật trầm hương</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-
-                        <li class="has-sub ">
-                            <a href="/collections/mat-day-chuyen-tram-huong-chim-nuoc"
-                               title="Mặt Dây Chuyền Trầm Hương Chìm Nước">
-                                <span>Mặt Dây Chuyền Trầm Hương Chìm Nước</span>
-                                <span class="sign drop-down-1">
-								<img src="//hstatic.net/0/0/global/design/theme-default/arrow-down.png">
-							</span>
-                            </a>
-                            <ul class="nav children collapse lve2-blog">
-
-                                <li class="even">
-                                    <a href="/collections/mat-day-chuyen-tram-huong-chim-nuoc"
-                                       title="Mặt dây chuyền trầm hương chìm nước">
-                                        <span>Mặt dây chuyền trầm hương chìm nước</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-
-                        <li class="has-sub ">
-                            <a href="/collections/vong-tay-vang-18k-tram-huong-chim-nuoc"
-                               title="Vòng tay vàng 18K trầm hương chìm nước">
-                                <span>Vòng tay vàng 18K trầm hương chìm nước</span>
-                                <span class="sign drop-down-1">
-								<img src="//hstatic.net/0/0/global/design/theme-default/arrow-down.png">
-							</span>
-                            </a>
-                            <ul class="nav children collapse lve2-blog">
-
-                                <li class="odd">
-                                    <a href="/collections/vong-tay-vang-18k-tram-huong-chim-nuoc"
-                                       title="Vòng tay vàng 18K chìm nước">
-                                        <span>Vòng tay vàng 18K chìm nước</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-
-                        <li class="has-sub last">
-                            <a href="/collections/chuoi-hat-tram-huong-108-hat"
-                               title="Chuỗi hạt trầm hương 108 hạt">
-                                <span>Chuỗi hạt trầm hương 108 hạt</span>
-                                <span class="sign drop-down-1">
-								<img src="//hstatic.net/0/0/global/design/theme-default/arrow-down.png">
-							</span>
-                            </a>
-                            <ul class="nav children collapse lve2-blog">
-
-                                <li class="even">
-                                    <a href="/products/chuoi-hat-tram-huong-c108-04"
-                                       title="Chuỗi hạt trầm hượng C108-04">
-                                        <span>Chuỗi hạt trầm hượng C108-04</span>
-                                    </a>
-                                </li>
-
-                                <li class="odd">
-                                    <a href="/products/chuoi-hat-tram-huong-c108-03"
-                                       title="Chuỗi hạt trầm hượng C108-03">
-                                        <span>Chuỗi hạt trầm hượng C108-03</span>
-                                    </a>
-                                </li>
-
-                                <li class="even">
-                                    <a href="/products/chuoi-hat-tram-huong-c108-02"
-                                       title="Chuỗi hạt trầm hượng C108-02">
-                                        <span>Chuỗi hạt trầm hượng C108-02</span>
-                                    </a>
-                                </li>
-
-                                <li class="odd">
-                                    <a href="/products/chuoi-hat-tram-huong-c108-01"
-                                       title="Chuỗi hạt trầm hượng C108-01">
-                                        <span>Chuỗi hạt trầm hượng C108-01</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-
+                        <c:set var="count" value="0" scope="page" />
+                        <c:forEach items="${mapping_categories}" var="m">
+                            <c:set var="count" value="${count + 1}" scope="page"/>
+                            <c:if test="${count == 1}">
+                                <c:if test="${m.subSize > 0}">
+                                    <li class='item has-sub  first'>
+                                        <a href='/category/${m.categoryDto.id}'>
+                                            <span class="lbl">${m.categoryDto.name}</span>
+                                            <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-${count}"
+                                                  class="sign">
+                                    <img src="/resources/img/arrow-right.png">
+                                </span>
+                                        </a>
+                                        <ul class="nav children collapse menu-bar t-fix" id="sub-item-${count}">
+                                            <c:set var="countS" value="0" scope="page" />
+                                            <c:forEach items="${m.suCategories}" var="s">
+                                                <c:set var="countS" value="${countS + 1}" scope="page"/>
+                                                <c:if test="${countS == 1}">
+                                                    <li class="first">
+                                                        <a href="/sub-category/${s.id}">
+                                                            <span>${s.name}</span>
+                                                        </a>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${countS > 1 && countS < m.subSize}">
+                                                    <li class="">
+                                                        <a href="/sub-category/${s.id}">
+                                                            <span>${s.name}</span>
+                                                        </a>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${countS == m.subSize && m.subSize > 1}">
+                                                    <li class="last">
+                                                        <a href="/sub-category/${s.id}">
+                                                            <span>${s.name}</span>
+                                                        </a>
+                                                    </li>
+                                                </c:if>
+                                            </c:forEach>
+                                        </ul>
+                                    </li>
+                                </c:if>
+                                <c:if test="${m.subSize <= 0}">
+                                    <li class='item  first'>
+                                        <a href="/collections/vong-tay-tram-huong-khong-chim-nuoc">
+                                            <span>${m.categoryDto.name}</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+                            </c:if>
+                            <c:if test="${count < mSize && count > 1}">
+                                <c:if test="${m.subSize > 0}">
+                                    <li class='item has-sub'>
+                                        <a href='/category/${m.categoryDto.id}'>
+                                            <span class="lbl">${m.categoryDto.name}</span>
+                                            <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-${count}"
+                                                  class="sign">
+                                <img src="/resources/img/arrow-right.png">
+                            </span>
+                                        </a>
+                                        <ul class="nav children collapse menu-bar t-fix" id="sub-item-${count}">
+                                            <c:set var="countS" value="0" scope="page" />
+                                            <c:forEach items="${m.suCategories}" var="s">
+                                                <c:set var="countS" value="${countS + 1}" scope="page"/>
+                                                <c:if test="${countS == 1}">
+                                                    <li class="first">
+                                                        <a href="/sub-category/${s.id}">
+                                                            <span>${s.name}</span>
+                                                        </a>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${countS > 1 && countS < m.subSize}">
+                                                    <li class="">
+                                                        <a href="/sub-category/${s.id}">
+                                                            <span>${s.name}</span>
+                                                        </a>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${countS == m.subSize && m.subSize > 1}">
+                                                    <li class="last">
+                                                        <a href="/sub-category/${s.id}">
+                                                            <span>${s.name}</span>
+                                                        </a>
+                                                    </li>
+                                                </c:if>
+                                            </c:forEach>
+                                        </ul>
+                                    </li>
+                                </c:if>
+                                <c:if test="${m.subSize <= 0}">
+                                    <li class='item'>
+                                        <a href="/category/${m.categoryDto.id}">
+                                            <span>${m.categoryDto.name}</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+                            </c:if>
+                            <c:if test="${count == mSize && mSize > 1}">
+                                <c:if test="${m.subSize > 0}">
+                                    <li class='item has-sub  last'>
+                                        <a href='/category/${m.categoryDto.id}'>
+                                            <span class="lbl">${m.categoryDto.name}</span>
+                                            <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-${count}"
+                                                  class="sign">
+                                    <img src="/resources/img/arrow-right.png">
+                                </span>
+                                        </a>
+                                        <ul class="nav children collapse menu-bar t-fix" id="sub-item-${count}">
+                                            <c:set var="countS" value="0" scope="page" />
+                                            <c:forEach items="${m.suCategories}" var="s">
+                                                <c:set var="countS" value="${countS + 1}" scope="page"/>
+                                                <c:if test="${countS == 1}">
+                                                    <li class="first">
+                                                        <a href="/sub-category/${s.id}">
+                                                            <span>${s.name}</span>
+                                                        </a>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${countS > 1 && countS < m.subSize}">
+                                                    <li class="">
+                                                        <a href="/sub-category/${s.id}">
+                                                            <span>${s.name}</span>
+                                                        </a>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${countS == m.subSize && m.subSize > 1}">
+                                                    <li class="last">
+                                                        <a href="/sub-category/${s.id}">
+                                                            <span>${s.name}</span>
+                                                        </a>
+                                                    </li>
+                                                </c:if>
+                                            </c:forEach>
+                                        </ul>
+                                    </li>
+                                </c:if>
+                                <c:if test="${m.subSize <= 0}">
+                                    <li class='item last'>
+                                        <a href="/sub-category/${m.categoryDto.id}">
+                                            <span>${m.categoryDto.name}</span>
+                                        </a>
+                                    </li>
+                                </c:if>
+                            </c:if>
+                        </c:forEach>
                     </ul>
                 </li>
-
-
-                <li class="item has-sub  ">
-                    <a href="/blogs/tin-khuyen-mai">
+                <li class="item ">
+                    <a href="/product/sales">
                         <span class="lbl">KHUYẾN MÃI</span>
-                        <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-5"
-                              class="sign">
-						<img src="//hstatic.net/0/0/global/design/theme-default/arrow-down.png">
 					</span>
                     </a>
-                    <ul class="nav children collapse" id="sub-item-5">
-
-
-                        <li class="firstlast">
-                            <a href="/blogs/tin-khuyen-mai" title="Nhang Trầm Có Tăm">
-                                <span>Nhang Trầm Có Tăm</span>
-                            </a>
-                        </li>
-
-
-                    </ul>
                 </li>
-
-
                 <li class="item has-sub  ">
-                    <a href="/pages/tim-hieu-ve-tam-linh">
+                    <a href="#">
                         <span class="lbl">THẾ GIỚI TÂM LINH</span>
                         <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-6"
                               class="sign">
-						<img src="//hstatic.net/0/0/global/design/theme-default/arrow-down.png">
+						<img src="/resources/img/arrow-down.png">
 					</span>
                     </a>
                     <ul class="nav children collapse" id="sub-item-6">
-
-
-                        <li class="first">
-                            <a href="/blogs/the-gioi-tam-linh" title="Tìm hiểu về tâm linh">
-                                <span>Tìm hiểu về tâm linh</span>
-                            </a>
-                        </li>
-
-
-                        <li class="">
-                            <a href="/blogs/nhac-thien-thu-gian" title="Nhạc Thiền Thư Giãn">
-                                <span>Nhạc Thiền Thư Giãn</span>
-                            </a>
-                        </li>
-
-
-                        <li class="last">
-                            <a href="http://tramhuongkyanh2.myharavan.com/blogs/danh-ngon-cuoc-song"
-                               title="Danh Ngôn Cuộc Sống">
-                                <span>Danh Ngôn Cuộc Sống</span>
-                            </a>
-                        </li>
-
-
+                        <c:set var="countS1" value="0" scope="page" />
+                        <c:forEach items="${blogs1}" var="b1">
+                            <c:set var="countS1" value="${countS1 + 1}" scope="page"/>
+                            <c:if test="${blogs1.size() == 1}">
+                                <li class="first">
+                                    <a href="/blog/${b1.id}">
+                                            ${b1.name}
+                                    </a>
+                                </li>
+                            </c:if>
+                            <c:if test="${blogs1.size() > 1}">
+                                <c:if test="${countS1 == 1}">
+                                    <li class="first">
+                                        <a href="/blog/${b1.id}">
+                                                ${b1.name}
+                                        </a>
+                                    </li>
+                                </c:if>
+                                <c:if test="${countS1 > 1 && countS1 < blogs1.size()}">
+                                    <li class="">
+                                        <a href="/blog/${b1.id}">
+                                                ${b1.name}
+                                        </a>
+                                    </li>
+                                </c:if>
+                                <c:if test="${countS1 == blogs1.size()}">
+                                    <li class="last">
+                                        <a href="/blog/${b1.id}">
+                                                ${b1.name}
+                                        </a>
+                                    </li>
+                                </c:if>
+                            </c:if>
+                        </c:forEach>
                     </ul>
                 </li>
-
-
-                <li class=" last">
+                <li class="last">
                     <a href="/pages/nhan-xet-cua-khach-hang">
                         <span>NHẬN XÉT KH</span>
                     </a>
                 </li>
-
-
             </ul>
             <script>
                 $(document).ready(function () {
@@ -549,8 +405,6 @@
 
         </div>
         <!--End: Bài viết mới nhất-->
-
-
     </div>
     <!-- End sidebar blog -->
 </div>

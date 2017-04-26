@@ -5,6 +5,7 @@ import com.tramhuong.dto.CategoryDto;
 import com.tramhuong.dto.IntroduceDto;
 import com.tramhuong.dto.MappingCategoryDto;
 import com.tramhuong.dto.ProductDto;
+import com.tramhuong.services.BlogService;
 import com.tramhuong.services.CategoriesService;
 import com.tramhuong.services.IntroduceService;
 import com.tramhuong.services.ProductService;
@@ -27,7 +28,7 @@ import java.util.List;
 @Controller
 public class ProductController {
 	@Autowired
-	private IntroduceService introduceService;
+	private BlogService blogService;
 	@Autowired
 	private CategoriesService categoriesService;
 	@Autowired
@@ -40,7 +41,7 @@ public class ProductController {
 
 	@RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
 	public String initForm(HttpServletRequest request, ModelMap model, @PathVariable long id) throws ServiceException, UnsupportedEncodingException {
-		CommonController.loadCategory(categoriesService);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
 		CommonController.loadCart(request, model);
 		ProductDto productDto = productService.findById(id);
 		model.addAttribute("product", productDto);
@@ -52,8 +53,10 @@ public class ProductController {
 			productDtoList = productService.findByCategory(productDto.getCateGoryId(), 6);
 		}
 		model.addAttribute("relations", productDtoList);
-		CommonController.loadCategory(categoriesService);
+		model.addAttribute("mapping_categories", mappingCategoryDtos);
+		model.addAttribute("mSize", mappingCategoryDtos.size());
 		CommonController.loadCart(request,model);
+		CommonController.loadBlog(model, blogService);
 		return "product-detail";
 	}
 

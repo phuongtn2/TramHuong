@@ -64,11 +64,12 @@
 	<select id="findByStatus" resultType="blog">
 		SELECT * FROM BLOGS WHERE status = #{status} ORDER BY id
 	</select>
+	<select id="findById" resultType="blog">
+		SELECT * FROM BLOGS WHERE id=#{id}
+	</select>
 	<!--<select id="findByNewsId" resultType="newsDetail">
 		SELECT * FROM T_NEWS_DETAIL WHERE newsCode=#{id} ORDER BY created
 	</select>
-	<select id="findById" resultType="news">
-		SELECT * FROM M_NEWS WHERE newsCode=#{id}
-	</select>-->
+	-->
 
 </mapper>
