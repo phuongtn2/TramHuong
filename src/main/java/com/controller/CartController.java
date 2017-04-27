@@ -2,10 +2,7 @@
 package com.controller;
 
 import com.tramhuong.dto.*;
-import com.tramhuong.services.BillingAccountService;
-import com.tramhuong.services.CategoriesService;
-import com.tramhuong.services.LocationService;
-import com.tramhuong.services.ProductService;
+import com.tramhuong.services.*;
 import com.tramhuong.services.error.ServiceException;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +31,17 @@ public class CartController {
 	private LocationService locationService;
 	@Autowired
 	private BillingAccountService billingAccountService;
+	@Autowired
+	private AboutService aboutService;
+	@Autowired
+	private BlogService blogService;
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)
 	public String initForm(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);;
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		CommonController.loadContentCart(request, model, productService, setting);
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCart(request, model);
-		CommonController.loadContentCart(request, model, productService, setting);
+		CommonController.loadCommon(request, model, aboutService, blogService);
 		return "cart";
 	}
 
@@ -112,9 +113,11 @@ public class CartController {
 	}
 	@RequestMapping(method = RequestMethod.GET, value = "/checkout")
 	public String checkout(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		model.addAttribute("mapping_categories", mappingCategoryDtos);
+		model.addAttribute("mSize", mappingCategoryDtos.size());
+		CommonController.loadCommon(request, model, aboutService, blogService);
 		model.addAttribute("provinces", locationService.findProvinces());
-		CommonController.loadCart(request,model);
-		CommonController.loadContentCart(request, model, productService, setting);
 		List<BillingAccountDto> billingAccountDtos = billingAccountService.findAll();
 		model.addAttribute("billings", billingAccountDtos);
 		return "checkout";

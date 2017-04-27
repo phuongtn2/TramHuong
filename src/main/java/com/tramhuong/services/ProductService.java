@@ -19,6 +19,8 @@ public interface ProductService {
     List<ProductDto> findByCategory(long id, int limit) throws ServiceException;
     List<ProductDto> findBySubCategory(long id, int limit) throws ServiceException;
     List<ProductDto> findHighlights(int limit) throws ServiceException;
+    List<ProductDto> findByTag(String tag) throws ServiceException;
+    List<ProductDto> findByName(String name) throws ServiceException;
     ProductDto findById(long id) throws ServiceException;
 
 }

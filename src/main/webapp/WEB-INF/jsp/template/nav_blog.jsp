@@ -279,11 +279,11 @@
                         </c:forEach>
                     </ul>
                 </li>
-                <li class="last">
+                <%--<li class="last">
                     <a href="/pages/nhan-xet-cua-khach-hang">
                         <span>NHẬN XÉT KH</span>
                     </a>
-                </li>
+                </li>--%>
             </ul>
             <script>
                 $(document).ready(function () {

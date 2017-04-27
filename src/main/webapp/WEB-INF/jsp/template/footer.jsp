@@ -75,7 +75,6 @@
                             <span
                                 style="color: rgb(240, 196, 129);" data-mce-style="color: #f0c481;"><a
                                 href="/page/payment"
-                                target="_blank"
                                 data-mce-href="/page/payment"
                                 style="color: rgb(240, 196, 129);" data-mce-style="color: #f0c481;">Cách thanh toán&nbsp;</a>
                             </span><br
@@ -124,9 +123,10 @@
                         <h4>Kết nối với chúng tôi</h4>
                     </div>
                     <div class="footer-static-content">
+                        <img src="/resources/img/footer.jpg" width="100%" height="100%"/>
                         <!-- Facebook widget -->
 
-                        <div id="fb-root"><iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ftngocphuong&tabs=timeline&width=0&height=0&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1832292157092575"
+                        <%--<div id="fb-root"><iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ftngocphuong&tabs=timeline&width=0&height=0&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1832292157092575"
                                                   width="0" height="0" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
                                                   allowTransparency="true"></iframe></div>
                         <script>(function(d, s, id) {
@@ -135,7 +135,7 @@
                             js = d.createElement(s); js.id = id;
                             js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=1832292157092575";
                             fjs.parentNode.insertBefore(js, fjs);
-                        }(document, 'script', 'facebook-jssdk'));</script>
+                        }(document, 'script', 'facebook-jssdk'));</script>--%>
                         <div style="clear:both;">
                         </div>
                     </div>

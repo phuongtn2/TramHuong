@@ -38,7 +38,18 @@
 		<put-attribute name="breadcurmb" value=""/>
 		<put-attribute name="sort" value=""/>
 		<put-attribute name="content" value="" />
-		<put-attribute name="paagging" value=""/>
+		<put-attribute name="pagging" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp" />
+	</definition>
+	<definition name="base.static"
+				template="/WEB-INF/jsp/template/static.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/jsp/template/header.jsp" />
+		<put-attribute name="nav_mobile" value="/WEB-INF/jsp/template/nav_mobile.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/jsp/template/nav.jsp" />
+		<!--<put-attribute name="row_content" value="/WEB-INF/jsp/template/row_content.jsp" />-->
+		<put-attribute name="aside" value="/WEB-INF/jsp/template/aside.jsp" />
+		<put-attribute name="content" value="" />
 		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp" />
 	</definition>
 	<definition name="base.admin"
@@ -112,6 +123,18 @@
 		<put-attribute name="sort" value="/WEB-INF/jsp/template/sort.jsp" />
 		<put-attribute name="content" value="/WEB-INF/jsp/list_product.jsp" />
 		<put-attribute name="pagging" value="/WEB-INF/jsp/template/pagging.jsp" />
+	</definition>
+	<definition name="buy" extends="base.static">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="content" value="/WEB-INF/jsp/buy.jsp" />
+	</definition>
+	<definition name="payment" extends="base.static">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="content" value="/WEB-INF/jsp/payment.jsp" />
+	</definition>
+	<definition name="shipping" extends="base.static">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="content" value="/WEB-INF/jsp/shipping.jsp" />
 	</definition>
 
 </tiles-definitions>

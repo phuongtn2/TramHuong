@@ -19,6 +19,15 @@
 	<select id="findAll" resultType="product">
 		SELECT * FROM PRODUCT ORDER BY id
 	</select>
+	<select id="findByTag" resultType="product">
+		SELECT * FROM PRODUCT WHERE status = 1 AND tag LIKE #{tag} ORDER BY id
+	</select>
+	<select id="findByName" resultType="product">
+		SELECT * FROM PRODUCT WHERE status = 1 AND name LIKE concat(concat('%',#{name}), '%') ORDER BY id
+	</select>
+	<select id="findByStatus" resultType="product">
+		SELECT * FROM PRODUCT WHERE status = #{status} ORDER BY id
+	</select>
 	<select id="findHighlights" resultType="product">
 		SELECT * FROM PRODUCT WHERE status = 1 ORDER BY count DESC LIMIT #{limit}
 	</select>

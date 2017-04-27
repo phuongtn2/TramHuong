@@ -20,5 +20,7 @@ public interface ProductMapper {
     List<ProductDto> findByCategory(@Param("id") long id, @Param("limit") int limit);
     List<ProductDto> findBySubCategory(@Param("id") long id, @Param("limit") int limit);
     List<ProductDto> findHighlights(@Param("limit") int limit);
+    List<ProductDto> findByTag(@Param("tag") String tag);
+    List<ProductDto> findByName(@Param("name") String name);
     ProductDto findById(@Param("id") long id);
 }

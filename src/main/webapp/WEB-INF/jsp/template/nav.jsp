@@ -18,9 +18,12 @@
                                 <div class="dropdown-menu" role="menu">
                                     <div class="search-bar">
                                         <div class="">
-                                            <form class="col-md-12" action="/search" method="post">
+                                            <form class="col-md-12" action="/search" method="post" modelAttribute="productName">
                                                 <%--<input type="hidden" name="product" value="product"/>--%>
                                                 <input type="text" name="productName" placeholder="Tiềm kiếm..."/>
+                                                    <button type="submit" class="btn btn-info">
+                                                        <span class=""></span> Search
+                                                    </button>
                                             </form>
                                         </div>
                                     </div>
@@ -107,11 +110,11 @@
                             </c:forEach>
                         </ul>
                     </li>
-                    <li>
+                    <%--<li>
                         <a href="/pages/nhan-xet-cua-khach-hang" class="">
                             <span>NHẬN XÉT KH</span>
                         </a>
-                    </li>
+                    </li>--%>
                 </ul>
             </div>
             <div class="hidden-xs pull-right right-menu">
@@ -134,10 +137,13 @@
                                     <div class="dropdown-menu" role="menu">
                                         <div class="search-bar">
                                             <div class="">
-                                                <form class="col-md-12" action="/search">
-                                                    <input type="hidden" name="type" value="product"/>
-                                                    <input type="text" name="q"
+                                                <form class="col-md-12" action="/search" method="post" modelAttribute="productName">
+                                                    <%--<input type="hidden" name="type" value="product"/>--%>
+                                                    <input type="text" name="productName"
                                                            placeholder="Tìm kiếm..."/>
+                                                        <button type="submit" class="btn btn-info">
+                                                            <span class=""></span> Search
+                                                        </button>
                                                 </form>
                                             </div>
                                         </div>

@@ -38,14 +38,11 @@ public class IndexController {
 		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
+		CommonController.loadCommon(request, model, aboutService, blogService);
 		//Product Highlight
 		model.addAttribute("pHighlights", productService.findHighlights(6));
 		model.addAttribute("pSales", productService.findSale(6));
 		model.addAttribute("pNews", productService.findNew(9));
-		CommonController.loadCart(request, model);
-		//loa blog menu
-		CommonController.loadBlog(model, blogService);
-		CommonController.loadAbout(model, aboutService);
 		return "index";
 	}
 /*	@ModelAttribute("mapping_categories")

@@ -3,6 +3,7 @@ package com.controller;
 import com.tramhuong.dto.CategoryDto;
 import com.tramhuong.dto.IntroduceDto;
 import com.tramhuong.dto.MappingCategoryDto;
+import com.tramhuong.services.AboutService;
 import com.tramhuong.services.BlogService;
 import com.tramhuong.services.CategoriesService;
 import com.tramhuong.services.IntroduceService;
@@ -28,7 +29,8 @@ public class IntroduceController {
 	private CategoriesService categoriesService;
 	@Autowired
 	private BlogService blogService;
-
+	@Autowired
+	private AboutService aboutService;
 	@RequestMapping(value = "/admin/introduce", method = RequestMethod.GET)
 	public String initForm(ModelMap model) throws ServiceException {
 		IntroduceDto introduceDto = introduceService.find();
@@ -63,17 +65,16 @@ public class IntroduceController {
 
 	@RequestMapping(value = "/introduce", method = RequestMethod.GET)
 	public String initForm(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);;
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
+		CommonController.loadCommon(request, model, aboutService, blogService);
 		IntroduceDto introduceDto = introduceService.find();
 		if(introduceDto != null){
 			model.addAttribute("introduce", introduceDto);
 		}else{
 			model.addAttribute("introduce", new IntroduceDto());
 		}
-		CommonController.loadCart(request, model);
-		CommonController.loadBlog(model, blogService);
 		return "introduce";
 	}
 }

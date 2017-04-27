@@ -91,7 +91,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12 pull-center">
-                <a class="btn btn-readmore" href="/product/allSales" role="button">Xem
+                <a class="btn btn-readmore" href="/product/sales" role="button">Xem
                     thêm </a>
             </div>
         </div>

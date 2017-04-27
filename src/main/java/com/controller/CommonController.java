@@ -18,6 +18,12 @@ import java.util.List;
 import java.util.Properties;
 
 public class CommonController {
+	public static void loadCommon(HttpServletRequest request, ModelMap model
+	, AboutService aboutService, BlogService blogService) throws UnsupportedEncodingException, ServiceException {
+		loadCart(request, model);
+		loadAbout(model,aboutService);
+		loadBlog(model,blogService);
+	}
 	public static List<MappingCategoryDto> loadCategory(CategoriesService categoriesService) throws ServiceException {
 		List<CategoryDto> categoryDtos = categoriesService.findByStatus((byte) 1);
 		List<MappingCategoryDto> mappingCategoryDtos = new ArrayList<MappingCategoryDto>();

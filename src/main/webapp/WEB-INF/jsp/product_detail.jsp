@@ -85,7 +85,7 @@
                     </label>
                     <ul class="tags">
                         <li class="active">
-                            <a href="/searchByTag">${product.tag}</a>
+                            <a href="/searchByTag/${product.tag}">${product.tag}</a>
                         </li>
                     </ul>
                 </div>
@@ -164,7 +164,7 @@
                         <p style="font-family: verdana; font-size: medium; text-align: justify;"
                            data-mce-style="font-family: verdana; font-size: medium; text-align: justify;"><strong
                                 style="text-align: start;" data-mce-style="text-align: start;"></strong>
-                            <label style="white-space: pre;">${product.description}</label>
+                            ${product.description}
                         </p>
 
                     </div>
@@ -237,7 +237,7 @@
                 </c:forEach>
             </div>
         </div>
-        <script>
+        <%--<script>
             var add_to_wishlist = function () {
                 if (typeof(Storage) !== "undefined") {
                     if (localStorage.recently_viewed) {
@@ -252,7 +252,7 @@
                     console.log('Your Browser does not support storage!');
                 }
             }
-        </script>
+        </script>--%>
     </div>
 </div>
 

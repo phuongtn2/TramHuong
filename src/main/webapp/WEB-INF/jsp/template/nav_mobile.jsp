@@ -75,7 +75,7 @@
                     </ul>
                 </div>
             </li>
-            <li><a href="/pages/nhan-xet-cua-khach-hang">NHẬN XÉT KH</a></li>
+            <%--<li><a href="/pages/nhan-xet-cua-khach-hang">NHẬN XÉT KH</a></li>--%>
         </ul>
     </div>
 </nav>

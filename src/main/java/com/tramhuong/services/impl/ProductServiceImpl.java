@@ -68,6 +68,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<ProductDto> findByTag(String tag) throws ServiceException {
+        return productMapper.findByTag(tag);
+    }
+
+    @Override
+    public List<ProductDto> findByName(String name) throws ServiceException {
+        return productMapper.findByName(name);
+    }
+
+    @Override
     public ProductDto findById(long id) throws ServiceException {
         return productMapper.findById(id);
     }
