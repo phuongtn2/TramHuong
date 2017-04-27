@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tramhuong.mapper.OrderMapper">
+
+	<insert id="add" useGeneratedKeys="true" keyProperty="dto.id">
+		INSERT INTO ORDER_INFO(
+		name
+		, tel
+		, email
+		, address
+		, provinceId
+		, provinceName
+		, districtId
+		, districtName
+		, wardId
+		, wardName
+		, description
+		, paymentType
+		, orderCode
+		, totalPrice
+		, orderDate
+		, status
+		)VALUES(
+		#{dto.name}
+		, #{dto.tel}
+		, #{dto.email}
+		, #{dto.address}
+		, #{dto.provinceId}
+		, #{dto.provinceName}
+		, #{dto.districtId}
+		, #{dto.districtName}
+		, #{dto.wardId}
+		, #{dto.wardName}
+		, #{dto.description}
+		, #{dto.paymentType}
+		, #{dto.orderCode}
+		, #{dto.totalPrice}
+		,  NOW()
+		, #{dto.status}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE ORDER_INFO SET
+		status = #{dto.status}
+		WHERE id= #{dto.id}
+	</update>
+	<delete id="delete">
+		DELETE FROM ORDER_INFO WHERE orderCode = #{orderCode}
+	</delete>
+	<select id="findAll" resultType="order">
+		SELECT * FROM ORDER_INFO ORDER BY id
+	</select>
+	<select id="findByCondition" resultType="order">
+		SELECT * FROM ORDER_INFO WHERE status = #{status} ORDER BY id
+	</select>
+	<select id="findById" resultType="order">
+		SELECT * FROM ORDER_INFO WHERE id=#{id}
+	</select>
+
+</mapper>

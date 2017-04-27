@@ -18,5 +18,7 @@
 		<typeAlias alias="billingAccount" type="com.tramhuong.dto.BillingAccountDto"/>
 		<typeAlias alias="about" type="com.tramhuong.dto.AboutDto"/>
 		<typeAlias alias="blog" type="com.tramhuong.dto.BlogDto"/>
+		<typeAlias alias="order" type="com.tramhuong.dto.OrderInfoDto"/>
+		<typeAlias alias="orderItem" type="com.tramhuong.dto.OrderItemDto"/>
 	</typeAliases>
 </configuration>

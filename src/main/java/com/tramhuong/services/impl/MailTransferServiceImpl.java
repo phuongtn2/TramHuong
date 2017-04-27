@@ -73,7 +73,7 @@ public class MailTransferServiceImpl implements MailTransferService {
 					final InternetAddress managerAddress = new InternetAddress(sender.getEmail(), infoMailFullName + " " + sender.getFullName(), headerCharset);
 					mm.addRecipient(RecipientType.CC, managerAddress);
 				//}
-				mailSize = messageLength(mm); ////mm.getSize();
+				//mailSize = messageLength(mm); ////mm.getSize();
 			} catch (MessagingException |IOException e) {
 				e.printStackTrace();
 				throw new ServiceException("mail.emailCreateError2", e, logPrefix, "ERROR2", 0, 0, 0, mailSize);
@@ -179,7 +179,7 @@ public class MailTransferServiceImpl implements MailTransferService {
 		final boolean smtpAuth = NumConverter.parseBoolProperty(setting, "mailTransfer.smtp.auth");
 		prop.put("mail.smtp.auth", smtpAuth);
 		if (smtpAuth) {
-			prop.put("mail.smtp.starttls.enable", NumConverter.parseBoolProperty(setting, "mailTransfer.smtp.starttls"));
+			prop.put("mail.smtp.starttls.enable", NumConverter.parseBoolProperty(setting, "mailTransfer.smtp.starttls.enable"));
 			final String user = setting.getProperty("mailTransfer.smtp.server.user");
 			final String password = setting.getProperty("mailTransfer.smtp.server.passwd");
 
@@ -187,7 +187,6 @@ public class MailTransferServiceImpl implements MailTransferService {
 			return session;
 		} else {
 			final Session session = Session.getInstance(prop);
-
 			return session;
 		}
 	}

@@ -12,7 +12,7 @@
 <span class="fbtracker-checkout"></span>
 <a href="/cart"><h1><span class="btn-back">Quay về giỏ hàng</span> Trầm Hương Tuấn Anh</h1></a>
 <div class="container clearfix">
-    <form:form accept-charset="UTF-8" id="purchase-form" action="/saveOrder">
+    <form:form accept-charset="UTF-8" id="purchase-form" action="/saveOrder" modelAttribute="orderInfo">
         <div class="col-4 step1">
         <h2>Thông tin giao hàng</h2>
         <%--<div class="user-login"><a href="/account/register?urlredirect=checkout">Đăng ký tài khoản mua hàng</a> | <a
@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group">
                     <input placeholder="Họ và tên" class="formcontrol" id="billing_address_full_name"
-                           name="fullName" size="30" type="text" required/>
+                           name="name" size="30" type="text" required/>
                     <p>Họ và tên</p>
                 </div>
                 <div class="form-group">
@@ -67,7 +67,7 @@
                 </div>
                 <div class="form-group ctrl-district" id="shipping_district_container">
                     <div class='custom-dropdown'>
-                        <select id="shipping_district" name="shipping_district" class="formcontrol" required onChange="getWards();">
+                        <select id="shipping_district" name="districtId" class="formcontrol" required onChange="getWards();">
                             <option value="null" disabled selected hidden>Vui lòng chọn quận/huyện.</option>
                         </select>
                         <input type="hidden" name="districtName" id="districtName"/>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="form-group ctrl-district" id="shipping_ward_container">
                     <div class='custom-dropdown'>
-                        <select id="shipping_ward" name="districtId" class="formcontrol" required onchange="getWardName();">
+                        <select id="shipping_ward" name="wardId" class="formcontrol" required onchange="getWardName();">
                             <option value="null" disabled selected hidden>Vui lòng chọn xã/phường.</option>
                         </select>
                         <input type="hidden" name="wardName" id="wardName"/>

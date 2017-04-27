@@ -56,16 +56,30 @@ public class CartController {
 			cartDtos.add(cartDto);
 			cartListDto.setCartDtoList(cartDtos);
 		}else{
-			List<CartDto> cartDtos = new ArrayList<CartDto>();
-			for (CartDto cartDto1: cartListDto.getCartDtoList()) {
-				if(cartDto.getProductId() == cartDto1.getProductId()){
-					cartDto1.setCount(cartDto1.getCount() + cartDto.getCount());
-					cartDtos.add(cartDto1);
+			if(cartListDto.getCartDtoList().size() <= 0){
+				cartListDto.getCartDtoList().add(cartDto);
+			}else{
+				List<CartDto> cartDtos = new ArrayList<CartDto>();
+				boolean flg = false;
+				for (CartDto cartDto1: cartListDto.getCartDtoList()) {
+					if(cartDto.getProductId() == cartDto1.getProductId()){
+						flg = true;
+						break;
+					}
+				}
+				if(flg){
+					for (CartDto cartDto1: cartListDto.getCartDtoList()) {
+						if(cartDto.getProductId() == cartDto1.getProductId()){
+							cartDto1.setCount(cartDto1.getCount() + cartDto.getCount());
+						}
+						cartDtos.add(cartDto1);
+					}
 				}else{
+					cartDtos.addAll(cartListDto.getCartDtoList());
 					cartDtos.add(cartDto);
 				}
+				cartListDto.setCartDtoList(cartDtos);
 			}
-			cartListDto.setCartDtoList(cartDtos);
 		}
 		cartListDto.setOrderCode(RandomStringUtils.randomAlphanumeric(10).toUpperCase());
 		session.setAttribute("cartList", cartListDto);
@@ -117,6 +131,7 @@ public class CartController {
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
 		CommonController.loadCommon(request, model, aboutService, blogService);
+		CommonController.loadContentCart(request, model, productService, setting);
 		model.addAttribute("provinces", locationService.findProvinces());
 		List<BillingAccountDto> billingAccountDtos = billingAccountService.findAll();
 		model.addAttribute("billings", billingAccountDtos);
