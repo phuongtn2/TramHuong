@@ -9,7 +9,7 @@
 <div class="col-md-12 ">
     <div id="pagination" class="">
         <%--<span id="PageList" class="clear"></span>--%>
-        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 text-center">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
             <span id="PageList" class="page-node"></span>
         </div>
         <script type="text/javascript">
