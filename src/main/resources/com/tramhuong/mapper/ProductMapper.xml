@@ -37,4 +37,16 @@
 	<select id="findById" resultType="product">
 		SELECT * FROM PRODUCT WHERE id = #{id}
 	</select>
+	<select id="findSale" resultType="product">
+		SELECT * FROM PRODUCT WHERE status = 1 AND isSale = 1
+		<if test="limit > 0">
+			LIMIT #{limit}
+		</if>
+	</select>
+	<select id="findNew" resultType="product">
+		SELECT * FROM PRODUCT WHERE status = 1 AND isNew = 1
+		<if test="limit > 0">
+			LIMIT #{limit}
+		</if>
+	</select>
 </mapper>

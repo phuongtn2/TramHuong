@@ -18,9 +18,9 @@
                                 <div class="dropdown-menu" role="menu">
                                     <div class="search-bar">
                                         <div class="">
-                                            <form class="col-md-12" action="/search">
-                                                <input type="hidden" name="type" value="product"/>
-                                                <input type="text" name="q" placeholder="Tiềm kiếm..."/>
+                                            <form class="col-md-12" action="/search" method="post">
+                                                <%--<input type="hidden" name="product" value="product"/>--%>
+                                                <input type="text" name="productName" placeholder="Tiềm kiếm..."/>
                                             </form>
                                         </div>
                                     </div>

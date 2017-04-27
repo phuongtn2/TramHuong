@@ -48,7 +48,7 @@
     </title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=0' name='viewport'/>
-    <link rel="canonical" href="http://localhost:8080/"/>
+    <link rel="canonical" href="${pageContext.request.contextPath}"/>
     <script>
         //<![CDATA[
         (function (i, s, o, g, r, a, m) {
@@ -319,7 +319,7 @@
 
         <div class="scroller">
             <div class="scroller-inner">
-                <%--<tiles:insertAttribute name="header"/>--%>
+                <tiles:insertAttribute name="header"/>
                 <tiles:insertAttribute name="nav"/>
                 <section id="content" class="clearfix container">
                     <div id="blog">
@@ -369,78 +369,6 @@
         </div>
     </div>
 </div>
-<%--<div id="myCart" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">
-                    Bạn có <b></b> sản phẩm trong giỏ hàng
-                </h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <a aria-hidden="true"></a>
-                </button>
-            </div>
-            <form action="/cart" method="post" id="cartform">
-                <div class="modal-body">
-                    <table style="width:100%;" id="cart-table">
-                        <tr>
-                            <th></th>
-                            <th>Tên sản phẩm</th>
-                            <th>Số lượng</th>
-                            <th>Giá tiền</th>
-                            <th></th>
-                        </tr>
-                        <tr class="line-item original">
-                            <td class="item-image"></td>
-                            <td class="item-title">
-                                <a></a>
-                            </td>
-                            <td class="item-quantity"></td>
-                            <td class="item-price"></td>
-                            <td class="item-delete"></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="modal-note">
-                                <textarea placeholder="Viết ghi chú" id="note" name="note" rows="5"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="total-price-modal">
-                                Tổng cộng : <span class="item-total"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-top:10px;">
-                        <div class="col-lg-6">
-                            <div class="comeback">
-                                <a href="/collections/all">
-                                    <img src="/resources/img/icon-tieptuc.png"/>Tiếp tục mua hàng
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 text-right">
-                            <div class="buttons btn-modal-cart">
-                                <button type="submit" class="button-default" id="checkout" name="checkout">
-                                    Đặt hàng
-                                </button>
-                            </div>
-                            <div class="buttons btn-modal-cart">
-                                <button type="submit" class="button-default" id="update-cart-modal" name="">
-                                    Cập nhật
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>--%>
 <!-- Quick view -->
 <div class="modal fade hidden-xs" id="quick-view-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
      aria-hidden="false">
@@ -507,10 +435,6 @@
     var callBack = function (product, selector) {
         if (product) {
             modal = $('#quick-view-modal');
-            /*if (variant.compare_at_price > 0)
-             modal.find('del').html(Haravan.formatMoney(variant.compare_at_price, "{{amount}}₫"));
-             else
-             modal.find('del').html('');*/
             if (product.isEffete == 0) {
                 modal.find('.btn-addcart').css('display', 'block');
                 modal.find('.btn-soldout').css('display', 'none');
@@ -605,15 +529,6 @@
                         elem2.find('img').attr('src', product.img2);
                         modal.find('.owl-carousel').append(elem2);
                     }
-                    /*$.each(product.images, function (i, v) {
-                     elem = $('<li class="item">').append('<a href="#" data-image="" data-zoom-image=""><img /></a>');
-                     elem.find('a').attr('data-image', Haravan.resizeImage(v, 'medium'));
-                     elem.find('a').attr('data-zoom-image', v);
-                     elem.find('img').attr('data-image', Haravan.resizeImage(v, 'medium'));
-                     elem.find('img').attr('data-zoom-image', v);
-                     elem.find('img').attr('src', Haravan.resizeImage(v, 'small'));
-                     modal.find('.owl-carousel').append(elem);
-                     });*/
                     var owl = $('.owl-carousel');
                     owl.owlCarousel({
                         items: 3,
@@ -624,11 +539,8 @@
                     modal.find('.p-product-image-feature').attr('src', product.img);
                     $(".modal-footer .btn-readmore").attr('href', "/product/" + product.id);
                 }
-
             }
         });
-
-        //$('.modal-backdrop').css('opacity', '0');
         return false;
     };
     $('#quick-view-modal').on('click', '.item img', function (event) {

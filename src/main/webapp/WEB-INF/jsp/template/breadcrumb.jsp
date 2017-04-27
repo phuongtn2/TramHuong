@@ -11,7 +11,7 @@
         <div class="col-md-12 ">
             <ol class="breadcrumb breadcrumb-arrow hidden-sm hidden-xs">
                 <li><a href="/" target="_self">Trang chủ</a></li>
-                <li class="active"><span> Lò Xông Trầm Dùng Điện - LX100</span></li>
+                <li class="active"><span> ${bre}</span></li>
             </ol>
         </div>
     </div>

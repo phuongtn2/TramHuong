@@ -49,8 +49,7 @@
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=0' name='viewport'/>
     <link rel="canonical" href="${pageContext.request.contextPath}"/>
-    <meta property="fb:app_id" content="1832292157092575" />
-    <%--<script>
+    <script>
         //<![CDATA[
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
@@ -88,8 +87,8 @@
         ga('send', 'pageview');
 
         //]]>
-    </script>--%>
-    <%--<script>
+    </script>
+    <script>
         //<![CDATA[
         !function (f, b, e, v, n, t, s) {
             if (f.fbq)return;
@@ -116,7 +115,7 @@
     </script>
     <noscript><img height='1' width='1' style='display:none'
                    src='https://www.facebook.com/tr?id=209722866128412&amp;ev=PageView&amp;noscript=1'
-    /></noscript>--%>
+    /></noscript>
     <script type='text/javascript'>
         //<![CDATA[
         if ((typeof Haravan) === 'undefined') {
@@ -222,7 +221,7 @@
     <link href="${cs11}" rel="stylesheet" type="text/css"/>
 
     <!-- Facebook Pixel Code -->
-    <%--<script>
+    <script>
         !function (f, b, e, v, n, t, s) {
             if (f.fbq)return;
             n = f.fbq = function () {
@@ -242,7 +241,7 @@
         }(window,
             document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-        fbq('init', '1832292157092575');
+        fbq('init', '1440058032900495');
         fbq('track', "PageView");
         //Theo dõi số lượt xem trang chính (ví dụ: trang sản phẩm, trang đích hoặc bài viết)
 
@@ -255,39 +254,12 @@
 
     </script>
     <noscript><img height="1" width="1" style="display:none"
-                   src="https://www.facebook.com/tr?id=1832292157092575&ev=PageView&noscript=1"
-    /></noscript>--%>
+                   src="https://www.facebook.com/tr?id=1440058032900495&ev=PageView&noscript=1"
+    /></noscript>
     <!-- End Facebook Pixel Code -->
 
 </head>
 <body><!--Start of Zopim Live Chat Script-->
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '1832292157092575',
-            xfbml      : true,
-            version    : 'v2.9'
-        });
-        FB.AppEvents.logPageView();
-    };
-
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "/resources/js/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=1832292157092575";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-</script>
 <script type="text/javascript">
     window.$zopim || (function (d, s) {
         var z = $zopim = function (c) {
@@ -349,15 +321,20 @@
             <div class="scroller-inner">
                 <tiles:insertAttribute name="header"/>
                 <tiles:insertAttribute name="nav"/>
-
                 <section id="content" class="clearfix container">
-                    <tiles:insertAttribute name="row_content"/>
+                    <%--<tiles:insertAttribute name="row_content"/>--%>
                     <tiles:insertAttribute name="aside"/>
-                    <tiles:insertAttribute name="breadcurmb"/>
-                    <div class="col-md-9 col-sm-12 col-xs-12">
-                        <!-- Content-->
-                        <tiles:insertAttribute name="content"/>
-                        <!-- Content-->
+                    <div id="collection">
+                        <div class="col-md-9 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="main-content">
+                                    <tiles:insertAttribute name="breadcurmb"/>
+                                    <tiles:insertAttribute name="sort"/>
+                                    <tiles:insertAttribute name="content"/>
+                                    <tiles:insertAttribute name="pagging"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </section>
@@ -596,6 +573,14 @@
              src="//www.googleadservices.com/pagead/conversion/974485475/?value=80000.00&amp;currency_code=VND&amp;label=9OvyCLjcrGgQ4-_V0AM&amp;guid=ON&amp;script=0"/>
     </div>
 </noscript>
+<!-- script comment fb -->
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 </body>
 
 </html>

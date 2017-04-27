@@ -60,6 +60,55 @@ public class ProductController {
 		return "product-detail";
 	}
 
+	@RequestMapping(value = "/category/{id}", method = RequestMethod.GET)
+	public String loadByCategory(HttpServletRequest request, ModelMap model, @PathVariable long id) throws ServiceException, UnsupportedEncodingException {
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		if(mappingCategoryDtos != null){
+			for (MappingCategoryDto mappingCategoryDto: mappingCategoryDtos) {
+				if(mappingCategoryDto != null){
+					if(mappingCategoryDto.getCategoryDto().getId() == id){
+						model.addAttribute("bre", mappingCategoryDto.getCategoryDto().getName());
+					}
+				}
+			}
+		}
+		CommonController.loadCart(request, model);
+		//Get list product by category
+		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
+		productDtoList = productService.findByCategory(id, 0);
+		model.addAttribute("productList", productDtoList);
+		model.addAttribute("mapping_categories", mappingCategoryDtos);
+		model.addAttribute("mSize", mappingCategoryDtos.size());
+		CommonController.loadCart(request,model);
+		CommonController.loadBlog(model, blogService);
+		return "product-list";
+	}
+	@RequestMapping(value = "/sub-category/{id}", method = RequestMethod.GET)
+	public String loadBySubCategory(HttpServletRequest request, ModelMap model, @PathVariable long id) throws ServiceException, UnsupportedEncodingException {
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		CommonController.loadCart(request, model);
+		//Get list product by category
+		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
+		productDtoList = productService.findBySubCategory(id, 0);
+		if(mappingCategoryDtos != null){
+			for (MappingCategoryDto mappingCategoryDto: mappingCategoryDtos) {
+				if(mappingCategoryDto != null){
+					for (CategoryDto categoryDto: mappingCategoryDto.getSuCategories()){
+						if(categoryDto.getId() == id){
+							model.addAttribute("bre", categoryDto.getName());
+						}
+					}
+				}
+			}
+		}
+		model.addAttribute("productList", productDtoList);
+		model.addAttribute("mapping_categories", mappingCategoryDtos);
+		model.addAttribute("mSize", mappingCategoryDtos.size());
+		CommonController.loadCart(request,model);
+		CommonController.loadBlog(model, blogService);
+		return "product-list";
+	}
+
 	@RequestMapping(value = "/product_quitView/{id}", method = RequestMethod.GET, headers = "Accept=application/json", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ProductDto getQuitViewProduct(HttpServletRequest request, @PathVariable long id) throws ServiceException {

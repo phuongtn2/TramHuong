@@ -12,6 +12,17 @@
 <div id="wrapper-detail">
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <c:if test="${product.isEffete == 1}">
+                <div class="sold-out">Hết hàng</div>
+            </c:if>
+            <c:if test="${product.isEffete == 0}">
+                <c:if test="${product.isNew == 1}">
+                    <div class="sold-out">Sản phẩm mới</div>
+                </c:if>
+                <c:if test="${product.isSale == 1}">
+                    <div class="sold-out">Sản khuyến mãi</div>
+                </c:if>
+            </c:if>
             <div id="surround">
                 <a class="slide-prev slide-nav" href="javascript:">
                     <i class="fa fa-arrow-circle-o-left fa-2"></i>
@@ -31,11 +42,6 @@
                 <span>${product.priceDisplay}₫</span>
             </div>
             <form:form id="add-item-form" modelAttribute="cart" class="variants clearfix">
-                <%--<div class="select clearfix" style="display:none">
-                    <select id="product-select" name="id" style="display:none">
-                        <option value="1012335205">Default Title - 300,000₫</option>
-                    </select>
-                </div>--%>
                 <div class="select-wrapper ">
                     <label>Số lượng</label>
                     <input id="quantity" type="number" name="count" min="1" value="1" class="tc item-quantity">
@@ -73,6 +79,16 @@
 
             <div class="pt20">
                 <!-- Begin tags -->
+                <div class="tag-wrapper">
+                    <label>
+                        Tags:
+                    </label>
+                    <ul class="tags">
+                        <li class="active">
+                            <a href="/searchByTag">${product.tag}</a>
+                        </li>
+                    </ul>
+                </div>
                 <!-- End tags -->
             </div>
             <div class="pt20">
@@ -85,21 +101,20 @@
                              data-href="${pageContext.request.contextPath}"
                              data-send="false" style="height: 25px;" fb-xfbml-state="rendered"
                              fb-iframe-plugin-query="action=like&amp;app_id=&amp;container_width=68&amp;font=arial&amp;height=25&amp;href=http%3A%2F%2Ftramhuongkyanh.com%2Fproducts%2Flo-xong-tram-dung-dien-lx100&amp;layout=button_count&amp;locale=vi_VN&amp;sdk=joey&amp;send=false&amp;share=false&amp;show_faces=false&amp;width=90">
-                                <span style="vertical-align: bottom; width: 68px; height: 20px;"><iframe
-                                        name="fd05ca4354b12c" width="90px" height="25px" frameborder="0"
-                                        allowtransparency="true" allowfullscreen="true" scrolling="no"
-                                        title="fb:like Facebook Social Plugin"
-                                        src="https://www.facebook.com/v2.0/plugins/like.php?action=like&amp;app_id=&amp;channel=http%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2F96nq-xsaNcg.js%3Fversion%3D42%23cb%3Df326ddd1e6a80f8%26domain%3Dtramhuongkyanh.com%26origin%3Dhttp%253A%252F%252Ftramhuongkyanh.com%252Ffe394b654e88d4%26relation%3Dparent.parent&amp;container_width=68&amp;font=arial&amp;height=25&amp;href=http%3A%2F%2Ftramhuongkyanh.com%2Fproducts%2Flo-xong-tram-dung-dien-lx100&amp;layout=button_count&amp;locale=vi_VN&amp;sdk=joey&amp;send=false&amp;share=false&amp;show_faces=false&amp;width=90"
-                                        style="border: none; visibility: visible; width: 68px; height: 20px;"
-                                        class=""></iframe></span></div>
+                                <span style="vertical-align: bottom; width: 68px; height: 20px;">
+                                    <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&width=58&layout=button&action=like&size=small&show_faces=true&share=false&height=65&appId=1832292157092575"
+                                                                                                         width="58" height="65" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                                                                                                         allowTransparency="true">
+
+                                    </iframe></span></div>
                     </a>
 
-                    <a class="addthis_button_tweet at300b">
+                    <%--<a class="addthis_button_tweet at300b">
                         <div class="tweet_iframe_widget" style="width: 62px; height: 25px;"><span><iframe
                                 id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true"
                                 class="twitter-share-button twitter-share-button-rendered twitter-tweet-button"
                                 title="Twitter Tweet Button"
-                                src="http://platform.twitter.com/widgets/tweet_button.5c39137502ea1894df4434ae5ed041c5.en.html#dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Ftramhuongkyanh.com%2Fproducts%2Flo-xong-tram-dung-dien-lx100&amp;size=m&amp;text=L%C3%B2%20X%C3%B4ng%20Tr%E1%BA%A7m%20D%C3%B9ng%20%C4%90i%E1%BB%87n%20-%20LX100&amp;time=1493091682957&amp;type=share&amp;url=http%3A%2F%2Ftramhuongkyanh.com%2Fproducts%2Flo-xong-tram-dung-dien-lx100%23.WP7FYfela3M.twitter"
+                                src="http://platform.twitter.com/widgets/tweet_button.5c39137502ea1894df4434ae5ed041c5.en.html#dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=${pageContext.request.contextPath}.WP7FYfela3M.twitter"
                                 style="position: static; visibility: visible; width: 60px; height: 20px;"
                                 data-url="${pageContext.request.contextPath}#.WP7FYfela3M.twitter"></iframe></span>
                         </div>
@@ -107,7 +122,7 @@
                     <a class="addthis_button_pinterest_pinit at300b">
                         <div class="pin_it_iframe_widget" style="height: 25px;"><span><span
                                 class="at_PinItButton"></span></span></div>
-                    </a>
+                    </a>--%>
 
                     <a class="addthis_counter addthis_pill_style" href="#" style="display: inline-block;"><a
                             class="atc_s addthis_button_compact">Share<span></span></a><a
@@ -160,46 +175,17 @@
                         <h2>Bình luận</h2>
                     </div>
                     <div class="container-fluid">
-                        <div id="fb-root" class=" fb_reset">
-                            <div style="position: absolute; top: -10000px; height: 0px; width: 0px;">
-                                <div>
-                                    <iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true"
-                                            allowfullscreen="true" scrolling="no" id="fb_xdm_frame_http"
-                                            aria-hidden="true" title="Facebook Cross Domain Communication Frame"
-                                            tabindex="-1"
-                                            src="http://staticxx.facebook.com/connect/xd_arbiter/r/96nq-xsaNcg.js?version=42#channel=fe394b654e88d4&amp;origin=http%3A%2F%2Ftramhuongkyanh.com"
-                                            style="border: none;"></iframe>
-                                    <iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true"
-                                            allowfullscreen="true" scrolling="no" id="fb_xdm_frame_https"
-                                            aria-hidden="true" title="Facebook Cross Domain Communication Frame"
-                                            tabindex="-1"
-                                            src="https://staticxx.facebook.com/connect/xd_arbiter/r/96nq-xsaNcg.js?version=42#channel=fe394b654e88d4&amp;origin=http%3A%2F%2Ftramhuongkyanh.com"
-                                            style="border: none;"></iframe>
+                        <div style="position: absolute; top: -10000px; height: 0px; width: 0px;">
+                            <div>
+                                <div class="fb-comments"
+                                     data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
+                                     data-numposts="5">
                                 </div>
                             </div>
-                            <div style="position: absolute; top: -10000px; height: 0px; width: 0px;">
-                                <div></div>
-                            </div>
                         </div>
-                        <div class="fb-comments fb_iframe_widget fb_iframe_widget_fluid"
-                             data-href="${pageContext.request.contextPath}"
-                             data-numposts="5" width="100%" data-colorscheme="light" fb-xfbml-state="rendered"><span
-                                style="height: 176px;"><iframe id="f319695ae68ec78" name="f10a124622e4184"
-                                                               scrolling="no" title="Facebook Social Plugin"
-                                                               class="fb_ltr fb_iframe_widget_lift"
-                                                               src="https://www.facebook.com/plugins/comments.php?api_key=&amp;channel_url=http%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2F96nq-xsaNcg.js%3Fversion%3D42%23cb%3Df28eadbf75dd1f8%26domain%3Dtramhuongkyanh.com%26origin%3Dhttp%253A%252F%252Ftramhuongkyanh.com%252Ffe394b654e88d4%26relation%3Dparent.parent&amp;colorscheme=light&amp;href=http%3A%2F%2Ftramhuongkyanh.com%2Fproducts%2Flo-xong-tram-dung-dien-lx100&amp;locale=vi_VN&amp;numposts=5&amp;sdk=joey&amp;skin=light&amp;version=v2.0&amp;width=100%25"
-                                                               style="border: none; overflow: hidden; height: 176px; width: 100%;"></iframe></span>
+                        <div style="position: absolute; top: -10000px; height: 0px; width: 0px;">
+                            <div></div>
                         </div>
-                        <!-- script comment fb -->
-                        <script type="text/javascript">(function (d, s, id) {
-                            var js, fjs = d.getElementsByTagName(s)[0];
-                            if (d.getElementById(id)) return;
-                            js = d.createElement(s);
-                            js.id = id;
-                            js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.0";
-                            fjs.parentNode.insertBefore(js, fjs);
-                        }(document, 'script', 'facebook-jssdk'));
-                        </script>
                     </div>
                 </div>
 
@@ -282,78 +268,12 @@
 
 </script>
 <script>
-    /*$(document).ready(function () {
-        $('#add-to-cart').click(function () {
-            var params = {
-                type: 'POST',
-                url: '/cart/add.js',
-                async: false,
-                data: jQuery('#add-item-form-2').serialize(),
-                dataType: 'json',
-                success: function (line_item) {
-                    if ((typeof callback) === 'function') {
-                        callback(line_item);
-                    } else {
-
-                        getCartAjax();
-                        $('#myCart').modal('show');
-                        $('.modal-backdrop').css({'height': $(document).height(), 'z-index': '99'});
-                    }
-                },
-                error: function (XMLHttpRequest, textStatus) {
-                    Haravan.onError(XMLHttpRequest, textStatus);
-                }
-            };
-            jQuery.ajax(params);
-        });
-        $('#buy-now').click(function (e) {
-            e.preventDefault();
-            var params = {
-                type: 'POST',
-                url: '/cart/add.js',
-                async: false,
-                data: jQuery('#add-item-form').serialize(),
-                dataType: 'json',
-                success: function (line_item) {
-                    window.location = '/checkout';
-                },
-                error: function (XMLHttpRequest, textStatus) {
-                    Haravan.onError(XMLHttpRequest, textStatus);
-                }
-            };
-            jQuery.ajax(params);
-        });
-    });*/
-</script>
-<script>
     $(document).ready(function () {
         $('a[data-spy=scroll]').click(function () {
             event.preventDefault();
             $('body').animate({scrollTop: ($($(this).attr('href')).offset().top - 20) + 'px'}, 500);
         })
     });
-
-
-    /*function deleteCart(variant_id) {
-        var params = {
-            type: 'POST',
-            url: '/cart/change.js',
-            data: 'quantity=0&id=' + variant_id,
-            dataType: 'json',
-            success: function (cart) {
-                if ((typeof callback) === 'function') {
-                    callback(cart);
-                } else {
-
-                    getCartAjax();
-                }
-            },
-            error: function (XMLHttpRequest, textStatus) {
-                Haravan.onError(XMLHttpRequest, textStatus);
-            }
-        };
-        jQuery.ajax(params);
-    }*/
     // The following piece of code can be ignored.
     $(function () {
         $(window).resize(function () {
@@ -361,45 +281,11 @@
         });
         $(window).trigger('resize');
     });
-
-
-    /*var selectCallback = function (variant, selector) {
-        if (variant && variant.available) {
-            if (variant.featured_image != null) {
-                $(".product-thumb").removeClass('active');
-                $(".product-thumb img[data-image='" + Haravan.resizeImage(variant.featured_image.src, 'master') + "']").click().parents('li').addClass('active');
-            }
-            if (variant.sku != null) {
-                jQuery('#pro_sku').html('SKU: ' + variant.sku);
-            }
-            jQuery('#add-to-cart').removeAttr('disabled').removeClass('disabled').html("Thêm vào giỏ");
-            ;
-            jQuery('#buy-now').removeAttr('disabled').removeClass('disabled').html("Mua ngay").show();
-
-            if (variant.price < variant.compare_at_price) {
-                jQuery('#price-preview').html("<span>" + Haravan.formatMoney(variant.price, "{{amount}}₫") + "</span><del>" + Haravan.formatMoney(variant.compare_at_price, "{{amount}}₫") + "</del>");
-                var pro_sold = variant.price;
-                var pro_comp = variant.compare_at_price / 100;
-                var sale = 100 - (pro_sold / pro_comp);
-                var kq_sale = Math.round(sale);
-                jQuery('#surround .product-sale span').html("<label class='sale-lb'>Sale</label> " + kq_sale + '%');
-            } else {
-                jQuery('#price-preview').html("<span>" + Haravan.formatMoney(variant.price, "{{amount}}₫" + "</span>"));
-            }
-
-        } else {
-            jQuery('#add-to-cart').addClass('disabled').attr('disabled', 'disabled').html("Hết hàng");
-            jQuery('#buy-now').addClass('disabled').attr('disabled', 'disabled').html("Hết hàng").hide();
-            var message = variant ? "Hết hàng" : "Không có hàng";
-            jQuery('#price-preview').text(message);
-        }
-    };*/
-
-
     jQuery(document).ready(function ($) {
         debugger
     });
 </script>
+<%--
 <script>
     $(document).ready(function () {
         if ($(".slides .product-thumb").length > 4) {
@@ -409,7 +295,7 @@
                 animationLoop: false,
                 slideshow: false,
                 itemWidth: 95,
-                itemMargin: 10,
+                itemMargin: 10
             });
         }
         if ($(window).width() > 960) {
@@ -437,4 +323,4 @@
             }
         });
     });
-</script>
+</script>--%>
