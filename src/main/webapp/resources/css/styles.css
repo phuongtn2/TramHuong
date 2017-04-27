@@ -88,7 +88,7 @@ h1 .note a, h2 .note a, h3 .note a, h4 .note a, h5 .note a, h6 .note a { color: 
 p { margin: 0 0 20px 0; line-height: 21px }
 
 /* 1.5 - Links and Buttons */
-a {  text-decoration: none; outline: none; color:#28303e;}
+a {  text-decoration: none; outline: none; color:#28303e;     padding-right: 5px; margin-right:15px;}
 a#view_address
 {
     color:#28303e;

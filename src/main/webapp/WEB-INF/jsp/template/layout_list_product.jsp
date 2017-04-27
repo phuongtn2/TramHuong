@@ -49,6 +49,15 @@
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=0' name='viewport'/>
     <link rel="canonical" href="${pageContext.request.contextPath}"/>
+    <style>
+        .activePageLink
+        {
+            background-color:#abd305;
+        }
+        .clear {
+            clear:both
+        }
+    </style>
     <script>
         //<![CDATA[
         (function (i, s, o, g, r, a, m) {
@@ -183,6 +192,8 @@
     <script src="${a1}"></script>
     <spring:url value="/resources/js/addthis_widget.js" var="a2" />
     <script src="${a2}"></script>
+    <spring:url value="/resources/js/list.min.js" var="a3" />
+    <script src="${a3}"></script>
     <%--<spring:url value="/resources/js/cart.js" var="a3" />
     <script src="${a3}"></script>--%>
     <!--------------CSS----------->
