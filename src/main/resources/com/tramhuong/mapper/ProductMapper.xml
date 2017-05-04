@@ -4,18 +4,83 @@
 
 <mapper namespace="com.tramhuong.mapper.ProductMapper">
 
-	<!--<insert id="add" useGeneratedKeys="true" keyProperty="dto.id">
-		INSERT INTO INTRODUCE(
-		content
+	<insert id="add" useGeneratedKeys="true" keyProperty="dto.id">
+		INSERT INTO PRODUCT (
+		code
+		, name
+		, tag
+		, isNew
+		, isSale
+		, isEffete
+		, created
+		, img
+		, img1
+		, img2
+		, status
+		, categoryId
+		, subCategoryId
+		, price
+		, salePrice
+		, description
+		, count
 		)VALUES(
-		#{dto.content}
+		#{dto.code}
+		, #{dto.name}
+		, #{dto.tag}
+		, #{dto.isNew}
+		, #{dto.isSale}
+		, #{dto.isEffete}
+		, NOW()
+		, #{dto.img}
+		, #{dto.img1}
+		, #{dto.img2}
+		, #{dto.status}
+		, #{dto.categoryId}
+		, #{dto.subCategoryId}
+		, #{dto.price}
+		, #{dto.salePrice}
+		, #{dto.description}
+		, #{dto.count}
 		)
 	</insert>
+
 	<update id="update">
-		UPDATE INTRODUCE SET
-		content = #{dto.content}
+		UPDATE PRODUCT SET
+		code = #{dto.code}
+		, name = #{dto.name}
+		, tag = #{dto.tag}
+		, isNew = #{dto.isNew}
+		, isSale = #{dto.isSale}
+		, isEffete = #{dto.isEffete}
+		<if test="dto.img != ''">
+		, img = #{dto.img}
+		</if>
+		<if test="dto.img1 != ''">
+		, img1 = #{dto.img1}
+		</if>
+		<if test="dto.img2 != ''">
+		, img2 = #{dto.img2}
+		</if>
+		, status = #{dto.status}
+		, categoryId = #{dto.categoryId}
+		<if test="dto.subCategoryId != null">
+		, subCategoryId = #{dto.subCategoryId}
+		</if>
+		, price = (#{dto.price})
+		<if test="dto.salePrice > 0">
+		, salePrice = #{dto.salePrice}
+		</if>
+		, description = #{dto.description}
+		<if test="dto.count > 0">
+		, count = #{dto.count}
+		</if>
 		WHERE id= #{dto.id}
-	</update>-->
+	</update>
+
+	<delete id="delete">
+		DELETE FROM PRODUCT WHERE id = #{id}
+	</delete>
+
 	<select id="findAll" resultType="product">
 		SELECT * FROM PRODUCT ORDER BY id
 	</select>
@@ -57,5 +122,39 @@
 		<if test="limit > 0">
 			LIMIT #{limit}
 		</if>
+	</select>
+	<select id="findByCondition" resultType="product">
+		SELECT * FROM PRODUCT WHERE
+		<if test="dto.status == -1">
+			status IN(0,1)
+		</if>
+		<if test="dto.status >= 0">
+			status = #{dto.status}
+		</if>
+		<if test="dto.categoryId > 0">
+			AND categoryId = #{dto.categoryId}
+		</if>
+		<if test="dto.subCategoryId > 0">
+			AND subCategoryId = #{dto.subCategoryId}
+		</if>
+		<if test="dto.created != null">
+			AND created = #{dto.created}
+		</if>
+		<if test="dto.name != ''">
+			AND name = #{dto.name}
+		</if>
+		<if test="dto.code != ''">
+			AND code = #{dto.code}
+		</if>
+		<if test="dto.sNew == 1">
+			AND isNew = #{dto.sNew}
+		</if>
+		<if test="dto.sSale == 1">
+			AND isSale = #{dto.sSale}
+		</if>
+		<if test="dto.sEffete == 1">
+			AND isEffete = #{dto.sEffete}
+		</if>
+		ORDER BY id
 	</select>
 </mapper>

@@ -18,7 +18,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderMapper orderMapper;
     @Override
-    public int add(OrderInfoDto orderInfoDto) throws ServiceException {
+    public long add(OrderInfoDto orderInfoDto) throws ServiceException {
         return orderMapper.add(orderInfoDto);
     }
 

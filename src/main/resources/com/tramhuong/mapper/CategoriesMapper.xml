@@ -4,71 +4,32 @@
 
 <mapper namespace="com.tramhuong.mapper.CategoriesMapper">
 
-	<!--<insert id="insertNews" useGeneratedKeys="true" keyProperty="dto.newsCode">
-		INSERT INTO M_NEWS(
-		newsType
-		, newsHeader
-		, newsShorter
-		, created
-		, lastUpdate
-		, createId
-		, updateId
+	<insert id="add" useGeneratedKeys="true" keyProperty="dto.id">
+		INSERT INTO M_CATEGORY(
+		name
+		, status
 		)VALUES(
-		#{dto.newsType}
-		, #{dto.newsHeader}
-		, #{dto.newsShorter}
-		,  NOW()
-		,  NOW()
-		, #{dto.createId}
-		, #{dto.updateId}
+		#{dto.name}
+		, #{dto.status}
 		)
 	</insert>
-
-	<insert id="insertNewsDetail" useGeneratedKeys="true" keyProperty="dto.newsDetailCode">
-		INSERT INTO T_NEWS_DETAIL(
-		newsType
-		, newsCode
-		, refNewsCode
-		, created
-		, lastUpdate
-		, createId
-		, updateId
-		)VALUES(
-		#{dto.newsCode}
-		, #{dto.refNewsCode}
-		,  NOW()
-		,  NOW()
-		, #{dto.createId}
-		, #{dto.updateId}
-		)
-	</insert>
-
-
-
 	<update id="update">
-		UPDATE M_NEWS SET
-		newsType = #{dto.newsType}
-		,newsHeader = #{dto.newsHeader}
-		,newsShorter = #{dto.newsShorter}
-		,refNewsCode = #{dto.refNewsCode}
-		,updateId = #{dto.updateId}
-		,lastUpdate= NOW()
-		WHERE newsCode= #{dto.newsCode}
+		UPDATE M_CATEGORY SET
+		name = #{dto.name}
+		, status = #{dto.status}
+		WHERE id= #{dto.id}
 	</update>
-	<delete id="deleteById">
-		DELETE FROM M_NEWS WHERE newsCode = #{id}
-	</delete>-->
+	<delete id="delete">
+		DELETE FROM M_CATEGORY WHERE id = #{id}
+	</delete>
 	<select id="findAll" resultType="category">
 		SELECT * FROM M_CATEGORY ORDER BY id
 	</select>
 	<select id="findByStatus" resultType="category">
 		SELECT * FROM M_CATEGORY WHERE status = #{status} ORDER BY id
 	</select>
-	<!--<select id="findByNewsId" resultType="newsDetail">
-		SELECT * FROM T_NEWS_DETAIL WHERE newsCode=#{id} ORDER BY created
+	<select id="findById" resultType="category">
+		SELECT * FROM M_CATEGORY WHERE id=#{id}
 	</select>
-	<select id="findById" resultType="news">
-		SELECT * FROM M_NEWS WHERE newsCode=#{id}
-	</select>-->
 
 </mapper>

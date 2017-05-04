@@ -22,17 +22,17 @@ public class CategoriesServiceImpl implements CategoriesService {
 
     @Override
     public long add(CategoryDto categoryDto) throws ServiceException {
-        return 0;
+        return categoriesMapper.add(categoryDto);
     }
 
     @Override
     public void delete(long id) throws ServiceException {
-
+        categoriesMapper.delete(id);
     }
 
     @Override
     public void update(CategoryDto categoryDto) throws ServiceException {
-
+        categoriesMapper.update(categoryDto);
     }
 
     @Override
@@ -47,22 +47,22 @@ public class CategoriesServiceImpl implements CategoriesService {
 
     @Override
     public CategoryDto findById(long id) throws ServiceException {
-        return null;
+        return categoriesMapper.findById(id);
     }
 
     @Override
     public long addS(CategoryDto categoryDto) throws ServiceException {
-        return 0;
+        return subCategoriesMapper.add(categoryDto);
     }
 
     @Override
     public void deleteS(long id) throws ServiceException {
-
+        subCategoriesMapper.delete(id);
     }
 
     @Override
     public void updateS(CategoryDto categoryDto) throws ServiceException {
-
+        subCategoriesMapper.update(categoryDto);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class CategoriesServiceImpl implements CategoriesService {
 
     @Override
     public CategoryDto findByIdS(long id) throws ServiceException {
-        return null;
+        return subCategoriesMapper.findById(id);
     }
 
     @Override

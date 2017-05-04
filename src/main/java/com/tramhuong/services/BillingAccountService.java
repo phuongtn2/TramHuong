@@ -9,8 +9,8 @@ import java.util.List;
  */
 public interface BillingAccountService {
     long add(BillingAccountDto billingAccountDto) throws ServiceException;
-    void delete(long id) throws ServiceException;
+    void delete(int id) throws ServiceException;
     void update(BillingAccountDto billingAccountDto) throws ServiceException;
     List<BillingAccountDto> findAll() throws ServiceException;
-    BillingAccountDto findById(long id) throws ServiceException;
+    BillingAccountDto findById(int id) throws ServiceException;
 }

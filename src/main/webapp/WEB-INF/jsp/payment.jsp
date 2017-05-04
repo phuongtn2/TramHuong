@@ -24,33 +24,49 @@
                 </p>
                     <p style="text-align: justify;" data-mce-style="text-align: justify;"><span
                             style="font-family: arial, helvetica, sans-serif;"
-                            data-mce-style="font-family: arial, helvetica, sans-serif;"><strong style="font-size: 14px;"
-                                                                                                data-mce-style="font-size: 14px;">A. Giao hàng và thanh toán cùng lúc theo địa chỉ đặt hàng của quý khách.</strong></span>
+                            data-mce-style="font-family: arial, helvetica, sans-serif;">
+                        <strong style="font-size: 14px;"
+                                data-mce-style="font-size: 14px;">A. Giao hàng và thanh toán cùng lúc theo địa chỉ đặt hàng của quý khách.</strong>
+                    </span>
                     </p>
                     <p style="text-align: justify;" data-mce-style="text-align: justify;"><span
                             style="font-family: arial, helvetica, sans-serif;"
-                            data-mce-style="font-family: arial, helvetica, sans-serif;"><span style="font-size: 14px;"
-                                                                                              data-mce-style="font-size: 14px;"><strong>B. Thanh toán chuyển khoản theo hệ thống các ngân hàng sau:</strong></span></span>
+                            data-mce-style="font-family: arial, helvetica, sans-serif;">
+                        <span style="font-size: 14px;"
+                            data-mce-style="font-size: 14px;"><strong>B. Thanh toán chuyển khoản theo hệ thống các ngân hàng sau:</strong>
+                        </span>
+                    </span>
                     </p></td>
             </tr>
             </tbody>
         </table>
         <p style="text-align: justify;" data-mce-style="font-family: verdana; font-size: medium; text-align: justify;">
             <span style="font-family: verdana; font-size: medium;"
-                  data-mce-style="font-family: verdana; font-size: medium;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span
+                  data-mce-style="font-family: verdana; font-size: medium;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
+            <span
                 face="verdana" size="3" data-mce-style="font-family: verdana; font-size: medium;"
-                style="font-family: verdana; font-size: medium;"></span><span face="verdana" size="3"
-                                                                              data-mce-style="font-family: verdana; font-size: medium;"
-                                                                              style="font-family: verdana; font-size: medium;"><br><br></span>
+                style="font-family: verdana; font-size: medium;">
+        </span>
+            <span face="verdana" size="3"
+              data-mce-style="font-family: verdana; font-size: medium;"
+              style="font-family: verdana; font-size: medium;"><br>
+        </span>
         </p>
         <span class="desc">Cảm ơn quí khách đã tin tưởng sản phẩm của chúng tôi.
                         Quí khách chuyển khoản số tiền vào TK của chúng tôi.
                         Khi chuyển khoản, vui lòng điền vào dòng ghi chú : số đơn hàng.
-                        <c:forEach items="${billings}" var="b">
-                            ${b.description}
-                            ${b.accountName}
-                        </c:forEach>
                 </span>
+        <table align="center" border="0" cellpadding="1" cellspacing="1" style="font-family: verdana; width: 650px;"
+               data-mce-style="font-family: verdana; width: 650px;" class="mce-item-table">
+            <tbody>
+            <c:forEach items="${billings}" var="b">
+                <tr>
+                    <td>${b.description}</td>
+                    <td> ${b.accountName}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
         <p style="font-family: verdana; font-size: medium; text-align: justify;"
            data-mce-style="font-family: verdana; font-size: medium; text-align: justify;">&nbsp;</p>
     </div>

@@ -19,7 +19,7 @@
                     Bắt đầu thây đổi trang giới thiệu của bạn !
             </textarea>
         </c:if>
-        <input type="hidden" id="add" name="add">
+        <input type="hidden" id="add" name="addIntroduce">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addButton">
             <i class="fa fa-check"></i><spring:message code="common.button.save" text="default text"/>
         </button>

@@ -303,6 +303,7 @@
                 var isvalid = $("#purchase-form").valid();
                    // && ($(".h-shipping").is(":visible") || $(".h-shipping").hasClass('hide-shipping'));
                 if (isvalid) {
+                    $("#Loading").show();
                     $(".summary").hide();
                     $('.btn-checkout').attr('disabled', 'disabled');
                     return true;

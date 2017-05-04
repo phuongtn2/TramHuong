@@ -20,5 +20,6 @@
 		<typeAlias alias="blog" type="com.tramhuong.dto.BlogDto"/>
 		<typeAlias alias="order" type="com.tramhuong.dto.OrderInfoDto"/>
 		<typeAlias alias="orderItem" type="com.tramhuong.dto.OrderItemDto"/>
+		<typeAlias alias="post" type="com.tramhuong.dto.PostDto"/>
 	</typeAliases>
 </configuration>

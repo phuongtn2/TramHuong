@@ -9,7 +9,7 @@
 }
 
 .list-group .list-group-item.active{
-    background-color: #66451a !important;
+    background-color: #808000 !important;
     text-align:center;
 }
 .nav.sidebar#cssmenu > li.item.last > a{
@@ -59,7 +59,7 @@ span.sign {
 .nav.sidebar#cssmenu > li.item:hover > a,
 .nav.sidebar#cssmenu > li.item:focus a,
 .nav.sidebar#cssmenu > li.item ul li:hover{
-    border-left:4px solid #66451a;
+    border-left:4px solid #808000;
     color: #ff0000;
     background: #f9f9f9;
 }
@@ -227,7 +227,7 @@ font-size:17px;
 .support .supp-name {
     float: left;
     text-align: left;
-    color: #66451a;
+    color: #808000;
     font-size: 17px;
     font-weight: normal;
 }
@@ -237,8 +237,8 @@ font-size:17px;
 
 .list-group h3 {
     font-size: 18px;
-    border-bottom: 1px solid #66451a;
-    color: #66451a;
+    border-bottom: 1px solid #808000;
+    color: #808000;
     margin: 10px;
     text-align: center;
     padding-bottom: 5px;
@@ -275,7 +275,7 @@ font-size:17px;
 .nav.sidebar#cssmenu > li.item.has-sub:hover > a,
 .nav.sidebar#cssmenu > .has-sub >.has-sub:hover > a,
 .nav.sidebar#cssmenu > li.has-sub>ul >li:hover > a {
-    border-left: 4px solid #66451a!important;
+    border-left: 4px solid #808000!important;
     color: #ff0000;
 }
 .nav.sidebar#cssmenu > li.has-sub>ul >li a {border-left: 4px solid transparent;}

@@ -1,6 +1,8 @@
 package com.tramhuong.services.impl;
 
+import com.tramhuong.dto.ProductAddDto;
 import com.tramhuong.dto.ProductDto;
+import com.tramhuong.dto.SearchProductDto;
 import com.tramhuong.mapper.ProductMapper;
 import com.tramhuong.services.ProductService;
 import com.tramhuong.services.error.ServiceException;
@@ -18,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductMapper productMapper;
     @Override
-    public long add(ProductDto productDto) throws ServiceException {
+    public long add(ProductAddDto productDto) throws ServiceException {
         return productMapper.add(productDto);
     }
 
@@ -28,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void update(ProductDto productDto) throws ServiceException {
+    public void update(ProductAddDto productDto) throws ServiceException {
         productMapper.update(productDto);
     }
 
@@ -80,5 +82,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDto findById(long id) throws ServiceException {
         return productMapper.findById(id);
+    }
+
+    @Override
+    public List<ProductDto> findByCondition(SearchProductDto searchProductDto) throws ServiceException {
+        return productMapper.findByCondition(searchProductDto);
     }
 }

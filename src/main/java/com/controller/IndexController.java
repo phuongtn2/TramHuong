@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@SessionAttributes
 public class IndexController {
 	@Autowired
 	private CategoriesService categoriesService;

@@ -12,7 +12,7 @@
 <span class="fbtracker-checkout"></span>
 <a href="/cart"><h1><span class="btn-back">Quay về giỏ hàng</span> Trầm Hương Tuấn Anh</h1></a>
 <div class="container clearfix">
-    <form:form accept-charset="UTF-8" id="purchase-form" action="/saveOrder" modelAttribute="orderInfo">
+    <form:form accept-charset="UTF-8" id="purchase-form" action="/saveOrder" modelAttribute="orderInfo" class="new_order">
         <div class="col-4 step1">
         <h2>Thông tin giao hàng</h2>
         <%--<div class="user-login"><a href="/account/register?urlredirect=checkout">Đăng ký tài khoản mua hàng</a> | <a
@@ -130,9 +130,9 @@
                 </span>
             </div>
         </div>
-        <div class="box-btn-checkout-first">
+        <%--<div class="box-btn-checkout-first">
             <button type="submit" class="btn-checkout btn-checkout-first">Đặt hàng</button>
-        </div>
+        </div>--%>
         <div class="col-4">
             <div class="box-cart">
                 <h2>Mã Đơn hàng: </h2>

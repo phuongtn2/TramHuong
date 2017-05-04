@@ -1,9 +1,10 @@
 package com.tramhuong.services.impl;
 
 import com.tramhuong.dto.BlogDto;
+import com.tramhuong.dto.PostDto;
 import com.tramhuong.mapper.BlogMapper;
+import com.tramhuong.mapper.PostMapper;
 import com.tramhuong.services.BlogService;
-import com.tramhuong.services.IntroduceService;
 import com.tramhuong.services.error.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,8 @@ public class BlogServiceImpl implements BlogService {
 
     @Autowired
     private BlogMapper blogMapper;
+    @Autowired
+    private PostMapper postMapper;
     @Override
     public int add(BlogDto blogDto) throws ServiceException {
         return blogMapper.add(blogDto);
@@ -46,5 +49,10 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<BlogDto> findByStatus(byte status) throws ServiceException {
         return blogMapper.findByStatus(status);
+    }
+
+    @Override
+    public List<PostDto> findPostByBlogId(int id) throws ServiceException {
+        return postMapper.findByBlogId(id);
     }
 }

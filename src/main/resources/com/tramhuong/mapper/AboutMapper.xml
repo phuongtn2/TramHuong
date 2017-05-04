@@ -4,18 +4,33 @@
 
 <mapper namespace="com.tramhuong.mapper.AboutMapper">
 
-	<!--<insert id="add" useGeneratedKeys="true" keyProperty="dto.id">
-		INSERT INTO INTRODUCE(
-		content
+	<insert id="add" useGeneratedKeys="true" keyProperty="dto.id">
+		INSERT INTO ABOUT(
+		description
+		, address
+		, tel
+		, hotLine
+		, email
+		, facebookLink
 		)VALUES(
-		#{dto.content}
+		#{dto.description}
+		, #{dto.address}
+		, #{dto.tel}
+		, #{dto.hotLine}
+		, #{dto.email}
+		, #{dto.facebookLink}
 		)
 	</insert>
 	<update id="update">
-		UPDATE INTRODUCE SET
-		content = #{dto.content}
+		UPDATE ABOUT SET
+		description = #{dto.description}
+		, address = #{dto.address}
+		, tel = #{dto.tel}
+		, hotLine = #{dto.hotLine}
+		, email = #{dto.email}
+		, facebookLink = #{dto.facebookLink}
 		WHERE id= #{dto.id}
-	</update>-->
+	</update>
 	<select id="find" resultType="about">
 		SELECT * FROM ABOUT LIMIT 1
 	</select>

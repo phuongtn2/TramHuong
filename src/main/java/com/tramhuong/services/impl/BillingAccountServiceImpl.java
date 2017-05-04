@@ -19,17 +19,17 @@ public class BillingAccountServiceImpl implements BillingAccountService {
     private BillingAccountMapper billingAccountMapper;
     @Override
     public long add(BillingAccountDto billingAccountDto) throws ServiceException {
-        return 0;
+        return billingAccountMapper.add(billingAccountDto);
     }
 
     @Override
-    public void delete(long id) throws ServiceException {
-
+    public void delete(int id) throws ServiceException {
+        billingAccountMapper.delete(id);
     }
 
     @Override
     public void update(BillingAccountDto billingAccountDto) throws ServiceException {
-
+        billingAccountMapper.update(billingAccountDto);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class BillingAccountServiceImpl implements BillingAccountService {
     }
 
     @Override
-    public BillingAccountDto findById(long id) throws ServiceException {
-        return null;
+    public BillingAccountDto findById(int id) throws ServiceException {
+        return billingAccountMapper.findById(id);
     }
 }

@@ -13,7 +13,7 @@ import java.util.List;
  * Created by PhuongTN1 on 11/4/2016.
  */
 public interface OrderMapper {
-    int add(@Param("dto") OrderInfoDto orderInfoDto);
+    long add(@Param("dto") OrderInfoDto orderInfoDto);
     void update(@Param("dto") OrderInfoDto orderInfoDto);
     void delete(@Param("orderCode") String orderCode) throws ServiceException;
     OrderInfoDto findById(@Param("id") long id);

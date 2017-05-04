@@ -42,7 +42,7 @@ public class IntroduceController {
 		return "introduceAdmin";
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	/*@RequestMapping(method = RequestMethod.POST)
 	public String processSubmit(
 			@ModelAttribute("introduce") IntroduceDto introduceDto,
 			BindingResult result, SessionStatus status) {
@@ -52,9 +52,9 @@ public class IntroduceController {
 			status.setComplete();
 			return "/admin/introduce";
 		}
-	}
-	@RequestMapping(method = RequestMethod.POST, params = "add")
-	public String addAsset(@ModelAttribute("introduce") IntroduceDto introduceDto) throws ServiceException {
+	}*/
+	@RequestMapping(method = RequestMethod.POST, params = "addIntroduce")
+	public String addIntroduce(@ModelAttribute("introduce") IntroduceDto introduceDto) throws ServiceException {
 		if(introduceDto.getId() != null && introduceDto.getId() > 0){
 			introduceService.update(introduceDto);
 		}else{

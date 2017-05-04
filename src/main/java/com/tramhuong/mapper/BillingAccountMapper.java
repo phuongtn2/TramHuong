@@ -10,8 +10,8 @@ import java.util.List;
  */
 public interface BillingAccountMapper {
     long add(@Param("dto") BillingAccountDto billingAccountDto);
-    void delete(@Param("id") long id);
+    void delete(@Param("id") int id);
     void update(@Param("dto") BillingAccountDto billingAccountDto);
     List<BillingAccountDto> findAll();
-    BillingAccountDto findById(@Param("id") long id);
+    BillingAccountDto findById(@Param("id") int id);
 }

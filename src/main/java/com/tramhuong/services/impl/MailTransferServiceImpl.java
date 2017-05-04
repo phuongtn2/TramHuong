@@ -6,12 +6,15 @@ import com.tramhuong.dto.MailSenderDto;
 import com.tramhuong.dto.SendMailParameter;
 import com.tramhuong.dto.SendMailPersonalDto;
 import com.tramhuong.services.MailTransferService;
+import com.tramhuong.services.OrderItemService;
+import com.tramhuong.services.OrderService;
 import com.tramhuong.services.error.ServiceException;
 import com.tramhuong.util.mail.InlineAttachmentFileUtil;
 import com.tramhuong.util.mail.RegexpTemplateMail;
 import com.tramhuong.util.str.NumConverter;
 import com.tramhuong.util.str.StringUtil;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -32,6 +35,10 @@ public class MailTransferServiceImpl implements MailTransferService {
 	private static final Logger log = Logger.getLogger(MailTransferServiceImpl.class);
 	@Resource
 	private Properties setting;
+	@Autowired
+	private OrderService orderService;
+	@Autowired
+	private OrderItemService orderItemService;
 	private final HashMap<Pattern, String> urlInlineAttachmentReplaceMap = new HashMap<Pattern, String>();
 	private final HashMap<Pattern, String> customerHrefReplaceMap = new HashMap<Pattern, String>();
 	//private int mailTransferActMailbodyLen = 1024;
@@ -40,16 +47,19 @@ public class MailTransferServiceImpl implements MailTransferService {
 		final String headerCharset = setting.getProperty("mailTransfer.headerCharset");
 		final int mailSizeMax = NumConverter.parseIntProperty(setting, "mailTransfer.mailSizeMax");
 		final int mailSizeMaxFirst = NumConverter.parseIntProperty(setting, "mailTransfer.mailSizeMaxFirst");
-		final String infoMailFullName = setting.getProperty("mailTransfer.infoMailFullName");
+		//final String infoMailFullName = setting.getProperty("mailTransfer.infoMailFullName");
 		InternetAddress from = null;
 		RegexpTemplateMail rtm = null;
 		Address[] replyTo;
 		try {
 			replyTo = new Address[] { new InternetAddress(sender.getEmail(), sender.getFullName(), headerCharset) };
-			from = new InternetAddress(sender.getEmail(), infoMailFullName + " " + sender.getFullName(), headerCharset);
+			from = new InternetAddress(sender.getEmail(),sender.getFullName(), headerCharset);
 			rtm = createCustomerTemplateMail(param, dto);
 		} catch (MessagingException | IOException e) {
 			e.printStackTrace();
+			// delete order
+			orderService.delete(param.getOrderCode());
+			orderItemService.delete(param.getOrderCode());
 			throw new ServiceException("mail.emailCreateError", e, logPrefix, "ERROR", 0, 0, 0);
 		}
 		long mailSize = -1L;
@@ -70,21 +80,30 @@ public class MailTransferServiceImpl implements MailTransferService {
 				mm.addRecipient(RecipientType.TO, toAddress);
 
 				//if (StringUtil.notEmpty(dto.getCcEmail())) {
-					final InternetAddress managerAddress = new InternetAddress(sender.getEmail(), infoMailFullName + " " + sender.getFullName(), headerCharset);
+					final InternetAddress managerAddress = new InternetAddress(sender.getEmail(), sender.getFullName() + " " + sender.getFullName(), headerCharset);
 					mm.addRecipient(RecipientType.CC, managerAddress);
 				//}
 				//mailSize = messageLength(mm); ////mm.getSize();
 			} catch (MessagingException |IOException e) {
 				e.printStackTrace();
+				// delete order
+				orderService.delete(param.getOrderCode());
+				orderItemService.delete(param.getOrderCode());
 				throw new ServiceException("mail.emailCreateError2", e, logPrefix, "ERROR2", 0, 0, 0, mailSize);
 			}
 			if (mailSize > ((i == 0 && isFirst) ? mailSizeMaxFirst : mailSizeMax)) {
+				// delete order
+				orderService.delete(param.getOrderCode());
+				orderItemService.delete(param.getOrderCode());
 				throw new ServiceException("mail.emailOverSize", logPrefix, "ERROROVERSIZE", 0, 0, 0);
 			}
 			try {
 				send(mm);
 			} catch (MessagingException e) {
 				e.printStackTrace();
+				// delete order
+				orderService.delete(param.getOrderCode());
+				orderItemService.delete(param.getOrderCode());
 				throw new ServiceException("mail.emailSendError", e, logPrefix, "SENDERROR", 0, 0, 0);
 			}
 		}
@@ -101,7 +120,7 @@ public class MailTransferServiceImpl implements MailTransferService {
 	}
 	protected RegexpTemplateMail createCustomerTemplateMail(SendMailParameter param, SendMailPersonalDto dto) throws MessagingException, IOException {
 		final String cssBody = InlineAttachmentFileUtil.loadUTF8StringContent(urlInlineAttachmentReplaceMap, setting.getProperty("mailTransfer.customerCssPath"));
-		final String webBeacon = setting.getProperty("mailTransfer.webBeacon");
+		final String webBeacon = "Cảm ơn bạn !!!";/*setting.getProperty("mailTransfer.webBeacon");*/
 		final StringBuilder buf = new StringBuilder();
 		buf.append("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
 		// add this meta to make sure beacon load each time users open the mail
@@ -173,8 +192,8 @@ public class MailTransferServiceImpl implements MailTransferService {
 		final Properties prop = new Properties();
 		prop.put("mail.smtp.host", setting.getProperty("mailTransfer.smtp.server"));
 		prop.put("mail.smtp.port", NumConverter.parseIntProperty(setting, "mailTransfer.smtp.port", 25));
-		prop.put("mail.smtp.debug", NumConverter.parseBoolProperty(setting, "mailTransfer.smtp.debug", false));
-		prop.put("mail.smtp.allow8bitmime", NumConverter.parseBoolProperty(setting, "mailTransfer.smtp.8bitmime", false));
+		//prop.put("mail.smtp.debug", NumConverter.parseBoolProperty(setting, "mailTransfer.smtp.debug", false));
+		//prop.put("mail.smtp.allow8bitmime", NumConverter.parseBoolProperty(setting, "mailTransfer.smtp.8bitmime", false));
 
 		final boolean smtpAuth = NumConverter.parseBoolProperty(setting, "mailTransfer.smtp.auth");
 		prop.put("mail.smtp.auth", smtpAuth);
@@ -182,7 +201,6 @@ public class MailTransferServiceImpl implements MailTransferService {
 			prop.put("mail.smtp.starttls.enable", NumConverter.parseBoolProperty(setting, "mailTransfer.smtp.starttls.enable"));
 			final String user = setting.getProperty("mailTransfer.smtp.server.user");
 			final String password = setting.getProperty("mailTransfer.smtp.server.passwd");
-
 			final Session session = Session.getInstance(prop, new PasswordAuthenticator(user, password));
 			return session;
 		} else {

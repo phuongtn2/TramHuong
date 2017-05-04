@@ -49,6 +49,15 @@
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=0' name='viewport'/>
     <link rel="canonical" href="${pageContext.request.contextPath}"/>
+    <style>
+        .activePageLink
+        {
+            background-color:#abd305;
+        }
+        .clear {
+            clear:both
+        }
+    </style>
     <script>
         //<![CDATA[
         (function (i, s, o, g, r, a, m) {
@@ -183,6 +192,8 @@
     <script src="${a1}"></script>
     <spring:url value="/resources/js/addthis_widget.js" var="a2" />
     <script src="${a2}"></script>
+    <spring:url value="/resources/js/list.min.js" var="a3" />
+    <script src="${a3}"></script>
     <%--<spring:url value="/resources/js/cart.js" var="a3" />
     <script src="${a3}"></script>--%>
     <!--------------CSS----------->
@@ -219,6 +230,10 @@
     <link href="${cs10}" rel="stylesheet" type="text/css"/>
     <spring:url value="/resources/css/roboto.css" var="cs11" />
     <link href="${cs11}" rel="stylesheet" type="text/css"/>
+    <spring:url value="/resources/js/ptSlide.js" var="js12" />
+    <script src='${js12}' type='text/javascript'></script>
+    <spring:url value="/resources/css/ptSlide.css" var="cs12" />
+    <link href='${cs12}' rel='stylesheet' type='text/css'  media='all'  />
 
     <!-- Facebook Pixel Code -->
     <script>
@@ -323,16 +338,17 @@
                 <tiles:insertAttribute name="nav"/>
                 <section id="content" class="clearfix container">
                     <div id="blog">
-                        <tiles:insertAttribute name="breadcurmb_blog"/>
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="main-content row">
+                                <tiles:insertAttribute name="breadcurmb_blog"/>
                                 <!-- Begin content -->
-                                <div class="blog-content col-md-12">
-                                    <div class="row">
+                                <div class="col-md-9 blog-content">
+                                    <div id="blog-container">
                                         <tiles:insertAttribute name="content_blog"/>
-                                        <tiles:insertAttribute name="nav_blog"/>
+                                        <tiles:insertAttribute name="pagging"/>
                                     </div>
                                 </div>
+                                <tiles:insertAttribute name="nav_blog"/>
                             </div>
                             <!-- End content -->
                         </div>

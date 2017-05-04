@@ -1,6 +1,7 @@
 package com.tramhuong.services;
 
 import com.tramhuong.dto.BlogDto;
+import com.tramhuong.dto.PostDto;
 import com.tramhuong.services.error.ServiceException;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface BlogService {
     BlogDto findById(int id) throws ServiceException;
     List<BlogDto> findAll() throws ServiceException;
     List<BlogDto> findByStatus(byte status) throws ServiceException;
+
+    List<PostDto> findPostByBlogId(int id) throws ServiceException;
 }

@@ -772,13 +772,13 @@ blockquote {
 }
 
 .btn-primary, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
-    background-color: #66451a;
-    border-color: #66451a;
+    background-color: #808000;
+    border-color: #808000;
 }
 
 .btn-primary:hover, .btn-primary:focus {
-    background-color: #66451a;
-    border-color: #66451a;
+    background-color: #808000;
+    border-color: #808000;
 }
 
 .open .dropdown-toggle.btn-primary {
@@ -1172,7 +1172,7 @@ blockquote {
 }
 
 .breadcrumb-arrow li span {
-    color: #66451a;
+    color: #808000;
 }
 
 /**
@@ -3085,8 +3085,8 @@ a.list-group-item-danger.active, a.list-group-item-danger:hover, a.list-group-it
 }
 
 .navbar-default {
-    background-color: #66451a;
-    border-color: #66451a;
+    background-color: #808000;
+    border-color: #808000;
 }
 
 .navbar-default .navbar-brand, .navbar-default .navbar-link, .navbar-default .btn-link {

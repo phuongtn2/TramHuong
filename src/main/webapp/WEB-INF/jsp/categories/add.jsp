@@ -46,9 +46,16 @@
 					<div class="form-group">
 						<div class="text-center">
 							<input type="hidden" id="add" name="add">
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addButton">
-								<i class="fa fa-check"></i><spring:message code="common.button.save" text="default text"/>
-							</button>
+							<c:if test="${category.id != null}">
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addButton">
+									<i class="fa fa-edit"></i><spring:message code="common.button.update" text="default text"/>
+								</button>
+							</c:if>
+							<c:if test="${category.id == null}">
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addButton">
+									<i class="fa fa-check"></i><spring:message code="common.button.add" text="default text"/>
+								</button>
+							</c:if>
 							<button name="reset" class="btn btn-danger" type="reset">
 								<i class="fa fa-refresh"></i><spring:message code="common.button.refresh" text="default text"/>
 							</button>

@@ -28,14 +28,29 @@
             <li id="s_categories" class="active">
                 <a href="/admin/s_categories"><i class="fa fa-th-large"></i> <span class="nav-label">Danh Mục Con</span> <span class="fa arrow"></span></a>
             </li>
-            <li id="introduce">
+            <li id="product" class="active">
+                <a href="/admin/products"><i class="fa fa-th-large"></i> <span class="nav-label">Quản Lý Sản Phẩm</span> <span class="fa arrow"></span></a>
+            </li>
+            <li id="blog" class="active">
+                <a href="/admin/blog"><i class="fa fa-th-large"></i> <span class="nav-label">Quản Lý Bài Viết</span> <span class="fa arrow"></span></a>
+            </li>
+            <li id="about" class="active">
+                <a href="/admin/about"><i class="fa fa-th-large"></i> <span class="nav-label">Thông Tin WebSite</span> <span class="fa arrow"></span></a>
+            </li>
+            <li id="payment" class="active">
+                <a href="/admin/payments"><i class="fa fa-th-large"></i> <span class="nav-label">Thông Tin Thanh Toán</span> <span class="fa arrow"></span></a>
+            </li>
+            <li id="introduce" class="active">
                 <a href="/admin/introduce"><i class="fa fa-th-large"></i> <span class="nav-label">Trang Giới Thiệu</span> <span class="fa arrow"></span></a>
             </li>
 
-            <li id="orders">
+            <li id="orders" class="active">
                 <a href="/admin/orders"><i class="fa fa-th-large"></i> <span class="nav-label">Đơn Hàng</span> <span class="fa arrow"></span></a>
             </li>
-            <li id="banner">
+            <li id="mail" class="active">
+                <a href="/admin/mail"><i class="fa fa-th-large"></i> <span class="nav-label">Email Template</span> <span class="fa arrow"></span></a>
+            </li>
+            <li id="banner" class="active">
                 <a href="/admin/banners"><i class="fa fa-th-large"></i> <span class="nav-label">Banner</span> <span class="fa arrow"></span></a>
             </li>
         </ul>

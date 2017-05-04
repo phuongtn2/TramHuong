@@ -53,11 +53,36 @@
 	<select id="findAll" resultType="order">
 		SELECT * FROM ORDER_INFO ORDER BY id
 	</select>
-	<select id="findByCondition" resultType="order">
-		SELECT * FROM ORDER_INFO WHERE status = #{status} ORDER BY id
-	</select>
 	<select id="findById" resultType="order">
 		SELECT * FROM ORDER_INFO WHERE id=#{id}
+	</select>
+	<select id="findByCondition" resultType="order">
+		SELECT * FROM ORDER_INFO  WHERE
+		<if test="status >= 0">
+			status = #{status}
+		</if>
+		<if test="status == -1">
+			status IN(0,1,2,3)
+		</if>
+		<if test="orderCode != ''">
+			AND orderCode = #{orderCode}
+		</if>
+		<if test="paymentType != -1">
+			AND paymentType = #{paymentType}
+		</if>
+		<if test="orderDate != null">
+			AND orderDate = #{orderDate}
+		</if>
+		<if test="name != ''">
+			AND name = #{name}
+		</if>
+		<if test="tel != ''">
+			AND tel = #{tel}
+		</if>
+		<if test="email != ''">
+			AND email = #{email}
+		</if>
+		ORDER BY id
 	</select>
 
 </mapper>

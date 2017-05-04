@@ -7,6 +7,7 @@ public class SendMailParameter {
 	private String body;
 	private List<String> attachementURLList;
 	private String toEmail;
+	private String orderCode;
 
 	public String getSubject() {
 		return subject;
@@ -38,5 +39,13 @@ public class SendMailParameter {
 
 	public void setToEmail(String toEmail) {
 		this.toEmail = toEmail;
+	}
+
+	public String getOrderCode() {
+		return orderCode;
+	}
+
+	public void setOrderCode(String orderCode) {
+		this.orderCode = orderCode;
 	}
 }

@@ -12,7 +12,6 @@
 <!-- Modal -->
 <div class="modal fade" id="addButton" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -28,7 +27,6 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
             </div>
         </div>
-
     </div>
 </div>
 

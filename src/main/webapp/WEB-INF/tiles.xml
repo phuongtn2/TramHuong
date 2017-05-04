@@ -4,6 +4,7 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
+	<!--Front-->
 	<definition name="base.definition"
 		template="/WEB-INF/jsp/template/layout.jsp">
 		<put-attribute name="title" value="" />
@@ -16,61 +17,6 @@
 		<put-attribute name="content" value="" />
 		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp" />
 	</definition>
-	<definition name="base.blog"
-				template="/WEB-INF/jsp/template/layout_blogs.jsp">
-		<put-attribute name="title" value="" />
-		<put-attribute name="header" value="/WEB-INF/jsp/template/header.jsp" />
-		<put-attribute name="nav_mobile" value="/WEB-INF/jsp/template/nav_mobile.jsp" />
-		<put-attribute name="nav" value="/WEB-INF/jsp/template/nav.jsp" />
-		<put-attribute name="breadcurmb_blog" value=""/>
-		<put-attribute name="content_blog" value="" />
-		<put-attribute name="nav_blog" value="/WEB-INF/jsp/template/nav_blog.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp" />
-	</definition>
-	<definition name="base.list.product"
-				template="/WEB-INF/jsp/template/layout_list_product.jsp">
-		<put-attribute name="title" value="" />
-		<put-attribute name="header" value="/WEB-INF/jsp/template/header.jsp" />
-		<put-attribute name="nav_mobile" value="/WEB-INF/jsp/template/nav_mobile.jsp" />
-		<put-attribute name="nav" value="/WEB-INF/jsp/template/nav.jsp" />
-		<!--<put-attribute name="row_content" value="/WEB-INF/jsp/template/row_content.jsp" />-->
-		<put-attribute name="aside" value="/WEB-INF/jsp/template/aside.jsp" />
-		<put-attribute name="breadcurmb" value=""/>
-		<put-attribute name="sort" value=""/>
-		<put-attribute name="content" value="" />
-		<put-attribute name="pagging" value=""/>
-		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp" />
-	</definition>
-	<definition name="base.static"
-				template="/WEB-INF/jsp/template/static.jsp">
-		<put-attribute name="title" value="" />
-		<put-attribute name="header" value="/WEB-INF/jsp/template/header.jsp" />
-		<put-attribute name="nav_mobile" value="/WEB-INF/jsp/template/nav_mobile.jsp" />
-		<put-attribute name="nav" value="/WEB-INF/jsp/template/nav.jsp" />
-		<!--<put-attribute name="row_content" value="/WEB-INF/jsp/template/row_content.jsp" />-->
-		<put-attribute name="aside" value="/WEB-INF/jsp/template/aside.jsp" />
-		<put-attribute name="content" value="" />
-		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp" />
-	</definition>
-	<definition name="base.admin"
-				template="/WEB-INF/jsp/template/layout_admin.jsp">
-		<put-attribute name="title" value="" />
-		<put-attribute name="navbar" value="/WEB-INF/jsp/template/nav_admin.jsp" />
-		<put-attribute name="notify" value="/WEB-INF/jsp/template/header_admin.jsp" />
-		<put-attribute name="body" value="" />
-		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer_admin.jsp" />
-	</definition>
-	<definition name="base.login"
-				template="/WEB-INF/jsp/template/layout_login.jsp">
-		<put-attribute name="title" value="" />
-		<put-attribute name="body" value="" />
-	</definition>
-	<definition name="base.checkout"
-				template="/WEB-INF/jsp/template/layout_checkout.jsp">
-		<put-attribute name="title" value="Trầm Hương" />
-		<put-attribute name="body" value="" />
-	</definition>
-
 	<definition name="index" extends="base.definition">
 		<put-attribute name="title" value="Trầm Hương" />
 		<put-attribute name="content" value="/WEB-INF/jsp/index.jsp" />
@@ -87,35 +33,50 @@
 		<put-attribute name="title" value="Trầm Hương" />
 		<put-attribute name="content" value="/WEB-INF/jsp/product_detail.jsp" />
 	</definition>
-
-	<definition name="login" extends="base.login">
-		<put-attribute name="title" value="Trầm Hương" />
-		<put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
-	</definition>
-	<definition name="categories" extends="base.admin">
-		<put-attribute name="title" value="Trầm Hương" />
-		<put-attribute name="body" value="/WEB-INF/jsp/categories/view.jsp" />
-	</definition>
-	<definition name="s_categories" extends="base.admin">
-		<put-attribute name="title" value="Trầm Hương" />
-		<put-attribute name="body" value="/WEB-INF/jsp/s_categories/view.jsp" />
-	</definition>
-	<definition name="introduceAdmin" extends="base.admin">
-		<put-attribute name="title" value="Trầm Hương" />
-		<put-attribute name="body" value="/WEB-INF/jsp/introduce/view.jsp" />
-	</definition>
-	<definition name="checkout" extends="base.checkout">
-		<put-attribute name="title" value="Trầm Hương" />
-		<put-attribute name="body" value="/WEB-INF/jsp/billing.jsp" />
-	</definition>
-	<definition name="checkoutSuccess" extends="base.checkout">
-		<put-attribute name="title" value="Trầm Hương" />
-		<put-attribute name="body" value="/WEB-INF/jsp/checkoutSuccess.jsp" />
+	<!--Front-->
+	<!--Blog-->
+	<definition name="base.blog"
+				template="/WEB-INF/jsp/template/layout_blogs.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/jsp/template/header.jsp" />
+		<put-attribute name="nav_mobile" value="/WEB-INF/jsp/template/nav_mobile.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/jsp/template/nav.jsp" />
+		<put-attribute name="breadcurmb_blog" value=""/>
+		<put-attribute name="content_blog" value="" />
+		<put-attribute name="pagging" value="/WEB-INF/jsp/template/pagging.jsp" />
+		<put-attribute name="nav_blog" value="/WEB-INF/jsp/template/nav_blog.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp" />
 	</definition>
 	<definition name="blog" extends="base.blog">
 		<put-attribute name="title" value="Trầm Hương" />
 		<put-attribute name="breadcurmb_blog" value="/WEB-INF/jsp/template/breadcrumb_blog.jsp"/>
 		<put-attribute name="content_blog" value="/WEB-INF/jsp/blog_content.jsp" />
+	</definition>
+	<definition name="music" extends="base.blog">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="breadcurmb_blog" value="/WEB-INF/jsp/template/breadcrumb_blog.jsp"/>
+		<put-attribute name="content_blog" value="/WEB-INF/jsp/music.jsp" />
+	</definition>
+	<definition name="danhngon" extends="base.blog">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="breadcurmb_blog" value="/WEB-INF/jsp/template/breadcrumb_blog.jsp"/>
+		<put-attribute name="content_blog" value="/WEB-INF/jsp/danhngon.jsp" />
+	</definition>
+	<!--Blog-->
+	<!--Product - Category-->
+	<definition name="base.list.product"
+				template="/WEB-INF/jsp/template/layout_list_product.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/jsp/template/header.jsp" />
+		<put-attribute name="nav_mobile" value="/WEB-INF/jsp/template/nav_mobile.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/jsp/template/nav.jsp" />
+		<!--<put-attribute name="row_content" value="/WEB-INF/jsp/template/row_content.jsp" />-->
+		<put-attribute name="aside" value="/WEB-INF/jsp/template/aside.jsp" />
+		<put-attribute name="breadcurmb" value=""/>
+		<put-attribute name="sort" value=""/>
+		<put-attribute name="content" value="" />
+		<put-attribute name="pagging" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp" />
 	</definition>
 	<definition name="product-list" extends="base.list.product">
 		<put-attribute name="title" value="Trầm Hương" />
@@ -123,6 +84,19 @@
 		<put-attribute name="sort" value="/WEB-INF/jsp/template/sort.jsp" />
 		<put-attribute name="content" value="/WEB-INF/jsp/list_product.jsp" />
 		<put-attribute name="pagging" value="/WEB-INF/jsp/template/pagging.jsp" />
+	</definition>
+	<!--Product - Category-->
+	<!--Static Page-->
+	<definition name="base.static"
+				template="/WEB-INF/jsp/template/static.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/jsp/template/header.jsp" />
+		<put-attribute name="nav_mobile" value="/WEB-INF/jsp/template/nav_mobile.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/jsp/template/nav.jsp" />
+		<!--<put-attribute name="row_content" value="/WEB-INF/jsp/template/row_content.jsp" />-->
+		<put-attribute name="aside" value="/WEB-INF/jsp/template/aside.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp" />
 	</definition>
 	<definition name="buy" extends="base.static">
 		<put-attribute name="title" value="Trầm Hương" />
@@ -136,5 +110,81 @@
 		<put-attribute name="title" value="Trầm Hương" />
 		<put-attribute name="content" value="/WEB-INF/jsp/shipping.jsp" />
 	</definition>
-
+	<!--Static Page-->
+	<!--Admin-->
+	<definition name="base.admin"
+				template="/WEB-INF/jsp/template/layout_admin.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="navbar" value="/WEB-INF/jsp/template/nav_admin.jsp" />
+		<put-attribute name="notify" value="/WEB-INF/jsp/template/header_admin.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer_admin.jsp" />
+	</definition>
+	<definition name="categories" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/categories/view.jsp" />
+	</definition>
+	<definition name="s_categories" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/s_categories/view.jsp" />
+	</definition>
+	<definition name="introduceAdmin" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/introduce/view.jsp" />
+	</definition>
+	<definition name="products" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/product/view.jsp" />
+	</definition>
+	<definition name="product-detail-admin" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/product/product_detail.jsp" />
+	</definition>
+	<definition name="product-add-edit" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/product/product_add.jsp" />
+	</definition>
+	<definition name="orders" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/order/view.jsp" />
+	</definition>
+	<definition name="order-detail" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/order/order_detail.jsp" />
+	</definition>
+	<definition name="about" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/about/view.jsp" />
+	</definition>
+	<definition name="payments" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/payment/view.jsp" />
+	</definition>
+	<!--Admin-->
+	<!--Login Admin-->
+	<definition name="base.login"
+				template="/WEB-INF/jsp/template/layout_login.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body" value="" />
+	</definition>
+	<definition name="login" extends="base.login">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
+	</definition>
+	<!--Login Admin-->
+	<!--Order Product-->
+	<definition name="base.checkout"
+				template="/WEB-INF/jsp/template/layout_checkout.jsp">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="" />
+	</definition>
+	<definition name="checkout" extends="base.checkout">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/billing.jsp" />
+	</definition>
+	<definition name="checkoutSuccess" extends="base.checkout">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/checkoutSuccess.jsp" />
+	</definition>
+	<!--Order Product-->
 </tiles-definitions>

@@ -86,6 +86,23 @@ public class CommonController {
 			}
 		}
 	}
+	public static  List<ProductDto> getProductFromCart(HttpServletRequest request, ProductService productService) throws UnsupportedEncodingException, ServiceException {
+		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		CartListDto cartListDto = (CartListDto) session.getAttribute("cartList");
+		List<ProductDto> productDtos = new ArrayList<ProductDto>();
+		if(cartListDto != null) {
+			Double totalPrice = 0.0;
+			if (cartListDto.getCartDtoList() != null){
+				for (CartDto cartDto : cartListDto.getCartDtoList()) {
+					ProductDto productDto = productService.findById(cartDto.getProductId());
+					productDto.setCount(cartDto.getCount());
+					productDtos.add(productDto);
+				}
+			}
+		}
+		return productDtos;
+	}
 	public static void loadBlog(ModelMap model, BlogService blogService) throws ServiceException {
 		List<BlogDto> blogDtos = blogService.findByStatus((byte) 1);
 		if(blogDtos != null){

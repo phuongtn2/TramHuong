@@ -19,11 +19,12 @@ public class ProductDto {
     private String img1;
     private String img2;
     private Byte status;
-    private Long cateGoryId;
+    private Long categoryId;
     private Long subCategoryId;
     private Double price;
     private String priceDisplay;
     private Double salePrice;
+    private String salePriceDisplay;
     private String description;
     private Integer count;
 
@@ -76,7 +77,7 @@ public class ProductDto {
     }
 
     public Byte getIsEffete() {
-        return isEffete;
+        return  isEffete;
     }
 
     public void setIsEffete(Byte isEffete) {
@@ -123,12 +124,12 @@ public class ProductDto {
         this.status = status;
     }
 
-    public Long getCateGoryId() {
-        return cateGoryId;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCateGoryId(Long cateGoryId) {
-        this.cateGoryId = cateGoryId;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public Long getSubCategoryId() {
@@ -180,4 +181,15 @@ public class ProductDto {
     public void setPriceDisplay(String priceDisplay) {
         this.priceDisplay = priceDisplay;
     }
+
+    public String getSalePriceDisplay() {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+        String sPrice = decimalFormat.format(salePrice);
+        return sPrice;
+    }
+
+    public void setSalePriceDisplay(String salePriceDisplay) {
+        this.salePriceDisplay = salePriceDisplay;
+    }
+
 }

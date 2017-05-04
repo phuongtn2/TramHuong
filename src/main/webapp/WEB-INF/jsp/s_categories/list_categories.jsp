@@ -18,7 +18,7 @@
 				       placeholder="Tiềm Kiếm...">
 
 				<table class="footable emp-sales table table-stripped table-bordered table-hover dataTables-example"
-				       data-page-size="8" data-filter=#filter>
+				       data-page-size="8" data-filter=#filter style="font-size: 12px;">
 					<thead>
 					<tr>
 						<th><spring:message code="category.name" text="default text"/></th>
@@ -46,10 +46,10 @@
 							<td class="text-center">
 								<div class="btn-group">
 									<a class="btn-success btn btn-xs"
-									   href="/admin/s_categories/edit/${s.id}"><spring:message code="common.button.update" text="default text"/></a>
+									   href="/admin/s_categories/edit/${s.id}"><i class="fa fa-edit"><spring:message code="common.button.update" text="default text"/></i></a>
 									<a type="button" data-toggle="modal" data-target="#deleteButton"
 									   class="btn-danger btn btn-xs"
-									   onclick="setUrl('/admin/s_categories/delete/${s.id}')"><spring:message code="common.button.delete" text="default text"/></a>
+									   onclick="setUrl('/admin/s_categories/delete/${s.id}')"><i class="fa fa-trash-o"><spring:message code="common.button.delete" text="default text"/></i></a>
 								</div>
 							</td>
 						</tr>

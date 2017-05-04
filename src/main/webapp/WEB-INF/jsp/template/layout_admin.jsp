@@ -14,17 +14,24 @@
     <title>Admin</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <spring:url value="/resources/css/bootstrap.min.css" var="bootsTrapCss"/>
     <spring:url value="/resources/font-awesome/css/font-awesome.css" var="awesomeFontCss" />
     <spring:url value="/resources/css/animate.css" var="animateCss" />
     <spring:url value="/resources/css/style.css" var="styleCss" />
-    <spring:url value="/resources/editor/css/simplemde.min.css" var="simplemde" />
+    <spring:url value="/resources/editor/css/simplemde.min.css" var="isCheckCss" />
+    <spring:url value="/resources/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" var="checkBoxCss" />
+    <spring:url value="/resources/css/plugins/iCheck/custom.css" var="simplemde" />
+    <spring:url value="/resources/css/plugins/datapicker/datepicker3.css" var="dateCss" />
+    <spring:url value="/resources/css/plugins/footable/footable.core.css" var="footCss" />
+    <link href="${dateCss}" rel="stylesheet">
     <link href="${bootsTrapCss}" rel="stylesheet" type="text/css"/>
     <link href="${awesomeFontCss}" rel="stylesheet" type="text/css"/>
     <link href="${animateCss}" rel="stylesheet" type="text/css"/>
     <link href="${styleCss}" rel="stylesheet" type="text/css"/>
     <link href="${simplemde}" rel="stylesheet" type="text/css"/>
+    <link href="${checkBoxCss}" rel="stylesheet">
+    <link href="${isCheckCss}" rel="stylesheet">
+    <link href="${footCss}" rel="stylesheet">
     <script>
         function change(id) {
             var listId = ["news", "complaint", "request", "building" , "service", "user"
@@ -86,55 +93,30 @@
     <script src="${uiMinJs}"></script>
     <spring:url value="/resources/js/plugins/footable/footable.all.min.js" var="footableJs" />
     <script src="${footableJs}"></script>
+    <spring:url value="/resources/js/plugins/iCheck/icheck.min.js" var="isCheckJs" />
+    <script src="${isCheckJs}"></script>
     <spring:url value="/resources/editor/js/simplemde.min.js" var="simplemdeJs" />
     <script src="${simplemdeJs}"></script>
+    <spring:url value="/resources/js/plugins/datapicker/bootstrap-datepicker.js" var="datePickerJs" />
+    <script src="${datePickerJs}"></script>
     <!-- Page-Level Scripts -->
     <script>
         $(document).ready(function() {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green'
+            });
 
             $('.footable').footable();
 
-            $('#birthday').datepicker({
+            $('#created').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
                 forceParse: true,
                 calendarWeeks: true,
                 autoclose: true
             });
-
-            $('#startDay').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: true,
-                calendarWeeks: true,
-                autoclose: true
-            });
-
-            $('#endDay').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: true,
-                calendarWeeks: true,
-                autoclose: true
-            });
-
-            $('#serviceStart').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: true,
-                calendarWeeks: true,
-                autoclose: true
-            });
-
-            $('#serviceEnd').datepicker({
-                todayBtn: "linked",
-                keyboardNavigation: false,
-                forceParse: true,
-                calendarWeeks: true,
-                autoclose: true
-            });
-
-            $('#birthday').datepicker({
+            $('#orderDate').datepicker({
                 todayBtn: "linked",
                 keyboardNavigation: false,
                 forceParse: true,
@@ -186,6 +168,10 @@
         };
         new SimpleMDE({
             element: document.getElementById("introduce_id"),
+            spellChecker: false
+        });
+        new SimpleMDE({
+            element: document.getElementById("product_description"),
             spellChecker: false
         });
     </script>
