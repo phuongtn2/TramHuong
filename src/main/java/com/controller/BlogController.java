@@ -5,6 +5,7 @@ import com.tramhuong.dto.BlogDto;
 import com.tramhuong.dto.MappingCategoryDto;
 import com.tramhuong.dto.PostDto;
 import com.tramhuong.dto.ProductDto;
+import com.tramhuong.services.AboutService;
 import com.tramhuong.services.BlogService;
 import com.tramhuong.services.CategoriesService;
 import com.tramhuong.services.ProductService;
@@ -34,6 +35,8 @@ public class BlogController {
 	private CategoriesService categoriesService;
 	@Autowired
 	private BlogService blogService;
+	@Autowired
+	private AboutService aboutService;
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -43,13 +46,13 @@ public class BlogController {
 	@RequestMapping(value = "/blog/{id}", method = RequestMethod.GET)
 	public String initForm(HttpServletRequest request, ModelMap model, @PathVariable int id) throws ServiceException, UnsupportedEncodingException {
 		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
-		CommonController.loadCart(request, model);
-		CommonController.loadCart(request,model);
 		BlogDto blogDto = blogService.findById(id);
 		model.addAttribute("b", blogDto);
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadBlog(model, blogService);
+		CommonController.loadCommon(request, model, aboutService, blogService);
+		List<PostDto> postNews = blogService.findPostNew();
+		model.addAttribute("postNews", postNews);
 		if(id == 2){
 			List<PostDto> postDtos = blogService.findPostByBlogId(id);
 			model.addAttribute("posts", postDtos);
@@ -60,8 +63,24 @@ public class BlogController {
 			model.addAttribute("posts", postDtos);
 			return "danhngon";
 		}else{
+			List<PostDto> postDtos = blogService.findPostByBlogId(id);
+			model.addAttribute("posts", postDtos);
 			return "blog";
 		}
+	}
+
+	@RequestMapping(value = "/blogs/post/{id}", method = RequestMethod.GET)
+	public String postContent(HttpServletRequest request, ModelMap model, @PathVariable int id) throws ServiceException, UnsupportedEncodingException {
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		BlogDto blogDto = blogService.findById(id);
+		model.addAttribute("b", blogDto);
+		model.addAttribute("mapping_categories", mappingCategoryDtos);
+		model.addAttribute("mSize", mappingCategoryDtos.size());
+		CommonController.loadCommon(request, model, aboutService, blogService);
+		List<PostDto> postNews = blogService.findPostNew();
+		model.addAttribute("postNews", postNews);
+		model.addAttribute("post", blogService.findPostById(id));
+		return "post";
 	}
 }
 

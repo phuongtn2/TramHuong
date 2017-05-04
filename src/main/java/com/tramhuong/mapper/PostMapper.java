@@ -17,4 +17,5 @@ public interface PostMapper {
     PostDto findById(@Param("id") long id);
     List<PostDto> findAll();
     List<PostDto> findByBlogId(@Param("id") int id);
+    List<PostDto> findPostNew();
 }

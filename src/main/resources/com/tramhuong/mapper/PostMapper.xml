@@ -67,9 +67,8 @@
 	<select id="findById" resultType="post">
 		SELECT * FROM POST WHERE id=#{id}
 	</select>
-	<!--<select id="findByNewsId" resultType="newsDetail">
-		SELECT * FROM T_NEWS_DETAIL WHERE newsCode=#{id} ORDER BY created
+	<select id="findPostNew" resultType="post">
+		SELECT * FROM POST WHERE blogId NOT IN (2,3) ORDER BY created LIMIT 4
 	</select>
-	-->
 
 </mapper>

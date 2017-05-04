@@ -1,5 +1,6 @@
 package com.tramhuong.dto;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -10,8 +11,10 @@ public class PostDto {
     private String title;
     private Integer blogId;
     private String content;
+    private String subContent;
     private String url;
     private Date created;
+    private String dateDisplay;
     private String img;
 
     public Long getId() {
@@ -68,5 +71,21 @@ public class PostDto {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public String getSubContent() {
+        return subContent;
+    }
+
+    public void setSubContent(String subContent) {
+        this.subContent = subContent;
+    }
+
+    public String getDateDisplay() {
+        return new SimpleDateFormat("MM/dd/yyyy").format(created);
+    }
+
+    public void setDateDisplay(String dateDisplay) {
+        this.dateDisplay = dateDisplay;
     }
 }

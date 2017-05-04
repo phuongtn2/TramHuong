@@ -55,4 +55,14 @@ public class BlogServiceImpl implements BlogService {
     public List<PostDto> findPostByBlogId(int id) throws ServiceException {
         return postMapper.findByBlogId(id);
     }
+
+    @Override
+    public List<PostDto> findPostNew() throws ServiceException {
+        return postMapper.findPostNew();
+    }
+
+    @Override
+    public PostDto findPostById(long id) throws ServiceException {
+        return postMapper.findById(id);
+    }
 }

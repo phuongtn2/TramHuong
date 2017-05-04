@@ -330,81 +330,29 @@
             </script>
         </div>
         <!-- End: Danh mục tin tức -->
-
-
         <!--Begin: Bài viết mới nhất-->
         <div class="news-latest list-group">
-		<span class="list-group-item active">
-			Bài viết mới nhất
-		</span>
+            <span class="list-group-item active">
+                Bài viết mới nhất
+            </span>
 
-
-            <div class="article">
-
-                <div class="col-ld-3 col-md-3 col-sm-4 col-xs-4">
-                    <a href="/blogs/tram-huong/cong-dung-tram-huong-chua-benh-trong-y-hoc"><img
-                            src="//file.hstatic.net/1000069526/file/cong-dung-tram-huong_grande.jpg"
-                            alt="CÔNG DỤNG TRẦM HƯƠNG CHỮA BỆNH TRONG Y HỌC"></a>
-                </div>
-
-                <div class="post-content  col-lg-9 col-md-9 col-sm-8 col-xs-8 ">
-                    <a href="/blogs/tram-huong/cong-dung-tram-huong-chua-benh-trong-y-hoc">CÔNG DỤNG
-                        TRẦM HƯƠNG CHỮA BỆNH TRONG Y HỌC</a><span class="date"> <i
-                        class="time-date"></i>04/03/2017</span>
-                </div>
-            </div>
-
-
-            <div class="article">
-
-                <div class="col-ld-3 col-md-3 col-sm-4 col-xs-4">
-                    <a href="/blogs/tram-huong/1000132746-xong-nha-bang-tram-huong-dip-le-tet"><img
-                            src="//hstatic.net/526/1000069526/10/2016/4-26/tramhuongkyanh_1_52f6d238-5b9d-4422-4940-762137ab16cf.jpg"
-                            alt="Xông nhà bằng trầm hương dịp lễ tết"></a>
-                </div>
-
-                <div class="post-content  col-lg-9 col-md-9 col-sm-8 col-xs-8 ">
-                    <a href="/blogs/tram-huong/1000132746-xong-nha-bang-tram-huong-dip-le-tet">Xông
-                        nhà bằng trầm hương dịp lễ tết</a><span class="date"> <i
-                        class="time-date"></i>14/05/2016</span>
-                </div>
-            </div>
-
-
-            <div class="article">
-
-                <div class="col-ld-3 col-md-3 col-sm-4 col-xs-4">
-                    <a href="/blogs/tram-huong/1000132681-xong-nha-moi-cung-ve-nha-moi-bang-tram-huong"><img
-                            src="//hstatic.net/526/1000069526/10/2016/5-25/tramhuongkyanh_3.jpg"
-                            alt="Xông nhà mới, cúng về nhà mới bằng trầm hương"></a>
-                </div>
-
-                <div class="post-content  col-lg-9 col-md-9 col-sm-8 col-xs-8 ">
-                    <a href="/blogs/tram-huong/1000132681-xong-nha-moi-cung-ve-nha-moi-bang-tram-huong">Xông
-                        nhà mới, cúng về nhà mới bằng trầm hương</a><span class="date"> <i
-                        class="time-date"></i>14/05/2016</span>
-                </div>
-            </div>
-
-
-            <div class="article">
-
-                <div class="col-ld-3 col-md-3 col-sm-4 col-xs-4">
-                    <a href="/blogs/tram-huong/1000132680-tram-huong-tu-nhien-tram-huong-vuon-trong"><img
-                            src="//hstatic.net/526/1000069526/10/2016/4-26/tramhuongkyanh_1_99c3b5d0-53bc-44e2-5f3e-8763a616d9f0.jpg"
-                            alt="Trầm hương tự nhiên - Trầm hương vườn trồng"></a>
-                </div>
-
-                <div class="post-content  col-lg-9 col-md-9 col-sm-8 col-xs-8 ">
-                    <a href="/blogs/tram-huong/1000132680-tram-huong-tu-nhien-tram-huong-vuon-trong">Trầm
-                        hương tự nhiên - Trầm hương vườn trồng</a><span class="date"> <i
-                        class="time-date"></i>14/05/2016</span>
-                </div>
-            </div>
-
+            <c:forEach items="${postNews}" var="p">
+                    <div class="article">
+                        <div class="col-ld-3 col-md-3 col-sm-4 col-xs-4">
+                            <a href="/blogs/post/${p.id}">
+                                <img style="width: 50px; height: 40px;"
+                                                               src="${p.img}"/>
+                            </a>
+                        </div>
+                        <div class="post-content  col-lg-9 col-md-9 col-sm-8 col-xs-8 ">
+                            <a href="/blogs/post/${p.id}">${p.title}</a><span class="date"> <i
+                                class="time-date"></i>${p.dateDisplay}</span>
+                        </div>
+                    </div>
+            </c:forEach>
 
         </div>
         <!--End: Bài viết mới nhất-->
     </div>
-    <!-- End sidebar blog -->
 </div>
+    <!-- End sidebar blog -->
