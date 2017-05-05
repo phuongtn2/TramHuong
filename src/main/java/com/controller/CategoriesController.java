@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -32,9 +33,14 @@ public class CategoriesController {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 	@RequestMapping(value = "/admin/categories", method = RequestMethod.GET)
-	public String initForm(ModelMap model) throws ServiceException {
-		model.addAttribute("category", new CategoryDto());
-		return "categories";
+	public String initForm(HttpServletRequest request, ModelMap model) throws ServiceException {
+		Principal principal= request.getUserPrincipal();
+		if(principal == null){
+			return "login";
+		}else{
+			model.addAttribute("category", new CategoryDto());
+			return "categories";
+		}
 	}
 
 	/*@RequestMapping(method = RequestMethod.POST)

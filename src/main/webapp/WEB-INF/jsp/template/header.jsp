@@ -4,7 +4,7 @@
             <!-- LOGO -->
             <h1>
                 <a href="${pageContext.request.contextPath}">
-                    <img src="/resources/img/logo.png"
+                    <img src="/resources/img/logo.jpg"
                          alt="Trầm Hương Tuấn Anh" class="img-responsive"/>
                 </a>
             </h1>

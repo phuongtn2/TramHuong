@@ -628,7 +628,7 @@
     </script>
 </head>
 
-<body class="step1">
+<body class="step1" style="background-color: #333300;">
     <tiles:insertAttribute name="body" />
 </body>
 </html>

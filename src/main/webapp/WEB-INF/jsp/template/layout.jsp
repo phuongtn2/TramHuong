@@ -197,8 +197,8 @@
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="Trầm Hương Tuấn Anh"/>
 
-    <meta property="og:image" content="/resource/img/logo.png"/>
-    <meta property="og:image" content="/resource/img/logo.png"/>
+    <meta property="og:image" content="/resource/img/logo.jpg"/>
+    <meta property="og:image" content="/resource/img/logo.jpg"/>
     <meta property="og:url" content="${pageContext.request.contextPath}"/>
     <meta property="og:site_name" content="Trầm Hương Tuấn Anh"/>
     <!-- Latest compiled and minified CSS -->
@@ -260,7 +260,7 @@
     <!-- End Facebook Pixel Code -->
 
 </head>
-<body><!--Start of Zopim Live Chat Script-->
+<body style="background-color: #333300;"><!--Start of Zopim Live Chat Script-->
 <script>
     window.fbAsyncInit = function() {
         FB.init({

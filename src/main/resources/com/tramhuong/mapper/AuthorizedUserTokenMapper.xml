@@ -3,9 +3,9 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.tramhuong.mapper.AuthorizedUserTokenMapper">
-	<select id="findAuthorizedUserInfoByAuth" resultType="empAuth">
+	<select id="getByName" resultType="empAuth">
 		SELECT *
 		FROM USER u
-		WHERE u.userName=#{userName} AND u.password=#{password}
+		WHERE u.userName=#{userName} LIMIT 1
 	</select>
 </mapper>

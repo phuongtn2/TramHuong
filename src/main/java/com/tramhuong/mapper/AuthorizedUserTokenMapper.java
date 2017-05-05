@@ -6,5 +6,5 @@ import org.apache.ibatis.annotations.Param;
 
 
 public interface AuthorizedUserTokenMapper {
-	AuthorizedUserInfo findAuthorizedUserInfoByAuth(@Param("userName") String userName, @Param("password") String password);
+	AuthorizedUserInfo getByName(@Param("userName") String userName);
 }

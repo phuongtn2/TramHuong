@@ -45,7 +45,7 @@
 				<div class="row">
 					<div class="form-group">
 						<div class="text-center">
-							<input type="hidden" id="add" name="add">
+							<input type="hidden" id="add" name="addCategory">
 							<c:if test="${category.id != null}">
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addButton">
 									<i class="fa fa-edit"></i><spring:message code="common.button.update" text="default text"/>
