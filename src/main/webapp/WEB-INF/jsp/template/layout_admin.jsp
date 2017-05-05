@@ -174,6 +174,14 @@
             element: document.getElementById("product_description"),
             spellChecker: false
         });
+        new SimpleMDE({
+            element: document.getElementById("mail_header"),
+            spellChecker: false
+        });
+        new SimpleMDE({
+            element: document.getElementById("mail_footer"),
+            spellChecker: false
+        });
     </script>
 </body>
 </html>

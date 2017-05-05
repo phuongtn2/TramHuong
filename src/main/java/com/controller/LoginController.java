@@ -47,10 +47,10 @@ public class LoginController {
 		}
 	}
 
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String redirect(ModelMap model) throws ServiceException {
-		return "login";
-	}
+		return "redirect:/admin/login";
+	}*/
 
 	@RequestMapping(value = "/admin/login", method = RequestMethod.GET)
 	public String initForm(ModelMap model) throws ServiceException {

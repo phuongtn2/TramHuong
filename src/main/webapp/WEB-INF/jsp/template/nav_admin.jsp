@@ -48,7 +48,7 @@
                 <a href="/admin/orders"><i class="fa fa-th-large"></i> <span class="nav-label">Đơn Hàng</span> <span class="fa arrow"></span></a>
             </li>
             <li id="mail" class="active">
-                <a href="/admin/mail"><i class="fa fa-th-large"></i> <span class="nav-label">Email Template</span> <span class="fa arrow"></span></a>
+                <a href="/admin/mails"><i class="fa fa-th-large"></i> <span class="nav-label">Email Template</span> <span class="fa arrow"></span></a>
             </li>
             <li id="banner" class="active">
                 <a href="/admin/banners"><i class="fa fa-th-large"></i> <span class="nav-label">Banner</span> <span class="fa arrow"></span></a>

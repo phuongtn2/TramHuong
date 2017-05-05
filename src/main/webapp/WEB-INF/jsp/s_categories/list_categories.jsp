@@ -47,9 +47,9 @@
 								<div class="btn-group">
 									<a class="btn-success btn btn-xs"
 									   href="/admin/s_categories/edit/${s.id}"><i class="fa fa-edit"><spring:message code="common.button.update" text="default text"/></i></a>
-									<a type="button" data-toggle="modal" data-target="#deleteButton"
+									<%--<a type="button" data-toggle="modal" data-target="#deleteButton"
 									   class="btn-danger btn btn-xs"
-									   onclick="setUrl('/admin/s_categories/delete/${s.id}')"><i class="fa fa-trash-o"><spring:message code="common.button.delete" text="default text"/></i></a>
+									   onclick="setUrl('/admin/s_categories/delete/${s.id}')"><i class="fa fa-trash-o"><spring:message code="common.button.delete" text="default text"/></i></a>--%>
 								</div>
 							</td>
 						</tr>

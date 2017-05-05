@@ -24,7 +24,7 @@
 						<th><spring:message code="category.name" text="default text"/></th>
 						<th data-hide="phone,tablet">Danh Mục Con</th>
 						<th data-hide="phone,tablet"><spring:message code="common.status.title" text="default text"/></th>
-						<th data-hide="phone,tablet" class=T"text-center">Thao Tác</th>
+						<th data-hide="phone,tablet" class=T"text-center"><spring:message code="common.action" text="default text"/></th>
 					</tr>
 					</thead>
 					<tbody>
@@ -50,11 +50,11 @@
 								<div class="btn-group">
 									<a class="btn-success btn btn-xs"
 									   href="/admin/categories/edit/${c.id}"><i class="fa fa-edit"><spring:message code="common.button.update" text="default text"/></i></a>
-									<c:if test="${count == 0}">
+									<%--<c:if test="${count == 0}">
 									<a type="button" data-toggle="modal" data-target="#deleteButton"
 									   class="btn-danger btn btn-xs"
 									   onclick="setUrl('/admin/categories/delete/${c.id}')"><i class="fa fa-trash-o"><spring:message code="common.button.delete" text="default text"/></i></a>
-									</c:if>
+									</c:if>--%>
 								</div>
 							</td>
 						</tr>
