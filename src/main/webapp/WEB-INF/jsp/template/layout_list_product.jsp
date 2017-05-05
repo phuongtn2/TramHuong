@@ -490,7 +490,14 @@
                 else
                     $('.p-option-wrapper').show();
                     modal.find('.p-option-wrapper').prepend('<label>' + product.code + '</label>');
-                    modal.find('.p-price').text(product.priceDisplay + "đ");
+                    modal.find('.p-price').text('');
+                    modal.find('.p-price-sale').text('');
+                    if(product.isSale == 1) {
+                        modal.find('.p-price').prepend('<strike>' + product.priceDisplay + 'đ</strike>');
+                        modal.find('.p-price-sale').text(product.salePriceDisplay + "đ");
+                    }else{
+                        modal.find('.p-price').text(product.priceDisplay + "đ");
+                    }
                     modal.find('.fill-product-id').val(product.id);
                     $(".modal-footer .btn-readmore").attr('href', "/product/" + product.id);
                     callBack(product, null);

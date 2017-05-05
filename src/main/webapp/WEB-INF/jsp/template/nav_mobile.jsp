@@ -10,7 +10,7 @@
             <li class="has-children icon icon-arrow-left">
                 <a href="#">Bài Viết Sản Phẩm</a>
                 <div class="mp-level">
-                    <h2>Bài Viết Sản Phẩm</h2>
+                    <h2>Bài Viết</h2>
                     <a class="mp-back" href="#">Quay lại</a>
                     <ul class="cd-secondary-nav count-nav-6">
                         <c:forEach items="${blogs0}" var="b0">

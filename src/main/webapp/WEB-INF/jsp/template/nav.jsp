@@ -4,6 +4,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <nav class="navbar-main navbar navbar-default cl-pri">
     <!-- MENU MAIN -->
+    <input id="active" name="active" type="hidden" value="${active}"/>
     <div class="container nav-wrapper check_nav">
         <div class="row">
             <div class="navbar-header">
@@ -45,18 +46,18 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav clearfix">
-                    <li>
+                    <li id="_1">
                         <a href="/" class=" current">
                             <span>Trang Chủ</span>
                         </a>
                     </li>
-                    <li>
+                    <li id="_2">
                         <a href="/introduce" class="">
                             Giới Thiệu
                         </a>
                     </li>
-                    <li class="dropdown">
-                        <a href="#">Bài Viết Sản Phẩm</a>
+                    <li id="_3" class="dropdown">
+                        <a href="#">Bài Viết</a>
                         <ul class="dropdown-menu" role="menu">
                             <c:forEach items="${blogs0}" var="b0">
                                 <li>
@@ -67,7 +68,7 @@
                             </c:forEach>
                         </ul>
                     </li>
-                    <li class="dropdown">
+                    <li id="_4" class="dropdown">
                         <a href="#" title="Sản phẩm" class="">
                             <span>Sản phẩm</span>
                         </a>
@@ -88,7 +89,7 @@
                             </c:forEach>
                         </ul>
                     </li>
-                    <li>
+                    <li id="_5">
                         <a href="/product/sales" title="KHUYẾN MÃI" class="">
                             <span>KHUYẾN MÃI</span>
                         </a>
@@ -99,7 +100,7 @@
                             </li>
                         </ul>--%>
                     </li>
-                    <li class="dropdown">
+                    <li id="_6" class="dropdown">
                         <a href="#">THẾ GIỚI TÂM LINH</a>
                         <ul class="dropdown-menu" role="menu">
                             <c:forEach items="${blogs1}" var="b1">
@@ -184,5 +185,17 @@
         $(document).on("click", "ul.mobile-menu-icon .dropdown-menu ,.drop-control .dropdown-menu, .drop-control .input-dropdown", function (e) {
             e.stopPropagation();
         });
+        $(document).ready(function () {
+            var id = $('#active').val();
+            var listId = ["_1", "_2", "_3", "_4" , "_5", "_6"];
+            for (i = 0; i <=  listId.length; i++) {
+                if(id === listId[i]){
+                    $('#'+listId[i]).addClass( "active" );
+                }else{
+                    $('#'+listId[i]).removeClass( "active" )
+                }
+            }
+        });
+
     </script>
 </nav>

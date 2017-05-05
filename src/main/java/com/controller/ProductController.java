@@ -219,6 +219,7 @@ public class ProductController {
 			productDtoList = productService.findByCategory(productDto.getCategoryId(), 6);
 		}
 		model.addAttribute("relations", productDtoList);
+		model.addAttribute("active", "_4");
 		return "product-detail";
 	}
 
@@ -241,6 +242,7 @@ public class ProductController {
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
 		productDtoList = productService.findByCategory(id, 0);
 		model.addAttribute("productList", productDtoList);
+		model.addAttribute("active", "_4");
 		return "product-list";
 	}
 	@RequestMapping(value = "/sub-category/{id}", method = RequestMethod.GET)
@@ -264,6 +266,7 @@ public class ProductController {
 			}
 		}
 		model.addAttribute("productList", productDtoList);
+		model.addAttribute("active", "_4");
 		return "product-list";
 	}
 
@@ -278,6 +281,7 @@ public class ProductController {
 		productDtoList = productService.findByStatus((byte)1);
 		model.addAttribute("bre", "All");
 		model.addAttribute("productList", productDtoList);
+		model.addAttribute("active", "_4");
 		return "product-list";
 	}
 	@RequestMapping(value = "/product/sales", method = RequestMethod.GET)
@@ -291,6 +295,7 @@ public class ProductController {
 		productDtoList = productService.findSale(0);
 		model.addAttribute("bre", "Sales");
 		model.addAttribute("productList", productDtoList);
+		model.addAttribute("active", "_5");
 		return "product-list";
 	}
 
@@ -305,6 +310,7 @@ public class ProductController {
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
 		productDtoList = productService.findByTag(tag);
 		model.addAttribute("productList", productDtoList);
+		model.addAttribute("active", "_4");
 		return "product-list";
 	}
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
@@ -318,6 +324,7 @@ public class ProductController {
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
 		productDtoList = productService.findByName(name != null ? name: "tram huong");
 		model.addAttribute("productList", productDtoList);
+		model.addAttribute("active", "_4");
 		return "product-list";
 	}
 	@RequestMapping(value = "/product_quitView/{id}", method = RequestMethod.GET, headers = "Accept=application/json", produces = MediaType.APPLICATION_JSON_VALUE)

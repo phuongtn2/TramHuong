@@ -57,14 +57,20 @@ public class BlogController {
 			List<PostDto> postDtos = blogService.findPostByBlogId(id);
 			model.addAttribute("posts", postDtos);
 			model.addAttribute("postFirst", postDtos.get(0));
+			model.addAttribute("active", "_6");
 			return "music";
 		}else if(id == 3){
 			List<PostDto> postDtos = blogService.findPostByBlogId(id);
 			model.addAttribute("posts", postDtos);
+			model.addAttribute("active", "_6");
 			return "danhngon";
 		}else{
 			List<PostDto> postDtos = blogService.findPostByBlogId(id);
 			model.addAttribute("posts", postDtos);
+			if(id==1)
+				model.addAttribute("active", "_6");
+			else
+				model.addAttribute("active", "_3");
 			return "blog";
 		}
 	}

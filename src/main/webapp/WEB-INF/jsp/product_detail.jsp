@@ -39,7 +39,13 @@
                 <span id="pro_sku">${product.code}</span>
             </div>
             <div class="product-price" id="price-preview">
-                <span>${product.priceDisplay}₫</span>
+                <c:if test="${product.isSale == 0}">
+                    <span class="pro-price">${product.priceDisplay}₫</span>
+                </c:if>
+                <c:if test="${product.isSale == 1}">
+                    <span class="pro-price"><strike>${product.priceDisplay}₫</strike></span>
+                    <span class="pro-price">${product.salePriceDisplay}₫</span>
+                </c:if>
             </div>
             <form:form id="add-item-form" modelAttribute="cart" class="variants clearfix">
                 <div class="select-wrapper ">
@@ -226,7 +232,13 @@
                             </div>
                             <div class="product-detail clearfix">
                                 <!-- sử dụng pull-left -->
-                                <p class="pro-price">${r.priceDisplay}₫</p>
+                                <c:if test="${r.isSale == 0}">
+                                    <p class="pro-price">${r.priceDisplay}₫</p>
+                                </c:if>
+                                <c:if test="${r.isSale == 1}">
+                                    <p class="pro-price"><strike>${r.priceDisplay}₫</strike></p>
+                                    <p class="pro-price">${r.salePriceDisplay}₫</p>
+                                </c:if>
                                 <p class="pro-price-del text-left">
                                 </p>
                                 <h3 class="pro-name"><a

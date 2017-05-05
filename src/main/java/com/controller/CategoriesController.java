@@ -43,17 +43,6 @@ public class CategoriesController {
 		}
 	}
 
-	/*@RequestMapping(method = RequestMethod.POST)
-	public String processSubmit(
-			@ModelAttribute("category") CategoryDto categoryDto,
-			BindingResult result, SessionStatus status) {
-		if (result.hasErrors()) {
-			return "/admin/categories";
-		} else {
-			status.setComplete();
-			return "/admin/categories";
-		}
-	}*/
 	@RequestMapping(method = RequestMethod.POST, params = "addCategory")
 	public String addCategory(@ModelAttribute("category") CategoryDto categoryDto) throws ServiceException {
 		if(categoryDto.getId() != null && categoryDto.getId() > 0){

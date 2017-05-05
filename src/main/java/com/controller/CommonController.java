@@ -69,7 +69,11 @@ public class CommonController {
 				for (CartDto cartDto : cartListDto.getCartDtoList()) {
 					ProductDto productDto = productService.findById(cartDto.getProductId());
 					productDtos.add(productDto);
-					Double price = productDto.getPrice() * cartDto.getCount();
+					Double price = 0.0;
+					if(productDto.getIsSale() == 1)
+						price = productDto.getSalePrice() * cartDto.getCount();
+					else
+						price = productDto.getPrice() * cartDto.getCount();
 					totalPrice = totalPrice + price;
 				}
 			Double shipping = Double.valueOf(setting.getProperty("shipping.cost"));

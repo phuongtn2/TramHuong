@@ -75,6 +75,7 @@ public class IntroduceController {
 		}else{
 			model.addAttribute("introduce", new IntroduceDto());
 		}
+		model.addAttribute("active", "_2");
 		return "introduce";
 	}
 }

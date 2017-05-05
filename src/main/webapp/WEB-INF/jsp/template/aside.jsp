@@ -15,7 +15,7 @@
                 <c:set var="count" value="${count + 1}" scope="page"/>
                 <c:if test="${count == 1}">
                     <c:if test="${m.subSize > 0}">
-                        <li class='item has-sub  first'>
+                        <li id="category_${m.categoryDto.id}" class='item has-sub  first'>
                             <a href='/category/${m.categoryDto.id}'>
                                 <span class="lbl">${m.categoryDto.name}</span>
                                 <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-${count}"
@@ -53,8 +53,8 @@
                         </li>
                     </c:if>
                     <c:if test="${m.subSize <= 0}">
-                        <li class='item  first'>
-                            <a href="/collections/vong-tay-tram-huong-khong-chim-nuoc">
+                        <li id="category_${m.categoryDto.id}" class='item  first'>
+                            <a href="/category/${m.categoryDto.id}">
                                 <span>${m.categoryDto.name}</span>
                             </a>
                         </li>
@@ -62,7 +62,7 @@
                 </c:if>
                 <c:if test="${count < mSize && count > 1}">
                     <c:if test="${m.subSize > 0}">
-                        <li class='item has-sub'>
+                        <li id="category_${m.categoryDto.id}" class='item has-sub'>
                             <a href='/category/${m.categoryDto.id}'>
                                 <span class="lbl">${m.categoryDto.name}</span>
                                 <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-${count}"
@@ -100,7 +100,7 @@
                         </li>
                     </c:if>
                     <c:if test="${m.subSize <= 0}">
-                        <li class='item'>
+                        <li id="category_${m.categoryDto.id}" class='item'>
                             <a href="/category/${m.categoryDto.id}">
                                 <span>${m.categoryDto.name}</span>
                             </a>
@@ -109,7 +109,7 @@
                 </c:if>
                 <c:if test="${count == mSize && mSize > 1}">
                     <c:if test="${m.subSize > 0}">
-                        <li class='item has-sub  last'>
+                        <li id="category_${m.categoryDto.id}" class='item has-sub  last'>
                             <a href='/category/${m.categoryDto.id}'>
                                 <span class="lbl">${m.categoryDto.name}</span>
                                 <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-${count}"
@@ -147,7 +147,7 @@
                         </li>
                     </c:if>
                     <c:if test="${m.subSize <= 0}">
-                        <li class='item last'>
+                        <li id="category_${m.categoryDto.id}" class='item last'>
                             <a href="/sub-category/${m.categoryDto.id}">
                                 <span>${m.categoryDto.name}</span>
                             </a>
@@ -196,6 +196,11 @@
 
                 }
             });
+
+            var url = window.location.href;
+            var position = url.lastIndexOf("/") + 1;
+            var idActive = url.substring(position,url.length);
+            $('#category_'+ idActive).addClass( "current active" );
 
         });
 

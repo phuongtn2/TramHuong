@@ -35,7 +35,13 @@
                         </div>
                         <div class="product-detail clearfix">
                             <!-- sử dụng pull-left -->
-                            <p class="pro-price">${pH.priceDisplay}₫</p>
+                            <c:if test="${pH.isSale == 0}">
+                                <p class="pro-price">${pH.priceDisplay}₫</p>
+                            </c:if>
+                            <c:if test="${pH.isSale == 1}">
+                                <p class="pro-price"><strike>${pH.priceDisplay}₫</strike></p>
+                                <p class="pro-price">${pH.salePriceDisplay}₫</p>
+                            </c:if>
                             <p class="pro-price-del text-left"></p></h3>
                             <h3 class="pro-name"><a href="/product/${pH.id}">${pH.name}</a></h3>
                         </div>
@@ -81,7 +87,13 @@
                         </div>
                         <div class="product-detail clearfix">
                             <!-- sử dụng pull-left -->
-                            <p class="pro-price">${pH.priceDisplay}₫</p>
+                            <c:if test="${pH.isSale == 0}">
+                                <p class="pro-price">${pH.priceDisplay}₫</p>
+                            </c:if>
+                            <c:if test="${pH.isSale == 1}">
+                                <p class="pro-price"><strike>${pH.priceDisplay}₫</strike></p>
+                                <p class="pro-price">${pH.salePriceDisplay}₫</p>
+                            </c:if>
                             <p class="pro-price-del text-left"></p></h3>
                             <h3 class="pro-name"><a href="/product/${pH.id}">${pH.name}</a></h3>
                         </div>
@@ -127,7 +139,13 @@
                         </div>
                         <div class="product-detail clearfix">
                             <!-- sử dụng pull-left -->
-                            <p class="pro-price">${pH.priceDisplay}₫</p>
+                            <c:if test="${pH.isSale == 0}">
+                                <p class="pro-price">${pH.priceDisplay}₫</p>
+                            </c:if>
+                            <c:if test="${pH.isSale == 1}">
+                                <p class="pro-price"><strike>${pH.priceDisplay}₫</strike></p>
+                                <p class="pro-price">${pH.salePriceDisplay}₫</p>
+                            </c:if>
                             <p class="pro-price-del text-left"></p></h3>
                             <h3 class="pro-name"><a href="/product/${pH.id}">${pH.name}</a></h3>
                         </div>

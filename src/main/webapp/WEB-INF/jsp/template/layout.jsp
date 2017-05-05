@@ -419,6 +419,7 @@
                                 <div class="form-input">
                                     <div class="product-price">
                                         <span class="p-price"></span>
+                                        <span class="p-price-sale"></span>
                                         <del></del>
                                     </div>
                                 </div>
@@ -502,7 +503,14 @@
                 else
                     $('.p-option-wrapper').show();
                     modal.find('.p-option-wrapper').prepend('<label>' + product.code + '</label>');
-                    modal.find('.p-price').text(product.priceDisplay + "đ");
+                    modal.find('.p-price').text('');
+                    modal.find('.p-price-sale').text('');
+                    if(product.isSale == 1) {
+                        modal.find('.p-price').prepend('<strike>' + product.priceDisplay + 'đ</strike>');
+                        modal.find('.p-price-sale').text(product.salePriceDisplay + "đ");
+                    }else{
+                        modal.find('.p-price').text(product.priceDisplay + "đ");
+                    }
                     modal.find('.fill-product-id').val(product.id);
                     $(".modal-footer .btn-readmore").attr('href', "/product/" + product.id);
                     callBack(product, null);
@@ -572,6 +580,16 @@
 <script>
     $(document).ready(function () {
         $('.t-fix').removeClass('in');
+        function change(id) {
+            var listId = ["_1", "_2", "_3", "_4" , "_5", "_6"];
+            for (i = 0; i <=  listId.length; i++) {
+                if(id === listId[i]){
+                    $('#'+listId[i]).addClass( "active" );
+                }else{
+                    $('#'+listId[i]).removeClass( "active" )
+                }
+            }
+        }
     })
 </script>
 
