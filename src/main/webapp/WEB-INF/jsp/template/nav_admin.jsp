@@ -22,6 +22,9 @@
                     B
                 </div>
             </li>
+            <li id="account" class="active">
+                <a href="/admin/accounts"><i class="fa fa-th-large"></i> <span class="nav-label">Quản Lý Accout</span> <span class="fa arrow"></span></a>
+            </li>
             <li id="categories" class="active">
                 <a href="/admin/categories"><i class="fa fa-th-large"></i> <span class="nav-label">Danh Mục</span> <span class="fa arrow"></span></a>
             </li>
@@ -31,8 +34,11 @@
             <li id="product" class="active">
                 <a href="/admin/products"><i class="fa fa-th-large"></i> <span class="nav-label">Quản Lý Sản Phẩm</span> <span class="fa arrow"></span></a>
             </li>
-            <li id="blog" class="active">
-                <a href="/admin/blog"><i class="fa fa-th-large"></i> <span class="nav-label">Quản Lý Bài Viết</span> <span class="fa arrow"></span></a>
+            <li id="blogs" class="active">
+                <a href="/admin/blogs"><i class="fa fa-th-large"></i> <span class="nav-label">Quản Lý Blog</span> <span class="fa arrow"></span></a>
+            </li>
+            <li id="posts" class="active">
+                <a href="/admin/posts"><i class="fa fa-th-large"></i> <span class="nav-label">Quản Lý Bài Viết</span> <span class="fa arrow"></span></a>
             </li>
             <li id="about" class="active">
                 <a href="/admin/about"><i class="fa fa-th-large"></i> <span class="nav-label">Thông Tin WebSite</span> <span class="fa arrow"></span></a>

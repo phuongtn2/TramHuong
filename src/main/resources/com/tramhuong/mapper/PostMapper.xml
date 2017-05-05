@@ -4,60 +4,37 @@
 
 <mapper namespace="com.tramhuong.mapper.PostMapper">
 
-	<!--<insert id="insertNews" useGeneratedKeys="true" keyProperty="dto.newsCode">
-		INSERT INTO M_NEWS(
-		newsType
-		, newsHeader
-		, newsShorter
+	<insert id="add" useGeneratedKeys="true" keyProperty="dto.id">
+		INSERT INTO POST(
+		title
+		, blogId
+		, img
+		, url
 		, created
-		, lastUpdate
-		, createId
-		, updateId
+		, subContent
 		)VALUES(
-		#{dto.newsType}
-		, #{dto.newsHeader}
-		, #{dto.newsShorter}
-		,  NOW()
-		,  NOW()
-		, #{dto.createId}
-		, #{dto.updateId}
+		#{dto.title}
+		, #{dto.blogId}
+		, #{dto.img}
+		, #{dto.url}
+		, NOW()
+		, #{dto.subContent}
 		)
 	</insert>
-
-	<insert id="insertNewsDetail" useGeneratedKeys="true" keyProperty="dto.newsDetailCode">
-		INSERT INTO T_NEWS_DETAIL(
-		newsType
-		, newsCode
-		, refNewsCode
-		, created
-		, lastUpdate
-		, createId
-		, updateId
-		)VALUES(
-		#{dto.newsCode}
-		, #{dto.refNewsCode}
-		,  NOW()
-		,  NOW()
-		, #{dto.createId}
-		, #{dto.updateId}
-		)
-	</insert>
-
-
 
 	<update id="update">
-		UPDATE M_NEWS SET
-		newsType = #{dto.newsType}
-		,newsHeader = #{dto.newsHeader}
-		,newsShorter = #{dto.newsShorter}
-		,refNewsCode = #{dto.refNewsCode}
-		,updateId = #{dto.updateId}
-		,lastUpdate= NOW()
-		WHERE newsCode= #{dto.newsCode}
+		UPDATE POST SET
+		title = #{dto.title}
+		,blogId = #{dto.blogId}
+		,img = #{dto.img}
+		,content = #{dto.url}
+		,created = #{dto.created}
+		,subContent= #{dto.subContent}
+		WHERE id= #{dto.id}
 	</update>
-	<delete id="deleteById">
-		DELETE FROM M_NEWS WHERE newsCode = #{id}
-	</delete>-->
+	<delete id="delete">
+		DELETE FROM POST WHERE id = #{id}
+	</delete>
 	<select id="findAll" resultType="post">
 		SELECT * FROM POST ORDER BY id
 	</select>
