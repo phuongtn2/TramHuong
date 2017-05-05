@@ -181,17 +181,7 @@ public class AuthenticationProvider extends AbstractUserDetailsAuthenticationPro
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		final Authentication auth = super.authenticate(authentication);
-		AuthorizedUserInfo account = (AuthorizedUserInfo) auth.getPrincipal();
-
-		//HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		/*String pushKey = request.getHeader("pushKey");
-		String deviceType = request.getHeader("deviceType");
-
-		if (!StringUtil.isEmpty(pushKey) && (!StringUtil.isEmpty(deviceType))) {
-			account.setPushKey(pushKey);
-			account.setDeviceType(deviceType);
-			userDetailsService.updatePushInformation(account);
-		}*/
+		//AuthorizedUserInfo account = (AuthorizedUserInfo) auth.getPrincipal();
 		return auth;
 	}
 }

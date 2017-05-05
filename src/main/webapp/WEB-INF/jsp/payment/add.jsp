@@ -9,6 +9,9 @@
 			<div class="ibox-title">
 				<h5><spring:message code="payment.title" text="default text"/></h5>
 				<div class="ibox-tools">
+					<a onclick="goBack()" class="btn btn-success btn btn-xs"><i class="fa fa-backward"><spring:message
+							code="common.button.back"
+							text="default text"/></i></a>
 					<a class="collapse-link">
 						<i class="fa fa-chevron-up"></i>
 					</a>
@@ -32,7 +35,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="form-group">
-							<label class="control-label"><spring:message code="customer.address" text="default text"/></label>
+							<label class="control-label"><spring:message code="payment.account" text="default text"/></label>
 							<input type="text" id="accountName" name="accountName"
 								   value="<c:if test="${payment.accountName!= null}">${payment.accountName}</c:if>"
 								   class="form-control" required>

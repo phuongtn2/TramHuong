@@ -34,13 +34,13 @@ public class CategoriesController {
 	}
 	@RequestMapping(value = "/admin/categories", method = RequestMethod.GET)
 	public String initForm(HttpServletRequest request, ModelMap model) throws ServiceException {
-		Principal principal= request.getUserPrincipal();
+		/*Principal principal= request.getUserPrincipal();
 		if(principal == null){
 			return "login";
-		}else{
+		}else{*/
 			model.addAttribute("category", new CategoryDto());
 			return "categories";
-		}
+		//}
 	}
 
 	@RequestMapping(method = RequestMethod.POST, params = "addCategory")

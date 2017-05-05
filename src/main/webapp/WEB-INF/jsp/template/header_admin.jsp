@@ -5,7 +5,6 @@
 <spring:url value="/resources/img/flags/16/Vietnam.png" var="VN"/>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <div class="row border-bottom">
     <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
@@ -16,14 +15,14 @@
 
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <span class="m-r-sm text-muted welcome-message">${aui.fullName}.</span>
+                <span class="m-r-sm text-muted welcome-message">${pageContext.request.getUserPrincipal().getName()}.</span>
             </li>
             <li>
                 <a class="right-sidebar-toggle">
                     <i class="fa fa-tasks"></i>
                 </a>
             </li>
-            <li class="dropdown">
+            <%--<li class="dropdown">
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                     <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
                 </a>
@@ -40,7 +39,7 @@
                         </div>
                     </li>
                 </ul>
-            </li>
+            </li>--%>
             <li>
                 <a href="/admin/logout">
                     <i class="fa fa-sign-out"></i> <spring:message code="common.logout.title" text="default text"/>

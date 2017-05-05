@@ -22,7 +22,7 @@
 				Đăng nhập
 			</button>
 			<div style="color: red">${error}</div>
-			<a href="/admin/forgotpassword">
+			<a href="/admin/forgot-password">
 				<small>Quên mật khẩu</small>
 			</a>
 		</form>

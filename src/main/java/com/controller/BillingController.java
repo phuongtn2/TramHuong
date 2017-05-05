@@ -71,6 +71,8 @@ public class BillingController {
 	public String getEdit(@PathVariable int id, Model model, HttpServletRequest request)  throws ServiceException {
 		BillingAccountDto billingAccountDto = billingAccountService.findById(id);
 		model.addAttribute("payment",billingAccountDto);
+		List<BillingAccountDto> billingAccountDtos = billingAccountService.findAll();
+		model.addAttribute("payments", billingAccountDtos);
 		return "payments";
 	}
 	@RequestMapping(value = "/admin/payment/edit/{id}", method = RequestMethod.POST)

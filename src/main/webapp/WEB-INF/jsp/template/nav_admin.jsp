@@ -10,10 +10,10 @@
                             <img alt="image" class="img-circle" src="${logo}" />
                              </span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">${aui.fullName}</strong>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">${pageContext.request.getUserPrincipal().getName()}</strong>
                              </span> <span class="text-muted text-xs block">Admin<b class="caret"></b></span> </span> </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a href="/admin/changepass">Thây Đổi Mật Khẩu</a></li>
+                        <li><a href="/admin/change-password">Thây Đổi Mật Khẩu</a></li>
                         <li class="divider"></li>
                         <li><a href="/admin/logout"><spring:message code="common.logout.title" text="default text"/></a></li>
                     </ul>
@@ -50,9 +50,9 @@
             <li id="mail" class="active">
                 <a href="/admin/mails"><i class="fa fa-th-large"></i> <span class="nav-label">Email Template</span> <span class="fa arrow"></span></a>
             </li>
-            <li id="banner" class="active">
+            <%--<li id="banner" class="active">
                 <a href="/admin/banners"><i class="fa fa-th-large"></i> <span class="nav-label">Banner</span> <span class="fa arrow"></span></a>
-            </li>
+            </li>--%>
         </ul>
 
     </div>

@@ -23,4 +23,14 @@ public class AuthorizedUserTokenServiceImpl implements
 		return authMapper.getByName(userName);
 	}
 
+	@Override
+	public void updatePassword(AuthorizedUserInfo authorizedUserInfo) throws ServiceException {
+		authMapper.updatePassword(authorizedUserInfo);
+	}
+
+	@Override
+	public AuthorizedUserInfo findByEmail(String email) throws ServiceException {
+		return authMapper.findByEmail(email);
+	}
+
 }

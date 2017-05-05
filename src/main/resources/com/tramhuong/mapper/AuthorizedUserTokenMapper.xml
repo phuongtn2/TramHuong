@@ -8,4 +8,14 @@
 		FROM USER u
 		WHERE u.userName=#{userName} LIMIT 1
 	</select>
+	<select id="findByEmail" resultType="empAuth">
+		SELECT *
+		FROM USER u
+		WHERE u.mail=#{mail} LIMIT 1
+	</select>
+	<update id="updatePassword">
+		UPDATE USER SET
+		password = #{dto.password}
+		WHERE userName= #{dto.userName}
+	</update>
 </mapper>

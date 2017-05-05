@@ -5,7 +5,7 @@
 	<div class="col-lg-12">
 		<div class="ibox float-e-margins">
 			<div class="ibox-title">
-				<h5><spring:message code="about.title" text="default text"/></h5>
+				<h5><spring:message code="payment.title" text="default text"/></h5>
 
 				<div class="ibox-tools">
 					<a class="collapse-link">

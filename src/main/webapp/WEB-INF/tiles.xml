@@ -187,6 +187,26 @@
 		<put-attribute name="title" value="Trầm Hương" />
 		<put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
 	</definition>
+	<definition name="change-password" extends="base.login">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/password/changePassword.jsp" />
+	</definition>
+	<definition name="change-password-success" extends="base.login">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/password/changePasswordSuccess.jsp" />
+	</definition>
+	<definition name="forgot-password" extends="base.login">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/password/forgotpassword.jsp" />
+	</definition>
+	<definition name="reset-password-success" extends="base.login">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/password/resetPasswordSuccess.jsp" />
+	</definition>
+	<definition name="reset-password-fail" extends="base.login">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/password/resetPasswordFail.jsp" />
+	</definition>
 	<!--Login Admin-->
 	<!--Order Product-->
 	<definition name="base.checkout"
