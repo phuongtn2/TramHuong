@@ -48,10 +48,10 @@
                             <div class="col-lg-6">
                                 <c:if test="${mail.id != null}">
                                     <textarea id="mail_header" style="display: none;"
-                                              name="header">${mail.header}</textarea>
+                                              name="header" required>${mail.header}</textarea>
                                 </c:if>
                                 <c:if test="${mail.id == null}">
-                                    <textarea id="mail_header" style="display: none;" name="header"></textarea>
+                                    <textarea id="mail_header" style="display: none;" name="header" required></textarea>
                                 </c:if>
                             </div>
                         </div>
@@ -65,10 +65,10 @@
                             <div class="col-lg-6">
                                 <c:if test="${mail.id != null}">
                                     <textarea id="mail_footer" style="display: none;"
-                                              name="footer">${mail.footer}</textarea>
+                                              name="footer" required>${mail.footer}</textarea>
                                 </c:if>
                                 <c:if test="${mail.id == null}">
-                                    <textarea id="mail_footer" style="display: none;" name="footer"></textarea>
+                                    <textarea id="mail_footer" style="display: none;" name="footer" required></textarea>
                                 </c:if>
                             </div>
                         </div>
@@ -77,8 +77,7 @@
                         <div class="form-group" style="margin-top: 20px;">
                             <div class="text-center">
                                 <c:if test="${mail.id != null}">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#addButton">
+                                    <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-edit"></i><spring:message code="common.button.update"
                                                                                   text="default text"/>
                                     </button>

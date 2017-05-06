@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="ibox-content">
-                <form:form accept-charset="UTF-8" action="/admin/product/save" method="post" modelAttribute="product" id="userForm" class="form-horizontal" enctype="multipart/form-data">
+                <form:form accept-charset="UTF-8" action="/admin/product/save" method="post" modelAttribute="product" id="userForm" class="form-horizontal new_order" enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="col-lg-3">
                             <label class="control-label"><spring:message code="product.code"
@@ -34,7 +34,7 @@
                                        value=""/>
                             </c:if>
                             <input type="text" class="form-control" name="code"
-                                   value="<c:if test="${product.code != null}">${product.code}</c:if> "/>
+                                   value="<c:if test="${product.code != null}">${product.code}</c:if> " required/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-lg-6">
                             <input type="text" class="form-control" name="name"
-                                   value="<c:if test="${product.name != null}">${product.name}</c:if> "/>
+                                   value="<c:if test="${product.name != null}">${product.name}</c:if>" required/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -114,7 +114,7 @@
                         </div>
                         <div class="col-lg-6">
                             <select id="categoryId" name="categoryId" class="form-control m-b"
-                                    onclick="selectSubCategory();">
+                                    onclick="selectSubCategory();" required>
                                 <c:forEach items="${categories}" var="c">
                                     <option
                                             <c:if test="${c.id==product.categoryId}">selected</c:if>
@@ -140,7 +140,7 @@
                         </div>
                         <div class="col-lg-6">
                             <input type="text" class="form-control" name="price"
-                                   value="<c:if test="${product.price != null}">${product.price}</c:if> "/>
+                                   value="<c:if test="${product.price != null}">${product.price}</c:if> " required/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -159,7 +159,7 @@
                                                                          text="default text"/></label>
                         </div>
                         <div class="col-lg-6">
-                            <select id="status" name="status" class="form-control m-b">
+                            <select id="status" name="status" class="form-control m-b" required>
                                 <option
                                         <c:if test="${product.status==1}">selected</c:if> value="1">
                                     <spring:message code="common.active" text="default text"/></option>
@@ -177,7 +177,7 @@
                         <div class="col-lg-6">
                             <%--<c:if test="${product.id!= null}">--%>
                                     <textarea id="product_description" style="display: none;"
-                                              name="description">${product.description}</textarea>
+                                              name="description" required>${product.description}</textarea>
                             <%--</c:if>--%>
                             <%--<c:if test="${product.id== null}">
                                     <textarea id="product_description" style="display: none;"
@@ -193,7 +193,7 @@
                         <div class="col-lg-6">
                             <c:if test="${product.img != null}"><img src="${product.img}"
                                                                      style="width: 40px; height: 40px;"></c:if>
-                            <input type="file" class="form-control" name="file"/>
+                            <input type="file" class="form-control" name="file" required/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -222,8 +222,7 @@
                         <div class="text-center">
                             <%--<input type="hidden" id="add" name="addProduct">--%>
                             <c:if test="${product.id != null}">
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#addButton">
+                                <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-edit"></i><spring:message code="common.button.update"
                                                                               text="default text"/>
                                 </button>
@@ -233,11 +232,11 @@
                                     <i class="fa fa-check"></i><spring:message code="common.button.add"
                                                                                text="default text"/>
                                 </button>
+                                <button name="reset" class="btn btn-danger" type="reset">
+                                    <i class="fa fa-refresh"></i><spring:message code="common.button.refresh"
+                                                                                 text="default text"/>
+                                </button>
                             </c:if>
-                            <button name="reset" class="btn btn-danger" type="reset">
-                                <i class="fa fa-refresh"></i><spring:message code="common.button.refresh"
-                                                                             text="default text"/>
-                            </button>
                         </div>
                     </div>
                 </form:form>

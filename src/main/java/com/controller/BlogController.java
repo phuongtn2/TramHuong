@@ -15,10 +15,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
@@ -87,6 +84,39 @@ public class BlogController {
 		model.addAttribute("postNews", postNews);
 		model.addAttribute("post", blogService.findPostById(id));
 		return "post";
+	}
+
+	@RequestMapping(value = "/admin/blogs", method = RequestMethod.GET)
+	public String initForm(ModelMap model) throws ServiceException {
+		List<BlogDto> blogDtos = blogService.findAll();
+		if(blogDtos != null){
+			model.addAttribute("blogs", blogDtos);
+		}else{
+			model.addAttribute("blogs", new ArrayList<BlogDto>());
+		}
+		return "blog-admin";
+	}
+	@RequestMapping(value = "/admin/blog/edit/{id}", method = RequestMethod.GET)
+	public String redirectEdit(ModelMap model, @PathVariable int id) throws ServiceException {
+
+		List<BlogDto> blogDtos = blogService.findAll();
+		if(blogDtos != null){
+			model.addAttribute("blogs", blogDtos);
+		}else{
+			model.addAttribute("blogs", new ArrayList<BlogDto>());
+		}
+		BlogDto blogDto = blogService.findById(id);
+		model.addAttribute("blog", blogDto);
+		return "blog-admin";
+	}
+	@RequestMapping(method = RequestMethod.POST, params = "addBlog")
+	public String addAbout(@ModelAttribute("blog") BlogDto blogDto) throws ServiceException {
+		if(blogDto.getId() != null && blogDto.getId() > 0){
+			blogService.update(blogDto);
+		}else{
+			blogService.add(blogDto);
+		}
+		return "redirect:/admin/blogs";
 	}
 }
 

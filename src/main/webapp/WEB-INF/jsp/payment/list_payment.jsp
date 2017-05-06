@@ -8,6 +8,7 @@
 				<h5><spring:message code="payment.title" text="default text"/></h5>
 
 				<div class="ibox-tools">
+					<a href="/admin/payments" class="btn btn-success btn btn-xs"><i class="fa fa-plus-square-o"><spring:message code="common.button.add" text="default text"/></i></a>
 					<a class="collapse-link">
 						<i class="fa fa-chevron-up"></i>
 					</a>

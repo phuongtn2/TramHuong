@@ -3,6 +3,21 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.tramhuong.mapper.AuthorizedUserTokenMapper">
+	<insert id="add" useGeneratedKeys="true" keyProperty="dto.userId">
+		INSERT INTO USER(
+		userName
+		, fullName
+		, mail
+		, password
+		, status
+		)VALUES(
+		#{dto.userName}
+		, #{dto.fullName}
+		, #{dto.mail}
+		, #{dto.password}
+		, #{dto.status}
+		)
+	</insert>
 	<select id="getByName" resultType="empAuth">
 		SELECT *
 		FROM USER u
@@ -18,4 +33,16 @@
 		password = #{dto.password}
 		WHERE userName= #{dto.userName}
 	</update>
+	<update id="update">
+		UPDATE USER SET
+		userName = #{dto.userName}
+		, fullName = #{dto.fullName}
+		, mail = #{dto.mail}
+		, status = #{dto.status}
+		WHERE userId= #{dto.userId}
+	</update>
+	<select id="findAll" resultType="empAuth">
+		SELECT *
+		FROM USER ORDER BY userId
+	</select>
 </mapper>

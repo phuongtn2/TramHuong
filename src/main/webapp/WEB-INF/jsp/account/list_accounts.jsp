@@ -5,10 +5,10 @@
 	<div class="col-lg-12">
 		<div class="ibox float-e-margins">
 			<div class="ibox-title">
-				<h5><spring:message code="category.title" text="default text"/></h5>
+				<h5><spring:message code="account.title" text="default text"/></h5>
 
 				<div class="ibox-tools">
-					<a href="/admin/categories" class="btn btn-success btn btn-xs"><i class="fa fa-plus-square-o"><spring:message code="common.button.add" text="default text"/></i></a>
+					<a href="/admin/accounts" class="btn btn-success btn btn-xs"><i class="fa fa-plus-square-o"><spring:message code="common.button.add" text="default text"/></i></a>
 					<a class="collapse-link">
 						<i class="fa fa-chevron-up"></i>
 					</a>
@@ -22,35 +22,32 @@
 				       data-page-size="8" data-filter=#filter style="font-size: 12px;">
 					<thead>
 					<tr>
-						<th><spring:message code="category.name" text="default text"/></th>
-						<th data-hide="phone,tablet">Danh Mục Con</th>
+						<th><spring:message code="account.name" text="default text"/></th>
+						<th data-hide="phone,tablet"><spring:message code="account.fullName" text="default text"/></th>
+						<th data-hide="phone,tablet"><spring:message code="customer.email" text="default text"/></th>
 						<th data-hide="phone,tablet"><spring:message code="common.status.title" text="default text"/></th>
 						<th data-hide="phone,tablet" class=T"text-center"><spring:message code="common.action" text="default text"/></th>
 					</tr>
 					</thead>
 					<tbody>
-					<c:forEach items="${categories}" var="c">
+					<c:forEach items="${accounts}" var="a">
 						<c:set var="count" value="0" scope="page" />
 						<tr class="gradeC">
-							<td>${c.name}</td>
+							<td>${a.userName}</td>
 							<td data-hide="phone,tablet">
-								<c:forEach items="${s_categories}" var="s">
-									<c:if test="${c.id==s.parent}">
-										<p>${s.name}</p></span>
-										<c:set var="count" value="${count + 1}" scope="page"/>
-									</c:if>
-
-								</c:forEach>
+								${a.fullName}
 							</td>
-
 							<td data-hide="phone,tablet">
-								<c:if test="${c.status==1}"> <span class="label label-success"><spring:message code="common.active" text="default text"/></span></c:if>
-								<c:if test="${c.status==0}"> <span class="label label-danger"><spring:message code="common.deactive" text="default text"/></span></c:if>
+									${a.mail}
+							</td>
+							<td data-hide="phone,tablet">
+								<c:if test="${a.status==1}"> <span class="label label-success"><spring:message code="common.active" text="default text"/></span></c:if>
+								<c:if test="${a.status==0}"> <span class="label label-danger"><spring:message code="common.deactive" text="default text"/></span></c:if>
 							</td>
 							<td class="text-center">
 								<div class="btn-group">
 									<a class="btn-success btn btn-xs"
-									   href="/admin/categories/edit/${c.id}"><i class="fa fa-edit"><spring:message code="common.button.update" text="default text"/></i></a>
+									   href="/admin/account/edit/${a.userName}"><i class="fa fa-edit"><spring:message code="common.button.update" text="default text"/></i></a>
 									<%--<c:if test="${count == 0}">
 									<a type="button" data-toggle="modal" data-target="#deleteButton"
 									   class="btn-danger btn btn-xs"

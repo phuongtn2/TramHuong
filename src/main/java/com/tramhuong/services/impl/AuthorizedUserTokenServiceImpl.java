@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Repository
 public class AuthorizedUserTokenServiceImpl implements
@@ -31,6 +33,21 @@ public class AuthorizedUserTokenServiceImpl implements
 	@Override
 	public AuthorizedUserInfo findByEmail(String email) throws ServiceException {
 		return authMapper.findByEmail(email);
+	}
+
+	@Override
+	public List<AuthorizedUserInfo> findAll() throws ServiceException {
+		return authMapper.findAll();
+	}
+
+	@Override
+	public int add(AuthorizedUserInfo authorizedUserInfo) throws ServiceException {
+		return authMapper.add(authorizedUserInfo);
+	}
+
+	@Override
+	public void update(AuthorizedUserInfo authorizedUserInfo) throws ServiceException {
+		authMapper.update(authorizedUserInfo);
 	}
 
 }

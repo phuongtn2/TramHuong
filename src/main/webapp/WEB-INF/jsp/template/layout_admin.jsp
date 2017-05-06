@@ -32,6 +32,8 @@
     <link href="${checkBoxCss}" rel="stylesheet">
     <link href="${isCheckCss}" rel="stylesheet">
     <link href="${footCss}" rel="stylesheet">
+    <spring:url value="/resources/css/checkout1.css" var="checkCss" />
+    <link href="${checkCss}" rel="stylesheet" type="text/css"/>
     <script>
         function change(id) {
             var listId = ["news", "complaint", "request", "building" , "service", "user"

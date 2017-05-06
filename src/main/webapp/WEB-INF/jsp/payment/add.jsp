@@ -47,18 +47,18 @@
 						<div class="text-center">
 							<input type="hidden" id="add" name="addPayment">
 							<c:if test="${payment.id != null}">
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addButton">
+								<button type="submit" class="btn btn-primary">
 									<i class="fa fa-edit"></i><spring:message code="common.button.update" text="default text"/>
 								</button>
 							</c:if>
 							<c:if test="${payment.id == null}">
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addButton">
+								<button type="submit" class="btn btn-primary">
 									<i class="fa fa-check"></i><spring:message code="common.button.add" text="default text"/>
 								</button>
+								<button name="reset" class="btn btn-danger" type="reset">
+									<i class="fa fa-refresh"></i><spring:message code="common.button.refresh" text="default text"/>
+								</button>
 							</c:if>
-							<button name="reset" class="btn btn-danger" type="reset">
-								<i class="fa fa-refresh"></i><spring:message code="common.button.refresh" text="default text"/>
-							</button>
 						</div>
 					</div>
 				</div>

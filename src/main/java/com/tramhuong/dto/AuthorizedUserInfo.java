@@ -8,18 +8,18 @@ import java.util.*;
 
 public class AuthorizedUserInfo implements UserDetails, Serializable {
 	public static final int ADMIN = 1;
-	private int userId;
+	private Integer userId;
 	private String userName;
 	private String fullName;
 	private String mail;
 	private String password;
 	private String token;
-
-	public int getUserId() {
+	private byte status;
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
@@ -71,22 +71,22 @@ public class AuthorizedUserInfo implements UserDetails, Serializable {
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return true;
+		return status > 0;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return true;
+		return status > 0;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return true;
+		return status > 0;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return status > 0;
 	}
 
 	public void setPassword(String password) {
@@ -99,6 +99,14 @@ public class AuthorizedUserInfo implements UserDetails, Serializable {
 
 	public void setToken(String token) {
 		this.token = token;
+	}
+
+	public byte getStatus() {
+		return status;
+	}
+
+	public void setStatus(byte status) {
+		this.status = status;
 	}
 
 	public AuthorizedUserInfo deepClone()  {
