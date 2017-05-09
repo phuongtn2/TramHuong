@@ -17,11 +17,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.FormParam;
 import java.io.*;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -198,13 +200,19 @@ public class ProductController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/admin/product/view/{id}")
-	public String orderDetail(HttpServletRequest request, ModelMap model, @PathVariable long id) throws ServiceException, UnsupportedEncodingException {
+	public String orderDetail(HttpServletRequest request, HttpServletResponse response, ModelMap model, @PathVariable long id) throws ServiceException, UnsupportedEncodingException {
 		ProductDto productDto = productService.findById(id);
 		model.addAttribute("product", productDto);
 		List<CategoryDto> categoryDtos = categoriesService.findAll();
 		List<CategoryDto> subCategoryDtos = categoriesService.findAllS();
 		model.addAttribute("categories", categoryDtos);
 		model.addAttribute("subCategories", subCategoryDtos);
+		String imgCookie = productDto.getImg();
+		if(!StringUtil.isEmpty(productDto.getImg1()))
+			imgCookie = imgCookie  + "99" + productDto.getImg1();
+		if(!StringUtil.isEmpty(productDto.getImg2()))
+			imgCookie = imgCookie + "99" + productDto.getImg2();
+		response.addCookie(new Cookie("listImg", URLEncoder.encode(imgCookie, "UTF-8") ));
 		return "product-detail-admin";
 	}
 

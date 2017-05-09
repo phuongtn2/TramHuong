@@ -152,7 +152,7 @@
 						<label class="control-label"><spring:message code="product.img" text="default text"/></label>
 					</div>
 					<div class="col-sm-9">
-						<img src="${product.img}" style="width: 40px; height: 40px;">
+						<img src="${product.img}" style="width: 40px; height: 40px;" onclick="largeImg();">
 					</div>
 				</div>
 				<div class="row">
@@ -160,7 +160,7 @@
 						<label class="control-label"><spring:message code="product.img1" text="default text"/></label>
 					</div>
 					<div class="col-sm-9">
-						<c:if test="${product.img1 != null && product.img1 != ''}"><img src="${product.img1}" style="width: 40px; height: 40px;"></c:if>
+						<c:if test="${product.img1 != null && product.img1 != ''}"><img onclick="largeImg();" src="${product.img1}" style="width: 40px; height: 40px;" ></c:if>
 						<c:if test="${product.img1 == null || product.img1 == ''}"><img src="/resources/img/products/no_img.png" style="width: 40px; height: 40px;"></c:if>
 					</div>
 				</div>
@@ -169,7 +169,7 @@
 						<label class="control-label"><spring:message code="product.img2" text="default text"/></label>
 					</div>
 					<div class="col-sm-9">
-						<c:if test="${product.img2 != null && product.img2 != ''}"><img src="${product.img2}" style="width: 40px; height: 40px;"></c:if>
+						<c:if test="${product.img2 != null && product.img2 != ''}"><img onclick="largeImg();" src="${product.img2}" style="width: 40px; height: 40px;" ></c:if>
 						<c:if test="${product.img2 == null || product.img2 == ''}"><img src="/resources/img/products/no_img.png" style="width: 40px; height: 40px;"></c:if>
 					</div>
 				</div>
@@ -185,6 +185,103 @@
 		</div>
 	</div>
 </div>
+<div id="gallery" class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="pswp__bg"></div>
+
+	<div class="pswp__scroll-wrap">
+
+		<div class="pswp__container">
+			<div class="pswp__item"></div>
+			<div class="pswp__item"></div>
+			<div class="pswp__item"></div>
+		</div>
+
+		<div class="pswp__ui pswp__ui--hidden">
+
+			<div class="pswp__top-bar">
+
+				<div class="pswp__counter"></div>
+
+				<button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+				<button class="pswp__button pswp__button--share" title="Share"></button>
+
+				<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+				<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+				<div class="pswp__preloader">
+					<div class="pswp__preloader__icn">
+						<div class="pswp__preloader__cut">
+							<div class="pswp__preloader__donut"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+			<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+			<div class="pswp__caption">
+				<div class="pswp__caption__center">
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+</div>
+<script type="text/javascript">
+    //<![CDATA[
+    function getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i < ca.length ; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+    function largeImg() {
+        var list = getCookie("listImg");
+        var array = list.split("99");
+        var pswpElement = document.querySelectorAll('.pswp')[0];
+        var items = [
+        ];
+        for(var i = 0; i < array.length ; i ++){
+            var item = {
+                src: array[i],
+                w: 2000,
+                h: 2000
+            };
+            items.push(item);
+        }
+        var options = {
+            // optionName: 'option value'
+            // for example:
+            index: 0,// start at first slide
+            mainClass: 'pswp--minimal--dark',
+            barsSize:{top:0,bottom:0},
+            captionEl: false,
+            fullscreenEl: true,
+            shareEl: false,
+            bgOpacity: 0.85,
+            tapToClose: true,
+            tapToToggleControls: true
+        };
+        var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+        gallery.init();
+    };
+    //]]>
+
+</script>
 
 
 

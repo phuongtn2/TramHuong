@@ -34,6 +34,14 @@
     <link href="${footCss}" rel="stylesheet">
     <spring:url value="/resources/css/checkout_admin.css" var="checkCss" />
     <link href="${checkCss}" rel="stylesheet" type="text/css"/>
+    <spring:url value="/resources/css/dist/photoswipe.css?v=4.1.1-1.0.4" var="d1" />
+    <spring:url value="/resources/css/dist/default-skin/default-skin.css" var="d2" />
+    <spring:url value="/resources/css/dist/photoswipe.min.js" var="d3" />
+    <spring:url value="/resources/css/dist/photoswipe-ui-default.min.js" var="d4" />
+    <link href="${d1}" rel="stylesheet" />
+    <link href="${d2}" rel="stylesheet" />
+    <script src="${d3}"></script>
+    <script src="${d4}"></script>
     <script>
         function change(id) {
             var listId = ["news", "complaint", "request", "building" , "service", "user"
@@ -48,7 +56,7 @@
         }
     </script>
 </head>
-<body onload="loadBookingService()">
+<body>
     <div id="wrapper">
         <tiles:insertAttribute name="navbar" />
         <tiles:insertAttribute name="notify" />
