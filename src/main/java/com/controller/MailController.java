@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,11 +48,11 @@ public class MailController {
 	}
 
 	@RequestMapping(value = "/admin/mail/save", method = RequestMethod.POST)
-	public String saveMail(ModelMap model, @ModelAttribute("mail") MailTemplateDto mailTemplateDto) throws ServiceException {
+	public void saveMail(ModelMap model, @ModelAttribute("mail") MailTemplateDto mailTemplateDto, HttpServletResponse response) throws ServiceException, IOException {
 		if(mailTemplateDto.getId() > 0)
 			mailTemplateService.update(mailTemplateDto);
 		else
 			mailTemplateService.add(mailTemplateDto);
-		return "redirect:/admin/mails";
+		response.sendRedirect("/admin/mails");
 	}
 }

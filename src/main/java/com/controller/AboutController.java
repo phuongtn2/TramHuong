@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -31,12 +33,13 @@ public class AboutController {
 		return "about";
 	}
 	@RequestMapping(method = RequestMethod.POST, params = "updateAbout")
-	public String addAbout(@ModelAttribute("about") AboutDto aboutDto) throws ServiceException {
+	public void addAbout(@ModelAttribute("about") AboutDto aboutDto, HttpServletResponse response) throws ServiceException, IOException {
 		if(aboutDto.getId() != null && aboutDto.getId() > 0){
 			aboutService.update(aboutDto);
 		}else{
 			aboutService.add(aboutDto);
 		}
-		return "redirect:/admin/about";
+		response.sendRedirect("/admin/about");
+		/*return "redirect:/admin/about";*/
 	}
 }

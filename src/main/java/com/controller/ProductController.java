@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.FormParam;
 import java.io.*;
@@ -70,13 +71,13 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/admin/products", method = RequestMethod.POST)
-	public String searchProduct(HttpServletRequest request, @ModelAttribute("searchProduct") SearchProductDto searchProductDto) throws ServiceException, UnsupportedEncodingException {
+	public void searchProduct(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("searchProduct") SearchProductDto searchProductDto) throws ServiceException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		List<ProductDto> productDtos = productService.findByCondition(searchProductDto);
 		session.setAttribute("products", productDtos);
 		session.setAttribute("searchProduct", searchProductDto);
-		return "redirect:/admin/products";
+		response.sendRedirect("/admin/products");
 	}
 
 	@RequestMapping(value = "/admin/product", method = RequestMethod.GET)
@@ -116,17 +117,9 @@ public class ProductController {
 		return "product-add-edit";
 	}
 	@RequestMapping(value = "/admin/product/save", method = RequestMethod.POST/*,produces = MediaType.ALL_VALUE, consumes = MediaType.MULTIPART_FORM_DATA_VALUE, headers = "Content-Type= multipart/related"*/)
-	public String addEditProduct(HttpServletRequest request, @ModelAttribute("product") ProductAddDto productDto) throws ServiceException, IOException {
+	public void addEditProduct(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("product") ProductAddDto productDto) throws ServiceException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
-		/*productDto.setPrice(price);
-		productDto.setName(name);
-		productDto.setCode(code);
-		productDto.setDescription(description);
-		productDto.setCategoryId(categoryId);
-		productDto.setSubCategoryId(subCategoryId);
-		productDto.setTag(tag);
-		productDto.setSalePrice(salePrice);*/
 		if(!StringUtil.isEmpty(productDto.getsNew())){
 			productDto.setIsNew((byte)1);
 		}else{
@@ -185,10 +178,10 @@ public class ProductController {
 		}
 		if(productDto.getId() != null){
 			productService.update(productDto);
-			return "redirect:/admin/product/view/" + productDto.getId();
+			response.sendRedirect("/admin/product/view/" + productDto.getId());
 		}else{
 			productService.add(productDto);
-			return "redirect:/admin/product/view/" + productDto.getId();
+			response.sendRedirect("/admin/product/view/" + productDto.getId());
 		}
 	}
 

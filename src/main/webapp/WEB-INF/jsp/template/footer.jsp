@@ -97,7 +97,7 @@
                         <div class="contact-add">
                             <span style="color: rgb(255, 204, 0);" data-mce-style="color: #ffcc00;">
                                 <c:set var="count" value="0" scope="page" />
-                                <c:forEach items="${blogs0}" var="b0">
+                                <c:forEach items="${blogs1}" var="b0">
                                     <c:set var="count" value="${count + 1}" scope="page"/>
                                     <c:if test="${count == 1}">
                                         <span style="color: rgb(240, 196, 129);" data-mce-style="color: #f0c481;">

@@ -45,32 +45,4 @@ public class IndexController {
 		model.addAttribute("active", "_1");
 		return "index";
 	}
-/*	@ModelAttribute("mapping_categories")
-	public List<MappingCategoryDto> populateMappingCategories() throws ServiceException {
-
-	}*/
-	/*@RequestMapping("/login")
-	public ModelAndView login(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-		String userName=request.getParameter("userName");
-		String password=request.getParameter("password");
-		ResourceBundle bundle = ResourceBundle.getBundle( "messages", LocaleContextHolder.getLocale());
-		if(!StringUtil.isEmpty(userName) && !StringUtil.isEmpty(password)){
-			AuthorizedUserInfo authenticationInfo = authorizedUserTokenService.doLogin(userName, password);
-			if(authenticationInfo != null){
-				session.setAttribute("aui", authenticationInfo);
-				session.setAttribute("token", authenticationInfo.getToken());
-				return new ModelAndView("redirect:/news", "aui", authenticationInfo);
-			}else{
-				return new ModelAndView("login", "error", bundle.getString("login.error"));
-			}
-		}else{
-			return new ModelAndView("login", "error", bundle.getString("login.error"));
-		}
-	}
-	@RequestMapping("/logout")
-	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-		authorizedUserTokenService.logoutAuthorizedUserInfo((String) request.getSession().getAttribute("token"));
-		request.getSession().invalidate();
-		return new ModelAndView("login", "aui", null);
-	}*/
 }

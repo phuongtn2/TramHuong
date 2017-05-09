@@ -18,6 +18,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -110,13 +112,13 @@ public class BlogController {
 		return "blog-admin";
 	}
 	@RequestMapping(method = RequestMethod.POST, params = "addBlog")
-	public String addAbout(@ModelAttribute("blog") BlogDto blogDto) throws ServiceException {
+	public void addAbout(@ModelAttribute("blog") BlogDto blogDto, HttpServletResponse response) throws ServiceException, IOException {
 		if(blogDto.getId() != null && blogDto.getId() > 0){
 			blogService.update(blogDto);
 		}else{
 			blogService.add(blogDto);
 		}
-		return "redirect:/admin/blogs";
+		response.sendRedirect("/admin/blogs");
 	}
 }
 

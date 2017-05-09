@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -59,13 +61,13 @@ public class BillingController {
 		return "payments";
 	}
 	@RequestMapping(method = RequestMethod.POST, params = "addPayment")
-	public String addAbout(@ModelAttribute("payment") BillingAccountDto billingAccountDto) throws ServiceException {
+	public void addAbout(@ModelAttribute("payment") BillingAccountDto billingAccountDto, HttpServletResponse response) throws ServiceException, IOException {
 		if(billingAccountDto.getId() != null && billingAccountDto.getId() > 0){
 			billingAccountService.update(billingAccountDto);
 		}else{
 			billingAccountService.add(billingAccountDto);
 		}
-		return "redirect:/admin/payments";
+		response.sendRedirect("/admin/payments");
 	}
 	@RequestMapping(value = "/admin/payment/edit/{id}", method = RequestMethod.GET)
 	public String getEdit(@PathVariable int id, Model model, HttpServletRequest request)  throws ServiceException {
@@ -76,15 +78,15 @@ public class BillingController {
 		return "payments";
 	}
 	@RequestMapping(value = "/admin/payment/edit/{id}", method = RequestMethod.POST)
-	public String saveEdit(@ModelAttribute("payment") BillingAccountDto billingAccountDto, @PathVariable int id) throws ServiceException {
+	public void saveEdit(HttpServletResponse response, @ModelAttribute("payment") BillingAccountDto billingAccountDto, @PathVariable int id) throws ServiceException, IOException {
 		billingAccountService.update(billingAccountDto);
-		return "redirect:/admin/payments";
+		response.sendRedirect("/admin/payments");
 	}
 
 	@RequestMapping(value = "/admin/payment/delete/{id}", method = RequestMethod.GET)
-	public String delete(@PathVariable int id, HttpServletRequest request)  throws ServiceException{
+	public void delete(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException {
 		billingAccountService.delete(id);
-		return "redirect:/admin/payments";
+		response.sendRedirect("/admin/payments");
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/admin/order/view/{id}")
@@ -118,7 +120,7 @@ public class BillingController {
 		return "checkoutSuccess";
 	}
 	@RequestMapping(method = RequestMethod.POST, value = "/saveOrder")
-	public String saveOrder(HttpServletRequest request, @ModelAttribute("orderInfo") OrderInfoDto orderInfoDto) throws ServiceException, UnsupportedEncodingException {
+	public void saveOrder(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("orderInfo") OrderInfoDto orderInfoDto) throws ServiceException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
@@ -189,7 +191,7 @@ public class BillingController {
 			// delete session
 			session.removeAttribute("cartList");
 		}
-		return "redirect:/checkoutSuccess";
+		response.sendRedirect("/checkoutSuccess");
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/page/payment")

@@ -14,10 +14,12 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -69,7 +71,7 @@ public class OrderController {
 		return "orders";
 	}
 	@RequestMapping(value = "/admin/orders",method = RequestMethod.POST)
-	public String orderSearch(HttpServletRequest request, @ModelAttribute("searchOrder") SearchOrderDto searchOrderDto) throws ServiceException, UnsupportedEncodingException {
+	public void orderSearch(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("searchOrder") SearchOrderDto searchOrderDto) throws ServiceException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		List<OrderInfoDto> orderInfoDtos = orderService.findByCondition(
@@ -77,7 +79,8 @@ public class OrderController {
 				, searchOrderDto.getOrderDate(), searchOrderDto.getName(), searchOrderDto.getTel(), searchOrderDto.getEmail());
 		session.setAttribute("orders", orderInfoDtos);
 		session.setAttribute("searchOrder", searchOrderDto);
-		return "redirect:/admin/orders";
+		response.sendRedirect("/admin/orders");
+		//return "redirect:/admin/orders";
 	}
 
 }

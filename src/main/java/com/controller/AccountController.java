@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,12 +45,13 @@ public class AccountController {
 		return "account";
 	}
 	@RequestMapping(method = RequestMethod.POST, params = "addAccount")
-	public String addAbout(@ModelAttribute("account") AuthorizedUserInfo authorizedUserInfo) throws ServiceException {
+	public void addAbout(@ModelAttribute("account") AuthorizedUserInfo authorizedUserInfo, HttpServletResponse response) throws ServiceException, IOException {
 		if(authorizedUserInfo.getUserId() != null && authorizedUserInfo.getUserId() > 0){
 			authorizedUserTokenService.update(authorizedUserInfo);
 		}else{
 			authorizedUserTokenService.add(authorizedUserInfo);
 		}
-		return "redirect:/admin/accounts";
+		response.sendRedirect("/admin/accounts");
+		//return "redirect:/admin/accounts";
 	}
 }

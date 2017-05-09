@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -42,25 +44,14 @@ public class IntroduceController {
 		return "introduceAdmin";
 	}
 
-	/*@RequestMapping(method = RequestMethod.POST)
-	public String processSubmit(
-			@ModelAttribute("introduce") IntroduceDto introduceDto,
-			BindingResult result, SessionStatus status) {
-		if (result.hasErrors()) {
-			return "/admin/introduce";
-		} else {
-			status.setComplete();
-			return "/admin/introduce";
-		}
-	}*/
 	@RequestMapping(method = RequestMethod.POST, params = "addIntroduce")
-	public String addIntroduce(@ModelAttribute("introduce") IntroduceDto introduceDto) throws ServiceException {
+	public void addIntroduce(@ModelAttribute("introduce") IntroduceDto introduceDto, HttpServletResponse response) throws ServiceException, IOException {
 		if(introduceDto.getId() != null && introduceDto.getId() > 0){
 			introduceService.update(introduceDto);
 		}else{
 			introduceService.add(introduceDto);
 		}
-		return "redirect:/admin/introduce";
+		response.sendRedirect("/admin/introduce");
 	}
 
 	@RequestMapping(value = "/introduce", method = RequestMethod.GET)

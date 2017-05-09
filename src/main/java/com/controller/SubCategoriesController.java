@@ -13,6 +13,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -34,13 +36,13 @@ public class SubCategoriesController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, params = "addSubCategory")
-	public String addSubCategory(@ModelAttribute("category") CategoryDto categoryDto) throws ServiceException {
+	public void addSubCategory(@ModelAttribute("category") CategoryDto categoryDto, HttpServletResponse response) throws ServiceException, IOException {
 		if(categoryDto.getId() != null && categoryDto.getId() > 0){
 			categoriesService.updateS(categoryDto);
 		}else{
 			categoriesService.addS(categoryDto);
 		}
-		return "redirect:/admin/s_categories";
+		response.sendRedirect("/admin/s_categories");
 	}
 
 	@RequestMapping(value = "/admin/s_categories/edit/{id}", method = RequestMethod.GET)
@@ -51,15 +53,15 @@ public class SubCategoriesController {
 		return "s_categories";
 	}
 	@RequestMapping(value = "/admin/s_categories/edit/{id}", method = RequestMethod.POST)
-	public String saveEdit(@ModelAttribute("category") CategoryDto categoryDto, @PathVariable long id) throws ServiceException {
+	public void saveEdit(@ModelAttribute("category") CategoryDto categoryDto, @PathVariable long id, HttpServletResponse response) throws ServiceException, IOException {
 		categoriesService.updateS(categoryDto);
-		return "redirect:/admin/s_categories";
+		response.sendRedirect("/admin/s_categories");
 	}
 
 	@RequestMapping(value = "/admin/s_categories/delete/{id}", method = RequestMethod.GET)
-	public String delete(@PathVariable long id, Model model, HttpServletRequest request)  throws ServiceException{
+	public void delete(@PathVariable long id, Model model, HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException {
 		categoriesService.deleteS(id);
-		return "redirect:/admin/s_categories";
+		response.sendRedirect("/admin/s_categories");
 	}
 
 	@ModelAttribute("categories")
