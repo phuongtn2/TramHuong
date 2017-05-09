@@ -19,6 +19,7 @@ public class SearchProductDto {
     private long subCategoryId;
     private byte status;
     private Date created;
+    private String dateSearch;
 
     public String getName() {
         return name;
@@ -126,5 +127,13 @@ public class SearchProductDto {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public String getDateSearch() {
+        return dateSearch;
+    }
+
+    public void setDateSearch(String dateSearch) {
+        this.dateSearch = dateSearch;
     }
 }

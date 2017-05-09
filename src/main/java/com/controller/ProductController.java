@@ -24,10 +24,7 @@ import javax.ws.rs.FormParam;
 import java.io.*;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 @Controller
 public class ProductController {
@@ -74,6 +71,21 @@ public class ProductController {
 	public void searchProduct(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("searchProduct") SearchProductDto searchProductDto) throws ServiceException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
+		if (searchProductDto.getCreated() != null) {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(searchProductDto.getCreated());
+			int date = (cal.get(Calendar.MONTH ) + 1);
+			String dateTime = "";
+			if(date <10){
+				dateTime = "0" + date;
+			}else{
+				dateTime = dateTime + date;
+			}
+			String onlyDate = cal.get(Calendar.YEAR) + "-"
+					+ dateTime + "-"
+					+ cal.get(Calendar.DATE);
+			searchProductDto.setDateSearch(onlyDate);
+		}
 		List<ProductDto> productDtos = productService.findByCondition(searchProductDto);
 		session.setAttribute("products", productDtos);
 		session.setAttribute("searchProduct", searchProductDto);
@@ -136,7 +148,7 @@ public class ProductController {
 			productDto.setIsSale((byte)0);
 		}
 		String path = servletContext.getRealPath("/");
-		if(!productDto.getFile().isEmpty()){
+		if(productDto.getFile() != null && !productDto.getFile().isEmpty()){
 
 			String fileName = "/resources/img/products/" + RandomStringUtils.randomAlphanumeric(10)+ "_" + productDto.getFile().getOriginalFilename();
 			productDto.setImg(fileName);
@@ -150,7 +162,7 @@ public class ProductController {
 		}else{
 			productDto.setImg(null);
 		}
-		if(!productDto.getFile1().isEmpty()){
+		if(productDto.getFile1() != null && !productDto.getFile1().isEmpty()){
 			String fileName = "/resources/img/products/" + RandomStringUtils.randomAlphanumeric(10)+ "_" + productDto.getFile1().getOriginalFilename();
 			productDto.setImg1(fileName);
 			OutputStream outputStream = new FileOutputStream(path + fileName);
@@ -163,7 +175,7 @@ public class ProductController {
 		}else{
 			productDto.setImg1(null);
 		}
-		if(!productDto.getFile2().isEmpty()){
+		if(productDto.getFile2() != null && !productDto.getFile2().isEmpty()){
 			String fileName = "/resources/img/products/" + RandomStringUtils.randomAlphanumeric(10)+ "_" + productDto.getFile2().getOriginalFilename();
 			productDto.setImg2(fileName);
 			OutputStream outputStream = new FileOutputStream(path + fileName);

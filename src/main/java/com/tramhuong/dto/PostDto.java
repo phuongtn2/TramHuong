@@ -1,5 +1,7 @@
 package com.tramhuong.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -16,6 +18,8 @@ public class PostDto {
     private Date created;
     private String dateDisplay;
     private String img;
+    private byte status;
+    private MultipartFile file;
 
     public Long getId() {
         return id;
@@ -87,5 +91,21 @@ public class PostDto {
 
     public void setDateDisplay(String dateDisplay) {
         this.dateDisplay = dateDisplay;
+    }
+
+    public byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(byte status) {
+        this.status = status;
+    }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 }

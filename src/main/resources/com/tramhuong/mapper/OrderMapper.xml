@@ -70,8 +70,8 @@
 		<if test="paymentType != -1">
 			AND paymentType = #{paymentType}
 		</if>
-		<if test="orderDate != null">
-			AND orderDate = #{orderDate}
+		<if test="dateSearch != null">
+			AND orderDate LIKE concat(concat('%',#{dateSearch}), '%')
 		</if>
 		<if test="name != ''">
 			AND name = #{name}

@@ -19,5 +19,5 @@ public interface OrderMapper {
     OrderInfoDto findById(@Param("id") long id);
     List<OrderInfoDto> findAll();
     List<OrderInfoDto> findByCondition(@Param("status") byte status,@Param("orderCode") String orderCode,@Param("paymentType") byte paymentType,
-                                       @Param("orderDate") Date orderDate, @Param("name")String name, @Param("tel") String tel, @Param("email") String email);
+                                       @Param("dateSearch") String orderDate, @Param("name")String name, @Param("tel") String tel, @Param("email") String email);
 }

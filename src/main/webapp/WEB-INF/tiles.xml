@@ -184,6 +184,18 @@
 		<put-attribute name="title" value="Trầm Hương" />
 		<put-attribute name="body" value="/WEB-INF/jsp/blog/view.jsp" />
 	</definition>
+	<definition name="post-admin" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/blog/post/list_post.jsp" />
+	</definition>
+	<definition name="post-detail" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/blog/post/post_detail.jsp" />
+	</definition>
+	<definition name="post-add" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/blog/post/post_add.jsp" />
+	</definition>
 	<!--Admin-->
 	<!--Login Admin-->
 	<definition name="base.login"

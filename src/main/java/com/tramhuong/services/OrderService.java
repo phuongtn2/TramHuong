@@ -16,5 +16,5 @@ public interface OrderService {
     OrderInfoDto findById(long id) throws ServiceException;
     List<OrderInfoDto> findAll() throws ServiceException;
     List<OrderInfoDto> findByCondition(byte status, String orderCode, byte paymentType,
-                                       Date orderDate, String name, String tel, String email) throws ServiceException;
+                                       String orderDate, String name, String tel, String email) throws ServiceException;
 }

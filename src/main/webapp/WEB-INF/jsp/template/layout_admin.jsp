@@ -184,6 +184,14 @@
             element: document.getElementById("mail_footer"),
             spellChecker: false
         });
+        new SimpleMDE({
+            element: document.getElementById("post_content"),
+            spellChecker: false
+        });
+        new SimpleMDE({
+            element: document.getElementById("post_sub_content"),
+            spellChecker: false
+        });
     </script>
 </body>
 </html>

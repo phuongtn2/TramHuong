@@ -14,6 +14,7 @@ public class SearchOrderDto {
     private String email;
     private Date orderDate;
     private String orderCode;
+    private String dateSearch;
 
     public byte getStatus() {
         return status;
@@ -69,5 +70,13 @@ public class SearchOrderDto {
 
     public void setOrderCode(String orderCode) {
         this.orderCode = orderCode;
+    }
+
+    public String getDateSearch() {
+        return dateSearch;
+    }
+
+    public void setDateSearch(String dateSearch) {
+        this.dateSearch = dateSearch;
     }
 }

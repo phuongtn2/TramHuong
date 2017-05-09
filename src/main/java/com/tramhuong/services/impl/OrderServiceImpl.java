@@ -43,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderInfoDto> findByCondition(byte status, String orderCode, byte paymentType, Date orderDate, String name, String tel, String email) throws ServiceException {
+    public List<OrderInfoDto> findByCondition(byte status, String orderCode, byte paymentType, String orderDate, String name, String tel, String email) throws ServiceException {
         return orderMapper.findByCondition(status, orderCode, paymentType, orderDate, name, tel, email);
     }
 }

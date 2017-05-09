@@ -74,9 +74,24 @@ public class OrderController {
 	public void orderSearch(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("searchOrder") SearchOrderDto searchOrderDto) throws ServiceException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
+		if (searchOrderDto.getOrderDate() != null) {
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(searchOrderDto.getOrderDate());
+			int date = (cal.get(Calendar.MONTH ) + 1);
+			String dateTime = "";
+			if(date <10){
+				dateTime = "0" + date;
+			}else{
+				dateTime = dateTime + date;
+			}
+			String onlyDate = cal.get(Calendar.YEAR) + "-"
+					+ dateTime + "-"
+					+ cal.get(Calendar.DATE);
+			searchOrderDto.setDateSearch(onlyDate);
+		}
 		List<OrderInfoDto> orderInfoDtos = orderService.findByCondition(
 				searchOrderDto.getStatus(), searchOrderDto.getOrderCode(), searchOrderDto.getPaymentType()
-				, searchOrderDto.getOrderDate(), searchOrderDto.getName(), searchOrderDto.getTel(), searchOrderDto.getEmail());
+				, searchOrderDto.getDateSearch(), searchOrderDto.getName(), searchOrderDto.getTel(), searchOrderDto.getEmail());
 		session.setAttribute("orders", orderInfoDtos);
 		session.setAttribute("searchOrder", searchOrderDto);
 		response.sendRedirect("/admin/orders");

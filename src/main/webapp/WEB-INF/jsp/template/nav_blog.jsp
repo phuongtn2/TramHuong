@@ -230,13 +230,13 @@
                 </li>
                 <li class="item ">
                     <a href="/product/sales">
-                        <span class="lbl">KHUYẾN MÃI</span>
+                        <span class="lbl">Khuyến Mãi</span>
 					</span>
                     </a>
                 </li>
                 <li class="item has-sub  ">
                     <a href="#">
-                        <span class="lbl">THẾ GIỚI TÂM LINH</span>
+                        <span class="lbl">Thế Giới Tâm Linh</span>
                         <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-6"
                               class="sign">
 						<img src="/resources/img/arrow-down.png">

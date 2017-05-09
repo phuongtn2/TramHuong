@@ -17,7 +17,10 @@ public interface BlogService {
     List<BlogDto> findAll() throws ServiceException;
     List<BlogDto> findByStatus(byte status) throws ServiceException;
 
-    List<PostDto> findPostByBlogId(int id) throws ServiceException;
+    List<PostDto> findPostByBlogId(int id, byte status) throws ServiceException;
     List<PostDto> findPostNew() throws ServiceException;
+    List<PostDto> findByStatus() throws ServiceException;
     PostDto findPostById(long id) throws ServiceException;
+    long addPost(PostDto postDto) throws ServiceException;
+    void updatePost(PostDto postDto) throws ServiceException;
 }

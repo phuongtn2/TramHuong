@@ -52,8 +52,8 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<PostDto> findPostByBlogId(int id) throws ServiceException {
-        return postMapper.findByBlogId(id);
+    public List<PostDto> findPostByBlogId(int id, byte status) throws ServiceException {
+        return postMapper.findByBlogId(id, status);
     }
 
     @Override
@@ -64,5 +64,20 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public PostDto findPostById(long id) throws ServiceException {
         return postMapper.findById(id);
+    }
+
+    @Override
+    public long addPost(PostDto postDto) throws ServiceException {
+        return postMapper.add(postDto);
+    }
+
+    @Override
+    public void updatePost(PostDto postDto) throws ServiceException {
+        postMapper.update(postDto);
+    }
+
+    @Override
+    public List<PostDto> findByStatus() throws ServiceException {
+        return postMapper.findByStatus();
     }
 }

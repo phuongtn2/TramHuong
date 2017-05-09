@@ -47,6 +47,8 @@ public class BillingController {
 	private OrderService orderService;
 	@Autowired
 	private OrderItemService orderItemService;
+	@Autowired
+	private MailTemplateService mailTemplateService;
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -129,18 +131,19 @@ public class BillingController {
 			//orderInfoDto.setDescription(cartListDto.getDescription());
 			orderInfoDto.setOrderCode(cartListDto.getOrderCode());
 			orderInfoDto.setTotalPrice(cartListDto.getTotalPrice());
-			//orderService.add(orderInfoDto);
+			orderService.add(orderInfoDto);
 			if(cartListDto.getCartDtoList() != null){
 				for (CartDto cartDto: cartListDto.getCartDtoList()) {
 					OrderItemDto orderItemDto = new OrderItemDto();
 					orderItemDto.setOrderCode(cartListDto.getOrderCode());
 					orderItemDto.setProductId(cartDto.getProductId());
 					orderItemDto.setCount(cartDto.getCount());
-					//orderItemService.add(orderItemDto);
+					orderItemService.add(orderItemDto);
 				}
 			}
 			//send mail
 			AboutDto aboutDto = aboutService.find();
+			MailTemplateDto mailTemplateDto = mailTemplateService.findByCode("ORDER");
 			MailSenderDto mailSenderDto = new MailSenderDto();
 			mailSenderDto.setEmail(aboutDto.getEmail());
 			mailSenderDto.setFullName("Trầm Hương");
@@ -148,12 +151,7 @@ public class BillingController {
 			sendMailPersonalDto.setFullName(orderInfoDto.getName());
 			sendMailPersonalDto.setEmail(orderInfoDto.getEmail());
 			sendMailPersonalDto.setTel(orderInfoDto.getTel());
-			String sig = "<p>***************************************************</p>"
-					+ "<p> Chúng tôi luôn sẵn sàng hỗ trợ bạn qua email chuchuot12a15tnp@mail.com và hotline " + aboutDto.getHotLine() +"</p><br>"
-					+ "<p> Địa Chỉ:" + aboutDto.getAddress() + "</p><br>"
-					+ "<p> WebSite: " + setting.getProperty("url")  + "</p><br>"
-					+ "<img src='" + "http://hstatic.net/526/1000069526/1000151899/logo.png?v=108"/*setting.getProperty("url")resources/img/logo.png*/+ "'/><br>"
-					+ "<p>***************************************************</p>";
+			String sig = mailTemplateDto.getFooter();
 			sendMailPersonalDto.setSignature(sig);
 			SendMailParameter sendMailParameter = new SendMailParameter();
 			//sendMailParameter.setAttachementURLList(Arrays.asList("localhost:8080"));
@@ -172,8 +170,7 @@ public class BillingController {
 						+ "</tr>"
 				;
 			}
-			String body = "<p> Cảm ơn bạn đã mua sản phẩm của chúng tối</p><br>"
-					+ "<p>Thông tin sản phẩm của bạn như sau:</p>"
+			String body = mailTemplateDto.getHeader()
 					+ "<p style='color:red'> Mã Đơn Hàng: " + cartListDto.getOrderCode() + "</p>"
 					+ "<table>"
 					+ "<tr>"

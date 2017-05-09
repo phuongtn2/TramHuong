@@ -52,13 +52,13 @@
 		, isNew = #{dto.isNew}
 		, isSale = #{dto.isSale}
 		, isEffete = #{dto.isEffete}
-		<if test="dto.img != ''">
+		<if test="dto.img != null">
 		, img = #{dto.img}
 		</if>
-		<if test="dto.img1 != ''">
+		<if test="dto.img1 != null">
 		, img1 = #{dto.img1}
 		</if>
-		<if test="dto.img2 != ''">
+		<if test="dto.img2 != null">
 		, img2 = #{dto.img2}
 		</if>
 		, status = #{dto.status}
@@ -137,8 +137,8 @@
 		<if test="dto.subCategoryId > 0">
 			AND subCategoryId = #{dto.subCategoryId}
 		</if>
-		<if test="dto.created != null">
-			AND created = #{dto.created}
+		<if test="dto.dateSearch != null">
+			AND created LIKE concat(concat('%',#{dto.dateSearch}), '%')
 		</if>
 		<if test="dto.name != ''">
 			AND name = #{dto.name}

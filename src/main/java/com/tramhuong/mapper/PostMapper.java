@@ -16,6 +16,7 @@ public interface PostMapper {
     void delete(@Param("id") long id);
     PostDto findById(@Param("id") long id);
     List<PostDto> findAll();
-    List<PostDto> findByBlogId(@Param("id") int id);
+    List<PostDto> findByStatus();
+    List<PostDto> findByBlogId(@Param("id") int id, @Param("status") byte status);
     List<PostDto> findPostNew();
 }

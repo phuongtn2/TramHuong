@@ -12,6 +12,8 @@
 		, url
 		, created
 		, subContent
+		, status
+		, content
 		)VALUES(
 		#{dto.title}
 		, #{dto.blogId}
@@ -19,6 +21,8 @@
 		, #{dto.url}
 		, NOW()
 		, #{dto.subContent}
+		, #{dto.status}
+		, #{dto.content}
 		)
 	</insert>
 
@@ -26,10 +30,13 @@
 		UPDATE POST SET
 		title = #{dto.title}
 		,blogId = #{dto.blogId}
+		, content = #{dto.content}
+		<if test="dto.img != null">
 		,img = #{dto.img}
-		,content = #{dto.url}
-		,created = #{dto.created}
+		</if>
+		,url = #{dto.url}
 		,subContent= #{dto.subContent}
+		,status=#{dto.status}
 		WHERE id= #{dto.id}
 	</update>
 	<delete id="delete">
@@ -38,14 +45,20 @@
 	<select id="findAll" resultType="post">
 		SELECT * FROM POST ORDER BY id
 	</select>
+	<select id="findByStatus" resultType="post">
+		SELECT * FROM POST WHERE status = 1 ORDER BY id
+	</select>
 	<select id="findByBlogId" resultType="post">
-		SELECT * FROM POST WHERE blogId = #{id} ORDER BY id
+		SELECT * FROM POST WHERE blogId = #{id}
+		<if test="status > 0">
+			AND status = #{status}
+		</if> ORDER BY id
 	</select>
 	<select id="findById" resultType="post">
 		SELECT * FROM POST WHERE id=#{id}
 	</select>
 	<select id="findPostNew" resultType="post">
-		SELECT * FROM POST WHERE blogId NOT IN (2,3) ORDER BY created LIMIT 4
+		SELECT * FROM POST WHERE status = 1 AND blogId NOT IN (2,3) ORDER BY created LIMIT 4
 	</select>
 
 </mapper>
