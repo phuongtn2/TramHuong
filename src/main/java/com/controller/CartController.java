@@ -96,8 +96,7 @@ public class CartController {
 		addProductToCart(request,response, cartDto);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, params = "update")
-	public void updateProductToCart(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("carts") CartListDto cartListDto) throws ServiceException, IOException {
+	public void commonUpdateCart(HttpServletRequest request, CartListDto cartListDto) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		CartListDto cartListDtoSession = (CartListDto) session.getAttribute("cartList");
@@ -118,11 +117,16 @@ public class CartController {
 		}
 		session.removeAttribute("cartList");
 		session.setAttribute("cartList", saveToSession);
+	}
+	@RequestMapping(method = RequestMethod.POST, params = "update")
+	public void updateProductToCart(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("carts") CartListDto cartListDto) throws ServiceException, IOException {
+		commonUpdateCart(request, cartListDto);
 		response.sendRedirect("/cart");
 	}
 	@RequestMapping(method = RequestMethod.POST, params = "checkout")
 	public void checkProductToCart(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("carts") CartListDto cartListDto) throws ServiceException, IOException {
-		updateProductToCart(request,response, cartListDto);
+		//updateProductToCart(request,response, cartListDto);
+		commonUpdateCart(request, cartListDto);
 		response.sendRedirect("/checkout");
 	}
 	@RequestMapping(method = RequestMethod.POST, params = "buyNow")
