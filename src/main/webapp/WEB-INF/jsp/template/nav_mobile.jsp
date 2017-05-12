@@ -5,23 +5,9 @@
 <nav id="mp-menu" class="mp-menu">
     <div class="mp-level">
         <ul class="lv1">
+            <a class="mp-back" href="#">Quay lại</a>
             <li><a href="/">Trang Chủ</a></li>
             <li><a href="/introduce">Giới thiệu</a></li>
-            <li class="has-children icon icon-arrow-left">
-                <a href="#">Bài Viết Sản Phẩm</a>
-                <div class="mp-level">
-                    <h2>Bài Viết</h2>
-                    <a class="mp-back" href="#">Quay lại</a>
-                    <ul class="cd-secondary-nav count-nav-6">
-                        <c:forEach items="${blogs0}" var="b0">
-                            <li>
-                                <a href="/blog/${b0.id}">${b0.name}
-                                </a>
-                            </li>
-                        </c:forEach>
-                    </ul>
-                </div>
-            </li>
             <li class="has-children icon icon-arrow-left">
                 <a href="#">Sản phẩm</a>
                 <div class="mp-level">
@@ -50,7 +36,7 @@
                 </div>
             </li>
             <li>
-                <a href="/product/sales">KHUYẾN MÃI</a>
+                <a href="/product/sales">Khuyến Mãi</a>
                 <%--<div class="mp-level">
                     <h2>KHUYẾN MÃI</h2>
                     <a class="mp-back" href="#">Quay lại</a>
@@ -60,6 +46,21 @@
                 </div>--%>
             </li>
             <li class="has-children icon icon-arrow-left">
+                <a href="#">Bài Viết Sản Phẩm</a>
+                <div class="mp-level">
+                    <h2>Bài Viết</h2>
+                    <a class="mp-back" href="#">Quay lại</a>
+                    <ul class="cd-secondary-nav count-nav-6">
+                        <c:forEach items="${blogs0}" var="b0">
+                            <li>
+                                <a href="/blog/${b0.id}">${b0.name}
+                                </a>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </li>
+            <%--<li class="has-children icon icon-arrow-left">
                 <a href="#">THẾ GIỚI TÂM LINH</a>
                 <div class="mp-level">
                     <h2>THẾ GIỚI TÂM LINH</h2>
@@ -74,7 +75,7 @@
                         </c:forEach>
                     </ul>
                 </div>
-            </li>
+            </li>--%>
             <%--<li><a href="/pages/nhan-xet-cua-khach-hang">NHẬN XÉT KH</a></li>--%>
         </ul>
     </div>

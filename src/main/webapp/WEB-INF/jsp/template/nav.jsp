@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<nav class="navbar-main navbar navbar-default cl-pri">
+<nav id="navigation" class="navbar-main navbar navbar-default cl-pri">
     <!-- MENU MAIN -->
     <input id="active" name="active" type="hidden" value="${active}"/>
     <div class="container nav-wrapper check_nav">
@@ -56,18 +56,6 @@
                             Giới Thiệu
                         </a>
                     </li>
-                    <li id="_3" class="dropdown">
-                        <a href="#">Bài Viết</a>
-                        <ul class="dropdown-menu" role="menu">
-                            <c:forEach items="${blogs0}" var="b0">
-                                <li>
-                                    <a href="/blog/${b0.id}">
-                                        ${b0.name}
-                                    </a>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                    </li>
                     <li id="_4" class="dropdown">
                         <a href="#" title="Sản phẩm" class="">
                             <span>Sản phẩm</span>
@@ -90,8 +78,8 @@
                         </ul>
                     </li>
                     <li id="_5">
-                        <a href="/product/sales" title="KHUYẾN MÃI" class="">
-                            <span>KHUYẾN MÃI</span>
+                        <a href="/product/sales" title="Khuyến Mãi" class="">
+                            <span>Khuyến Mãi</span>
                         </a>
                         <%--<ul class="dropdown-menu" role="menu">
                             <li>
@@ -100,7 +88,19 @@
                             </li>
                         </ul>--%>
                     </li>
-                    <li id="_6" class="dropdown">
+                    <li id="_3" class="dropdown">
+                        <a href="#">Bài Viết</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <c:forEach items="${blogs0}" var="b0">
+                                <li>
+                                    <a href="/blog/${b0.id}">
+                                            ${b0.name}
+                                    </a>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </li>
+                    <%--<li id="_6" class="dropdown">
                         <a href="#">THẾ GIỚI TÂM LINH</a>
                         <ul class="dropdown-menu" role="menu">
                             <c:forEach items="${blogs1}" var="b1">
@@ -110,7 +110,7 @@
                                 </li>
                             </c:forEach>
                         </ul>
-                    </li>
+                    </li>--%>
                     <%--<li>
                         <a href="/pages/nhan-xet-cua-khach-hang" class="">
                             <span>NHẬN XÉT KH</span>
@@ -127,38 +127,13 @@
                             </li>
                         </ul>
                     </li>--%>
-                    <li class="">
-                        <ul class="nodrop">
-                            <li id="search-icon" class="drop-control">
-                                <div class="btn-group">
-                                    <button type="button"
-                                            class="btn btn-default dropdown-toggle icon-search"
-                                            data-toggle="dropdown" aria-expanded="false">
-                                    </button>
-                                    <div class="dropdown-menu" role="menu">
-                                        <div class="search-bar">
-                                            <div class="">
-                                                <form class="col-md-12" action="/search" method="post" modelAttribute="productName">
-                                                    <%--<input type="hidden" name="type" value="product"/>--%>
-                                                    <input type="text" name="productName"
-                                                           placeholder="Tìm kiếm..."/>
-                                                        <button type="submit" class="btn btn-info">
-                                                            <span class=""></span> Search
-                                                        </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
+
                     <!-- Card -->
                     <li class="">
                         <ul class="nodrop">
                             <li id="cart-target" class="toolbar-cart ">
                                 <a href="/cart" title="Giỏ hàng" class="cart">
-                                    <span class="icon-cart"></span>
+                                    <span class="fa fa-shopping-cart"></span>
                                     <span>
 									<span id="cart-count">${items}</span>
 								</span>
@@ -166,7 +141,32 @@
                             </li>
                         </ul>
                     </li> <!-- Card -->
-
+                    <li class="" style="margin-left: 15px;">
+                            <ul class="nodrop">
+                                <li id="search-icon" class="drop-control">
+                                    <div class="btn-group">
+                                        <button type="button"
+                                                class="btn btn-default dropdown-toggle icon-search"
+                                                data-toggle="dropdown" aria-expanded="false">
+                                        </button>
+                                        <div class="dropdown-menu" role="menu">
+                                            <div class="search-bar">
+                                                <div class="">
+                                                    <form class="col-md-12" action="/search" method="post" modelAttribute="productName">
+                                                        <%--<input type="hidden" name="type" value="product"/>--%>
+                                                        <input type="text" name="productName"
+                                                               placeholder="Tìm kiếm..."/>
+                                                        <button type="submit" class="btn btn-info">
+                                                            <span class=""></span> Search
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
 
                 </ul>
             </div><!--/.nav-collapse -->

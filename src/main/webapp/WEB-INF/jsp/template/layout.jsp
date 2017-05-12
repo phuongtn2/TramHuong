@@ -184,6 +184,11 @@
     <script src="${a1}"></script>
     <spring:url value="/resources/js/addthis_widget.js" var="a2" />
     <script src="${a2}"></script>
+    <spring:url value="/resources/js/libs-script.min.js" var="a22" />
+    <script src="${a22}"></script>
+    <spring:url value="/resources/js/main1.js" var="a122" />
+    <script src="${a122}"></script>
+
     <%--<spring:url value="/resources/js/cart.js" var="a3" />
     <script src="${a3}"></script>--%>
     <!--------------CSS----------->
@@ -220,6 +225,8 @@
     <link href="${cs10}" rel="stylesheet" type="text/css"/>
     <spring:url value="/resources/css/roboto.css" var="cs11" />
     <link href="${cs11}" rel="stylesheet" type="text/css"/>
+    <spring:url value="/resources/css/style.3.1.css" var="cs31" />
+    <link href="${cs31}" rel="stylesheet" type="text/css"/>
 
     <!-- Facebook Pixel Code -->
     <%--<script>
@@ -361,6 +368,7 @@
                     </div>
 
                 </section>
+                </div>
                 <tiles:insertAttribute name="footer"/>
             </div>
             <!--Scroll to Top-->
