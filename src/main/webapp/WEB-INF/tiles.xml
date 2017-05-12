@@ -11,7 +11,7 @@
 		<put-attribute name="header" value="/WEB-INF/jsp/template/header.jsp" />
 		<put-attribute name="nav_mobile" value="/WEB-INF/jsp/template/nav_mobile.jsp" />
 		<put-attribute name="nav" value="/WEB-INF/jsp/template/nav.jsp" />
-		<put-attribute name="row_content" value="/WEB-INF/jsp/template/row_content.jsp" />
+		<put-attribute name="row_content" value="" />
 		<put-attribute name="aside" value="/WEB-INF/jsp/template/aside.jsp" />
 		<put-attribute name="breadcurmb" value=""/>
 		<put-attribute name="content" value="" />
@@ -19,6 +19,7 @@
 	</definition>
 	<definition name="index" extends="base.definition">
 		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="row_content" value="/WEB-INF/jsp/template/row_content.jsp" />
 		<put-attribute name="content" value="/WEB-INF/jsp/index.jsp" />
 	</definition>
 	<definition name="cart" extends="base.definition">
@@ -41,19 +42,20 @@
 		<put-attribute name="header" value="/WEB-INF/jsp/template/header.jsp" />
 		<put-attribute name="nav_mobile" value="/WEB-INF/jsp/template/nav_mobile.jsp" />
 		<put-attribute name="nav" value="/WEB-INF/jsp/template/nav.jsp" />
+		<put-attribute name="aside" value="/WEB-INF/jsp/template/nav_blog.jsp" />
 		<put-attribute name="breadcurmb_blog" value=""/>
 		<put-attribute name="content_blog" value="" />
 		<put-attribute name="pagging" value="" />
-		<put-attribute name="nav_blog" value="/WEB-INF/jsp/template/nav_blog.jsp" />
+
 		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp" />
 	</definition>
 	<definition name="blog" extends="base.blog">
 		<put-attribute name="title" value="Trầm Hương" />
 		<put-attribute name="breadcurmb_blog" value="/WEB-INF/jsp/template/breadcrumb_blog.jsp"/>
 		<put-attribute name="content_blog" value="/WEB-INF/jsp/blog_content.jsp" />
-		<put-attribute name="pagging" value="/WEB-INF/jsp/template/pagging.jsp" />
+		<put-attribute name="pagging" value="/WEB-INF/jsp/template/pagging_blog.jsp" />
 	</definition>
-	<definition name="music" extends="base.blog">
+	<!--<definition name="music" extends="base.blog">
 		<put-attribute name="title" value="Trầm Hương" />
 		<put-attribute name="breadcurmb_blog" value="/WEB-INF/jsp/template/breadcrumb_blog.jsp"/>
 		<put-attribute name="content_blog" value="/WEB-INF/jsp/music.jsp" />
@@ -64,7 +66,7 @@
 		<put-attribute name="breadcurmb_blog" value="/WEB-INF/jsp/template/breadcrumb_blog.jsp"/>
 		<put-attribute name="content_blog" value="/WEB-INF/jsp/danhngon.jsp" />
 		<put-attribute name="pagging" value="/WEB-INF/jsp/template/pagging.jsp" />
-	</definition>
+	</definition>-->
 	<definition name="post" extends="base.blog">
 		<put-attribute name="title" value="Trầm Hương" />
 		<put-attribute name="breadcurmb_blog" value="/WEB-INF/jsp/template/breadcrumb_blog.jsp"/>

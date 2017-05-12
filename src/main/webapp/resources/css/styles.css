@@ -978,7 +978,7 @@ img
     border-radius:5px;
 }
 .browse-tags .custom-dropdown{
-    width:180px;
+    /*width:180px;*/
     margin-top:0px;
     margin-bottom:10px;
 }

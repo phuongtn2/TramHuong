@@ -12,6 +12,11 @@
 <div class="col-md-12 product-list">
     <div class="row content-product-list">
         <ul id="pagging_product">
+            <c:if test="${productList == null || productList.size() <=0}">
+                <div class="col-md-4 col-sm-6 col-xs-12 pro-loop" style="color: white;font-size: 25px;">
+                    Không có sản phẩm
+                </div>
+            </c:if>
             <c:set var="count" value="0" scope="page" />
             <c:forEach items="${productList}" var="pH">
                 <c:set var="count" value="${count + 1}" scope="page"/>

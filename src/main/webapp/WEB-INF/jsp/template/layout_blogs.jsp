@@ -343,21 +343,13 @@
                 <tiles:insertAttribute name="header"/>
                 <tiles:insertAttribute name="nav"/>
                 <section id="content" class="clearfix container">
-                    <div id="blog">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="main-content row">
-                                <tiles:insertAttribute name="breadcurmb_blog"/>
-                                <!-- Begin content -->
-                                <div class="col-md-9 blog-content">
-                                    <div id="blog-container">
-                                        <tiles:insertAttribute name="content_blog"/>
-                                        <tiles:insertAttribute name="pagging"/>
-                                    </div>
-                                </div>
-                                <tiles:insertAttribute name="nav_blog"/>
-                            </div>
-                            <!-- End content -->
-                        </div>
+                    <tiles:insertAttribute name="aside"/>
+                    <tiles:insertAttribute name="breadcurmb_blog"/>
+                    <div class="col-md-9 col-sm-12 col-xs-12">
+                        <!-- Content-->
+                        <tiles:insertAttribute name="content_blog"/>
+                        <!-- Content-->
+                        <tiles:insertAttribute name="pagging"/>
                     </div>
                 </section>
                 <tiles:insertAttribute name="footer"/>
@@ -453,7 +445,7 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<script>
+<%--<script>
     var callBack = function (product, selector) {
         if (product) {
             modal = $('#quick-view-modal');
@@ -579,7 +571,7 @@
         quickViewProduct($(this).attr('data-handle'));
     });
 
-</script>
+</script>--%>
 <!-- Quick view -->
 <script>
     $(document).ready(function () {

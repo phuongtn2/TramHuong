@@ -8,10 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<div class="col-md-12 articles clearfix" id="layout-page">
-                        <span class="header-page">
-                            <h2>Trầm hương</h2>
-                        </span>
+<div class="main-content">
     <!-- Begin: Nội dung blog -->
     <ul id="pagging_product">
         <c:set var="count" value="0" scope="page"/>
@@ -48,7 +45,7 @@
                 <div class="col-xs-12 col-sm-12 hidden-lg hidden-md">
                     <!-- Begin: Nội dung bài viết -->
                     <h2 class="title-article"><a
-                            href="/blogs/post/${p.id}">${p.title}</a></h2>
+                            href="/blogs/post/${p.id}" style="color: white">${p.title}</a></h2>
                     <div class="body-content">
                         <div class="info-more">
                             <div><i class="icon-info icon-hot clearfix"></i> <a href="#"> Trầm
@@ -72,18 +69,18 @@
                 <div class=" col-md-5  hidden-xs hidden-sm">
                     <!-- Begin: Nội dung bài viết -->
                     <h2 class="title-article"><a
-                            href="/blogs/post/${p.id}">${p.title}</a></h2>
+                            href="/blogs/post/${p.id}" style="color: white">${p.title}</a></h2>
                     <div class="body-content">
                         <div class="info-more">
                             <div><i class="icon-info icon-hot clearfix"></i> <a href="#"> Trầm
                                 hương </a></div>
                         </div>
-                        <p>${p.subContent}</p>
+                        <p style="color: white">${p.subContent}</p>
                     </div>
                     <!-- End: Nội dung bài viết -->
                     <a class="readmore clear-fix"
                        href="/blogs/post/${p.id}"
-                       role="button">Xem tiếp <span class="fa fa-angle-double-right"></span></a>
+                       role="button" style="color: red">Xem tiếp <span class="fa fa-angle-double-right"></span></a>
                 </div>
 
 
@@ -92,7 +89,7 @@
 
                     <a class="readmore clear-fix"
                        href="/blogs/post/${p.id}"
-                       role="button">Xem tiếp <span class="fa fa-angle-double-right"></span></a>
+                       role="button" style="color: red">Xem tiếp <span class="fa fa-angle-double-right"></span></a>
 
                 </div>
             </div>

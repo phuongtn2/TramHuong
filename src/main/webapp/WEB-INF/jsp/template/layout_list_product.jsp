@@ -9,6 +9,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <!--[if lt IE 7]><html class="no-js ie6 oldie" lang="en"><![endif]-->
 <!--[if IE 7]><html class="no-js ie7 oldie" lang="en"><![endif]-->
@@ -348,7 +349,9 @@
                                     <tiles:insertAttribute name="breadcurmb"/>
                                     <tiles:insertAttribute name="sort"/>
                                     <tiles:insertAttribute name="content"/>
-                                    <tiles:insertAttribute name="pagging"/>
+                                    <c:if test="${productList != null && productList.size() > 0}">
+                                        <tiles:insertAttribute name="pagging"/>
+                                    </c:if>
                                 </div>
                             </div>
                         </div>
