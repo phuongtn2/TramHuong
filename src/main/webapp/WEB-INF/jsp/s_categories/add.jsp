@@ -61,19 +61,19 @@
 					<div class="form-group">
 						<div class="text-center">
 							<input type="hidden" id="add" name="addSubCategory">
-							<c:if test="${category.id != null}">
+							<%--<c:if test="${category.id != null}">
 								<button type="submit" class="btn btn-primary">
 									<i class="fa fa-edit"></i><spring:message code="common.button.update" text="default text"/>
 								</button>
 							</c:if>
-							<c:if test="${category.id == null}">
+							<c:if test="${category.id == null}">--%>
 								<button type="submit" class="btn btn-primary">
-									<i class="fa fa-check"></i><spring:message code="common.button.add" text="default text"/>
+									<i class="fa fa-check"></i><spring:message code="common.button.save" text="default text"/>
 								</button>
 								<button name="reset" class="btn btn-danger" type="reset">
 									<i class="fa fa-refresh"></i><spring:message code="common.button.refresh" text="default text"/>
 								</button>
-							</c:if>
+							<%--</c:if>--%>
 						</div>
 					</div>
 				</div>

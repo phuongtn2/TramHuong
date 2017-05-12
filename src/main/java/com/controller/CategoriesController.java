@@ -36,13 +36,8 @@ public class CategoriesController {
 	}
 	@RequestMapping(value = "/admin/categories", method = RequestMethod.GET)
 	public String initForm(HttpServletRequest request, ModelMap model) throws ServiceException {
-		/*Principal principal= request.getUserPrincipal();
-		if(principal == null){
-			return "login";
-		}else{*/
 			model.addAttribute("category", new CategoryDto());
 			return "categories";
-		//}
 	}
 
 	@RequestMapping(method = RequestMethod.POST, params = "addCategory")
@@ -55,12 +50,16 @@ public class CategoriesController {
 		response.sendRedirect("/admin/categories");
 	}
 
+	@RequestMapping(value = "/admin/category", method = RequestMethod.GET)
+	public String getAdd(Model model)  throws ServiceException {
+		model.addAttribute("category",new CategoryDto());
+		return "category-add";
+	}
 	@RequestMapping(value = "/admin/categories/edit/{id}", method = RequestMethod.GET)
-	public String getEdit(@PathVariable long id, Model model, HttpServletRequest request)  throws ServiceException {
-		//AuthorizedUserInfo aui = (AuthorizedUserInfo) request.getSession().getAttribute("aui");
+	public String getEdit(@PathVariable long id, Model model)  throws ServiceException {
 		CategoryDto categoryDto = categoriesService.findById(id);
 		model.addAttribute("category",categoryDto);
-		return "categories";
+		return "category-add";
 	}
 	@RequestMapping(value = "/admin/categories/edit/{id}", method = RequestMethod.POST)
 	public void saveEdit(@ModelAttribute("category") CategoryDto categoryDto, @PathVariable long id, HttpServletResponse response) throws ServiceException, IOException {

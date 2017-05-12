@@ -132,11 +132,19 @@
 	</definition>
 	<definition name="categories" extends="base.admin">
 		<put-attribute name="title" value="Trầm Hương" />
-		<put-attribute name="body" value="/WEB-INF/jsp/categories/view.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/categories/list_categories.jsp" />
+	</definition>
+	<definition name="category-add" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/categories/add.jsp" />
 	</definition>
 	<definition name="s_categories" extends="base.admin">
 		<put-attribute name="title" value="Trầm Hương" />
-		<put-attribute name="body" value="/WEB-INF/jsp/s_categories/view.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/s_categories/list_categories.jsp" />
+	</definition>
+	<definition name="s_category-add" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/s_categories/add.jsp" />
 	</definition>
 	<definition name="introduceAdmin" extends="base.admin">
 		<put-attribute name="title" value="Trầm Hương" />

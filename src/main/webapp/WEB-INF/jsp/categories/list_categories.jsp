@@ -1,14 +1,16 @@
 <%@page language="java" contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="ibox float-e-margins">
 			<div class="ibox-title">
 				<h5><spring:message code="category.title" text="default text"/></h5>
-
+				<a href="/admin/category" class="btn btn-primary" style="margin-left: 20px; padding: 0px">
+					<i class="fa fa-plus"></i><spring:message code="common.button.add" text="default text"/>
+				</a>
 				<div class="ibox-tools">
-					<a href="/admin/categories" class="btn btn-success btn btn-xs"><i class="fa fa-plus-square-o"><spring:message code="common.button.add" text="default text"/></i></a>
 					<a class="collapse-link">
 						<i class="fa fa-chevron-up"></i>
 					</a>

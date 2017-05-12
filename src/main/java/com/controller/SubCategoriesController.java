@@ -45,12 +45,18 @@ public class SubCategoriesController {
 		response.sendRedirect("/admin/s_categories");
 	}
 
+	@RequestMapping(value = "/admin/s_category", method = RequestMethod.GET)
+	public String getAdd(Model model)  throws ServiceException {
+		model.addAttribute("category",new CategoryDto());
+		return "s_category-add";
+	}
+
 	@RequestMapping(value = "/admin/s_categories/edit/{id}", method = RequestMethod.GET)
 	public String getEdit(@PathVariable long id, Model model, HttpServletRequest request)  throws ServiceException {
 		//AuthorizedUserInfo aui = (AuthorizedUserInfo) request.getSession().getAttribute("aui");
 		CategoryDto categoryDto = categoriesService.findByIdS(id);
 		model.addAttribute("category",categoryDto);
-		return "s_categories";
+		return "s_category-add";
 	}
 	@RequestMapping(value = "/admin/s_categories/edit/{id}", method = RequestMethod.POST)
 	public void saveEdit(@ModelAttribute("category") CategoryDto categoryDto, @PathVariable long id, HttpServletResponse response) throws ServiceException, IOException {
