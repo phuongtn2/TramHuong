@@ -1,25 +1,28 @@
+<%@ page pageEncoding="utf-8" contentType="text/html;charset=UTF-8" language="java" %>
 <header class="container clearfix">
     <div class="col-md-12 clearfix">
-        <div class="logo col-md-3 col-xs-12">
+        <div class=" col-md-3 col-xs-12">
             <!-- LOGO -->
             <h1>
-                <a href="${pageContext.request.contextPath}">
+                <a href="/">
                     <img src="/resources/img/logo.jpg"
-                         alt="Trầm Hương Tuấn Anh" class="img-responsive" style="height: 77px;"/>
+                         alt="Trầm Hương Tuấn Anh" class="img-responsive" style="height: 50px;"/>
                 </a>
             </h1>
-            <h1 style="display:none">
-                <a href="/">Trầm Hương Tuấn Anh</a>
+            <h1 style="color: white">
+               Hotline: ${about.hotLine}
             </h1>
         </div>
         <div class="col-md-9 hidden-xs">
             <!-- BANNER -->
-            <div class="banner">
-
-                <a href="">
+            <div class="banner" style="margin-top: 30px;">
+                <span style="color: white; font-size: 25px;font-style: italic;font-weight: bold;margin-top: 165px;">
+                    Bảo vệ sức khỏe cho mọi người chính là tích phúc.
+                </span>
+                <%--<a href="">
                     <img width="100%" src="/resources/img/banner-top.jpg"
                          alt="banner topđasad" class="img-responsive"/>
-                </a>
+                </a>--%>
 
             </div>
         </div>
