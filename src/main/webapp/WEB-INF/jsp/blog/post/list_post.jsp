@@ -9,9 +9,9 @@
 				<h5><spring:message code="post.title" text="default text"/></h5>
 
 				<div class="ibox-tools">
-					<a onclick="goBack()" class="btn btn-success btn btn-xs"><i class="fa fa-backward"><spring:message
+					<%--<a onclick="goBack()" class="btn btn-success btn btn-xs"><i class="fa fa-backward"><spring:message
 							code="common.button.back"
-							text="default text"/></i></a>
+							text="default text"/></i></a>--%>
 					<a href="/admin/post/add/${blogId}" class="btn btn-success btn btn-xs"><i class="fa fa-plus-square-o"><spring:message code="common.button.add" text="default text"/></i></a>
 					<a class="collapse-link">
 						<i class="fa fa-chevron-up"></i>
