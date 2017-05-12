@@ -25,6 +25,10 @@
     <script src="${jqueryJs}"></script>
     <spring:url value="/resources/js/jquery.validate.js" var="validateJs" />
     <script src="${validateJs}"></script>
+    <spring:url value="/resources/js/libs-script.min.js" var="a22" />
+    <script src="${a22}"></script>
+    <spring:url value="/resources/js/main1.js" var="a122" />
+    <script src="${a122}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=no">
 
     <script>

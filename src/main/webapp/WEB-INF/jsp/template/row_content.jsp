@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <div class="row contents">
-    <div class="col-md-9 col-sm-12 col-xs-12">
+    <div class="col-md-12 col-sm-12 col-xs-12">
         <!-- Begin slider -->
         <div class="slider-default col-md-12 col-sm-12 col-xs-12">
             <div class="flexslider-container">
@@ -11,17 +11,17 @@
                     <ul class="slides">
                         <li>
                             <a href="/">
-                                <img src="/resources/img/banner/slideshow_1.jpg"/>
+                                <img src="/resources/img/banner/slideshow_1.jpg" style="width: 100%;"/>
                             </a>
                         </li>
                         <li>
                             <a href="/">
-                                <img src="/resources/img/banner/slideshow_2.jpg"/>
+                                <img src="/resources/img/banner/slideshow_2.jpg" style="width: 100%;"/>
                             </a>
                         </li>
                         <li>
                             <a href="/">
-                                <img src="/resources/img/banner/slideshow_3.jpg"/>
+                                <img src="/resources/img/banner/slideshow_3.jpg" style="width: 100%;"/>
                             </a>
                         </li>
                     </ul>
@@ -32,7 +32,7 @@
         <!-- End slider -->
     </div>
 
-    <div class="top-banner col-lg-3 col-md-3 col-sm-12 col-xs-12">
+    <%--<div class="top-banner col-lg-3 col-md-3 col-sm-12 col-xs-12">
         <div class="banner1">
             <div class="image">
                 <a href="">
@@ -47,5 +47,5 @@
                          src="/resources/img/banner/img_left_2.jpg"></a>
             </div>
         </div>
-    </div>
+    </div>--%>
 </div>

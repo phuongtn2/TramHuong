@@ -194,6 +194,10 @@
     <script src="${a2}"></script>
     <spring:url value="/resources/js/list.min.js" var="a3" />
     <script src="${a3}"></script>
+    <spring:url value="/resources/js/libs-script.min.js" var="a22" />
+    <script src="${a22}"></script>
+    <spring:url value="/resources/js/main1.js" var="a122" />
+    <script src="${a122}"></script>
     <%--<spring:url value="/resources/js/cart.js" var="a3" />
     <script src="${a3}"></script>--%>
     <!--------------CSS----------->
@@ -234,6 +238,8 @@
     <script src='${js12}' type='text/javascript'></script>
     <spring:url value="/resources/css/ptSlide.css" var="cs12" />
     <link href='${cs12}' rel='stylesheet' type='text/css'  media='all'  />
+    <spring:url value="/resources/css/style.3.1.css" var="cs31" />
+    <link href="${cs31}" rel="stylesheet" type="text/css"/>
 
     <!-- Facebook Pixel Code -->
     <script>

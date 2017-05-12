@@ -194,6 +194,10 @@
     <script src="${a2}"></script>
     <spring:url value="/resources/js/list.min.js" var="a3" />
     <script src="${a3}"></script>
+    <spring:url value="/resources/js/libs-script.min.js" var="a22" />
+    <script src="${a22}"></script>
+    <spring:url value="/resources/js/main1.js" var="a122" />
+    <script src="${a122}"></script>
     <%--<spring:url value="/resources/js/cart.js" var="a3" />
     <script src="${a3}"></script>--%>
     <!--------------CSS----------->
@@ -230,6 +234,8 @@
     <link href="${cs10}" rel="stylesheet" type="text/css"/>
     <spring:url value="/resources/css/roboto.css" var="cs11" />
     <link href="${cs11}" rel="stylesheet" type="text/css"/>
+    <spring:url value="/resources/css/style.3.1.css" var="cs31" />
+    <link href="${cs31}" rel="stylesheet" type="text/css"/>
 
     <!-- Facebook Pixel Code -->
     <script>
@@ -406,7 +412,8 @@
                             <div class="col-lg-7 col-md-6 pull-right">
                                 <div class="form-input">
                                     <div class="product-price">
-                                        <span class="p-price"></span>
+                                        <p class="p-price"></p>
+                                        <p class="p-price-sale"></p>
                                         <del></del>
                                     </div>
                                 </div>
@@ -493,10 +500,10 @@
                     modal.find('.p-price').text('');
                     modal.find('.p-price-sale').text('');
                     if(product.isSale == 1) {
-                        modal.find('.p-price').prepend('<strike>' + product.priceDisplay + 'đ</strike>');
-                        modal.find('.p-price-sale').text(product.salePriceDisplay + "đ");
+                        modal.find('.p-price').prepend('Giá bán: ' + '<strike>' + product.priceDisplay + 'đ</strike>');
+                        modal.find('.p-price-sale').text('Giá khuyến mãi: ' + product.salePriceDisplay + "đ");
                     }else{
-                        modal.find('.p-price').text(product.priceDisplay + "đ");
+                        modal.find('.p-price').text('Giá bán: ' + product.priceDisplay + "đ");
                     }
                     modal.find('.fill-product-id').val(product.id);
                     $(".modal-footer .btn-readmore").attr('href', "/product/" + product.id);

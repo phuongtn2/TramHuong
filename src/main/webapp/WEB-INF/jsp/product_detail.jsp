@@ -40,11 +40,11 @@
             </div>
             <div class="product-price" id="price-preview">
                 <c:if test="${product.isSale == 0}">
-                    <span class="pro-price">${product.priceDisplay}₫</span>
+                    <span class="pro-price">Giá bán: ${product.priceDisplay}₫</span>
                 </c:if>
                 <c:if test="${product.isSale == 1}">
-                    <span class="pro-price"><strike>${product.priceDisplay}₫</strike></span>
-                    <span class="pro-price">${product.salePriceDisplay}₫</span>
+                    <p class="pro-price">Giá bán: <strike>${product.priceDisplay}₫</strike></p>
+                    <p class="pro-price">Giá khuyến mãi: ${product.salePriceDisplay}₫</p>
                 </c:if>
             </div>
             <form:form id="add-item-form" modelAttribute="cart" class="variants clearfix">
@@ -233,11 +233,11 @@
                             <div class="product-detail clearfix">
                                 <!-- sử dụng pull-left -->
                                 <c:if test="${r.isSale == 0}">
-                                    <p class="pro-price">${r.priceDisplay}₫</p>
+                                    <p class="pro-price">Giá bán: ${r.priceDisplay}₫</p>
                                 </c:if>
                                 <c:if test="${r.isSale == 1}">
-                                    <p class="pro-price"><strike>${r.priceDisplay}₫</strike></p>
-                                    <p class="pro-price">${r.salePriceDisplay}₫</p>
+                                    <p class="pro-price">Giá bán: <strike>${r.priceDisplay}₫</strike></p>
+                                    <p class="pro-price">Giá khuyến mãi: ${r.salePriceDisplay}₫</p>
                                 </c:if>
                                 <p class="pro-price-del text-left">
                                 </p>

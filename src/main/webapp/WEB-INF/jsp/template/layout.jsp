@@ -426,8 +426,8 @@
                             <div class="col-lg-7 col-md-6 pull-right">
                                 <div class="form-input">
                                     <div class="product-price">
-                                        <span class="p-price"></span>
-                                        <span class="p-price-sale"></span>
+                                        <p class="p-price"></p>
+                                        <p class="p-price-sale"></p>
                                         <del></del>
                                     </div>
                                 </div>
@@ -514,10 +514,10 @@
                     modal.find('.p-price').text('');
                     modal.find('.p-price-sale').text('');
                     if(product.isSale == 1) {
-                        modal.find('.p-price').prepend('<strike>' + product.priceDisplay + 'đ</strike>');
-                        modal.find('.p-price-sale').text(product.salePriceDisplay + "đ");
+                        modal.find('.p-price').prepend('Giá bán: ' + '<strike>' + product.priceDisplay + 'đ</strike>');
+                        modal.find('.p-price-sale').text('Giá khuyến mãi: ' + product.salePriceDisplay + "đ");
                     }else{
-                        modal.find('.p-price').text(product.priceDisplay + "đ");
+                        modal.find('.p-price').text('Giá bán: ' + product.priceDisplay + "đ");
                     }
                     modal.find('.fill-product-id').val(product.id);
                     $(".modal-footer .btn-readmore").attr('href', "/product/" + product.id);

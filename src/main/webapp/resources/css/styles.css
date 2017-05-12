@@ -511,7 +511,7 @@ body{-webkit-backface-visibility:hidden}.animated{-webkit-animation-duration:1s;
 
 .pro-price
 {
-    font-size: 20px;
+    font-size: 16px;
     color: #ff6517;
     margin-bottom: 0px;
 }
@@ -587,7 +587,7 @@ body{-webkit-backface-visibility:hidden}.animated{-webkit-animation-duration:1s;
     opacity: 1;
 }
 a.btn.btn-readmore {
-    background: #28303e;
+    background: red;
     border: none;
     padding: 0 5px 0px 10px;
     color: #fff;
@@ -2974,7 +2974,12 @@ button.close a:before{
 }
 
 #quick-view-modal .p-price {
-    font-size: 24px;
+    font-size: 16px;
+    color: #ff6517;
+    margin-right: 25px;
+}
+#quick-view-modal .p-price-sale {
+    font-size: 16px;
     color: #ff6517;
     margin-right: 25px;
 }

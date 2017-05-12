@@ -120,7 +120,7 @@ public class CommonController {
 				}
 			}
 			model.addAttribute("blogs0", blogs0);
-			model.addAttribute("blogs1", blogs1);
+			/*model.addAttribute("blogs1", blogs1);*/
 		}
 	}
 

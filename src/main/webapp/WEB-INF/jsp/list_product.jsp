@@ -43,11 +43,11 @@
                         <div class="product-detail clearfix">
                             <!-- sử dụng pull-left -->
                             <c:if test="${pH.isSale == 0}">
-                                <p class="pro-price">${pH.priceDisplay}₫</p>
+                                <p class="pro-price">Giá bán: ${pH.priceDisplay}₫</p>
                             </c:if>
                             <c:if test="${pH.isSale == 1}">
-                                <p class="pro-price"><strike>${pH.priceDisplay}₫</strike></p>
-                                <p class="pro-price">${pH.salePriceDisplay}₫</p>
+                                <p class="pro-price">Giá bán: <strike>${pH.priceDisplay}₫</strike></p>
+                                <p class="pro-price">Giá khuyến mãi: ${pH.salePriceDisplay}₫</p>
                             </c:if>
                             <p class="pro-price-del text-left"></p></h3>
                             <h3 class="pro-name"><a href="/product/${pH.id}">${pH.name}</a></h3>
