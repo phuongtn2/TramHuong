@@ -36,6 +36,8 @@
     <link href="${footCss}" rel="stylesheet">
     <spring:url value="/resources/css/checkout_admin.css" var="checkCss" />
     <link href="${checkCss}" rel="stylesheet" type="text/css"/>
+    <spring:url value="/resources/css/plugins/select2/select2.min.css" var="selectCSS" />
+    <link href="${selectCSS}" rel="stylesheet" type="text/css"/>
     <spring:url value="/resources/css/dist/photoswipe.css?v=4.1.1-1.0.4" var="d1" />
     <spring:url value="/resources/css/dist/default-skin/default-skin.css" var="d2" />
     <spring:url value="/resources/css/dist/photoswipe.min.js" var="d3" />
@@ -113,6 +115,8 @@
     <script src="${simplemdeJs}"></script>
     <spring:url value="/resources/js/plugins/datapicker/bootstrap-datepicker.js" var="datePickerJs" />
     <script src="${datePickerJs}"></script>
+    <spring:url value="/resources/js/plugins/select2/select2.full.min.js" var="select2" />
+    <script src="${select2}"></script>
     <!-- Page-Level Scripts -->
     <script>
         $(document).ready(function() {
@@ -120,6 +124,7 @@
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green'
             });
+            $(".select2").select2();
 
             $('.footable').footable();
 

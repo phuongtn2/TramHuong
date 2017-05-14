@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
@@ -111,8 +112,13 @@
                                                                          text="default text"/></label>
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" name="tag"
-                                   value="<c:if test="${product.tag != null}">${product.tag}</c:if>"/>
+                            <%--<input type="text" class="form-control" name="tag"
+                                   value="<c:if test="${product.tag != null}">${product.tag}</c:if>"/>--%>
+                            <select name="tagList" class="form-control select2" multiple="multiple" data-placeholder="Chọn Tag">
+                                <c:forEach items="${tags}" var="t">
+                                    <option <c:forEach items="${tagsP}" var="p"> <c:if test="${t.tag == p}"> selected="selected" </c:if> </c:forEach>>${t.tag}</option>
+                                </c:forEach>
+                            </select>
                         </div>
                     </div>
                     <c:if test="${product.id != null}">

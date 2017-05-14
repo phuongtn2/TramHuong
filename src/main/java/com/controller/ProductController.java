@@ -42,6 +42,8 @@ public class ProductController {
 	@Autowired
 	private AboutService aboutService;
 	@Autowired
+	private TagService tagService;
+	@Autowired
 	private ServletContext servletContext;
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -124,7 +126,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/admin/product/edit/{id}", method = RequestMethod.GET)
-	public String editProduct(HttpServletRequest request,ModelMap model, @PathVariable long id) throws ServiceException, UnsupportedEncodingException {
+	public String editProduct(HttpServletResponse response,ModelMap model, @PathVariable long id) throws ServiceException, UnsupportedEncodingException {
 		ProductDto productDto = productService.findById(id);
 		List<CategoryDto> categoryDtos = categoriesService.findAll();
 		List<CategoryDto> subCategoryDtos = categoriesService.findAllS();
@@ -133,12 +135,22 @@ public class ProductController {
 		List<CategoryDto> sub = categoriesService.findByParent(productDto.getCategoryId());
 		model.addAttribute("sub", sub);
 		model.addAttribute("product", productDto);
+		model.addAttribute("tags", tagService.findByStatus((byte)1));
+		if(!StringUtil.isEmpty(productDto.getTag())) {
+			String[] tagsP = productDto.getTag().split(",");
+			List<String> strings = new ArrayList<String>();
+			for (String s : tagsP) {
+				strings.add(s);
+			}
+			model.addAttribute("tagsP", strings);
+		}
 		return "product-add-edit";
 	}
 	@RequestMapping(value = "/admin/product/save", method = RequestMethod.POST/*,produces = MediaType.ALL_VALUE, consumes = MediaType.MULTIPART_FORM_DATA_VALUE, headers = "Content-Type= multipart/related"*/)
 	public void addEditProduct(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("product") ProductAddDto productDto) throws ServiceException, IOException, ParseException {
 
 		request.setCharacterEncoding("UTF-8");
+		productDto.setStatus((byte) 1);
 		if(!StringUtil.isEmpty(productDto.getsNew())){
 			productDto.setIsNew((byte)1);
 		}else{

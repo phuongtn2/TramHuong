@@ -4,6 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.text.DecimalFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by PhuongTN1 on 11/4/2016.
@@ -13,6 +14,7 @@ public class ProductAddDto {
     private String code;
     private String name;
     private String tag;
+    private List<String> tagList;
     private Byte isNew;
     private String sNew;
     private Byte isSale;
@@ -63,7 +65,17 @@ public class ProductAddDto {
     }
 
     public String getTag() {
-        return tag;
+        String str = "";
+        int count = 0;
+        for (String s: tagList) {
+            count ++;
+            if(count == tagList.size()){
+                str = str + s;
+            }else{
+                str = str + s + ",";
+            }
+        }
+        return str;
     }
 
     public void setTag(String tag) {
@@ -281,5 +293,13 @@ public class ProductAddDto {
 
     public void setIsHigh(Byte isHigh) {
         this.isHigh = isHigh;
+    }
+
+    public List<String> getTagList() {
+        return tagList;
+    }
+
+    public void setTagList(List<String> tagList) {
+        this.tagList = tagList;
     }
 }

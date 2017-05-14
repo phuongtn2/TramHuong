@@ -184,9 +184,12 @@ public class ProductDto {
     }
 
     public String getSalePriceDisplay() {
-        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        String sPrice = decimalFormat.format(salePrice);
-        return sPrice;
+        if(salePrice != null) {
+            DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+            String sPrice = decimalFormat.format(salePrice);
+            return sPrice;
+        }else
+            return "0";
     }
 
     public void setSalePriceDisplay(String salePriceDisplay) {
