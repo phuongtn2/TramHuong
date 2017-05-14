@@ -91,7 +91,7 @@
 		SELECT * FROM PRODUCT ORDER BY id ASC
 	</select>
 	<select id="findByTag" resultType="product">
-		SELECT * FROM PRODUCT WHERE status = 1 AND tag LIKE #{tag} ORDER BY id ASC
+		SELECT * FROM PRODUCT WHERE status = 1 AND tag LIKE concat('%',#{tag}) ORDER BY id ASC
 	</select>
 	<select id="findByName" resultType="product">
 		SELECT * FROM PRODUCT WHERE status = 1 AND name LIKE concat(concat('%',#{name}), '%') ORDER BY id ASC

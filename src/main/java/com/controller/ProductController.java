@@ -250,6 +250,14 @@ public class ProductController {
 		}
 		model.addAttribute("relations", productDtoList);
 		model.addAttribute("active", "_4");
+		if(!StringUtil.isEmpty(productDto.getTag())) {
+			String[] tagsP = productDto.getTag().split(",");
+			List<String> strings = new ArrayList<String>();
+			for (String s : tagsP) {
+				strings.add(s);
+			}
+			model.addAttribute("tagsOf", strings);
+		}
 		return "product-detail";
 	}
 

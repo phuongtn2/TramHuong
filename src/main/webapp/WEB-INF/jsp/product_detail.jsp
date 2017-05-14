@@ -90,9 +90,11 @@
                         Tags:
                     </label>
                     <ul class="tags">
-                        <li class="active">
-                            <a href="/searchByTag/${product.tag}">${product.tag}</a>
-                        </li>
+                        <c:forEach items="${tagsOf}" var="t">
+                            <li class="active">
+                                <a href="/searchByTag/${t}">${t}</a>
+                            </li>
+                        </c:forEach>
                     </ul>
                 </div>
                 <!-- End tags -->
