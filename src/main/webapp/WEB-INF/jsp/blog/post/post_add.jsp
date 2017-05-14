@@ -65,10 +65,16 @@
                         </div>
                         <div class="col-lg-6">
                             <c:if test="${post.id!= null}">
-                                <textarea id="post_sub_content" style="display: none;" name="subContent">${post.subContent}</textarea>
+                                <div id="subContent_div" class="ui-widget-content" style="height: 25%;width: 100%;">
+                                    <textarea rows="5" style="width: 100%; height: 100%"
+                                              name="subContent" required maxlength="512">${post.subContent}</textarea>
+                                </div>
                             </c:if>
                             <c:if test="${post.id== null}">
-                                <textarea id="post_sub_content" style="display: none;" name="subContent"></textarea>
+                                <div id="subContent_div" class="ui-widget-content" style="height: 25%;width: 100%;">
+                                    <textarea rows="5" style="width: 100%; height: 100%"
+                                              name="subContent" required maxlength="512"></textarea>
+                                </div>
                             </c:if>
                         </div>
                     </div>
@@ -79,10 +85,17 @@
                         </div>
                         <div class="col-lg-6">
                             <c:if test="${post.id!= null}">
-                                <textarea id="post_content" style="display: none;" name="content">${post.content}</textarea>
+                                <%--<textarea id="post_content" style="display: none;" name="content">${post.content}</textarea>--%>
+                                <div id="content_div" class="ui-widget-content" style="height: 50%;width: 100%;">
+                                    <textarea rows="10" style="width: 100%; height: 100%"
+                                              name="content" required>${post.content}</textarea>
+                                </div>
                             </c:if>
                             <c:if test="${post.id== null}">
-                                <textarea id="post_content" style="display: none;" name="content"></textarea>
+                                <div id="content_div" class="ui-widget-content" style="height: 50%;width: 100%;">
+                                    <textarea rows="10" style="width: 100%; height: 100%"
+                                              name="content" required></textarea>
+                                </div>
                             </c:if>
                         </div>
                     </div>
@@ -121,6 +134,25 @@
                         <div class="col-lg-6">
                             <input type="text" class="form-control" name="code"
                                    value="<c:if test="${post.url != null}">${post.url}</c:if> "/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-3">
+                            <label class="control-label"><spring:message code="post.position"
+                                                                         text="default text"/></label>
+                        </div>
+                        <div class="col-lg-6">
+                            <select id="position" name="position" class="form-control m-b">
+                                <option <c:if test="${post.position==1}">selected</c:if> value="1">1</option>
+                                <option <c:if test="${post.position==2}">selected</c:if> value="2">2</option>
+                                <option <c:if test="${post.position==3}">selected</c:if> value="3">3</option>
+                                <option <c:if test="${post.position==4}">selected</c:if> value="4">4</option>
+                                <option <c:if test="${post.position==5}">selected</c:if> value="5">5</option>
+                                <option <c:if test="${post.position==6}">selected</c:if> value="6">6</option>
+                                <option <c:if test="${post.position==7}">selected</c:if> value="7">7</option>
+                                <option <c:if test="${post.position==8}">selected</c:if> value="8">8</option>
+                                <option <c:if test="${post.position==9}">selected</c:if> value="9">9</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group" style="margin-top: 20px;">

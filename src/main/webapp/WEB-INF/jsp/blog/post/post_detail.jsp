@@ -81,6 +81,14 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-3">
+						<label class="control-label"><spring:message code="post.position" text="default text"/></label>
+					</div>
+					<div class="col-sm-9">
+						${post.position}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
 						<label class="control-label"><spring:message code="product.created" text="default text"/></label>
 					</div>
 					<div class="col-sm-9">
@@ -88,6 +96,7 @@
 																	 value="${post.created}"/></label>
 					</div>
 				</div>
+
 				<div class="row">
 					<div class="form-group" style="margin-top: 20px;">
 						<div class="text-center">

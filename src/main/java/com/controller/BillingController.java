@@ -75,9 +75,12 @@ public class BillingController {
 	public String getEdit(@PathVariable int id, Model model, HttpServletRequest request)  throws ServiceException {
 		BillingAccountDto billingAccountDto = billingAccountService.findById(id);
 		model.addAttribute("payment",billingAccountDto);
-		List<BillingAccountDto> billingAccountDtos = billingAccountService.findAll();
-		model.addAttribute("payments", billingAccountDtos);
-		return "payments";
+		return "payment-add";
+	}
+	@RequestMapping(value = "/admin/payment", method = RequestMethod.GET)
+	public String getAdd(Model model, HttpServletRequest request)  throws ServiceException {
+		model.addAttribute("payment", new BillingAccountDto());
+		return "payment-add";
 	}
 	@RequestMapping(value = "/admin/payment/edit/{id}", method = RequestMethod.POST)
 	public void saveEdit(HttpServletResponse response, @ModelAttribute("payment") BillingAccountDto billingAccountDto, @PathVariable int id) throws ServiceException, IOException {

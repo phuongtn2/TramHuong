@@ -14,6 +14,7 @@
 		, subContent
 		, status
 		, content
+		, position
 		)VALUES(
 		#{dto.title}
 		, #{dto.blogId}
@@ -23,6 +24,7 @@
 		, #{dto.subContent}
 		, #{dto.status}
 		, #{dto.content}
+		, #{dto.position}
 		)
 	</insert>
 
@@ -37,16 +39,17 @@
 		,url = #{dto.url}
 		,subContent= #{dto.subContent}
 		,status=#{dto.status}
+		,position=#{dto.position}
 		WHERE id= #{dto.id}
 	</update>
 	<delete id="delete">
 		DELETE FROM POST WHERE id = #{id}
 	</delete>
 	<select id="findAll" resultType="post">
-		SELECT * FROM POST ORDER BY id
+		SELECT * FROM POST ORDER BY position DESC
 	</select>
 	<select id="findByStatus" resultType="post">
-		SELECT * FROM POST WHERE status = 1 ORDER BY id
+		SELECT * FROM POST WHERE status = 1 ORDER BY position DESC
 	</select>
 	<select id="findByBlogId" resultType="post">
 		SELECT * FROM POST WHERE blogId = #{id}
@@ -58,7 +61,7 @@
 		SELECT * FROM POST WHERE id=#{id}
 	</select>
 	<select id="findPostNew" resultType="post">
-		SELECT * FROM POST WHERE status = 1 AND blogId NOT IN (2,3) ORDER BY created LIMIT 4
+		SELECT * FROM POST WHERE status = 1 ORDER BY created LIMIT 4
 	</select>
 
 </mapper>

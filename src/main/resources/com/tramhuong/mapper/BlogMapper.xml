@@ -8,11 +8,9 @@
 		INSERT INTO BLOGS(
 		name
 		, status
-		, type
 		)VALUES(
 		#{dto.name}
 		, #{dto.status}
-		, #{dto.type}
 		)
 	</insert>
 
@@ -20,7 +18,6 @@
 		UPDATE BLOGS SET
 		name = #{dto.name}
 		,status = #{dto.status}
-		,type = #{dto.type}
 		WHERE id= #{dto.id}
 	</update>
 	<delete id="delete">

@@ -18,11 +18,12 @@
 				</div>
 			</div>
 			<div class="ibox-content">
-				<form:form modelAttribute="blog" method="post" id="userForm" class="new_order">
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="form-group">
+				<form:form modelAttribute="blog" method="post" id="userForm" class="form-horizontal new_order">
+					<div class="form-group">
+						<div class="col-lg-3">
 							<label class="control-label"><spring:message code="blog.name" text="default text"/></label>
+						</div>
+						<div class="col-lg-6">
 							<input type="hidden" id="id" name="id"
 							       value="<c:if test="${blog.id!= null}">${blog.id}</c:if>"
 							       class="form-control">
@@ -31,57 +32,34 @@
 							       class="form-control" required>
 						</div>
 					</div>
-					<div class="col-sm-4">
-						<div class="form-group">
-							<div class="form-group">
-								<label class="control-label"><spring:message code="common.status.title" text="default text"/></label>
-								<select id="status" name="status" class="form-control m-b" required>
-									<option
-											<c:if test="${blog.status==1}">selected</c:if> value="1">
-										<spring:message code="common.active" text="default text"/></option>
-									<option
-											<c:if test="${blog.status==0}">selected</c:if> value="0">
-										<spring:message code="common.deactive" text="default text"/></option>
-								</select>
-							</div>
+					<div class="form-group">
+						<div class="col-lg-3">
+							<label class="control-label"><spring:message code="common.status.title" text="default text"/></label>
 						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="form-group">
-							<label class="control-label"><spring:message code="blog.type" text="default text"/></label>
-							<select id="type" name="type" class="form-control m-b" required>
+						<div class="col-lg-6">
+							<select id="status" name="status" class="form-control m-b" required>
 								<option
-										<c:if test="${blog.type == 0}">selected</c:if> value="1">
-									<spring:message code="blog.type.product" text="default text"/></option>
+										<c:if test="${blog.status==1}">selected</c:if> value="1">
+									<spring:message code="common.active" text="default text"/></option>
 								<option
-										<c:if test="${blog.type == 1}">selected</c:if> value="0">
-									<spring:message code="blog.type.other" text="default text"/></option>
+										<c:if test="${blog.status==0}">selected</c:if> value="0">
+									<spring:message code="common.deactive" text="default text"/></option>
 							</select>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="form-group">
+					<div class="form-group" style="margin-top: 20px;">
 						<div class="text-center">
 							<input type="hidden" id="add" name="addBlog">
-							<c:if test="${blog.id != null}">
-								<button type="submit" class="btn btn-primary">
-									<i class="fa fa-edit"></i><spring:message code="common.button.update" text="default text"/>
-								</button>
-							</c:if>
-							<c:if test="${blog.id == null}">
-								<button type="submit" class="btn btn-primary">
-									<i class="fa fa-check"></i><spring:message code="common.button.add" text="default text"/>
-								</button>
-								<button name="reset" class="btn btn-danger" type="reset">
-									<i class="fa fa-refresh"></i><spring:message code="common.button.refresh" text="default text"/>
-								</button>
-							</c:if>
+							<button type="submit" class="btn btn-primary">
+								<i class="fa fa-check"></i><spring:message code="common.button.save" text="default text"/>
+							</button>
+							<button name="reset" class="btn btn-danger" type="reset">
+								<i class="fa fa-refresh"></i><spring:message code="common.button.refresh" text="default text"/>
+							</button>
 						</div>
 					</div>
-				</div>
+				</form:form>
 			</div>
-			</form:form>
 		</div>
 	</div>
 </div>

@@ -29,6 +29,7 @@
 						<th data-hide="phone,tablet"><spring:message code="common.status.title" text="default text"/></th>
 						<th data-hide="phone,tablet"><spring:message code="product.img" text="default text"/></th>
 						<th data-hide="phone,tablet"><spring:message code="post.url" text="default text"/></th>
+						<th data-hide="phone,tablet"><spring:message code="post.position" text="default text"/></th>
 						<th data-hide="phone,tablet" class=T"text-center"><spring:message code="common.action" text="default text"/></th>
 					</tr>
 					</thead>
@@ -52,6 +53,9 @@
 							</td>
 							<td data-hide="phone,tablet">
 								<a href="${p.url}">${p.url}</a>
+							</td>
+							<td data-hide="phone,tablet">
+								${p.position}
 							</td>
 							<td class="text-center">
 								<div class="btn-group">

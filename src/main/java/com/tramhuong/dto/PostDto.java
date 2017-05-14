@@ -20,6 +20,7 @@ public class PostDto {
     private String img;
     private byte status;
     private MultipartFile file;
+    private Integer position;
 
     public Long getId() {
         return id;
@@ -107,5 +108,13 @@ public class PostDto {
 
     public void setFile(MultipartFile file) {
         this.file = file;
+    }
+
+    public Integer getPosition() {
+        return position;
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
     }
 }

@@ -303,18 +303,6 @@
             }
         });
     }
-/*    function onCheckSale() {
-        /!*$('.i-checks').iCheck({
-            checkboxClass: 'icheckbox_square-green',
-            radioClass: 'iradio_square-green'
-        });*!/
-        //if($('#sSale').is(":checked")){
-        if($( "#sSale" ).hasClass( "checked" )){
-            $('#salePrice').removeAttr( 'disabled' );
-        }else{
-            $('#salePrice').attr( 'disabled', 'disabled' );
-        }
-    }*/
 </script>
 
 

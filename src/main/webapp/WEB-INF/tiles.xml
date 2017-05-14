@@ -176,7 +176,11 @@
 	</definition>
 	<definition name="payments" extends="base.admin">
 		<put-attribute name="title" value="Trầm Hương" />
-		<put-attribute name="body" value="/WEB-INF/jsp/payment/view.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/payment/list_payment.jsp" />
+	</definition>
+	<definition name="payment-add" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/payment/add.jsp" />
 	</definition>
 	<definition name="mails" extends="base.admin">
 		<put-attribute name="title" value="Trầm Hương" />
@@ -192,7 +196,11 @@
 	</definition>
 	<definition name="blog-admin" extends="base.admin">
 		<put-attribute name="title" value="Trầm Hương" />
-		<put-attribute name="body" value="/WEB-INF/jsp/blog/view.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/blog/list_blogs.jsp" />
+	</definition>
+	<definition name="blog-add" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/blog/add.jsp" />
 	</definition>
 	<definition name="post-admin" extends="base.admin">
 		<put-attribute name="title" value="Trầm Hương" />

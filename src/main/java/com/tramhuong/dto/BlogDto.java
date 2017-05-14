@@ -7,8 +7,8 @@ public class BlogDto {
     private Integer id;
     private String name;
     private Byte status;
-    private Byte type;
-
+    /*private Byte type;
+*/
     public Integer getId() {
         return id;
     }
@@ -33,11 +33,11 @@ public class BlogDto {
         this.status = status;
     }
 
-    public Byte getType() {
+    /*public Byte getType() {
         return type;
     }
 
     public void setType(Byte type) {
         this.type = type;
-    }
+    }*/
 }

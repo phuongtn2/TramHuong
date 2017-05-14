@@ -18,52 +18,45 @@
 				</div>
 			</div>
 			<div class="ibox-content">
-				<form:form modelAttribute="payment" method="post" id="userForm" class="new_order">
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="form-group">
-							<label class="control-label"><spring:message code="payment.common" text="default text"/></label>
+				<form:form modelAttribute="payment" method="post" id="userForm" class="form-horizontal new_order">
+					<div class="form-group">
+						<div class="col-lg-3">
+							<label class="control-label"><spring:message code="payment.common"
+																		 text="default text"/></label>
+						</div>
+						<div class="col-lg-6">
 							<input type="hidden" id="id" name="id"
-							       value="<c:if test="${payment.id!= null}">${payment.id}</c:if>"
-							       class="form-control">
+								   value="<c:if test="${payment.id!= null}">${payment.id}</c:if>"
+								   class="form-control">
 							<input type="text" id="description" name="description"
-							       value="<c:if test="${payment.description!= null}">${payment.description}</c:if>"
-							       class="form-control" required>
+								   value="<c:if test="${payment.description!= null}">${payment.description}</c:if>"
+								   class="form-control" required>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="form-group">
-							<label class="control-label"><spring:message code="payment.account" text="default text"/></label>
+					<div class="form-group">
+						<div class="col-lg-3">
+							<label class="control-label"><spring:message code="payment.account"
+																		 text="default text"/></label>
+						</div>
+						<div class="col-lg-6">
 							<input type="text" id="accountName" name="accountName"
 								   value="<c:if test="${payment.accountName!= null}">${payment.accountName}</c:if>"
 								   class="form-control" required>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="form-group">
+					<div class="form-group" style="margin-top: 20px;">
 						<div class="text-center">
 							<input type="hidden" id="add" name="addPayment">
-							<c:if test="${payment.id != null}">
-								<button type="submit" class="btn btn-primary">
-									<i class="fa fa-edit"></i><spring:message code="common.button.update" text="default text"/>
-								</button>
-							</c:if>
-							<c:if test="${payment.id == null}">
-								<button type="submit" class="btn btn-primary">
-									<i class="fa fa-check"></i><spring:message code="common.button.add" text="default text"/>
-								</button>
-								<button name="reset" class="btn btn-danger" type="reset">
-									<i class="fa fa-refresh"></i><spring:message code="common.button.refresh" text="default text"/>
-								</button>
-							</c:if>
+							<button type="submit" class="btn btn-primary">
+								<i class="fa fa-check"></i><spring:message code="common.button.save" text="default text"/>
+							</button>
+							<button name="reset" class="btn btn-danger" type="reset">
+								<i class="fa fa-refresh"></i><spring:message code="common.button.refresh" text="default text"/>
+							</button>
 						</div>
 					</div>
-				</div>
+				</form:form>
 			</div>
-			</form:form>
 		</div>
 	</div>
 </div>

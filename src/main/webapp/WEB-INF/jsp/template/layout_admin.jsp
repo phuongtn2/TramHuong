@@ -151,24 +151,28 @@
             element: document.getElementById("product_description"),
             spellChecker: false
         });*/
-        new SimpleMDE({
+        /*new SimpleMDE({
             element: document.getElementById("mail_header"),
             spellChecker: false
         });
         new SimpleMDE({
             element: document.getElementById("mail_footer"),
             spellChecker: false
-        });
-        new SimpleMDE({
+        });*/
+        /*new SimpleMDE({
             element: document.getElementById("post_content"),
             spellChecker: false
-        });
-        new SimpleMDE({
+        });*/
+       /* new SimpleMDE({
             element: document.getElementById("post_sub_content"),
             spellChecker: false
-        });
+        });*/
         $( function() {
             $( "#product_description_div" ).resizable();
+            $("#subContent_div").resizable();
+            $("#content_div").resizable();
+            $("#mail_header").resizable();
+            $("#mail_footer").resizable();
         } );
     </script>
 </body>

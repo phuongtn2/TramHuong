@@ -98,18 +98,16 @@ public class BlogController {
 		}
 		return "blog-admin";
 	}
+	@RequestMapping(value = "/admin/blog", method = RequestMethod.GET)
+	public String redirectAdd(ModelMap model) throws ServiceException {
+		model.addAttribute("blog", new BlogDto());
+		return "blog-add";
+	}
 	@RequestMapping(value = "/admin/blog/edit/{id}", method = RequestMethod.GET)
 	public String redirectEdit(ModelMap model, @PathVariable int id) throws ServiceException {
-
-		List<BlogDto> blogDtos = blogService.findAll();
-		if(blogDtos != null){
-			model.addAttribute("blogs", blogDtos);
-		}else{
-			model.addAttribute("blogs", new ArrayList<BlogDto>());
-		}
 		BlogDto blogDto = blogService.findById(id);
 		model.addAttribute("blog", blogDto);
-		return "blog-admin";
+		return "blog-add";
 	}
 	@RequestMapping(method = RequestMethod.POST, params = "addBlog")
 	public void addAbout(@ModelAttribute("blog") BlogDto blogDto, HttpServletResponse response) throws ServiceException, IOException {

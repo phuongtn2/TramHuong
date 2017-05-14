@@ -7,9 +7,11 @@
 		<div class="ibox float-e-margins">
 			<div class="ibox-title">
 				<h5><spring:message code="blog.title" text="default text"/></h5>
+				<a href="/admin/blog" class="btn btn-primary" style="margin-left: 20px; padding: 0px">
+					<i class="fa fa-plus"></i><spring:message code="common.button.add" text="default text"/>
+				</a>
 
 				<div class="ibox-tools">
-					<a href="/admin/blogs" class="btn btn-success btn btn-xs"><i class="fa fa-plus-square-o"><spring:message code="common.button.add" text="default text"/></i></a>
 					<a class="collapse-link">
 						<i class="fa fa-chevron-up"></i>
 					</a>
@@ -25,7 +27,7 @@
 					<tr>
 						<th><spring:message code="blog.name" text="default text"/></th>
 						<th data-hide="phone,tablet"><spring:message code="common.status.title" text="default text"/></th>
-						<th data-hide="phone,tablet"><spring:message code="blog.type" text="default text"/></th>
+						<%--<th data-hide="phone,tablet"><spring:message code="blog.type" text="default text"/></th>--%>
 						<th data-hide="phone,tablet" class=T"text-center"><spring:message code="common.action" text="default text"/></th>
 					</tr>
 					</thead>
@@ -38,10 +40,10 @@
 								<c:if test="${b.status==1}"> <span class="label label-success"><spring:message code="common.active" text="default text"/></span></c:if>
 								<c:if test="${b.status==0}"> <span class="label label-danger"><spring:message code="common.deactive" text="default text"/></span></c:if>
 							</td>
-							<td data-hide="phone,tablet">
+							<%--<td data-hide="phone,tablet">
 								<c:if test="${b.type==1}"> <span class="label label-success"><spring:message code="blog.type.other" text="default text"/></span></c:if>
 								<c:if test="${b.type==0}"> <span class="label label-danger"><spring:message code="blog.type.product" text="default text"/></span></c:if>
-							</td>
+							</td>--%>
 							<td class="text-center">
 								<div class="btn-group">
 									<a class="btn-success btn btn-xs"
