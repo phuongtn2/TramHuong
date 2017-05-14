@@ -97,6 +97,8 @@
 							<div class="text-center">
 								<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i><spring:message
 										code="common.button.search" text="default text"/></button>
+								<a href="/admin/product" class="btn btn-primary"><i class="fa fa-plus"></i><spring:message
+										code="common.button.add" text="default text"/></a>
 							</div>
 						</div>
 					</div>

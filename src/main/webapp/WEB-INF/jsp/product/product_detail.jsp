@@ -20,75 +20,6 @@
 			<div class="ibox-content m-b-sm border-bottom">
 				<div class="row">
 					<div class="col-sm-3">
-						<label class="control-label"><spring:message code="product.code"	text="default text"/></label>
-					</div>
-					<div class="col-sm-9">
-						<label class="control-label" style="color: red;">${product.code}</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-3">
-						<label class="control-label"><spring:message code="product.name" text="default text"/></label>
-					</div>
-					<div class="col-sm-9">
-						<label class="control-label">${product.name}</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-3">
-						<label class="control-label"><spring:message code="product.tag" text="default text"/></label>
-					</div>
-					<div class="col-sm-9">
-						<label class="control-label">${product.tag}</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-3">
-						<label class="control-label"><spring:message code="product.new" text="default text"/></label>
-					</div>
-					<div class="col-sm-9">
-						<c:if test="${product.isNew==1}">
-							<div class="i-checks"><label> <input type="checkbox" value="" disabled=""
-																 checked=""></label></div> </c:if>
-						<c:if test="${product.isNew==0}">
-							<div class="i-checks"><label> <input type="checkbox" value="" disabled=""></label></div> </c:if>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-3">
-						<label class="control-label"><spring:message code="product.sale" text="default text"/></label>
-					</div>
-					<div class="col-sm-9">
-						<c:if test="${product.isSale==1}">
-							<div class="i-checks"><label> <input type="checkbox" value="" disabled=""
-																 checked=""></label></div> </c:if>
-						<c:if test="${product.isSale==0}">
-							<div class="i-checks"><label> <input type="checkbox" value="" disabled=""></label></div> </c:if>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-3">
-						<label class="control-label"><spring:message code="product.effete" text="default text"/></label>
-					</div>
-					<div class="col-sm-9">
-						<c:if test="${product.isEffete==1}">
-							<div class="i-checks"><label> <input type="checkbox" value="" disabled=""
-																 checked=""></label></div> </c:if>
-						<c:if test="${product.isEffete==0}">
-							<div class="i-checks"><label> <input type="checkbox" value="" disabled=""></label></div> </c:if>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-3">
-						<label class="control-label"><spring:message code="product.created" text="default text"/></label>
-					</div>
-					<div class="col-sm-9">
-						<label class="control-label"><fmt:formatDate pattern="MM/dd/yyyy"
-																	 value="${product.created}"/></label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-3">
 						<label class="control-label"><spring:message code="category.name" text="default text"/></label>
 					</div>
 					<div class="col-sm-9">
@@ -113,6 +44,63 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-3">
+						<label class="control-label"><spring:message code="product.new" text="default text"/></label>
+					</div>
+					<div class="col-sm-9">
+						<c:if test="${product.isNew==1}">
+							<div class="i-checks"><label> <input type="checkbox" value="" disabled=""
+																 checked=""></label></div> </c:if>
+						<c:if test="${product.isNew==0}">
+							<div class="i-checks"><label> <input type="checkbox" value="" disabled=""></label></div> </c:if>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<label class="control-label"><spring:message code="product.high" text="default text"/></label>
+					</div>
+					<div class="col-sm-9">
+						<c:if test="${product.isHigh==1}">
+							<div class="i-checks"><label> <input type="checkbox" value="" disabled=""
+																 checked=""></label></div> </c:if>
+						<c:if test="${product.isHigh==0}">
+							<div class="i-checks"><label> <input type="checkbox" value="" disabled=""></label></div> </c:if>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<label class="control-label"><spring:message code="product.code" text="default text"/></label>
+					</div>
+					<div class="col-sm-9">
+						<label class="control-label" style="color: red;">${product.code}</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<label class="control-label"><spring:message code="product.name" text="default text"/></label>
+					</div>
+					<div class="col-sm-9">
+						<label class="control-label">${product.name}</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<label class="control-label"><spring:message code="product.tag" text="default text"/></label>
+					</div>
+					<div class="col-sm-9">
+						<label class="control-label">${product.tag}</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<label class="control-label"><spring:message code="product.created" text="default text"/></label>
+					</div>
+					<div class="col-sm-9">
+						<label class="control-label"><fmt:formatDate pattern="MM/dd/yyyy"
+																	 value="${product.created}"/></label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
 						<label class="control-label"><spring:message code="product.price" text="default text"/></label>
 					</div>
 					<div class="col-sm-9">
@@ -121,10 +109,34 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-3">
+						<label class="control-label"><spring:message code="product.sale" text="default text"/></label>
+					</div>
+					<div class="col-sm-9">
+						<c:if test="${product.isSale==1}">
+							<div class="i-checks"><label> <input type="checkbox" value="" disabled=""
+																 checked=""></label></div> </c:if>
+						<c:if test="${product.isSale==0}">
+							<div class="i-checks"><label> <input type="checkbox" value="" disabled=""></label></div> </c:if>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
 						<label class="control-label"><spring:message code="product.salePrice" text="default text"/></label>
 					</div>
 					<div class="col-sm-9">
 						<label class="control-label">${product.salePriceDisplay}đ</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<label class="control-label"><spring:message code="product.effete" text="default text"/></label>
+					</div>
+					<div class="col-sm-9">
+						<c:if test="${product.isEffete==1}">
+							<div class="i-checks"><label> <input type="checkbox" value="" disabled=""
+																 checked=""></label></div> </c:if>
+						<c:if test="${product.isEffete==0}">
+							<div class="i-checks"><label> <input type="checkbox" value="" disabled=""></label></div> </c:if>
 					</div>
 				</div>
 

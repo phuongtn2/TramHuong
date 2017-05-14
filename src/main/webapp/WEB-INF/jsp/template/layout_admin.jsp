@@ -24,6 +24,8 @@
     <spring:url value="/resources/css/plugins/datapicker/datepicker3.css" var="dateCss" />
     <spring:url value="/resources/css/plugins/footable/footable.core.css" var="footCss" />
     <link href="${dateCss}" rel="stylesheet">
+    <spring:url value="/resources/css/resized.css" var="resizedCss" />
+    <link href="${resizedCss}" rel="stylesheet">
     <link href="${bootsTrapCss}" rel="stylesheet" type="text/css"/>
     <link href="${awesomeFontCss}" rel="stylesheet" type="text/css"/>
     <link href="${animateCss}" rel="stylesheet" type="text/css"/>
@@ -71,6 +73,8 @@
     <spring:url value="/resources/js/jquery-2.1.1.js" var="jqueryJs" />
     <spring:url value="/resources/js/bootstrap.min.js" var="bootstrapJs" />
     <script src="${jqueryJs}"></script>
+    <spring:url value="/resources/js/jquery-ui.js" var="rezie" />
+    <script src="${rezie}"></script>
     <script src="${bootstrapJs}"></script>
 
     <spring:url value="/resources/js/plugins/metisMenu/jquery.metisMenu.js" var="metisMenuJs" />
@@ -143,10 +147,10 @@
             element: document.getElementById("introduce_id"),
             spellChecker: false
         });
-        new SimpleMDE({
+        /*new SimpleMDE({
             element: document.getElementById("product_description"),
             spellChecker: false
-        });
+        });*/
         new SimpleMDE({
             element: document.getElementById("mail_header"),
             spellChecker: false
@@ -163,6 +167,9 @@
             element: document.getElementById("post_sub_content"),
             spellChecker: false
         });
+        $( function() {
+            $( "#product_description_div" ).resizable();
+        } );
     </script>
 </body>
 </html>

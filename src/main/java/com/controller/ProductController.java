@@ -24,7 +24,10 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.FormParam;
 import java.io.*;
 import java.net.URLEncoder;
+import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -127,11 +130,13 @@ public class ProductController {
 		List<CategoryDto> subCategoryDtos = categoriesService.findAllS();
 		model.addAttribute("categories", categoryDtos);
 		model.addAttribute("subCategories", subCategoryDtos);
+		List<CategoryDto> sub = categoriesService.findByParent(productDto.getCategoryId());
+		model.addAttribute("sub", sub);
 		model.addAttribute("product", productDto);
 		return "product-add-edit";
 	}
 	@RequestMapping(value = "/admin/product/save", method = RequestMethod.POST/*,produces = MediaType.ALL_VALUE, consumes = MediaType.MULTIPART_FORM_DATA_VALUE, headers = "Content-Type= multipart/related"*/)
-	public void addEditProduct(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("product") ProductAddDto productDto) throws ServiceException, IOException {
+	public void addEditProduct(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("product") ProductAddDto productDto) throws ServiceException, IOException, ParseException {
 
 		request.setCharacterEncoding("UTF-8");
 		if(!StringUtil.isEmpty(productDto.getsNew())){

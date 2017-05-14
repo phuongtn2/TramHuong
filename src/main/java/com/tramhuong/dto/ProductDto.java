@@ -14,6 +14,7 @@ public class ProductDto {
     private Byte isNew;
     private Byte isSale;
     private Byte isEffete;
+    private Byte isHigh;
     private Date created;
     private String img;
     private String img1;
@@ -192,4 +193,11 @@ public class ProductDto {
         this.salePriceDisplay = salePriceDisplay;
     }
 
+    public Byte getIsHigh() {
+        return isHigh;
+    }
+
+    public void setIsHigh(Byte isHigh) {
+        this.isHigh = isHigh;
+    }
 }

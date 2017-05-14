@@ -19,6 +19,8 @@ public class ProductAddDto {
     private String sSale;
     private Byte isEffete;
     private String sEffete;
+    private String sHigh;
+    private Byte isHigh;
     private Date created;
     private MultipartFile file;
     private String img;
@@ -259,5 +261,25 @@ public class ProductAddDto {
 
     public void setFile2(MultipartFile file2) {
         this.file2 = file2;
+    }
+
+    public String getsHigh() {
+        return sHigh;
+    }
+
+    public void setsHigh(String sHigh) {
+        this.sHigh = sHigh;
+    }
+
+    public Byte getIsHigh() {
+        if(sHigh != null){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+    public void setIsHigh(Byte isHigh) {
+        this.isHigh = isHigh;
     }
 }

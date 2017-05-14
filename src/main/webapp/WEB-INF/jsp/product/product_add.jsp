@@ -21,40 +21,36 @@
                 <form:form accept-charset="UTF-8" action="/admin/product/save" method="post" modelAttribute="product" id="userForm" class="form-horizontal new_order" enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="col-lg-3">
-                            <label class="control-label"><spring:message code="product.code"
+                            <label class="control-label"><spring:message code="category.name"
                                                                          text="default text"/></label>
                         </div>
                         <div class="col-lg-6">
-                            <c:if test="${product.id != null}">
-                            <input type="hidden" class="form-control" name="id"
-                                   value="${product.id}"/>
-                            </c:if>
-                            <c:if test="${product.id ==null}">
-                                <input type="hidden" class="form-control" name="id"
-                                       value=""/>
-                            </c:if>
-                            <input type="text" class="form-control" name="code"
-                                   value="<c:if test="${product.code != null}">${product.code}</c:if> " required/>
+                            <select id="categoryId" name="categoryId" class="form-control m-b"
+                                    onclick="selectSubCategory();" required >
+                                <option value="0"> --Chọn Danh Mục-- </option>
+                                <c:forEach items="${categories}" var="c">
+                                    <option
+                                            <c:if test="${c.id==product.categoryId}">selected</c:if>
+                                            value="${c.id}">${c.name}</option>
+                                </c:forEach>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-lg-3">
-                            <label class="control-label"><spring:message code="product.name"
+                            <label class="control-label"><spring:message code="category.subName"
                                                                          text="default text"/></label>
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" class="form-control" name="name"
-                                   value="<c:if test="${product.name != null}">${product.name}</c:if>" required/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-3">
-                            <label class="control-label"><spring:message code="product.tag"
-                                                                         text="default text"/></label>
-                        </div>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" name="tag"
-                                   value="<c:if test="${product.tag != null}">${product.tag}</c:if> "/>
+                            <select class="form-control m-b" id="subCategoryId" name="subCategoryId">
+                                <c:if test="${product.id != null}">
+                                    <c:forEach items="${sub}" var="s">
+                                        <option
+                                                <c:if test="${s.id==product.subCategoryId}">selected</c:if>
+                                                value="${s.id}">${s.name}</option>
+                                    </c:forEach>
+                                </c:if>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -71,14 +67,107 @@
                     </div>
                     <div class="form-group">
                         <div class="col-lg-3">
-                            <label class="control-label"><spring:message code="product.sale"
+                            <label class="control-label"><spring:message code="product.high"
                                                                          text="default text"/></label>
                         </div>
                         <div class="col-lg-6 text-left ">
                             <div class="i-checks"><label>
-                                <input type="checkbox" name="sSale"
-                                       <c:if test="${product.isSale==1}">checked=""</c:if> /></label>
+                                <input type="checkbox" name="sHigh"
+                                       <c:if test="${product.isHigh==1}">checked=""</c:if> /></label>
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-3">
+                            <label class="control-label"><spring:message code="product.code"
+                                                                         text="default text"/></label>
+                        </div>
+                        <div class="col-lg-6">
+                            <c:if test="${product.id != null}">
+                            <input type="hidden" class="form-control" name="id"
+                                   value="${product.id}"/>
+                            </c:if>
+                            <c:if test="${product.id ==null}">
+                                <input type="hidden" class="form-control" name="id"
+                                       value=""/>
+                            </c:if>
+                            <input type="text" maxlength="16" class="form-control" name="code"
+                                   value="<c:if test="${product.code != null}">${product.code}</c:if>" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-3">
+                            <label class="control-label"><spring:message code="product.name"
+                                                                         text="default text"/></label>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" maxlength="16" class="form-control" name="name"
+                                   value="<c:if test="${product.name != null}">${product.name}</c:if>" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-3">
+                            <label class="control-label"><spring:message code="product.tag"
+                                                                         text="default text"/></label>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="tag"
+                                   value="<c:if test="${product.tag != null}">${product.tag}</c:if>"/>
+                        </div>
+                    </div>
+                    <c:if test="${product.id != null}">
+                        <div class="form-group">
+                        <div class="col-lg-3">
+                            <label class="control-label"><spring:message code="product.created"
+                                                                         text="default text"/></label>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control" name="created" id="created"
+                                       value="<c:if test="${product.created != null}"><fmt:formatDate pattern="MM/dd/yyyy"
+																	 value="${product.created}"/></c:if> "/>
+                            </div>
+                        </div>
+                    </div>
+                    </c:if>
+                    <div class="form-group">
+                        <div class="col-lg-3">
+                            <label class="control-label"><spring:message code="product.price"
+                                                                         text="default text"/></label>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" maxlength="9" class="form-control" name="price"
+                                   value="<c:if test="${product.price != null && product.price != ''}">${product.price}</c:if>" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-3">
+                            <label class="control-label"><spring:message code="product.sale"
+                                                                         text="default text"/></label>
+                        </div>
+                        <div class="col-lg-6 text-left ">
+                            <div class="i-checks">
+                                <label>
+                                    <input type="checkbox" name="sSale" <c:if test="${product.isSale==1}">checked=""</c:if> />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-3">
+                            <label class="control-label"><spring:message code="product.salePrice"
+                                                                         text="default text"/></label>
+                        </div>
+                        <div class="col-lg-6">
+                            <c:if test="${product.isSale==1}">
+                                <input type="text" maxlength="9" class="form-control" name="salePrice" id="salePrice"
+                                   value="<c:if test="${product.salePrice != null && product.salePrice != ''}">${product.salePrice}</c:if>"/>
+                            </c:if>
+                            <c:if test="${product.isSale==null || product.isSale==0}">
+                                <input type="text" maxlength="9" class="form-control" name="salePrice" id="salePrice"
+                                       value="<c:if test="${product.salePrice != null && product.salePrice != ''}">${product.salePrice}</c:if>" disabled="disabled"/>
+                            </c:if>
                         </div>
                     </div>
                     <div class="form-group">
@@ -93,67 +182,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-lg-3">
-                            <label class="control-label"><spring:message code="product.created"
-                                                                         text="default text"/></label>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                <input type="text" class="form-control" name="created" id="created"
-                                       value="<c:if test="${product.created != null}"><fmt:formatDate pattern="MM/dd/yyyy"
-																	 value="${product.created}"/></c:if> "/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-3">
-                            <label class="control-label"><spring:message code="category.name"
-                                                                         text="default text"/></label>
-                        </div>
-                        <div class="col-lg-6">
-                            <select id="categoryId" name="categoryId" class="form-control m-b"
-                                    onclick="selectSubCategory();" required>
-                                <c:forEach items="${categories}" var="c">
-                                    <option
-                                            <c:if test="${c.id==product.categoryId}">selected</c:if>
-                                            value="${c.id}">${c.name}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-3">
-                            <label class="control-label"><spring:message code="category.subName"
-                                                                         text="default text"/></label>
-                        </div>
-                        <div class="col-lg-6">
-                            <select class="form-control m-b" id="subCategoryId" name="subCategoryId">
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-3">
-                            <label class="control-label"><spring:message code="product.price"
-                                                                         text="default text"/></label>
-                        </div>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" name="price"
-                                   value="<c:if test="${product.price != null}">${product.price}</c:if> " required/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-3">
-                            <label class="control-label"><spring:message code="product.salePrice"
-                                                                         text="default text"/></label>
-                        </div>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" name="salePrice"
-                                   value="<c:if test="${product.salePrice != null}">${product.salePrice}</c:if> "/>
-                        </div>
-                    </div>
-                    <div class="form-group">
+                    <c:if test="${product.id != null}">
+                        <div class="form-group">
                         <div class="col-lg-3">
                             <label class="control-label"><spring:message code="common.status.title"
                                                                          text="default text"/></label>
@@ -169,6 +199,7 @@
                             </select>
                         </div>
                     </div>
+                    </c:if>
                     <div class="form-group">
                         <div class="col-lg-3">
                             <label class="control-label"><spring:message code="common.description"
@@ -176,8 +207,10 @@
                         </div>
                         <div class="col-lg-6">
                             <%--<c:if test="${product.id!= null}">--%>
-                                    <textarea id="product_description" style="display: none;"
+                            <div id="product_description_div" class="ui-widget-content" style="height: 50%;width: 100%;">
+                                    <textarea rows="10" style="width: 100%; height: 100%"
                                               name="description" required>${product.description}</textarea>
+                            </div>
                             <%--</c:if>--%>
                             <%--<c:if test="${product.id== null}">
                                     <textarea id="product_description" style="display: none;"
@@ -193,7 +226,7 @@
                         <div class="col-lg-6">
                             <c:if test="${product.img != null}"><img src="${product.img}"
                                                                      style="width: 40px; height: 40px;"></c:if>
-                            <input type="file" class="form-control" name="file" required/>
+                            <input type="file" class="form-control" name="file" <c:if test="${product.img == null}">required</c:if>/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -221,22 +254,22 @@
                     <div class="form-group" style="margin-top: 20px;">
                         <div class="text-center">
                             <%--<input type="hidden" id="add" name="addProduct">--%>
-                            <c:if test="${product.id != null}">
+                            <%--<c:if test="${product.id != null}">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-edit"></i><spring:message code="common.button.update"
                                                                               text="default text"/>
                                 </button>
                             </c:if>
-                            <c:if test="${product.id == null}">
+                            <c:if test="${product.id == null}">--%>
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-check"></i><spring:message code="common.button.add"
+                                    <i class="fa fa-check"></i><spring:message code="common.button.save"
                                                                                text="default text"/>
                                 </button>
                                 <button name="reset" class="btn btn-danger" type="reset">
                                     <i class="fa fa-refresh"></i><spring:message code="common.button.refresh"
                                                                                  text="default text"/>
                                 </button>
-                            </c:if>
+                            <%--</c:if>--%>
                         </div>
                     </div>
                 </form:form>
@@ -270,6 +303,18 @@
             }
         });
     }
+/*    function onCheckSale() {
+        /!*$('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green'
+        });*!/
+        //if($('#sSale').is(":checked")){
+        if($( "#sSale" ).hasClass( "checked" )){
+            $('#salePrice').removeAttr( 'disabled' );
+        }else{
+            $('#salePrice').attr( 'disabled', 'disabled' );
+        }
+    }*/
 </script>
 
 

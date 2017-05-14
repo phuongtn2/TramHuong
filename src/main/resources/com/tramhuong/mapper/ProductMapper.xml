@@ -12,6 +12,7 @@
 		, isNew
 		, isSale
 		, isEffete
+		, isHigh
 		, created
 		, img
 		, img1
@@ -30,6 +31,7 @@
 		, #{dto.isNew}
 		, #{dto.isSale}
 		, #{dto.isEffete}
+		, #{dto.isHigh}
 		, NOW()
 		, #{dto.img}
 		, #{dto.img1}
@@ -52,6 +54,7 @@
 		, isNew = #{dto.isNew}
 		, isSale = #{dto.isSale}
 		, isEffete = #{dto.isEffete}
+		, isHigh = #{dto.isHigh}
 		<if test="dto.img != null">
 		, img = #{dto.img}
 		</if>
@@ -74,6 +77,9 @@
 		<if test="dto.count > 0">
 		, count = #{dto.count}
 		</if>
+		<if test="dto.created != null">
+			, created = #{dto.created}
+		</if>
 		WHERE id= #{dto.id}
 	</update>
 
@@ -94,7 +100,7 @@
 		SELECT * FROM PRODUCT WHERE status = #{status} ORDER BY id
 	</select>
 	<select id="findHighlights" resultType="product">
-		SELECT * FROM PRODUCT WHERE status = 1 ORDER BY count DESC LIMIT #{limit}
+		SELECT * FROM PRODUCT WHERE status = 1 AND isHigh = 1 LIMIT #{limit}
 	</select>
 	<select id="findByCategory" resultType="product">
 		SELECT * FROM PRODUCT WHERE categoryId = #{id} AND status = 1 ORDER BY id DESC
