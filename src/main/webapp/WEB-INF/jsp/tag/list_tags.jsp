@@ -6,8 +6,8 @@
 	<div class="col-lg-12">
 		<div class="ibox float-e-margins">
 			<div class="ibox-title">
-				<h5><spring:message code="account.title" text="default text"/></h5>
-				<a href="/admin/account" class="btn btn-primary" style="margin-left: 20px; padding: 0px">
+				<h5><spring:message code="tag.title" text="default text"/></h5>
+				<a href="/admin/tag" class="btn btn-primary" style="margin-left: 20px; padding: 0px">
 					<i class="fa fa-plus"></i><spring:message code="common.button.add" text="default text"/>
 				</a>
 				<div class="ibox-tools">
@@ -24,23 +24,19 @@
 				       data-page-size="8" data-filter=#filter style="font-size: 12px;">
 					<thead>
 					<tr>
-						<th><spring:message code="account.name" text="default text"/></th>
-						<th data-hide="phone,tablet"><spring:message code="account.fullName" text="default text"/></th>
-						<th data-hide="phone,tablet"><spring:message code="customer.email" text="default text"/></th>
+						<th>Id</th>
+						<th data-hide="phone,tablet"><spring:message code="tag.name" text="default text"/></th>
 						<th data-hide="phone,tablet"><spring:message code="common.status.title" text="default text"/></th>
 						<th data-hide="phone,tablet" class=T"text-center"><spring:message code="common.action" text="default text"/></th>
 					</tr>
 					</thead>
 					<tbody>
-					<c:forEach items="${accounts}" var="a">
+					<c:forEach items="${tags}" var="a">
 						<c:set var="count" value="0" scope="page" />
 						<tr class="gradeC">
-							<td>${a.userName}</td>
+							<td>${a.id}</td>
 							<td data-hide="phone,tablet">
-								${a.fullName}
-							</td>
-							<td data-hide="phone,tablet">
-									${a.mail}
+								${a.tag}
 							</td>
 							<td data-hide="phone,tablet">
 								<c:if test="${a.status==1}"> <span class="label label-success"><spring:message code="common.active" text="default text"/></span></c:if>
@@ -49,12 +45,7 @@
 							<td class="text-center">
 								<div class="btn-group">
 									<a class="btn-success btn btn-xs"
-									   href="/admin/account/edit/${a.userName}"><i class="fa fa-edit"><spring:message code="common.button.update" text="default text"/></i></a>
-									<%--<c:if test="${count == 0}">
-									<a type="button" data-toggle="modal" data-target="#deleteButton"
-									   class="btn-danger btn btn-xs"
-									   onclick="setUrl('/admin/categories/delete/${c.id}')"><i class="fa fa-trash-o"><spring:message code="common.button.delete" text="default text"/></i></a>
-									</c:if>--%>
+									   href="/admin/tag/edit/${a.id}"><i class="fa fa-edit"><spring:message code="common.button.update" text="default text"/></i></a>
 								</div>
 							</td>
 						</tr>

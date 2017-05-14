@@ -192,7 +192,19 @@
 	</definition>
 	<definition name="account" extends="base.admin">
 		<put-attribute name="title" value="Trầm Hương" />
-		<put-attribute name="body" value="/WEB-INF/jsp/account/view.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/account/list_accounts.jsp" />
+	</definition>
+	<definition name="account-add" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/account/add.jsp" />
+	</definition>
+	<definition name="tags" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/tag/list_tags.jsp" />
+	</definition>
+	<definition name="tag-add" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/tag/add.jsp" />
 	</definition>
 	<definition name="blog-admin" extends="base.admin">
 		<put-attribute name="title" value="Trầm Hương" />

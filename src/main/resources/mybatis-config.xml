@@ -22,5 +22,6 @@
 		<typeAlias alias="orderItem" type="com.tramhuong.dto.OrderItemDto"/>
 		<typeAlias alias="post" type="com.tramhuong.dto.PostDto"/>
 		<typeAlias alias="mail" type="com.tramhuong.dto.MailTemplateDto"/>
+		<typeAlias alias="tag" type="com.tramhuong.dto.TagDto"/>
 	</typeAliases>
 </configuration>

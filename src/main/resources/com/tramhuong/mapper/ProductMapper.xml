@@ -88,28 +88,28 @@
 	</delete>
 
 	<select id="findAll" resultType="product">
-		SELECT * FROM PRODUCT ORDER BY id
+		SELECT * FROM PRODUCT ORDER BY id ASC
 	</select>
 	<select id="findByTag" resultType="product">
-		SELECT * FROM PRODUCT WHERE status = 1 AND tag LIKE #{tag} ORDER BY id
+		SELECT * FROM PRODUCT WHERE status = 1 AND tag LIKE #{tag} ORDER BY id ASC
 	</select>
 	<select id="findByName" resultType="product">
-		SELECT * FROM PRODUCT WHERE status = 1 AND name LIKE concat(concat('%',#{name}), '%') ORDER BY id
+		SELECT * FROM PRODUCT WHERE status = 1 AND name LIKE concat(concat('%',#{name}), '%') ORDER BY id ASC
 	</select>
 	<select id="findByStatus" resultType="product">
-		SELECT * FROM PRODUCT WHERE status = #{status} ORDER BY id
+		SELECT * FROM PRODUCT WHERE status = #{status} ORDER BY id ASC
 	</select>
 	<select id="findHighlights" resultType="product">
-		SELECT * FROM PRODUCT WHERE status = 1 AND isHigh = 1 LIMIT #{limit}
+		SELECT * FROM PRODUCT WHERE status = 1 AND isHigh = 1  ORDER BY id ASC LIMIT #{limit}
 	</select>
 	<select id="findByCategory" resultType="product">
-		SELECT * FROM PRODUCT WHERE categoryId = #{id} AND status = 1 ORDER BY id DESC
+		SELECT * FROM PRODUCT WHERE categoryId = #{id} AND status = 1 ORDER BY id ASC
 		<if test="limit > 0">
 		LIMIT #{limit}
 		</if>
 	</select>
 	<select id="findBySubCategory" resultType="product">
-		SELECT * FROM PRODUCT WHERE subCategoryId = #{id} AND status = 1 ORDER BY id DESC
+		SELECT * FROM PRODUCT WHERE subCategoryId = #{id} AND status = 1 ORDER BY id ASC
 		<if test="limit > 0">
 			LIMIT #{limit}
 		</if>
@@ -118,13 +118,13 @@
 		SELECT * FROM PRODUCT WHERE id = #{id}
 	</select>
 	<select id="findSale" resultType="product">
-		SELECT * FROM PRODUCT WHERE status = 1 AND isSale = 1
+		SELECT * FROM PRODUCT WHERE status = 1 AND isSale = 1 ORDER BY id ASC
 		<if test="limit > 0">
 			LIMIT #{limit}
 		</if>
 	</select>
 	<select id="findNew" resultType="product">
-		SELECT * FROM PRODUCT WHERE status = 1 AND isNew = 1
+		SELECT * FROM PRODUCT WHERE status = 1 AND isNew = 1 ORDER BY id ASC
 		<if test="limit > 0">
 			LIMIT #{limit}
 		</if>
@@ -161,6 +161,6 @@
 		<if test="dto.sEffete == 1">
 			AND isEffete = #{dto.sEffete}
 		</if>
-		ORDER BY id
+		ORDER BY id ASC
 	</select>
 </mapper>

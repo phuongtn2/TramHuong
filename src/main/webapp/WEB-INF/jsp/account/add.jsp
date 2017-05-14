@@ -18,40 +18,45 @@
 				</div>
 			</div>
 			<div class="ibox-content">
-				<form:form modelAttribute="account" method="post" id="userForm" class="new_order">
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="form-group">
-							<label class="control-label"><spring:message code="account.name" text="default text"/></label>
+				<form:form modelAttribute="account" method="post" id="userForm" class="form-horizontal new_order">
+					<div class="form-group">
+						<div class="col-lg-3">
+						<label class="control-label"><spring:message code="account.name" text="default text"/></label>
+						</div>
+						<div class="col-lg-6">
 							<input type="hidden" id="userId" name="userId"
-							       value="<c:if test="${account.userId!= null}">${account.userId}</c:if>"
-							       class="form-control">
+							   value="<c:if test="${account.userId!= null}">${account.userId}</c:if>"
+							   class="form-control">
 							<input type="text" id="userName" name="userName"
-							       value="<c:if test="${account.userName!= null}">${account.userName}</c:if>"
-							       class="form-control" required>
+																		value="<c:if test="${account.userName!= null}">${account.userName}</c:if>"
+																		class="form-control" required>
 						</div>
 					</div>
-					<div class="col-sm-4">
-						<div class="form-group">
+					<div class="form-group">
+						<div class="col-lg-3">
 							<label class="control-label"><spring:message code="account.fullName" text="default text"/></label>
+						</div>
+						<div class="col-lg-6">
 							<input type="text" id="fullName" name="fullName"
-								   value="<c:if test="${account.fullName!= null}">${account.fullName}</c:if>"
-								   class="form-control" required>
+							   value="<c:if test="${account.fullName!= null}">${account.fullName}</c:if>"
+							   class="form-control" required>
 						</div>
 					</div>
-					<div class="col-sm-4">
-						<div class="form-group">
+					<div class="form-group">
+						<div class="col-lg-3">
 							<label class="control-label"><spring:message code="customer.email" text="default text"/></label>
+						</div>
+						<div class="col-lg-6">
 							<input type="email" id="mail" name="mail"
-								   value="<c:if test="${account.mail!= null}">${account.mail}</c:if>"
-								   class="form-control" required>
+							   value="<c:if test="${account.mail!= null}">${account.mail}</c:if>"
+							   class="form-control" required>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="form-group">
+					<div class="form-group">
+						<div class="col-lg-3">
 							<label class="control-label"><spring:message code="account.password" text="default text"/></label>
+						</div>
+						<div class="col-lg-6">
 							<c:if test="${account.password != null}">
 								<label>**********</label>
 							</c:if>
@@ -60,9 +65,11 @@
 							</c:if>
 						</div>
 					</div>
-					<div class="col-sm-4">
-						<div class="form-group">
+					<div class="form-group">
+						<div class="col-lg-3">
 							<label class="control-label"><spring:message code="common.status.title" text="default text"/></label>
+						</div>
+						<div class="col-lg-6">
 							<select id="status" name="status" class="form-control m-b" required>
 								<option
 										<c:if test="${account.status==1}">selected</c:if> value="1">
@@ -73,29 +80,26 @@
 							</select>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="form-group">
+					<div class="form-group" style="margin-top: 20px;">
 						<div class="text-center">
 							<input type="hidden" id="add" name="addAccount">
-							<c:if test="${account.userId != null}">
+							<%--<c:if test="${account.userId != null}">
 								<button type="submit" class="btn btn-primary">
 									<i class="fa fa-edit"></i><spring:message code="common.button.update" text="default text"/>
 								</button>
 							</c:if>
-							<c:if test="${account.userId == null}">
+							<c:if test="${account.userId == null}">--%>
 								<button type="submit" class="btn btn-primary">
-									<i class="fa fa-check"></i><spring:message code="common.button.add" text="default text"/>
+									<i class="fa fa-check"></i><spring:message code="common.button.save" text="default text"/>
 								</button>
 								<button name="reset" class="btn btn-danger" type="reset">
 									<i class="fa fa-refresh"></i><spring:message code="common.button.refresh" text="default text"/>
 								</button>
-							</c:if>
+							<%--</c:if>--%>
 						</div>
 					</div>
-				</div>
+				</form:form>
 			</div>
-			</form:form>
 		</div>
 	</div>
 </div>

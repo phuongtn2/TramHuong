@@ -34,18 +34,18 @@ public class AccountController {
 	}
 	@RequestMapping(value = "/admin/account/edit/{name}", method = RequestMethod.GET)
 	public String redirectEdit(ModelMap model, @PathVariable String name) throws ServiceException {
-		List<AuthorizedUserInfo> authorizedUserInfoList = authorizedUserTokenService.findAll();
 		AuthorizedUserInfo authorizedUserInfo = authorizedUserTokenService.getByName(name);
-		if(authorizedUserInfoList != null){
-			model.addAttribute("accounts", authorizedUserInfoList);
-		}else{
-			model.addAttribute("accounts", new ArrayList<AuthorizedUserInfo>());
-		}
 		model.addAttribute("account", authorizedUserInfo);
-		return "account";
+		return "account-add";
+	}
+	@RequestMapping(value = "/admin/account", method = RequestMethod.GET)
+	public String redirectAdd(ModelMap model) throws ServiceException {
+		model.addAttribute("account", new AuthorizedUserInfo());
+		return "account-add";
 	}
 	@RequestMapping(method = RequestMethod.POST, params = "addAccount")
 	public void addAbout(@ModelAttribute("account") AuthorizedUserInfo authorizedUserInfo, HttpServletResponse response) throws ServiceException, IOException {
+
 		if(authorizedUserInfo.getUserId() != null && authorizedUserInfo.getUserId() > 0){
 			authorizedUserTokenService.update(authorizedUserInfo);
 		}else{
