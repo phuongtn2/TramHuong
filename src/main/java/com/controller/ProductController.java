@@ -316,7 +316,7 @@ public class ProductController {
 		CommonController.loadCommon(request, model, aboutService, blogService);
 		//Get list product by category
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
-		productDtoList = productService.findByStatus((byte)1);
+		productDtoList = productService.findHighlights(0);
 		model.addAttribute("bre", "Sản Phẩm Nổi Bật");
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_4");
