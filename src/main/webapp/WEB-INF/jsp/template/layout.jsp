@@ -188,9 +188,6 @@
     <script src="${a22}"></script>
     <spring:url value="/resources/js/main1.js" var="a122" />
     <script src="${a122}"></script>
-
-    <%--<spring:url value="/resources/js/cart.js" var="a3" />
-    <script src="${a3}"></script>--%>
     <!--------------CSS----------->
     <spring:url value="/resources/css/owl.carousel.css" var="cs1" />
     <link href="${cs1}" rel="stylesheet" type="text/css"/>
@@ -227,6 +224,12 @@
     <link href="${cs11}" rel="stylesheet" type="text/css"/>
     <spring:url value="/resources/css/style.3.1.css" var="cs31" />
     <link href="${cs31}" rel="stylesheet" type="text/css"/>
+    <spring:url value="/resources/css/responsiveslides.css" var="cs199" />
+    <spring:url value="/resources/css/themes.css" var="cs1999" />
+    <spring:url value="/resources/js/responsiveslides.min.js" var="js199" />
+    <link rel="stylesheet" href="${cs199}">
+    <link rel="stylesheet" href="${cs1999}">
+    <script src="${js199}"></script>
 
     <!-- Facebook Pixel Code -->
     <%--<script>
@@ -598,7 +601,21 @@
                 }
             }
         }
-    })
+    });
+    $("#slider-high-product").responsiveSlides({
+        auto: true,
+        pager: true,
+        nav: true,
+        speed: 500,
+        namespace: "centered-btns"
+    });
+    $("#slider-sale-product").responsiveSlides({
+        auto: true,
+        pager: true,
+        nav: true,
+        speed: 500,
+        namespace: "centered-btns"
+    });
 </script>
 
 <!-- Google Code for Chuy&#7875;n &#273;&#7893;i &#273;&#7863;t h&agrave;ng Conversion Page -->

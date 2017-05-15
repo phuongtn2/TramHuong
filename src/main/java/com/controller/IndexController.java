@@ -39,7 +39,7 @@ public class IndexController {
 		model.addAttribute("mSize", mappingCategoryDtos.size());
 		CommonController.loadCommon(request, model, aboutService, blogService);
 		//Product Highlight
-		model.addAttribute("pHighlights", productService.findHighlights(6));
+		model.addAttribute("pHighlights", productService.findHighlights(9));
 		model.addAttribute("pSales", productService.findSale(6));
 		/*model.addAttribute("pNews", productService.findNew(9));*/
 		model.addAttribute("active", "_1");

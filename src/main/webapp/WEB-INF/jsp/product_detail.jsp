@@ -259,36 +259,9 @@
                 </c:forEach>
             </div>
         </div>
-        <%--<script>
-            var add_to_wishlist = function () {
-                if (typeof(Storage) !== "undefined") {
-                    if (localStorage.recently_viewed) {
-
-                        if (localStorage.recently_viewed.indexOf('1st-birthday-princess-basic-party-kit-18-guests') == -1)
-                            localStorage.recently_viewed = '1st-birthday-princess-basic-party-kit-18-guests_' + localStorage.recently_viewed;
-
-                    } else
-                        localStorage.recently_viewed = '1st-birthday-princess-basic-party-kit-18-guests';
-                }
-                else {
-                    console.log('Your Browser does not support storage!');
-                }
-            }
-        </script>--%>
     </div>
 </div>
 
-<%--<script>
-    $(".product-thumb img").click(function () {
-        $(".product-thumb").removeClass('active');
-        $(this).parents('li').addClass('active');
-        $(".product-image-feature").attr("src", $(this).attr("data-image"));
-        $(".product-image-feature").attr("data-zoom-image", $(this).attr("data-zoom-image"));
-    });
-
-    $(".product-thumb").first().addClass('active');
-
-</script>--%>
 <script>
     $(document).ready(function () {
         $('a[data-spy=scroll]').click(function () {
