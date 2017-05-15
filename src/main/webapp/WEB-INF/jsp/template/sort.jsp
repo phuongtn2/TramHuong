@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: phuon
@@ -14,20 +15,24 @@
             </h1>
         </div>
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-            <div class="browse-tags">
-                <span style="color: white">Sắp xếp theo:</span>
-                <span class="custom-dropdown custom-dropdown--white">
-                  <select class="sort-by custom-dropdown__select custom-dropdown__select--white">
-                    <option value="manual">Sản phẩm nổi bật/Khuyến mãi</option>
-                    <option value="price-ascending">Giá: Tăng dần</option>
-                    <option value="price-descending">Giá: Giảm dần</option>
-                    <option value="title-ascending">Tên: A-Z</option>
-                    <option value="title-descending">Tên: Z-A</option>
-                    <option value="created-ascending">Cũ nhất</option>
-                    <option value="created-descending">Mới nhất</option>
-                  </select>
-                </span>
-            </div>
+            <form class="col-md-12" action="/sort" method="post" modelAttribute="sortDto" id="sortForm">
+                <div class="browse-tags">
+                    <span style="color: white">Sắp xếp theo:</span>
+                    <input type="hidden" name="sort" value="${sort}"/>
+                    <input type="hidden" name="sortValue" value="${sortValue}"/>
+                    <span class="custom-dropdown custom-dropdown--white">
+                      <select name="sortType" class="sort-by custom-dropdown__select custom-dropdown__select--white" onchange="submitSort();">
+                          <option value="manual" <c:if test="${selectedSort == 'manual'}">selected</c:if>>Sản phẩm nổi bật/Khuyến mãi</option>
+                        <option value="price-ascending" <c:if test="${selectedSort == 'price-ascending'}">selected</c:if>>Giá: Tăng dần</option>
+                        <option value="price-descending" <c:if test="${selectedSort == 'price-descending'}">selected</c:if>>Giá: Giảm dần</option>
+                        <option value="title-ascending" <c:if test="${selectedSort == 'title-ascending'}">selected</c:if>>Tên: A-Z</option>
+                        <option value="title-descending" <c:if test="${selectedSort == 'title-descending'}">selected</c:if>>Tên: Z-A</option>
+                        <option value="created-ascending" <c:if test="${selectedSort == 'created-ascending'}">selected</c:if>>Cũ nhất</option>
+                        <option value="created-descending" <c:if test="${selectedSort == 'created-descending'}">selected</c:if>>Mới nhất</option>
+                      </select>
+                    </span>
+                </div>
+            </form>
         </div>
     </div>
 </div>

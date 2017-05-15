@@ -281,6 +281,8 @@ public class ProductController {
 		productDtoList = productService.findByCategory(id, 0);
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_4");
+		model.addAttribute("sort", "category");
+		model.addAttribute("sortValue", id + "");
 		return "product-list";
 	}
 	@RequestMapping(value = "/sub-category/{id}", method = RequestMethod.GET)
@@ -305,6 +307,8 @@ public class ProductController {
 		}
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_4");
+		model.addAttribute("sort", "subCategory");
+		model.addAttribute("sortValue", id + "");
 		return "product-list";
 	}
 
@@ -320,6 +324,8 @@ public class ProductController {
 		model.addAttribute("bre", "Sản Phẩm Nổi Bật");
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_4");
+		model.addAttribute("sort", "highs");
+		model.addAttribute("sortValue", "NO");
 		return "product-list";
 	}
 	@RequestMapping(value = "/product/sales", method = RequestMethod.GET)
@@ -334,6 +340,8 @@ public class ProductController {
 		model.addAttribute("bre", "Sản Phẩm Giảm Giá");
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_5");
+		model.addAttribute("sort", "sales");
+		model.addAttribute("sortValue", "NO");
 		return "product-list";
 	}
 
@@ -349,6 +357,8 @@ public class ProductController {
 		productDtoList = productService.findByTag(tag);
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_4");
+		model.addAttribute("sort", "tag");
+		model.addAttribute("sortValue", tag);
 		return "product-list";
 	}
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
@@ -363,6 +373,23 @@ public class ProductController {
 		productDtoList = productService.findByName(name != null ? name: "tram huong");
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_4");
+		model.addAttribute("sort", "name");
+		model.addAttribute("sortValue", name);
+		return "product-list";
+	}
+	@RequestMapping(value = "/sort", method = RequestMethod.POST)
+	public String loadSort(HttpServletRequest request, ModelMap model, @ModelAttribute("sortDto") SortDto sortDto) throws ServiceException, UnsupportedEncodingException {
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		model.addAttribute("mapping_categories", mappingCategoryDtos);
+		model.addAttribute("mSize", mappingCategoryDtos.size());
+		CommonController.loadCommon(request, model, aboutService, blogService);
+		model.addAttribute("bre", "Sắp xếp");
+		//Get list product by category
+		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
+		productDtoList = productService.sort(sortDto);
+		model.addAttribute("productList", productDtoList);
+		model.addAttribute("active", "_4");
+		model.addAttribute("selectedSort", sortDto.getSortType());
 		return "product-list";
 	}
 	@RequestMapping(value = "/product_quitView/{id}", method = RequestMethod.GET, headers = "Accept=application/json", produces = MediaType.APPLICATION_JSON_VALUE)

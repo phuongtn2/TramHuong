@@ -3,6 +3,7 @@ package com.tramhuong.services.impl;
 import com.tramhuong.dto.ProductAddDto;
 import com.tramhuong.dto.ProductDto;
 import com.tramhuong.dto.SearchProductDto;
+import com.tramhuong.dto.SortDto;
 import com.tramhuong.mapper.ProductMapper;
 import com.tramhuong.services.ProductService;
 import com.tramhuong.services.error.ServiceException;
@@ -87,5 +88,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDto> findByCondition(SearchProductDto searchProductDto) throws ServiceException {
         return productMapper.findByCondition(searchProductDto);
+    }
+
+    @Override
+    public List<ProductDto> sort(SortDto sortDto) throws ServiceException {
+        return productMapper.sort(sortDto);
     }
 }

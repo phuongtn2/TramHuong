@@ -3,6 +3,7 @@ package com.tramhuong.services;
 import com.tramhuong.dto.ProductAddDto;
 import com.tramhuong.dto.ProductDto;
 import com.tramhuong.dto.SearchProductDto;
+import com.tramhuong.dto.SortDto;
 import com.tramhuong.services.error.ServiceException;
 
 import java.util.List;
@@ -25,5 +26,5 @@ public interface ProductService {
     List<ProductDto> findByName(String name) throws ServiceException;
     ProductDto findById(long id) throws ServiceException;
     List<ProductDto> findByCondition(SearchProductDto searchProductDto) throws ServiceException;
-
+    List<ProductDto> sort(SortDto sortDto) throws ServiceException;
 }

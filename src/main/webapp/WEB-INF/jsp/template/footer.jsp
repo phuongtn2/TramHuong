@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="footer-static-title">
                         <h4>THÔNG TIN</h4>
                     </div>
@@ -57,7 +57,7 @@
                 </div>
 
 
-                <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="footer-static-title">
                         <h4>Hỏi đáp</h4>
                     </div>
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
+                <%--<div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="footer-static-title">
                         <h4>Thế giới tâm linh</h4>
                     </div>
@@ -117,8 +117,8 @@
                             </span>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-sms-12">
+                </div>--%>
+                <div class="col-md-4 col-sm-6 col-sms-12">
                     <div class="footer-static-title">
                         <h4>Kết nối với chúng tôi</h4>
                     </div>
@@ -141,11 +141,11 @@
                     </div>
                 </div>
 
-                <a href="http://www.dmca.com/Protection/Status.aspx?ID=569a2092-f740-40e3-a46b-a718b2d6f0bf"
+                <%--<a href="http://www.dmca.com/Protection/Status.aspx?ID=569a2092-f740-40e3-a46b-a718b2d6f0bf"
                    title="DMCA.com Protection Status" class="dmca-badge"> <img
                         src="//images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=569a2092-f740-40e3-a46b-a718b2d6f0bf"
                         alt="DMCA.com Protection Status"></a>
-                <script src="//images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>
+                <script src="//images.dmca.com/Badges/DMCABadgeHelper.min.js"></script>--%>
             </div>
         </div>
 
@@ -159,3 +159,8 @@
     </div>
 
 </footer>
+<script>
+    function submitSort(){
+        document.getElementById("sortForm").submit();
+    };
+</script>

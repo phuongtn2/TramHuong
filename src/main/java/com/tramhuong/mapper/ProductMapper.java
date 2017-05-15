@@ -1,9 +1,6 @@
 package com.tramhuong.mapper;
 
-import com.tramhuong.dto.CategoryDto;
-import com.tramhuong.dto.ProductAddDto;
-import com.tramhuong.dto.ProductDto;
-import com.tramhuong.dto.SearchProductDto;
+import com.tramhuong.dto.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -26,4 +23,5 @@ public interface ProductMapper {
     List<ProductDto> findByName(@Param("name") String name);
     ProductDto findById(@Param("id") long id);
     List<ProductDto> findByCondition(@Param("dto")SearchProductDto searchProductDto);
+    List<ProductDto> sort(@Param("dto")SortDto sortDto);
 }

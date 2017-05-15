@@ -100,7 +100,10 @@
 		SELECT * FROM PRODUCT WHERE status = #{status} ORDER BY id ASC
 	</select>
 	<select id="findHighlights" resultType="product">
-		SELECT * FROM PRODUCT WHERE status = 1 AND isHigh = 1  ORDER BY id ASC LIMIT #{limit}
+		SELECT * FROM PRODUCT WHERE status = 1 AND isHigh = 1  ORDER BY id ASC
+		<if test="limit > 0">
+			LIMIT #{limit}
+		</if>
 	</select>
 	<select id="findByCategory" resultType="product">
 		SELECT * FROM PRODUCT WHERE categoryId = #{id} AND status = 1 ORDER BY id ASC
@@ -162,5 +165,47 @@
 			AND isEffete = #{dto.sEffete}
 		</if>
 		ORDER BY id ASC
+	</select>
+	<select id="sort" resultType="product">
+		SELECT * FROM PRODUCT WHERE status = 1
+		<if test="dto.sort == 'name'">
+			AND name LIKE concat(concat('%',#{dto.sortValue}), '%')
+		</if>
+		<if test="dto.sort == 'tag'">
+			AND tag LIKE concat('%',#{dto.sortValue})
+		</if>
+		<if test="dto.sort == 'sales'">
+			AND isSale = 1
+		</if>
+		<if test="dto.sort == 'highs'">
+			AND isHigh = 1
+		</if>
+		<if test="dto.sort == 'subCategory'">
+			AND subCategoryId = #{dto.sortValue}
+		</if>
+		<if test="dto.sort == 'category'">
+			AND categoryId = #{dto.sortValue}
+		</if>
+		<if test="dto.sortType == 'manual'">
+			ORDER BY iHigh DESC
+		</if>
+		<if test="dto.sortType == 'price-ascending'">
+			ORDER BY price ASC
+		</if>
+		<if test="dto.sortType == 'price-descending'">
+			ORDER BY price DESC
+		</if>
+		<if test="dto.sortType == 'title-ascending'">
+			ORDER BY name ASC
+		</if>
+		<if test="dto.sortType == 'title-descending'">
+			ORDER BY name DESC
+		</if>
+		<if test="dto.sortType == 'created-ascending'">
+			ORDER BY created ASC
+		</if>
+		<if test="dto.sortType == 'created-descending'">
+			ORDER BY created DESC
+		</if>
 	</select>
 </mapper>

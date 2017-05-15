@@ -5,7 +5,7 @@
         Email <strong>chuchuot12a15tnp@gmail.com</strong>
     </div>
     <div>
-        <strong>Copyright</strong> Building &copy; 2016
+        <strong>Copyright</strong> TramHuong &copy; 2016
     </div>
 </div>
 
