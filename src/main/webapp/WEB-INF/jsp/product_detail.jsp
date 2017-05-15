@@ -11,7 +11,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <div id="wrapper-detail">
     <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" id="main-sliderproduct">
             <c:if test="${product.isEffete == 1}">
                 <div class="sold-out">Hết hàng</div>
             </c:if>
@@ -30,7 +30,15 @@
                 <a class="slide-next slide-nav" href="javascript:">
                     <i class="fa fa-arrow-circle-o-right fa-2"></i>
                 </a>
-                <img class="product-image-feature" src="${product.img}">
+                <img id="product_detail" class="product-image-feature" src="${product.img}" data-handle="${product.id}">
+            </div>
+            <div class="col-lg-5 col-md-6">
+                <div class="image-zoom row">
+                    <%--<img class="p-product-image-feature" src="">--%>
+                    <div id="p-sliderproduct" class="flexslider">
+                        <ul class="slides"></ul>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -270,7 +278,7 @@
     </div>
 </div>
 
-<script>
+<%--<script>
     $(".product-thumb img").click(function () {
         $(".product-thumb").removeClass('active');
         $(this).parents('li').addClass('active');
@@ -280,7 +288,7 @@
 
     $(".product-thumb").first().addClass('active');
 
-</script>
+</script>--%>
 <script>
     $(document).ready(function () {
         $('a[data-spy=scroll]').click(function () {
@@ -295,46 +303,75 @@
         });
         $(window).trigger('resize');
     });
-    jQuery(document).ready(function ($) {
+    /*jQuery(document).ready(function ($) {
         debugger
-    });
+    });*/
 </script>
-<%--
+
 <script>
     $(document).ready(function () {
-        if ($(".slides .product-thumb").length > 4) {
-            $('#sliderproduct').flexslider({
-                animation: "slide",
-                controlNav: false,
-                animationLoop: false,
-                slideshow: false,
-                itemWidth: 95,
-                itemMargin: 10
-            });
-        }
-        if ($(window).width() > 960) {
-            jQuery(".product-image-feature").elevateZoom({
-                gallery: 'sliderproduct',
-                scrollZoom: true
-            });
-        } else {
+        var purl = $('#product_detail').attr('data-handle');
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: "/product_quitView/" + purl,
+            dataType: 'json',
+            timeout: 100000,
+            async: false,
+            success: function (product) {
+                if (product.img.length == 0) {
+                    /*$('#p-sliderproduct').find('.p-product-image-feature').attr('src', '/resources/img/no_img.gif');*/
+                }
+                else {
+                    $('#p-sliderproduct').remove();
+                    $('.image-zoom').append("<div id='p-sliderproduct'>");
+                    $('#p-sliderproduct').append("<ul class='owl-carousel'>");
+                    elem = $('<li class="item">').append('<a href="#" data-image="" data-zoom-image=""><img /></a>');
+                    elem.find('a').attr('data-image', Haravan.resizeImage(product.img, 'medium'));
+                    elem.find('a').attr('data-zoom-image', product.img);
+                    elem.find('img').attr('data-image', Haravan.resizeImage(product.img, 'medium'));
+                    elem.find('img').attr('data-zoom-image', product.img);
+                    elem.find('img').attr('src', product.img);
+                    $('#p-sliderproduct').find('.owl-carousel').append(elem);
+                    if(product.img1 != null){
+                        elem1 = $('<li class="item">').append('<a href="#" data-image="" data-zoom-image=""><img /></a>');
+                        elem1.find('a').attr('data-image', Haravan.resizeImage(product.img1, 'medium'));
+                        elem1.find('a').attr('data-zoom-image', product.img1);
+                        elem1.find('img').attr('data-image', Haravan.resizeImage(product.img1, 'medium'));
+                        elem1.find('img').attr('data-zoom-image', product.img1);
+                        elem1.find('img').attr('src', product.img1);
+                        $('#p-sliderproduct').find('.owl-carousel').append(elem1);
+                    }
+                    if(product.img2 != null){
+                        elem2 = $('<li class="item">').append('<a href="#" data-image="" data-zoom-image=""><img /></a>');
+                        elem2.find('a').attr('data-image', Haravan.resizeImage(product.img2, 'medium'));
+                        elem2.find('a').attr('data-zoom-image', product.img2);
+                        elem2.find('img').attr('data-image', Haravan.resizeImage(product.img2, 'medium'));
+                        elem2.find('img').attr('data-zoom-image', product.img2);
+                        elem2.find('img').attr('src', product.img2);
+                        $('#p-sliderproduct').find('.owl-carousel').append(elem2);
+                    }
+                    var owl = $('.owl-carousel');
+                    owl.owlCarousel({
+                        items: 3,
+                        navigation: true,
+                        navigationText: ['owl-prev', 'owl-next']
+                    });
+                    $('#p-sliderproduct .owl-carousel .owl-item').first().children('.item').addClass('active');
+                    /*$('#p-sliderproduct').find('.p-product-image-feature').attr('src', product.img);*/
+                    //$(".modal-footer .btn-readmore").attr('href', "/product/" + product.id);
+                }
 
-        }
-        jQuery('.slide-next').click(function () {
-            if ($(".product-thumb.active").prev().length > 0) {
-                $(".product-thumb.active").prev().find('img').click();
-            }
-            else {
-                $(".product-thumb:last img").click();
-            }
-        });
-        jQuery('.slide-prev').click(function () {
-            if ($(".product-thumb.active").next().length > 0) {
-                $(".product-thumb.active").next().find('img').click();
-            }
-            else {
-                $(".product-thumb:first img").click();
             }
         });
     });
-</script>--%>
+
+    $('#main-sliderproduct').on('click', '.item img', function (event) {
+        event.preventDefault();
+        modal = $('#main-sliderproduct');
+        modal.find('.product-image-feature').attr('src', $(this).attr('data-zoom-image'));
+        modal.find('.item').removeClass('active');
+        $(this).parents('li').addClass('active');
+        return false;
+    });
+</script>

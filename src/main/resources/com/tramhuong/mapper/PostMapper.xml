@@ -46,10 +46,10 @@
 		DELETE FROM POST WHERE id = #{id}
 	</delete>
 	<select id="findAll" resultType="post">
-		SELECT * FROM POST ORDER BY position ASC
+		SELECT * FROM POST ORDER BY position DESC
 	</select>
 	<select id="findByStatus" resultType="post">
-		SELECT * FROM POST WHERE status = 1 ORDER BY position ASC
+		SELECT * FROM POST WHERE status = 1 ORDER BY position DESC
 	</select>
 	<select id="findByBlogId" resultType="post">
 		SELECT * FROM POST WHERE blogId = #{id}

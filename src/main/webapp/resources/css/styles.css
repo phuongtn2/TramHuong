@@ -1803,11 +1803,11 @@ li {
 }
 #p-sliderproduct .owl-prev {
     left: -38px !important;
-    background: url(//hstatic.net/526/1000069526/1000151899/quick_icon_prev.png?v=108) no-repeat;
+    /*background: url(//hstatic.net/526/1000069526/1000151899/quick_icon_prev.png?v=108) no-repeat;*/
 }
 #p-sliderproduct .owl-next {
     right: -35px !important;
-    background: url(//hstatic.net/526/1000069526/1000151899/quick_icon_next.png?v=108) no-repeat;
+    /*background: url(//hstatic.net/526/1000069526/1000151899/quick_icon_next.png?v=108) no-repeat;*/
 }
 #p-sliderproduct:hover .owl-next,#p-sliderproduct:hover .owl-prev {
     opacity: 1;
