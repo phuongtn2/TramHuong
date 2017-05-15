@@ -319,10 +319,8 @@
             timeout: 100000,
             async: false,
             success: function (product) {
-                if (product.img.length == 0) {
-                    /*$('#p-sliderproduct').find('.p-product-image-feature').attr('src', '/resources/img/no_img.gif');*/
-                }
-                else {
+                if (product.id > 0) {
+
                     $('#p-sliderproduct').remove();
                     $('.image-zoom').append("<div id='p-sliderproduct'>");
                     $('#p-sliderproduct').append("<ul class='owl-carousel'>");

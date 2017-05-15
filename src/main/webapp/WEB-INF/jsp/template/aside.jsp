@@ -233,7 +233,7 @@
     <!-- Facebook -->
     <!-- Facebook-->
     <!-- Banner quảng cáo -->
-    <div class="list-group_l banner-left">
+    <%--<div class="list-group_l banner-left">
         <a href="/introduct">
             <img src="/resources/img/left_image_ad.jpg">
         </a>
@@ -243,5 +243,5 @@
         <a href="/">
             <img src="/resources/img/left_image_ad_2.jpg">
         </a>
-    </div>
+    </div>--%>
 </aside>

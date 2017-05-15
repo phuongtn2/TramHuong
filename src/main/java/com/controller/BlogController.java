@@ -52,7 +52,7 @@ public class BlogController {
 		CommonController.loadCommon(request, model, aboutService, blogService);
 		List<PostDto> postNews = blogService.findPostNew();
 		model.addAttribute("postNews", postNews);
-		if(id == 2){
+		/*if(id == 2){
 			List<PostDto> postDtos = blogService.findPostByBlogId(id,(byte) 1);
 			model.addAttribute("posts", postDtos);
 			model.addAttribute("postFirst", postDtos.get(0));
@@ -63,15 +63,15 @@ public class BlogController {
 			model.addAttribute("posts", postDtos);
 			model.addAttribute("active", "_6");
 			return "danhngon";
-		}else{
+		}else{*/
 			List<PostDto> postDtos = blogService.findPostByBlogId(id, (byte) 1);
 			model.addAttribute("posts", postDtos);
-			if(id==1)
+			/*if(id==1)
 				model.addAttribute("active", "_6");
-			else
-				model.addAttribute("active", "_3");
+			else*/
+			model.addAttribute("active", "_3");
 			return "blog";
-		}
+		//}
 	}
 
 	@RequestMapping(value = "/blogs/post/{id}", method = RequestMethod.GET)
