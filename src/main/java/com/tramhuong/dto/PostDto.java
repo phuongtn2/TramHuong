@@ -87,7 +87,10 @@ public class PostDto {
     }
 
     public String getDateDisplay() {
-        return new SimpleDateFormat("MM/dd/yyyy").format(created);
+        if(created != null)
+            return new SimpleDateFormat("MM/dd/yyyy").format(created);
+        else
+            return "";
     }
 
     public void setDateDisplay(String dateDisplay) {

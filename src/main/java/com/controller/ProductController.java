@@ -308,7 +308,7 @@ public class ProductController {
 		return "product-list";
 	}
 
-	@RequestMapping(value = "/product/all", method = RequestMethod.GET)
+	@RequestMapping(value = "/product/highs", method = RequestMethod.GET)
 	public String loadAllProduct(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {
 		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
@@ -317,7 +317,7 @@ public class ProductController {
 		//Get list product by category
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
 		productDtoList = productService.findByStatus((byte)1);
-		model.addAttribute("bre", "All");
+		model.addAttribute("bre", "Sản Phẩm Nổi Bật");
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_4");
 		return "product-list";
@@ -331,7 +331,7 @@ public class ProductController {
 		//Get list product by category
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
 		productDtoList = productService.findSale(0);
-		model.addAttribute("bre", "Sales");
+		model.addAttribute("bre", "Sản Phẩm Giảm Giá");
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_5");
 		return "product-list";

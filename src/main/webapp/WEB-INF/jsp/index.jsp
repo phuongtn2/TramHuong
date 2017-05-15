@@ -64,7 +64,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12 pull-center">
-                <a class="btn btn-readmore" href="/product/all" role="button">Xem
+                <a class="btn btn-readmore" href="/product/highs" role="button">Xem
                     thêm </a>
             </div>
         </div>
