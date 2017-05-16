@@ -65,17 +65,21 @@ public class ProductAddDto {
     }
 
     public String getTag() {
-        String str = "";
-        int count = 0;
-        for (String s: tagList) {
-            count ++;
-            if(count == tagList.size()){
-                str = str + s;
-            }else{
-                str = str + s + ",";
+        if(tagList != null && tagList.size() >0) {
+            String str = "";
+            int count = 0;
+            for (String s : tagList) {
+                count++;
+                if (count == tagList.size()) {
+                    str = str + s;
+                } else {
+                    str = str + s + ",";
+                }
             }
+            return str;
+        }else {
+            return null;
         }
-        return str;
     }
 
     public void setTag(String tag) {

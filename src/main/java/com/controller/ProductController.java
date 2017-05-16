@@ -122,6 +122,7 @@ public class ProductController {
 				+ "</div>";
 		productDto.setDescription(detail);
 		model.addAttribute("product", productDto);
+		model.addAttribute("tags", tagService.findByStatus((byte)1));
 		return "product-add-edit";
 	}
 

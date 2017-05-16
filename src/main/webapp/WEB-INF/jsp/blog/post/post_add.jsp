@@ -38,7 +38,7 @@
                                        value="${blogId}"/>
                             </c:if>
                             <input type="text" class="form-control" name="title"
-                                   value="<c:if test="${post.title != null}">${post.title}</c:if> " required/>
+                                   value="<c:if test="${post.title != null}">${post.title}</c:if>" required/>
                         </div>
                     </div>
                     <c:if test="${blogId == null}">
@@ -133,7 +133,7 @@
                         </div>
                         <div class="col-lg-6">
                             <input type="text" class="form-control" name="code"
-                                   value="<c:if test="${post.url != null}">${post.url}</c:if> "/>
+                                   value="<c:if test="${post.url != null}">${post.url}</c:if>"/>
                         </div>
                     </div>
                     <div class="form-group">

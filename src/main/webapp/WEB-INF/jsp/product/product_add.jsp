@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="ibox-content">
-                <form:form accept-charset="UTF-8" action="/admin/product/save" method="post" modelAttribute="product" id="userForm" class="form-horizontal new_order" enctype="multipart/form-data">
+                <form:form accept-charset="UTF-8" action="/admin/product/save" method="post" modelAttribute="product" id="productForm" class="form-horizontal new_order" enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="col-lg-3">
                             <label class="control-label"><spring:message code="category.name"
@@ -132,7 +132,7 @@
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                 <input type="text" class="form-control" name="created" id="created"
                                        value="<c:if test="${product.created != null}"><fmt:formatDate pattern="MM/dd/yyyy"
-																	 value="${product.created}"/></c:if> "/>
+																	 value="${product.created}"/></c:if>"/>
                             </div>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                                                                          text="default text"/></label>
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" maxlength="9" class="form-control" name="price"
+                            <input type="text" maxlength="9" class="form-control" name="price" id="price"
                                    value="<c:if test="${product.price != null && product.price != ''}">${product.price}</c:if>" required/>
                         </div>
                     </div>
@@ -167,11 +167,11 @@
                         </div>
                         <div class="col-lg-6">
                             <c:if test="${product.isSale==1}">
-                                <input type="text" maxlength="9" class="form-control" name="salePrice" id="salePrice"
+                                <input type="text" maxlength="9" class="form-control" name="salePrice" id="salePrice" placeholder="Giá khuyến mãi <= 70% Giá Bán"
                                    value="<c:if test="${product.salePrice != null && product.salePrice != ''}">${product.salePrice}</c:if>"/>
                             </c:if>
                             <c:if test="${product.isSale==null || product.isSale==0}">
-                                <input type="text" maxlength="9" class="form-control" name="salePrice" id="salePrice"
+                                <input type="text" maxlength="9" class="form-control" name="salePrice" id="salePrice" placeholder="Giá khuyến mãi <= 70% Giá Bán"
                                        value="<c:if test="${product.salePrice != null && product.salePrice != ''}">${product.salePrice}</c:if>" disabled="disabled"/>
                             </c:if>
                         </div>
@@ -267,7 +267,7 @@
                                 </button>
                             </c:if>
                             <c:if test="${product.id == null}">--%>
-                                <button type="submit" class="btn btn-primary">
+                                <button type="button" class="btn btn-primary" onclick="checkSalePrice();">
                                     <i class="fa fa-check"></i><spring:message code="common.button.save"
                                                                                text="default text"/>
                                 </button>
@@ -308,6 +308,21 @@
                 });
             }
         });
+    }
+    function checkSalePrice() {
+        if($('#salePrice').prop('disabled') == false){
+            var price = $('#price').val();
+            if(price != null && price != ''){
+                var salePriceCheck = (price*70)/100;
+                var salePrice = $('#salePrice').val();
+                if(salePrice > salePriceCheck){
+                    alert('Giá khuyến mãi <= 70% Giá Bán');
+                    return false;
+                }else{
+                    $('#productForm').submit();
+                }
+            }
+        }
     }
 </script>
 

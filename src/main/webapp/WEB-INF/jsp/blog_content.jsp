@@ -48,7 +48,7 @@
                             href="/blogs/post/${p.id}" style="color: white">${p.title}</a></h2>
                     <div class="body-content">
                         <div class="info-more">
-                            <div><i class="icon-info icon-hot clearfix"></i> <a href="#">${b.name}</a></div>
+                            <div><i class="icon-info icon-hot clearfix"></i> <a href="#" style="color: cornsilk">${b.name}</a></div>
                             <div><i class="icon-time"></i>
                                 <p style="color: white">
                                     ${p.dateDisplay}
@@ -71,7 +71,7 @@
                             href="/blogs/post/${p.id}" style="color: white">${p.title}</a></h2>
                     <div class="body-content">
                         <div class="info-more">
-                            <div><i class="icon-info icon-hot clearfix"></i> <a href="#">${b.name}</a></div>
+                            <div><i class="icon-info icon-hot clearfix"></i> <a href="#" style="color: cornsilk">${b.name}</a></div>
                         </div>
                         <p style="color: white">${p.subContent}</p>
                     </div>

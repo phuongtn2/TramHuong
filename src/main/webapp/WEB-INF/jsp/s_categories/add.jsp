@@ -54,7 +54,7 @@
 							<label class="control-label">Danh Mục Cha</label>
 						</div>
 						<div class="col-lg-6">
-							<select id="id" name="id" class="form-control m-b" required>
+							<select id="parent" name="parent" class="form-control m-b" required>
 								<c:forEach items="${categories}" var="c">
 									<option
 											<c:if test="${c.id==category.parent}">selected</c:if>
