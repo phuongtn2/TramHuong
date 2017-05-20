@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.controller.memoizer.Memoizer;
 import com.tramhuong.dto.CategoryDto;
 import com.tramhuong.dto.IntroduceDto;
 import com.tramhuong.dto.MappingCategoryDto;
@@ -51,16 +52,23 @@ public class IntroduceController {
 		}else{
 			introduceService.add(introduceDto);
 		}
+		Memoizer.getInstance().remove("introduce");
 		response.sendRedirect("/admin/introduce");
 	}
 
 	@RequestMapping(value = "/introduce", method = RequestMethod.GET)
 	public String initForm(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCommon(request, model, aboutService, blogService);
-		IntroduceDto introduceDto = introduceService.find();
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
+		IntroduceDto introduceDto = new IntroduceDto();
+		if(Memoizer.getInstance().get("introduce") == null) {
+			introduceDto = introduceService.find();
+			Memoizer.getInstance().put("introduce", introduceDto);
+		}else{
+			introduceDto = (IntroduceDto) Memoizer.getInstance().get("introduce");
+		}
 		if(introduceDto != null){
 			model.addAttribute("introduce", introduceDto);
 		}else{

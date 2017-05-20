@@ -1,6 +1,7 @@
 
 package com.controller;
 
+import com.controller.memoizer.Memoizer;
 import com.tramhuong.dto.*;
 import com.tramhuong.services.*;
 import com.tramhuong.services.error.ServiceException;
@@ -122,7 +123,14 @@ public class ProductController {
 				+ "</div>";
 		productDto.setDescription(detail);
 		model.addAttribute("product", productDto);
-		model.addAttribute("tags", tagService.findByStatus((byte)1));
+		List<TagDto> tagDtos = new ArrayList<TagDto>();
+		if(Memoizer.getInstance().get("tagList") == null){
+			tagDtos = tagService.findByStatus((byte)1);
+			Memoizer.getInstance().put("tagList", tagDtos);
+		}else{
+			tagDtos = (List<TagDto>) Memoizer.getInstance().get("tagList");
+		}
+		model.addAttribute("tags", tagDtos);
 		return "product-add-edit";
 	}
 
@@ -208,8 +216,18 @@ public class ProductController {
 		}else{
 			productDto.setImg2(null);
 		}
+		Memoizer.getInstance().remove("product");
+		Memoizer.getInstance().remove("search");
+		Memoizer.getInstance().remove("tag");
+		Memoizer.getInstance().remove("sort");
+		Memoizer.getInstance().remove("sale");
+		Memoizer.getInstance().remove("high");
+		Memoizer.getInstance().remove("product-relation");
+		Memoizer.getInstance().remove("product-categories");
+		Memoizer.getInstance().remove("product-subCategories");
 		if(productDto.getId() != null){
 			productService.update(productDto);
+			Memoizer.getInstance().remove(String.valueOf(productDto.getId()));
 			response.sendRedirect("/admin/product/view/" + productDto.getId());
 		}else{
 			productService.add(productDto);
@@ -236,18 +254,29 @@ public class ProductController {
 
 	@RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
 	public String initForm(HttpServletRequest request, ModelMap model, @PathVariable long id) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCommon(request, model, aboutService, blogService);
-		ProductDto productDto = productService.findById(id);
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
+		ProductDto productDto = new ProductDto();
+		if(Memoizer.getInstance().get("product") == null) {
+			productDto = productService.findById(id);
+			Memoizer.getInstance().put("product", productDto);
+		}else{
+			productDto = (ProductDto) Memoizer.getInstance().get("product");
+		}
 		model.addAttribute("product", productDto);
 		//Get product relation
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
-		if(productDto.getSubCategoryId() != null){
-			productDtoList = productService.findBySubCategory(productDto.getSubCategoryId(), 6);
-		}else {
-			productDtoList = productService.findByCategory(productDto.getCategoryId(), 6);
+		if(Memoizer.getInstance().get("product-relation") == null) {
+			if (productDto.getSubCategoryId() != null) {
+				productDtoList = productService.findBySubCategory(productDto.getSubCategoryId(), 6);
+			} else {
+				productDtoList = productService.findByCategory(productDto.getCategoryId(), 6);
+			}
+			Memoizer.getInstance().put("product-relation", productDtoList);
+		}else{
+			productDtoList = (List<ProductDto>) Memoizer.getInstance().get("product-relation");
 		}
 		model.addAttribute("relations", productDtoList);
 		model.addAttribute("active", "_4");
@@ -264,10 +293,10 @@ public class ProductController {
 
 	@RequestMapping(value = "/category/{id}", method = RequestMethod.GET)
 	public String loadByCategory(HttpServletRequest request, ModelMap model, @PathVariable long id) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCommon(request, model, aboutService, blogService);
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		if(mappingCategoryDtos != null){
 			for (MappingCategoryDto mappingCategoryDto: mappingCategoryDtos) {
 				if(mappingCategoryDto != null){
@@ -279,22 +308,34 @@ public class ProductController {
 		}
 		//Get list product by category
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
-		productDtoList = productService.findByCategory(id, 0);
+		if(Memoizer.getInstance().get("product-categories") == null) {
+			productDtoList = productService.findByCategory(id, 0);
+			Memoizer.getInstance().put("product-categories", productDtoList);
+		}else{
+			productDtoList = (List<ProductDto>) Memoizer.getInstance().get("product-categories");
+		}
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_4");
-		model.addAttribute("sort", "category");
-		model.addAttribute("sortValue", id + "");
+		SortDto sortDto = new SortDto();
+		sortDto.setSort("category");
+		sortDto.setSortValue(id + "");
+		model.addAttribute("sortDto", sortDto);
 		return "product-list";
 	}
 	@RequestMapping(value = "/sub-category/{id}", method = RequestMethod.GET)
 	public String loadBySubCategory(HttpServletRequest request, ModelMap model, @PathVariable long id) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCommon(request, model, aboutService, blogService);
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		//Get list product by category
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
-		productDtoList = productService.findBySubCategory(id, 0);
+		if(Memoizer.getInstance().get("product-subCategories") == null) {
+			productDtoList = productService.findBySubCategory(id, 0);
+			Memoizer.getInstance().put("product-subCategories", productDtoList);
+		}else{
+			productDtoList = (List<ProductDto>) Memoizer.getInstance().get("product-subCategories");
+		}
 		if(mappingCategoryDtos != null){
 			for (MappingCategoryDto mappingCategoryDto: mappingCategoryDtos) {
 				if(mappingCategoryDto != null){
@@ -310,93 +351,138 @@ public class ProductController {
 		model.addAttribute("active", "_4");
 		model.addAttribute("sort", "subCategory");
 		model.addAttribute("sortValue", id + "");
+		SortDto sortDto = new SortDto();
+		sortDto.setSort("subCategory");
+		sortDto.setSortValue(id + "");
+		model.addAttribute("sortDto", sortDto);
 		return "product-list";
 	}
 
 	@RequestMapping(value = "/product/highs", method = RequestMethod.GET)
 	public String loadAllProduct(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCommon(request, model, aboutService, blogService);
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		//Get list product by category
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
-		productDtoList = productService.findHighlights(0);
+		if(Memoizer.getInstance().get("high") == null) {
+			productDtoList = productService.findHighlights(0);
+			Memoizer.getInstance().put("high", productDtoList);
+		}else{
+			productDtoList = (List<ProductDto>) Memoizer.getInstance().get("high");
+		}
 		model.addAttribute("bre", "Sản Phẩm Nổi Bật");
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_4");
-		model.addAttribute("sort", "highs");
-		model.addAttribute("sortValue", "NO");
+		SortDto sortDto = new SortDto();
+		sortDto.setSort("highs");
+		sortDto.setSortValue("NO");
+		model.addAttribute("sortDto", sortDto);
 		return "product-list";
 	}
 	@RequestMapping(value = "/product/sales", method = RequestMethod.GET)
 	public String loadAllSales(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCommon(request, model, aboutService, blogService);
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		//Get list product by category
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
-		productDtoList = productService.findSale(0);
+		if(Memoizer.getInstance().get("sale") == null) {
+			productDtoList = productService.findSale(0);
+			Memoizer.getInstance().put("sale", productDtoList);
+		}else{
+			productDtoList = (List<ProductDto>) Memoizer.getInstance().get("sale");
+		}
 		model.addAttribute("bre", "Sản Phẩm Giảm Giá");
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_5");
-		model.addAttribute("sort", "sales");
-		model.addAttribute("sortValue", "NO");
+		SortDto sortDto = new SortDto();
+		sortDto.setSort("sales");
+		sortDto.setSortValue("NO");
+		model.addAttribute("sortDto", sortDto);
 		return "product-list";
 	}
 
 	@RequestMapping(value = "/searchByTag/{tag}", method = RequestMethod.GET)
 	public String loadSearchByTag(HttpServletRequest request, ModelMap model, @PathVariable String tag) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCommon(request, model, aboutService, blogService);
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		model.addAttribute("bre", tag);
 		//Get list product by category
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
-		productDtoList = productService.findByTag(tag);
+		if(Memoizer.getInstance().get("tag") == null) {
+			productDtoList = productService.findByTag(tag);
+			Memoizer.getInstance().put("tag", productDtoList);
+		}else{
+			productDtoList = (List<ProductDto>) Memoizer.getInstance().get("tag");
+		}
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_4");
-		model.addAttribute("sort", "tag");
-		model.addAttribute("sortValue", tag);
+		SortDto sortDto = new SortDto();
+		sortDto.setSort("tag");
+		sortDto.setSortValue(tag);
+		model.addAttribute("sortDto", sortDto);
 		return "product-list";
 	}
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String loadSearchByName(HttpServletRequest request, ModelMap model, @ModelAttribute("productName") String name) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCommon(request, model, aboutService, blogService);
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		model.addAttribute("bre", name != null ? name: "tram huong");
 		//Get list product by category
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
-		productDtoList = productService.findByName(name != null ? name: "tram huong");
+		if(Memoizer.getInstance().get("search") == null) {
+			productDtoList = productService.findByName(name != null ? name : "tram huong");
+			Memoizer.getInstance().put("search", productDtoList);
+		}else {
+			productDtoList = (List<ProductDto>) Memoizer.getInstance().get("search");
+		}
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_4");
-		model.addAttribute("sort", "name");
-		model.addAttribute("sortValue", name);
+		SortDto sortDto = new SortDto();
+		sortDto.setSort("name");
+		sortDto.setSortValue(name);
+		model.addAttribute("sortDto", sortDto);
 		return "product-list";
 	}
 	@RequestMapping(value = "/sort", method = RequestMethod.POST)
 	public String loadSort(HttpServletRequest request, ModelMap model, @ModelAttribute("sortDto") SortDto sortDto) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCommon(request, model, aboutService, blogService);
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		model.addAttribute("bre", "Sắp xếp");
 		//Get list product by category
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
-		productDtoList = productService.sort(sortDto);
+		if(Memoizer.getInstance().get("sort") == null) {
+			productDtoList = productService.sort(sortDto);
+			Memoizer.getInstance().put("sort", productDtoList);
+		}else{
+			productDtoList = (List<ProductDto>) Memoizer.getInstance().get("sort");
+		}
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_4");
-		model.addAttribute("selectedSort", sortDto.getSortType());
+		if(sortDto != null){
+			model.addAttribute("sortDto", sortDto);
+		}
 		return "product-list";
 	}
 	@RequestMapping(value = "/product_quitView/{id}", method = RequestMethod.GET, headers = "Accept=application/json", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ProductDto getQuitViewProduct(HttpServletRequest request, @PathVariable long id) throws ServiceException {
-		ProductDto productDto = productService.findById(id);
+		ProductDto productDto = new ProductDto();
+		if(Memoizer.getInstance().get(String.valueOf(id)) == null) {
+			productDto = productService.findById(id);
+			Memoizer.getInstance().put(String.valueOf(id), productDto);
+		}else{
+			productDto = (ProductDto) Memoizer.getInstance().get(String.valueOf(id));
+		}
 		return productDto;
 	}
 }

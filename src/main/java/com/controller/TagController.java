@@ -2,6 +2,7 @@
 
 package com.controller;
 
+import com.controller.memoizer.Memoizer;
 import com.tramhuong.dto.BlogDto;
 import com.tramhuong.dto.TagDto;
 import com.tramhuong.services.TagService;
@@ -59,6 +60,7 @@ public class TagController {
 		}else{
 			tagService.add(tagDto);
 		}
+		Memoizer.getInstance().remove("tagList");
 		response.sendRedirect("/admin/tags");
 	}
 }

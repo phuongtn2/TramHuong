@@ -4004,7 +4004,7 @@ ul.children li:hover>a{
     overflow: hidden;
 }
 #cssmenu ul.children{
-    left: 120%;
+/*    left: 120%;*/
     right: auto;
 }
 #cssmenu li.has-sub:hover>ul.children{

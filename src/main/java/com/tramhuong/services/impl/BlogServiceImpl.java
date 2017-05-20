@@ -47,9 +47,16 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<BlogDto> findByStatus(byte status) throws ServiceException {
+    public List<BlogDto> findByStatus(byte status){
         return blogMapper.findByStatus(status);
     }
+
+    /*Function<Byte, List<BlogDto>> fMemoizerByStatus = this::findByStatus;
+    Function<Byte, List<BlogDto>> gMemoizerByStatus = Memoizer.memoize(fMemoizerByStatus);
+    @Override
+    public List<BlogDto> findByStatusMemoizer(byte status) {
+        return gMemoizerByStatus.apply(status);
+    }*/
 
     @Override
     public List<PostDto> findPostByBlogId(int id, byte status) throws ServiceException {

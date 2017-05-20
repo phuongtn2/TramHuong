@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.controller.memoizer.Memoizer;
 import com.tramhuong.dto.*;
 import com.tramhuong.services.*;
 import com.tramhuong.services.error.ServiceException;
@@ -118,10 +119,10 @@ public class BillingController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/checkoutSuccess")
 	public String checkout(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCommon(request, model, aboutService, blogService);
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		return "checkoutSuccess";
 	}
 	@RequestMapping(method = RequestMethod.POST, value = "/saveOrder")
@@ -145,7 +146,7 @@ public class BillingController {
 				}
 			}
 			//send mail
-			AboutDto aboutDto = aboutService.find();
+			AboutDto aboutDto = aboutService.find(1);
 			MailTemplateDto mailTemplateDto = mailTemplateService.findByCode("ORDER");
 			MailSenderDto mailSenderDto = new MailSenderDto();
 			mailSenderDto.setEmail(aboutDto.getEmail());
@@ -196,28 +197,28 @@ public class BillingController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/page/payment")
 	public String payment(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCommon(request, model, aboutService, blogService);
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		List<BillingAccountDto> billingAccountDtos = billingAccountService.findAll();
 		model.addAttribute("billings", billingAccountDtos);
 		return "payment";
 	}
 	@RequestMapping(method = RequestMethod.GET, value = "/page/buy")
 	public String buy(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCommon(request, model, aboutService, blogService);
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		return "buy";
 	}
 	@RequestMapping(method = RequestMethod.GET, value = "/page/shipping")
 	public String shipping(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCommon(request, model, aboutService, blogService);
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		return "shipping";
 	}
 

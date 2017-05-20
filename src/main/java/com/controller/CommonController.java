@@ -7,6 +7,8 @@ import com.tramhuong.services.BlogService;
 import com.tramhuong.services.CategoriesService;
 import com.tramhuong.services.ProductService;
 import com.tramhuong.services.error.ServiceException;
+import org.cache2k.Cache;
+import org.cache2k.Cache2kBuilder;
 import org.springframework.ui.ModelMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,24 +20,36 @@ import java.util.List;
 import java.util.Properties;
 
 public class CommonController {
-	public static void loadCommon(HttpServletRequest request, ModelMap model
+	public static void loadCommon(Cache cache ,HttpServletRequest request, ModelMap model
 	, AboutService aboutService, BlogService blogService) throws UnsupportedEncodingException, ServiceException {
 		loadCart(request, model);
-		loadAbout(model,aboutService);
-		loadBlog(model,blogService);
+		loadAbout(model,aboutService, cache);
+		loadBlog(model,blogService, cache);
 	}
-	public static List<MappingCategoryDto> loadCategory(CategoriesService categoriesService) throws ServiceException {
-		List<CategoryDto> categoryDtos = categoriesService.findByStatus((byte) 1);
+	public static List<MappingCategoryDto> loadCategory(CategoriesService categoriesService, Cache cache) throws ServiceException {
+		List<CategoryDto> categoryDtos = new ArrayList<CategoryDto>();
+		if(cache.get("categories") == null) {
+			categoryDtos = categoriesService.findByStatus((byte) 1);
+			cache.put("categories", categoryDtos);
+		}else{
+			categoryDtos = (List<CategoryDto>) cache.get("categories");
+		}
+
 		List<MappingCategoryDto> mappingCategoryDtos = new ArrayList<MappingCategoryDto>();
-		if(categoryDtos != null && categoryDtos.size() > 0){
-			for (CategoryDto categoryDto: categoryDtos) {
-				MappingCategoryDto mappingCategoryDto = new MappingCategoryDto();
-				List<CategoryDto> subCategories = categoriesService.findByParent(categoryDto.getId());
-				mappingCategoryDto.setCategoryDto(categoryDto);
-				mappingCategoryDto.setSuCategories(subCategories);
-				mappingCategoryDtos.add(mappingCategoryDto);
-				mappingCategoryDto.setSubSize(subCategories.size());
+		if(cache.get("subCategories") == null) {
+			if (categoryDtos != null && categoryDtos.size() > 0) {
+				for (CategoryDto categoryDto : categoryDtos) {
+					MappingCategoryDto mappingCategoryDto = new MappingCategoryDto();
+					List<CategoryDto> subCategories = categoriesService.findByParent(categoryDto.getId());
+					mappingCategoryDto.setCategoryDto(categoryDto);
+					mappingCategoryDto.setSuCategories(subCategories);
+					mappingCategoryDto.setSubSize(subCategories.size());
+					mappingCategoryDtos.add(mappingCategoryDto);
+				}
+				cache.put("subCategories", mappingCategoryDtos);
 			}
+		}else{
+			mappingCategoryDtos = (List<MappingCategoryDto>) cache.get("subCategories");
 		}
 		return  mappingCategoryDtos;
 	}
@@ -70,10 +84,14 @@ public class CommonController {
 					ProductDto productDto = productService.findById(cartDto.getProductId());
 					productDtos.add(productDto);
 					Double price = 0.0;
-					if(productDto.getIsSale() == 1)
-						price = productDto.getSalePrice() * cartDto.getCount();
-					else
+					if(productDto.getSalePrice() != null) {
+						if (productDto.getIsSale() == 1 && productDto.getSalePrice() > 0)
+							price = productDto.getSalePrice() * cartDto.getCount();
+						else
+							price = productDto.getPrice() * cartDto.getCount();
+					}else{
 						price = productDto.getPrice() * cartDto.getCount();
+					}
 					totalPrice = totalPrice + price;
 				}
 			Double shipping = Double.valueOf(setting.getProperty("shipping.cost"));
@@ -107,25 +125,27 @@ public class CommonController {
 		}
 		return productDtos;
 	}
-	public static void loadBlog(ModelMap model, BlogService blogService) throws ServiceException {
-		List<BlogDto> blogDtos = blogService.findByStatus((byte) 1);
+	public static void loadBlog(ModelMap model, BlogService blogService, Cache cache) throws ServiceException {
+		List<BlogDto> blogDtos = new ArrayList<BlogDto>();
+		if(cache.get("blogs") == null){
+			blogDtos = blogService.findByStatus((byte) 1);
+			cache.put("blogs", blogDtos);
+		}else{
+			blogDtos = (List<BlogDto>) cache.get("blogs");
+		}
 		if(blogDtos != null){
-			/*List<BlogDto> blogs0 = new ArrayList<BlogDto>();
-			List<BlogDto> blogs1 = new ArrayList<BlogDto>();
-			for (BlogDto blogDto: blogDtos) {
-				if(blogDto.getType() == 0){
-					blogs0.add(blogDto);
-				}else{
-					blogs1.add(blogDto);
-				}
-			}*/
 			model.addAttribute("blogs0", blogDtos);
-			/*model.addAttribute("blogs1", blogs1);*/
 		}
 	}
 
-	public static void loadAbout(ModelMap model, AboutService aboutService) throws ServiceException {
-		AboutDto aboutDto = aboutService.find();
+	public static void loadAbout(ModelMap model, AboutService aboutService, Cache cache) throws ServiceException {
+		AboutDto aboutDto = new AboutDto();
+		if(cache.get("about") == null){
+			aboutDto = aboutService.find(1);
+			cache.put("about", aboutDto);
+		}else{
+			aboutDto = (AboutDto) cache.get("about");
+		}
 		model.addAttribute("about", aboutDto);
 	}
 }

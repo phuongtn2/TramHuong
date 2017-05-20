@@ -123,7 +123,62 @@
                         <h4>Kết nối với chúng tôi</h4>
                     </div>
                     <div class="footer-static-content">
-                        <img src="/resources/img/footer.jpg" width="100%" height="100%"/>
+                        <div>
+                            <aside id="mc4wp_form_widget-4" class="widget widget_mc4wp_form_widget" style="margin-top: 5px;">
+                                <script type="text/javascript">(function () {
+                                    if (!window.mc4wp) {
+                                        window.mc4wp = {
+                                            listeners: [],
+                                            forms: {
+                                                on: function (event, callback) {
+                                                    window.mc4wp.listeners.push({
+                                                        event: event,
+                                                        callback: callback
+                                                    });
+                                                }
+                                            }
+                                        }
+                                    }
+                                })();
+                                </script><!-- MailChimp for WordPress v4.1.2 - https://wordpress.org/plugins/mailchimp-for-wp/ -->
+                                <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-42097 mc4wp-form-basic" method="post" data-id="42097" data-name="Default sign-up form">
+                                    <div class="mc4wp-form-fields">
+                                        <div style="text-align:center;"><p>
+                                            <%--<label>Name:</label>--%>
+                                            <input type="text" name="NAME" required="true" placeholder="Your name">
+                                        </p>
+                                            <p>
+                                                <%--<label for="mc4wp_email">Email address: </label>--%>
+                                                <input type="email" id="mc4wp_email" name="EMAIL" placeholder="Your email address" required="true">
+                                            </p>
+
+                                            <p>
+                                                <input type="button" value="Sign up" style="color: rgb(240, 196, 129);">
+                                            </p></div>
+                                        <div style="display: none;"><input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off"></div>
+                                        <input type="hidden" name="_mc4wp_timestamp" value="1494376244"><input type="hidden" name="_mc4wp_form_id" value="42097"><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1"></div>
+                                    <div class="mc4wp-response"></div>
+                                </form><!-- / MailChimp for WordPress Plugin --></aside>
+                            <aside id="penci_social_widget-2" class="widget penci_social_widget">
+                                <div class="widget-social">
+                                    <a href="https://www.facebook.com/Fury.com.vn/?fref=ts" target="_blank"><i class="fa fa-facebook"></i><span>Facebook</span></a>
+
+                                    <a href="https://www.facebook.com/Fury.com.vn/?fref=ts" target="_blank"><i class="fa fa-twitter"></i><span>Twitter</span></a>
+
+
+                                    <a href="https://www.facebook.com/Fury.com.vn/?fref=ts" target="_blank"><i class="fa fa-instagram"></i><span>Instagram</span></a>
+
+                                    <a href="https://www.facebook.com/Fury.com.vn/?fref=ts" target="_blank"><i class="fa fa-pinterest"></i><span>Pinterest</span></a>
+
+
+                                    <a href="mailto:thanhluan321988@gmail.com"><i class="fa fa-envelope-o"></i><span>Email</span></a>
+
+
+                                    <a href="https://www.facebook.com/Fury.com.vn/?fref=ts" target="_blank"><i class="fa fa-snapchat-ghost"></i><span>Snapchat</span></a>
+                                </div>
+                            </aside>
+                        </div>
+                        <%--<img src="/resources/img/footer.jpg" width="100%" height="100%"/>--%>
                         <!-- Facebook widget -->
 
                         <%--<div id="fb-root"><iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ftngocphuong&tabs=timeline&width=0&height=0&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1832292157092575"

@@ -630,6 +630,20 @@
 
         })
     </script>
+    <style>
+        ::-webkit-input-placeholder { /* WebKit browsers */
+            color: rgb(240, 196, 129);
+        }
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: rgb(240, 196, 129);
+        }
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: rgb(240, 196, 129);
+        }
+        :-ms-input-placeholder { /* Internet Explorer 10+ */
+            color: rgb(240, 196, 129);
+        }
+    </style>
 </head>
 
 <body class="step1" style="background-color: #333300;">

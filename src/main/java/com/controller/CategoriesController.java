@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.controller.memoizer.Memoizer;
 import com.tramhuong.dto.AuthorizedUserInfo;
 import com.tramhuong.dto.CategoryDto;
 import com.tramhuong.services.AuthorizedUserTokenService;
@@ -47,6 +48,8 @@ public class CategoriesController {
 		}else{
 			categoriesService.add(categoryDto);
 		}
+		Memoizer.getInstance().remove("categories");
+		Memoizer.getInstance().remove("subCategories");
 		response.sendRedirect("/admin/categories");
 	}
 

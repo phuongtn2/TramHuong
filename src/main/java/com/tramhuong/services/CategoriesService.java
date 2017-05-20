@@ -11,6 +11,7 @@ public interface CategoriesService {
     void delete(long id) throws ServiceException;
     void update(CategoryDto categoryDto) throws ServiceException;
     List<CategoryDto> findByStatus(byte status) throws ServiceException;
+    //List<CategoryDto> findByStatusMemoizer(byte status);
     List<CategoryDto> findAll() throws ServiceException;
     CategoryDto findById(long id) throws ServiceException;
 
@@ -18,7 +19,9 @@ public interface CategoriesService {
     void deleteS(long id) throws ServiceException;
     void updateS(CategoryDto categoryDto) throws ServiceException;
     List<CategoryDto> findByStatusS(byte status) throws ServiceException;
+    //List<CategoryDto> findByStatusSMemoizer(byte status);
     List<CategoryDto> findAllS() throws ServiceException;
     CategoryDto findByIdS(long id) throws ServiceException;
     List<CategoryDto> findByParent(long id) throws ServiceException;
+    //List<CategoryDto> findByParentMemoizer(long id);
 }

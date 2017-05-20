@@ -1,5 +1,6 @@
 package com.tramhuong.services.impl;
 
+import com.controller.memoizer.Memoizer;
 import com.tramhuong.dto.ProductAddDto;
 import com.tramhuong.dto.ProductDto;
 import com.tramhuong.dto.SearchProductDto;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * Created by PhuongTN1 on 11/4/2016.
@@ -51,10 +53,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDto> findSale(int limit) throws ServiceException {
+    public List<ProductDto> findSale(int limit){
         return productMapper.findSale(limit);
     }
-
+    /*Function<Integer, List<ProductDto>> fMemoizerSale = this::findSale;
+    Function<Integer, List<ProductDto>> gMemoizerSale = Memoizer.memoize(fMemoizerSale);
+    @Override
+    public List<ProductDto> findSaleMemoizer(int limit) {
+        return gMemoizerSale.apply(limit);
+    }*/
     @Override
     public List<ProductDto> findByCategory(long id, int limit) throws ServiceException {
         return productMapper.findByCategory(id, limit);
@@ -66,9 +73,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDto> findHighlights(int limit) throws ServiceException {
+    public List<ProductDto> findHighlights(int limit){
         return productMapper.findHighlights(limit);
     }
+
+    /*Function<Integer, List<ProductDto>> fMemoizerHighlights = this::findHighlights;
+    Function<Integer, List<ProductDto>> gMemoizerHighlights = Memoizer.memoize(fMemoizerHighlights);
+    @Override
+    public List<ProductDto> findHighlightsMemoizer(int limit) {
+        return gMemoizerHighlights.apply(limit);
+    }*/
 
     @Override
     public List<ProductDto> findByTag(String tag) throws ServiceException {

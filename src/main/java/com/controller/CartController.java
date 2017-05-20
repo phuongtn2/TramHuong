@@ -1,6 +1,7 @@
 
 package com.controller;
 
+import com.controller.memoizer.Memoizer;
 import com.tramhuong.dto.*;
 import com.tramhuong.services.*;
 import com.tramhuong.services.error.ServiceException;
@@ -39,11 +40,11 @@ public class CartController {
 	private BlogService blogService;
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)
 	public String initForm(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
 		CommonController.loadContentCart(request, model, productService, setting);
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCommon(request, model, aboutService, blogService);
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		return "cart";
 	}
 
@@ -136,10 +137,10 @@ public class CartController {
 	}
 	@RequestMapping(method = RequestMethod.GET, value = "/checkout")
 	public String checkout(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCommon(request, model, aboutService, blogService);
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		CommonController.loadContentCart(request, model, productService, setting);
 		model.addAttribute("provinces", locationService.findProvinces());
 		List<BillingAccountDto> billingAccountDtos = billingAccountService.findAll();

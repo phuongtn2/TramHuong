@@ -7,12 +7,15 @@
 		<div class="ibox float-e-margins">
 			<div class="ibox-title">
 				<h5><spring:message code="post.title" text="default text"/></h5>
+				<a href="/admin/post/add/${blogId}" class="btn btn-primary" style="margin-left: 20px; padding: 0px">
+					<i class="fa fa-plus"></i><spring:message code="common.button.add" text="default text"/>
+				</a>
 
 				<div class="ibox-tools">
 					<%--<a onclick="goBack()" class="btn btn-success btn btn-xs"><i class="fa fa-backward"><spring:message
 							code="common.button.back"
 							text="default text"/></i></a>--%>
-					<a href="/admin/post/add/${blogId}" class="btn btn-success btn btn-xs"><i class="fa fa-plus-square-o"><spring:message code="common.button.add" text="default text"/></i></a>
+					<%--<a href="/admin/post/add/${blogId}" class="btn btn-success btn btn-xs"><i class="fa fa-plus-square-o"><spring:message code="common.button.add" text="default text"/></i></a>--%>
 					<a class="collapse-link">
 						<i class="fa fa-chevron-up"></i>
 					</a>

@@ -9,5 +9,6 @@ import com.tramhuong.services.error.ServiceException;
 public interface AboutService {
     int add(AboutDto aboutDto) throws ServiceException;
     void update(AboutDto aboutDto) throws ServiceException;
-    AboutDto find() throws ServiceException;
+    AboutDto find(Integer m) throws ServiceException;
+    //AboutDto findMemoizer(Integer m);
 }

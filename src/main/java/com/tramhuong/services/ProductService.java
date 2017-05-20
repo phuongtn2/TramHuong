@@ -18,10 +18,12 @@ public interface ProductService {
     List<ProductDto> findByStatus(byte status) throws ServiceException;
     List<ProductDto> findAll() throws ServiceException;
     List<ProductDto> findNew(int limit) throws ServiceException;
-    List<ProductDto> findSale(int limit) throws ServiceException;
+    List<ProductDto> findSale(int limit);
+    //List<ProductDto> findSaleMemoizer(int limit);
     List<ProductDto> findByCategory(long id, int limit) throws ServiceException;
     List<ProductDto> findBySubCategory(long id, int limit) throws ServiceException;
-    List<ProductDto> findHighlights(int limit) throws ServiceException;
+    List<ProductDto> findHighlights(int limit);
+    //List<ProductDto> findHighlightsMemoizer(int limit);
     List<ProductDto> findByTag(String tag) throws ServiceException;
     List<ProductDto> findByName(String name) throws ServiceException;
     ProductDto findById(long id) throws ServiceException;

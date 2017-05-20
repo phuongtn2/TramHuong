@@ -102,7 +102,7 @@
                                                                          text="default text"/></label>
                         </div>
                         <div class="col-lg-6">
-                            <input type="text" maxlength="16" class="form-control" name="name"
+                            <input type="text" maxlength="256" class="form-control" name="name"
                                    value="<c:if test="${product.name != null}">${product.name}</c:if>" required/>
                         </div>
                     </div>
@@ -322,6 +322,8 @@
                     $('#productForm').submit();
                 }
             }
+        }else{
+            $('#productForm').submit();
         }
     }
 </script>

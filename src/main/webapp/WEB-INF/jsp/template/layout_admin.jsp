@@ -26,6 +26,10 @@
     <link href="${dateCss}" rel="stylesheet">
     <spring:url value="/resources/css/resized.css" var="resizedCss" />
     <link href="${resizedCss}" rel="stylesheet">
+    <spring:url value="/resources/css/plugins/summernote/summernote.css" var="summernote" />
+    <spring:url value="/resources/css/plugins/summernote/summernote-bs3.css" var="summernote3" />
+    <link href="${summernote}" rel="stylesheet">
+    <link href="${summernote3}" rel="stylesheet">
     <link href="${bootsTrapCss}" rel="stylesheet" type="text/css"/>
     <link href="${awesomeFontCss}" rel="stylesheet" type="text/css"/>
     <link href="${animateCss}" rel="stylesheet" type="text/css"/>
@@ -105,8 +109,8 @@
     <script src="${paceJs}"></script>
 
     <!-- jQuery UI -->
-    <spring:url value="/resources/js/plugins/jquery-ui/jquery-ui.min.js" var="uiMinJs" />
-    <script src="${uiMinJs}"></script>
+    <%--<spring:url value="/resources/js/plugins/jquery-ui/jquery-ui.min.js" var="uiMinJs" />
+    <script src="${uiMinJs}"></script>--%>
     <spring:url value="/resources/js/plugins/footable/footable.all.min.js" var="footableJs" />
     <script src="${footableJs}"></script>
     <spring:url value="/resources/js/plugins/iCheck/icheck.min.js" var="isCheckJs" />
@@ -117,9 +121,12 @@
     <script src="${datePickerJs}"></script>
     <spring:url value="/resources/js/plugins/select2/select2.full.min.js" var="select2" />
     <script src="${select2}"></script>
+    <spring:url value="/resources/js/plugins/summernote/summernote.min.js" var="summernoteJs" />
+    <script src="${summernoteJs}"></script>
     <!-- Page-Level Scripts -->
     <script>
         $(document).ready(function() {
+            $('.summernote').summernote();
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green'

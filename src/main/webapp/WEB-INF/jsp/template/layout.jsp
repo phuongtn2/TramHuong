@@ -16,27 +16,6 @@
 <!--[if gt IE 8]><!-->
 <html lang="en">
 <!--<![endif]-->
-<!--Start of Zopim Live Chat Script-->
-<script type="text/javascript">
-    window.$zopim || (function (d, s) {
-        var z = $zopim = function (c) {
-            z._.push(c)
-        }, $ = z.s =
-            d.createElement(s), e = d.getElementsByTagName(s)[0];
-        z.set = function (o) {
-            z.set._.push(o)
-        };
-        z._ = [];
-        z.set._ = [];
-        $.async = !0;
-        $.setAttribute('charset', 'utf-8');
-        $.src = '//v2.zopim.com/?3r0c8iLwFsSWMgqlT4cVZwnrnH3HOlGY';
-        z.t = +new Date;
-        $.type = 'text/javascript';
-        e.parentNode.insertBefore($, e)
-    })(document, 'script');
-</script>
-<!--End of Zopim Live Chat Script-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <spring:url value="/resources/img/favicon/favicon.png" var="fava"/>
@@ -148,10 +127,12 @@
         //]]>
     </script>
 
-    <spring:url value="/resources/js/jquery.min.1.11.0.js" var="a" />
-    <script src="${a}"></script>
-    <spring:url value="/resources/js/bootstrap.min.js" var="b" />
-    <script src="${b}"></script>
+   <%-- <spring:url value="/resources/js/jquery.min.1.11.0.js" var="a" />
+    <script src="${a}"></script>--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <%--<spring:url value="/resources/js/bootstrap.min.js" var="b" />
+    <script src="${b}"></script>--%>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <spring:url value="/resources/js/option_selection.js" var="c" />
     <script src="${c}"></script>
     <spring:url value="/resources/js/api.jquery.js" var="d" />
@@ -160,8 +141,10 @@
     <script src="${e}"></script>
     <spring:url value="/resources/js/modernizr.custom.js" var="f" />
     <script src="${f}"></script>
+    <!--[if lt IE 9]>
     <spring:url value="/resources/js/html5shiv.js" var="g" />
     <script src="${g}"></script>
+    <![endif]-->
     <spring:url value="/resources/js/jquery-migrate-1.2.0.min.js" var="h" />
     <script src="${h}"></script>
     <spring:url value="/resources/js/jquery.touchSwipe.min.js" var="i" />
@@ -204,8 +187,9 @@
     <meta property="og:url" content="${pageContext.request.contextPath}"/>
     <meta property="og:site_name" content="Trầm Hương Tuấn Anh"/>
     <!-- Latest compiled and minified CSS -->
-    <spring:url value="/resources/css/bootstrap.3.3.1.css" var="cs4" />
-    <link href="${cs4}" rel="stylesheet" type="text/css"/>
+    <%--<spring:url value="/resources/css/bootstrap.3.3.1.css" var="cs4" />
+    <link href="${cs4}" rel="stylesheet" type="text/css"/>--%>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Theme haravan-->
     <spring:url value="/resources/css/haravantheme.1.0.css" var="cs5" />
     <link href="${cs5}" rel="stylesheet" type="text/css"/>
@@ -268,7 +252,29 @@
                    src="https://www.facebook.com/tr?id=1832292157092575&ev=PageView&noscript=1"
     /></noscript>--%>
     <!-- End Facebook Pixel Code -->
-
+    <!--Start of Zendesk Chat Script-->
+    <script type="text/javascript">
+        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+            d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+            $.src="https://v2.zopim.com/?4p8ZFgO1mPLfKYsoJSABkYvwJ2NwKOTP";z.t=+new Date;$.
+                type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+    </script>
+    <!--End of Zendesk Chat Script-->
+    <style>
+        ::-webkit-input-placeholder { /* WebKit browsers */
+            color: rgb(240, 196, 129);
+        }
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: rgb(240, 196, 129);
+        }
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: rgb(240, 196, 129);
+        }
+        :-ms-input-placeholder { /* Internet Explorer 10+ */
+            color: rgb(240, 196, 129);
+        }
+    </style>
 </head>
 <body style="background-color: #333300;"><!--Start of Zopim Live Chat Script-->
 <script>
@@ -298,46 +304,7 @@
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
-<script type="text/javascript">
-    window.$zopim || (function (d, s) {
-        var z = $zopim = function (c) {
-            z._.push(c)
-        }, $ = z.s =
-            d.createElement(s), e = d.getElementsByTagName(s)[0];
-        z.set = function (o) {
-            z.set._.push(o)
-        };
-        z._ = [];
-        z.set._ = [];
-        $.async = !0;
-        $.setAttribute("charset", "utf-8");
-        $.src = "//v2.zopim.com/?3mtUKq5VDHP1CzXIisq9l4FLLQtts154";
-        z.t = +new Date;
-        $.type = "text/javascript";
-        e.parentNode.insertBefore($, e)
-    })(document, "script");
-</script>
-<!--End of Zopim Live Chat Script--><!--Start of Zopim Live Chat Script-->
-<script type="text/javascript">
-    window.$zopim || (function (d, s) {
-        var z = $zopim = function (c) {
-            z._.push(c)
-        }, $ = z.s =
-            d.createElement(s), e = d.getElementsByTagName(s)[0];
-        z.set = function (o) {
-            z.set._.push(o)
-        };
-        z._ = [];
-        z.set._ = [];
-        $.async = !0;
-        $.setAttribute('charset', 'utf-8');
-        $.src = '//v2.zopim.com/?3kdUpEdbuPEdAdo9359jp8x3240c0AWg';
-        z.t = +new Date;
-        $.type = 'text/javascript';
-        e.parentNode.insertBefore($, e)
-    })(document, 'script');
-</script>
-<!--End of Zopim Live Chat Script-->
+
 <div class="container-mp nav-wrapper">
     <!-- Begin: wrapper -->
     <div class="wrapper mp-pusher" id="mp-pusher">
@@ -603,14 +570,14 @@
         }
     });
     $("#slider-high-product").responsiveSlides({
-        auto: true,
+        auto: false,
         pager: true,
         nav: true,
         speed: 500,
         namespace: "centered-btns"
     });
     $("#slider-sale-product").responsiveSlides({
-        auto: true,
+        auto: false,
         pager: true,
         nav: true,
         speed: 500,

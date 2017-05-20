@@ -49,7 +49,7 @@
 									<a class="btn-success btn btn-xs"
 									   href="/admin/blog/edit/${b.id}"><i class="fa fa-edit"><spring:message code="common.button.update" text="default text"/></i></a>
 									<a href="/admin/blog/view/${b.id}"
-									   class="btn-danger btn btn-xs"><i class="fa fa-eye-slash"><spring:message code="common.button.view.post" text="default text"/></i></a>
+									   class="btn-danger btn btn-xs"><i class="fa fa-plus"><spring:message code="common.button.add.post" text="default text"/></i></a>
 								</div>
 							</td>
 						</tr>

@@ -7,44 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
 public class OrderController {
 	@Autowired
-	private BillingAccountService billingAccountService;
-	@Autowired
-	private CategoriesService categoriesService;
-	@Autowired
-	private AboutService aboutService;
-	@Autowired
-	private BlogService blogService;
-	@Autowired
-	private MailTransferService mailTransferService;
-	@Autowired
-	private ProductService productService;
-	@Resource
-	private Properties setting;
-	@Autowired
 	private OrderService orderService;
-	@Autowired
-	private OrderItemService orderItemService;
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");

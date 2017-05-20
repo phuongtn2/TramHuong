@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.controller.memoizer.Memoizer;
 import com.tramhuong.dto.CategoryDto;
 import com.tramhuong.services.CategoriesService;
 import com.tramhuong.services.error.ServiceException;
@@ -42,6 +43,8 @@ public class SubCategoriesController {
 		}else{
 			categoriesService.addS(categoryDto);
 		}
+		Memoizer.getInstance().remove("categories");
+		Memoizer.getInstance().remove("subCategories");
 		response.sendRedirect("/admin/s_categories");
 	}
 
@@ -61,6 +64,8 @@ public class SubCategoriesController {
 	@RequestMapping(value = "/admin/s_categories/edit/{id}", method = RequestMethod.POST)
 	public void saveEdit(@ModelAttribute("category") CategoryDto categoryDto, @PathVariable long id, HttpServletResponse response) throws ServiceException, IOException {
 		categoriesService.updateS(categoryDto);
+		Memoizer.getInstance().remove("categories");
+		Memoizer.getInstance().remove("subCategories");
 		response.sendRedirect("/admin/s_categories");
 	}
 

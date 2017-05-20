@@ -1,6 +1,7 @@
 
 package com.controller;
 
+import com.controller.memoizer.Memoizer;
 import com.tramhuong.dto.BlogDto;
 import com.tramhuong.dto.MappingCategoryDto;
 import com.tramhuong.dto.PostDto;
@@ -44,13 +45,25 @@ public class BlogController {
 
 	@RequestMapping(value = "/blog/{id}", method = RequestMethod.GET)
 	public String initForm(HttpServletRequest request, ModelMap model, @PathVariable int id) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
-		BlogDto blogDto = blogService.findById(id);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
+		BlogDto blogDto = new BlogDto();
+		if(Memoizer.getInstance().get("blog" + id) == null) {
+			blogDto = blogService.findById(id);
+			Memoizer.getInstance().put("blog" + id, blogDto);
+		}else{
+			blogDto = (BlogDto) Memoizer.getInstance().get("blog" + id);
+		}
 		model.addAttribute("b", blogDto);
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCommon(request, model, aboutService, blogService);
-		List<PostDto> postNews = blogService.findPostNew();
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
+		List<PostDto> postNews = new ArrayList<PostDto>();
+		if(Memoizer.getInstance().get("post") == null) {
+			postNews = blogService.findPostNew();
+			Memoizer.getInstance().put("post", postNews);
+		}else{
+			postNews = (List<PostDto>) Memoizer.getInstance().get("post");
+		}
 		model.addAttribute("postNews", postNews);
 		/*if(id == 2){
 			List<PostDto> postDtos = blogService.findPostByBlogId(id,(byte) 1);
@@ -64,7 +77,13 @@ public class BlogController {
 			model.addAttribute("active", "_6");
 			return "danhngon";
 		}else{*/
-			List<PostDto> postDtos = blogService.findPostByBlogId(id, (byte) 1);
+		List<PostDto> postDtos = new ArrayList<PostDto>();
+		if(Memoizer.getInstance().get("post-home") == null) {
+			postDtos = blogService.findPostByBlogId(id, (byte) 1);
+			Memoizer.getInstance().put("post-home", postDtos);
+		}else{
+			postDtos = (List<PostDto>) Memoizer.getInstance().get("post-home");
+		}
 			model.addAttribute("posts", postDtos);
 			/*if(id==1)
 				model.addAttribute("active", "_6");
@@ -76,13 +95,25 @@ public class BlogController {
 
 	@RequestMapping(value = "/blogs/post/{id}", method = RequestMethod.GET)
 	public String postContent(HttpServletRequest request, ModelMap model, @PathVariable int id) throws ServiceException, UnsupportedEncodingException {
-		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService);
-		BlogDto blogDto = blogService.findById(id);
-		model.addAttribute("b", blogDto);
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
+		/*BlogDto blogDto = new BlogDto();
+		if(Memoizer.getInstance().get("blog" + id) == null) {
+			blogDto = blogService.findById(id);
+			Memoizer.getInstance().put("blog" + id, blogDto);
+		}else{
+			blogDto = (BlogDto) Memoizer.getInstance().get("blog" + id);
+		}
+		model.addAttribute("b", blogDto);*/
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
-		CommonController.loadCommon(request, model, aboutService, blogService);
-		List<PostDto> postNews = blogService.findPostNew();
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
+		List<PostDto> postNews = new ArrayList<PostDto>();
+		if(Memoizer.getInstance().get("post") == null) {
+			postNews = blogService.findPostNew();
+			Memoizer.getInstance().put("post", postNews);
+		}else{
+			postNews = (List<PostDto>) Memoizer.getInstance().get("post");
+		}
 		model.addAttribute("postNews", postNews);
 		model.addAttribute("post", blogService.findPostById(id));
 		return "post";
@@ -116,6 +147,9 @@ public class BlogController {
 		}else{
 			blogService.add(blogDto);
 		}
+		Memoizer.getInstance().remove("post");
+		Memoizer.getInstance().remove("post-home");
+		Memoizer.getInstance().remove("blogs");
 		response.sendRedirect("/admin/blogs");
 	}
 
@@ -162,7 +196,6 @@ public class BlogController {
 	public void managerSavePost(HttpServletResponse response, ModelMap model, @ModelAttribute("post") PostDto postDto) throws ServiceException, IOException {
 		String path = servletContext.getRealPath("/");
 		if(postDto.getFile() != null && !postDto.getFile().isEmpty()){
-
 			String fileName = "/resources/img/blogs/" + RandomStringUtils.randomAlphanumeric(10)+ "_" + postDto.getFile().getOriginalFilename();
 			postDto.setImg(fileName);
 			OutputStream outputStream = new FileOutputStream(path + fileName);
@@ -180,6 +213,8 @@ public class BlogController {
 		else {
 			blogService.addPost(postDto);
 		}
+		Memoizer.getInstance().remove("post");
+		Memoizer.getInstance().remove("post-home");
 		response.sendRedirect("/admin/post/view/" + postDto.getId());
 	}
 }

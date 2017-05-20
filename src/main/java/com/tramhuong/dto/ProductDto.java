@@ -70,7 +70,15 @@ public class ProductDto {
     }
 
     public Byte getIsSale() {
-        return isSale;
+        if(salePrice != null) {
+            if (salePrice > 0 && isSale == 1) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }else{
+            return 0;
+        }
     }
 
     public void setIsSale(Byte isSale) {
