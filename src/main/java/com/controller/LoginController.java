@@ -8,6 +8,8 @@ import com.tramhuong.services.error.ServiceException;
 import com.tramhuong.util.str.StringUtil;
 import com.tramhuong.util.str.TokenGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,11 +19,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.Principal;
+import java.util.Properties;
 
 @Controller
 public class LoginController {
@@ -31,7 +39,8 @@ public class LoginController {
 	private MailTemplateService mailTemplateService;
 	@Autowired
 	private MailTransferService mailTransferService;
-
+	@Resource
+	private Properties setting;
 	private String md5Encoding(String str) {
 		Md5PasswordEncoder pwEncoder = new Md5PasswordEncoder();
 		return pwEncoder.encodePassword(str, null);
@@ -100,7 +109,7 @@ public class LoginController {
 			authorizedUserTokenService.updatePassword(userInfo);
 			//Send Mail
 			MailTemplateDto mailTemplateDto = mailTemplateService.findByCode("PASSWORD");
-			MailSenderDto mailSenderDto = new MailSenderDto();
+			/*MailSenderDto mailSenderDto = new MailSenderDto();
 			mailSenderDto.setEmail(authorizedUserInfo.getMail());
 			mailSenderDto.setFullName("Trầm Hương");
 			SendMailPersonalDto sendMailPersonalDto = new SendMailPersonalDto();
@@ -110,14 +119,53 @@ public class LoginController {
 			sendMailPersonalDto.setSignature(sig);
 			SendMailParameter sendMailParameter = new SendMailParameter();
 			sendMailParameter.setToEmail(authorizedUserInfo.getMail());
-			sendMailParameter.setSubject("Reset Password");
+			sendMailParameter.setSubject("Reset Password");*/
 			String body = mailTemplateDto.getHeader()
-					+ "<p style='color:red'> Mật khẩu mới: " + password + "</p>";
-			sendMailParameter.setBody(body);
-			mailTransferService.sendCustomerEmail(mailSenderDto, sendMailPersonalDto, sendMailParameter, "RESET-PASSWORD", true);
+					+ "<p style='color:red'> Mật khẩu mới: " + password + "</p>"
+					+ mailTemplateDto.getFooter();
+			//sendMailParameter.setBody(body);
+			//mailTransferService.sendCustomerEmail(mailSenderDto, sendMailPersonalDto, sendMailParameter, "RESET-PASSWORD", true);
+			final JavaMailSenderImpl mailSender = getMailSender(setting.getProperty("mailTransfer.smtp.server.user"),
+					setting.getProperty("mailTransfer.smtp.server.passwd"));
+			MimeMessage message = mailSender.createMimeMessage();
+			try {
+				final String headerCharset = setting.getProperty("mailTransfer.headerCharset");
+				MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+				helper.setFrom(new InternetAddress(setting.getProperty("mailTransfer.smtp.server.user"), setting.getProperty("mailTransfer.infoMailFullName"), headerCharset));
+				helper.setTo(authorizedUserInfo.getMail());
+				helper.setSubject("Reset Password");
+				helper.setText(body, true);
+			} catch (MessagingException e) {
+				return "reset-password-fail";
+			} catch (UnsupportedEncodingException e) {
+				return "reset-password-fail";
+			}
 			return "reset-password-success";
 		}else{
 			return "reset-password-fail";
 		}
+	}
+
+	public JavaMailSenderImpl getMailSender(String username, String password) {
+		final JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+
+		mailSender.setDefaultEncoding("UTF-8");
+		mailSender.setHost(setting.getProperty("mailTransfer.smtp.server"));
+		mailSender.setPort(Integer.parseInt(setting.getProperty("mailTransfer.smtp.port")));
+		mailSender.setProtocol("smtps");
+		mailSender.setUsername(username);
+		mailSender.setPassword(password);
+
+		mailSender.setJavaMailProperties(getOutgoingJavaMailProperties());
+
+		return mailSender;
+	}
+
+	public Properties getOutgoingJavaMailProperties() {
+		final Properties properties = new Properties();
+		properties.put("mail.smtp.auth", setting.getProperty("mailTransfer.smtp.auth"));
+		properties.put("mail.smtp.starttls.enable", setting.getProperty("mailTransfer.smtp.starttls.enable"));
+		return properties;
 	}
 }

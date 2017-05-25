@@ -6,6 +6,8 @@ import com.tramhuong.services.*;
 import com.tramhuong.services.error.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -125,6 +130,28 @@ public class BillingController {
 		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		return "checkoutSuccess";
 	}
+
+	public JavaMailSenderImpl getMailSender(String username, String password) {
+		final JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+
+		mailSender.setDefaultEncoding("UTF-8");
+		mailSender.setHost(setting.getProperty("mailTransfer.smtp.server"));
+		mailSender.setPort(Integer.parseInt(setting.getProperty("mailTransfer.smtp.port")));
+		mailSender.setProtocol("smtps");
+		mailSender.setUsername(username);
+		mailSender.setPassword(password);
+
+		mailSender.setJavaMailProperties(getOutgoingJavaMailProperties());
+
+		return mailSender;
+	}
+
+	public Properties getOutgoingJavaMailProperties() {
+		final Properties properties = new Properties();
+		properties.put("mail.smtp.auth", setting.getProperty("mailTransfer.smtp.auth"));
+		properties.put("mail.smtp.starttls.enable", setting.getProperty("mailTransfer.smtp.starttls.enable"));
+		return properties;
+	}
 	@RequestMapping(method = RequestMethod.POST, value = "/saveOrder")
 	public void saveOrder(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("orderInfo") OrderInfoDto orderInfoDto) throws ServiceException, IOException {
 
@@ -148,7 +175,7 @@ public class BillingController {
 			//send mail
 			AboutDto aboutDto = aboutService.find(1);
 			MailTemplateDto mailTemplateDto = mailTemplateService.findByCode("ORDER");
-			MailSenderDto mailSenderDto = new MailSenderDto();
+			/*MailSenderDto mailSenderDto = new MailSenderDto();
 			mailSenderDto.setEmail(aboutDto.getEmail());
 			mailSenderDto.setFullName("Trầm Hương");
 			SendMailPersonalDto sendMailPersonalDto = new SendMailPersonalDto();
@@ -161,7 +188,7 @@ public class BillingController {
 			//sendMailParameter.setAttachementURLList(Arrays.asList("localhost:8080"));
 			sendMailParameter.setOrderCode(cartListDto.getOrderCode());
 			sendMailParameter.setSubject("Mua Sản Phẩm Trầm Hương");
-			sendMailParameter.setToEmail(orderInfoDto.getEmail());
+			sendMailParameter.setToEmail(orderInfoDto.getEmail());*/
 			DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
 			List<ProductDto> productDtos = CommonController.getProductFromCart(request, productService);
 			String content = "";
@@ -186,9 +213,29 @@ public class BillingController {
 					+ content
 					+ "</table>"
 					+ "<p> Phí Vận Chuyển: " + decimalFormat.format(Double.parseDouble(setting.getProperty("shipping.cost"))) + "đ</p>"
-					+ "<p style='color:red'> TỔNG CỘNG: " + cartListDto.getTotalPrice() + "đ</p>";
-			sendMailParameter.setBody(body);
-			mailTransferService.sendCustomerEmail(mailSenderDto, sendMailPersonalDto, sendMailParameter, "ORDER", true);
+					+ "<p style='color:red'> TỔNG CỘNG: " + cartListDto.getTotalPrice() + "đ</p>"
+					+ mailTemplateDto.getFooter();
+			//sendMailParameter.setBody(body);
+			//mailTransferService.sendCustomerEmail(mailSenderDto, sendMailPersonalDto, sendMailParameter, "ORDER", true);
+			final JavaMailSenderImpl mailSender = getMailSender(setting.getProperty("mailTransfer.smtp.server.user"),
+					setting.getProperty("mailTransfer.smtp.server.passwd"));
+			MimeMessage message = mailSender.createMimeMessage();
+			try {
+				final String headerCharset = setting.getProperty("mailTransfer.headerCharset");
+				MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+				helper.setFrom(new InternetAddress(setting.getProperty("mailTransfer.smtp.server.user"), setting.getProperty("mailTransfer.infoMailFullName"), headerCharset));
+				helper.setTo(orderInfoDto.getEmail());
+				helper.setSubject(setting.getProperty("mailTransfer.subject"));
+				helper.setText(body, true);
+			} catch (MessagingException e) {
+				e.printStackTrace();
+				// delete order
+				orderService.delete(orderInfoDto.getOrderCode());
+				orderItemService.delete(orderInfoDto.getOrderCode());
+			}
+
+			mailSender.send(message);
 			// delete session
 			session.removeAttribute("cartList");
 		}

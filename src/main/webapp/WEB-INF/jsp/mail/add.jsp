@@ -49,13 +49,13 @@
                                 <c:if test="${mail.id!= null}">
                                     <div id="mail_header" class="ui-widget-content" style="height: 50%;width: 100%;">
                                     <textarea rows="10" style="width: 100%; height: 100%"
-                                              name="mail_header" required>${mail.header}</textarea>
+                                              name="header" required>${mail.header}</textarea>
                                     </div>
                                 </c:if>
                                 <c:if test="${mail.id== null}">
                                     <div id="mail_header" class="ui-widget-content" style="height: 50%;width: 100%;">
                                     <textarea rows="10" style="width: 100%; height: 100%"
-                                              name="mail_header" required></textarea>
+                                              name="header" required></textarea>
                                     </div>
                                 </c:if>
                             </div>
@@ -71,13 +71,13 @@
                                 <c:if test="${mail.id!= null}">
                                     <div id="mail_footer" class="ui-widget-content" style="height: 50%;width: 100%;">
                                     <textarea rows="10" style="width: 100%; height: 100%"
-                                              name="mail_footer" required>${mail.footer}</textarea>
+                                              name="footer" required>${mail.footer}</textarea>
                                     </div>
                                 </c:if>
                                 <c:if test="${mail.id== null}">
                                     <div id="mail_footer" class="ui-widget-content" style="height: 50%;width: 100%;">
                                     <textarea rows="10" style="width: 100%; height: 100%"
-                                              name="mail_footer" required></textarea>
+                                              name="footer" required></textarea>
                                     </div>
                                 </c:if>
                             </div>

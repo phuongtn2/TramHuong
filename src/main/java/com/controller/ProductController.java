@@ -216,18 +216,9 @@ public class ProductController {
 		}else{
 			productDto.setImg2(null);
 		}
-		Memoizer.getInstance().remove("product");
-		Memoizer.getInstance().remove("search");
-		Memoizer.getInstance().remove("tag");
-		Memoizer.getInstance().remove("sort");
-		Memoizer.getInstance().remove("sale");
-		Memoizer.getInstance().remove("high");
-		Memoizer.getInstance().remove("product-relation");
-		Memoizer.getInstance().remove("product-categories");
-		Memoizer.getInstance().remove("product-subCategories");
+		Memoizer.getInstance().removeAll();
 		if(productDto.getId() != null){
 			productService.update(productDto);
-			Memoizer.getInstance().remove(String.valueOf(productDto.getId()));
 			response.sendRedirect("/admin/product/view/" + productDto.getId());
 		}else{
 			productService.add(productDto);
@@ -308,11 +299,11 @@ public class ProductController {
 		}
 		//Get list product by category
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
-		if(Memoizer.getInstance().get("product-categories") == null) {
+		if(Memoizer.getInstance().get("product-categories"+id) == null) {
 			productDtoList = productService.findByCategory(id, 0);
-			Memoizer.getInstance().put("product-categories", productDtoList);
+			Memoizer.getInstance().put("product-categories"+id, productDtoList);
 		}else{
-			productDtoList = (List<ProductDto>) Memoizer.getInstance().get("product-categories");
+			productDtoList = (List<ProductDto>) Memoizer.getInstance().get("product-categories"+id);
 		}
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_4");
@@ -330,11 +321,11 @@ public class ProductController {
 		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		//Get list product by category
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
-		if(Memoizer.getInstance().get("product-subCategories") == null) {
+		if(Memoizer.getInstance().get("product-subCategories"+id) == null) {
 			productDtoList = productService.findBySubCategory(id, 0);
-			Memoizer.getInstance().put("product-subCategories", productDtoList);
+			Memoizer.getInstance().put("product-subCategories"+id, productDtoList);
 		}else{
-			productDtoList = (List<ProductDto>) Memoizer.getInstance().get("product-subCategories");
+			productDtoList = (List<ProductDto>) Memoizer.getInstance().get("product-subCategories"+id);
 		}
 		if(mappingCategoryDtos != null){
 			for (MappingCategoryDto mappingCategoryDto: mappingCategoryDtos) {
@@ -437,12 +428,12 @@ public class ProductController {
 		model.addAttribute("bre", name != null ? name: "tram huong");
 		//Get list product by category
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
-		if(Memoizer.getInstance().get("search") == null) {
+		//if(Memoizer.getInstance().get("search") == null) {
 			productDtoList = productService.findByName(name != null ? name : "tram huong");
-			Memoizer.getInstance().put("search", productDtoList);
-		}else {
-			productDtoList = (List<ProductDto>) Memoizer.getInstance().get("search");
-		}
+		//	Memoizer.getInstance().put("search", productDtoList);
+		//}else {
+		//	productDtoList = (List<ProductDto>) Memoizer.getInstance().get("search");
+		//}
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_4");
 		SortDto sortDto = new SortDto();
@@ -460,11 +451,27 @@ public class ProductController {
 		model.addAttribute("bre", "Sắp xếp");
 		//Get list product by category
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
-		if(Memoizer.getInstance().get("sort") == null) {
-			productDtoList = productService.sort(sortDto);
-			Memoizer.getInstance().put("sort", productDtoList);
+		if(sortDto.getSortType().equals("manual")) {
+			if (Memoizer.getInstance().get("manual") == null) {
+				productDtoList = productService.sort(sortDto);
+				Memoizer.getInstance().put("manual", productDtoList);
+			} else {
+				productDtoList = (List<ProductDto>) Memoizer.getInstance().get("manual");
+			}
+		}else if(sortDto.getSortType().equals("price-ascending")){
+			if (Memoizer.getInstance().get("price-ascending") == null) {
+				productDtoList = productService.sort(sortDto);
+				Memoizer.getInstance().put("price-ascending", productDtoList);
+			} else {
+				productDtoList = (List<ProductDto>) Memoizer.getInstance().get("price-ascending");
+			}
 		}else{
-			productDtoList = (List<ProductDto>) Memoizer.getInstance().get("sort");
+			if (Memoizer.getInstance().get("price-descending") == null) {
+				productDtoList = productService.sort(sortDto);
+				Memoizer.getInstance().put("price-descending", productDtoList);
+			} else {
+				productDtoList = (List<ProductDto>) Memoizer.getInstance().get("price-descending");
+			}
 		}
 		model.addAttribute("productList", productDtoList);
 		model.addAttribute("active", "_4");

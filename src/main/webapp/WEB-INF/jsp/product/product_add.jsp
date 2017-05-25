@@ -167,11 +167,11 @@
                         </div>
                         <div class="col-lg-6">
                             <c:if test="${product.isSale==1}">
-                                <input type="text" maxlength="9" class="form-control" name="salePrice" id="salePrice" placeholder="Giá khuyến mãi <= 70% Giá Bán"
+                                <input type="text" maxlength="9" class="form-control" name="salePrice" id="salePrice" placeholder="Giá khuyến mãi <= 70% Và >= 50% Giá Bán"
                                    value="<c:if test="${product.salePrice != null && product.salePrice != ''}">${product.salePrice}</c:if>"/>
                             </c:if>
                             <c:if test="${product.isSale==null || product.isSale==0}">
-                                <input type="text" maxlength="9" class="form-control" name="salePrice" id="salePrice" placeholder="Giá khuyến mãi <= 70% Giá Bán"
+                                <input type="text" maxlength="9" class="form-control" name="salePrice" id="salePrice" placeholder="Giá khuyến mãi <= 70% Và >= 50% Giá Bán"
                                        value="<c:if test="${product.salePrice != null && product.salePrice != ''}">${product.salePrice}</c:if>" disabled="disabled"/>
                             </c:if>
                         </div>
@@ -313,12 +313,17 @@
         if($('#salePrice').prop('disabled') == false){
             var price = $('#price').val();
             if(price != null && price != ''){
-                var salePriceCheck = (price*70)/100;
+                var salePriceCheckMax = (price*70)/100;
+                var salePriceCheckMin = price/2;
                 var salePrice = $('#salePrice').val();
-                if(salePrice > salePriceCheck){
-                    alert('Giá khuyến mãi <= 70% Giá Bán');
+                if(salePrice > salePriceCheckMax){
+                    alert('Giá khuyến mãi <= 70% giá bán');
                     return false;
-                }else{
+                }else if(salePrice < salePriceCheckMin) {
+                    alert('Giá khuyến mãi >= 50% giá bán');
+                    return false;
+                }
+                else{
                     $('#productForm').submit();
                 }
             }

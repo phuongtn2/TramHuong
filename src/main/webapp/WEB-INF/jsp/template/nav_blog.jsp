@@ -41,7 +41,7 @@
                         <c:if test="${count == 1}">
                             <c:if test="${m.subSize > 0}">
                                 <li class='item has-sub  first'>
-                                    <a href='/category/${m.categoryDto.id}' style="z-index: 99999;">
+                                    <a href='/category/${m.categoryDto.id}' <%--style="z-index: 99999;"--%>>
                                         <span class="lbl">${m.categoryDto.name}</span>
                                         <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-${count}"
                                               class="sign">
@@ -88,7 +88,7 @@
                         <c:if test="${count < mSize && count > 1}">
                             <c:if test="${m.subSize > 0}">
                                 <li class='item has-sub'>
-                                    <a href='/category/${m.categoryDto.id}' style="z-index: 99999;">
+                                    <a href='/category/${m.categoryDto.id}' <%--style="z-index: 99999;"--%>>
                                         <span class="lbl">${m.categoryDto.name}</span>
                                         <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-${count}"
                                               class="sign">
@@ -135,7 +135,7 @@
                         <c:if test="${count == mSize && mSize > 1}">
                             <c:if test="${m.subSize > 0}">
                                 <li class='item has-sub  last'>
-                                    <a href='/category/${m.categoryDto.id}' style="z-index: 99999;">
+                                    <a href='/category/${m.categoryDto.id}' <%--style="z-index: 99999;"--%>>
                                         <span class="lbl">${m.categoryDto.name}</span>
                                         <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-${count}"
                                               class="sign">
