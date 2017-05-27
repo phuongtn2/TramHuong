@@ -16,27 +16,6 @@
 <!--[if gt IE 8]><!-->
 <html lang="en">
 <!--<![endif]-->
-<!--Start of Zopim Live Chat Script-->
-<script type="text/javascript">
-    window.$zopim || (function (d, s) {
-        var z = $zopim = function (c) {
-            z._.push(c)
-        }, $ = z.s =
-            d.createElement(s), e = d.getElementsByTagName(s)[0];
-        z.set = function (o) {
-            z.set._.push(o)
-        };
-        z._ = [];
-        z.set._ = [];
-        $.async = !0;
-        $.setAttribute('charset', 'utf-8');
-        $.src = '//v2.zopim.com/?3r0c8iLwFsSWMgqlT4cVZwnrnH3HOlGY';
-        z.t = +new Date;
-        $.type = 'text/javascript';
-        e.parentNode.insertBefore($, e)
-    })(document, 'script');
-</script>
-<!--End of Zopim Live Chat Script-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <spring:url value="/resources/img/favicon/favicon.png" var="fava"/>
@@ -49,6 +28,27 @@
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=0' name='viewport'/>
     <link rel="canonical" href="${pageContext.request.contextPath}"/>
+    <style>
+        .activePageLink
+        {
+            background-color:#abd305;
+        }
+        .clear {
+            clear:both
+        }
+        ::-webkit-input-placeholder { /* WebKit browsers */
+            color: rgb(240, 196, 129);
+        }
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: rgb(240, 196, 129);
+        }
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: rgb(240, 196, 129);
+        }
+        :-ms-input-placeholder { /* Internet Explorer 10+ */
+            color: rgb(240, 196, 129);
+        }
+    </style>
     <script>
         //<![CDATA[
         (function (i, s, o, g, r, a, m) {
@@ -147,10 +147,12 @@
         //]]>
     </script>
 
-    <spring:url value="/resources/js/jquery.min.1.11.0.js" var="a" />
-    <script src="${a}"></script>
-    <spring:url value="/resources/js/bootstrap.min.js" var="b" />
-    <script src="${b}"></script>
+    <%-- <spring:url value="/resources/js/jquery.min.1.11.0.js" var="a" />
+    <script src="${a}"></script>--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <%--<spring:url value="/resources/js/bootstrap.min.js" var="b" />
+    <script src="${b}"></script>--%>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <spring:url value="/resources/js/option_selection.js" var="c" />
     <script src="${c}"></script>
     <spring:url value="/resources/js/api.jquery.js" var="d" />
@@ -183,6 +185,12 @@
     <script src="${a1}"></script>
     <spring:url value="/resources/js/addthis_widget.js" var="a2" />
     <script src="${a2}"></script>
+    <spring:url value="/resources/js/list.min.js" var="a3" />
+    <script src="${a3}"></script>
+    <spring:url value="/resources/js/libs-script.min.js" var="a22" />
+    <script src="${a22}"></script>
+    <spring:url value="/resources/js/main1.js" var="a122" />
+    <script src="${a122}"></script>
     <%--<spring:url value="/resources/js/cart.js" var="a3" />
     <script src="${a3}"></script>--%>
     <!--------------CSS----------->
@@ -190,8 +198,8 @@
     <link href="${cs1}" rel="stylesheet" type="text/css"/>
     <spring:url value="/resources/css/page-contact-form.css" var="cs2" />
     <link href="${cs2}" rel="stylesheet" type="text/css"/>
-    <spring:url value="/resources/css/roboto.css" var="cs3" />
-    <link href="${cs3}" rel="stylesheet" type="text/css"/>
+    <%--<spring:url value="/resources/css/roboto.css" var="cs3" />
+    <link href="${cs3}" rel="stylesheet" type="text/css"/>--%>
 
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="Trầm Hương Tuấn Anh"/>
@@ -217,8 +225,10 @@
     <link href="${cs9}" rel="stylesheet" type="text/css"/>
     <spring:url value="/resources/css/sidebar.css" var="cs10" />
     <link href="${cs10}" rel="stylesheet" type="text/css"/>
-    <spring:url value="/resources/css/roboto.css" var="cs11" />
-    <link href="${cs11}" rel="stylesheet" type="text/css"/>
+    <%--<spring:url value="/resources/css/roboto.css" var="cs11" />
+    <link href="${cs11}" rel="stylesheet" type="text/css"/>--%>
+    <spring:url value="/resources/css/style.3.1.css" var="cs31" />
+    <link href="${cs31}" rel="stylesheet" type="text/css"/>
 
     <!-- Facebook Pixel Code -->
     <script>
@@ -258,48 +268,18 @@
     /></noscript>
     <!-- End Facebook Pixel Code -->
 
+    <!--Start of Zendesk Chat Script-->
+    <script type="text/javascript">
+        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+            d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+            $.src="https://v2.zopim.com/?4p8ZFgO1mPLfKYsoJSABkYvwJ2NwKOTP";z.t=+new Date;$.
+                type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+    </script>
+    <!--End of Zendesk Chat Script-->
+
 </head>
-<body><!--Start of Zopim Live Chat Script-->
-<script type="text/javascript">
-    window.$zopim || (function (d, s) {
-        var z = $zopim = function (c) {
-            z._.push(c)
-        }, $ = z.s =
-            d.createElement(s), e = d.getElementsByTagName(s)[0];
-        z.set = function (o) {
-            z.set._.push(o)
-        };
-        z._ = [];
-        z.set._ = [];
-        $.async = !0;
-        $.setAttribute("charset", "utf-8");
-        $.src = "//v2.zopim.com/?3mtUKq5VDHP1CzXIisq9l4FLLQtts154";
-        z.t = +new Date;
-        $.type = "text/javascript";
-        e.parentNode.insertBefore($, e)
-    })(document, "script");
-</script>
-<!--End of Zopim Live Chat Script--><!--Start of Zopim Live Chat Script-->
-<script type="text/javascript">
-    window.$zopim || (function (d, s) {
-        var z = $zopim = function (c) {
-            z._.push(c)
-        }, $ = z.s =
-            d.createElement(s), e = d.getElementsByTagName(s)[0];
-        z.set = function (o) {
-            z.set._.push(o)
-        };
-        z._ = [];
-        z.set._ = [];
-        $.async = !0;
-        $.setAttribute('charset', 'utf-8');
-        $.src = '//v2.zopim.com/?3kdUpEdbuPEdAdo9359jp8x3240c0AWg';
-        z.t = +new Date;
-        $.type = 'text/javascript';
-        e.parentNode.insertBefore($, e)
-    })(document, 'script');
-</script>
-<!--End of Zopim Live Chat Script-->
+<body style="background-color: #333300;">
 <div class="container-mp nav-wrapper">
     <!-- Begin: wrapper -->
     <div class="wrapper mp-pusher" id="mp-pusher">
@@ -543,7 +523,7 @@
 </script>
 
 <!-- Google Code for Chuy&#7875;n &#273;&#7893;i &#273;&#7863;t h&agrave;ng Conversion Page -->
-<script type="text/javascript">
+<%--<script type="text/javascript">
     /* <![CDATA[ */
     var google_conversion_id = 974485475;
     var google_conversion_language = "en";
@@ -562,7 +542,7 @@
         <img height="1" width="1" style="border-style:none;" alt=""
              src="//www.googleadservices.com/pagead/conversion/974485475/?value=80000.00&amp;currency_code=VND&amp;label=9OvyCLjcrGgQ4-_V0AM&amp;guid=ON&amp;script=0"/>
     </div>
-</noscript>
+</noscript>--%>
 <!-- script comment fb -->
 <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];

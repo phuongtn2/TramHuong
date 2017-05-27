@@ -199,8 +199,8 @@
     <link href="${cs1}" rel="stylesheet" type="text/css"/>
     <spring:url value="/resources/css/page-contact-form.css" var="cs2" />
     <link href="${cs2}" rel="stylesheet" type="text/css"/>
-    <spring:url value="/resources/css/roboto.css" var="cs3" />
-    <link href="${cs3}" rel="stylesheet" type="text/css"/>
+    <%--<spring:url value="/resources/css/roboto.css" var="cs3" />
+    <link href="${cs3}" rel="stylesheet" type="text/css"/>--%>
 
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="Trầm Hương Tuấn Anh"/>
@@ -226,8 +226,8 @@
     <link href="${cs9}" rel="stylesheet" type="text/css"/>
     <spring:url value="/resources/css/sidebar.css" var="cs10" />
     <link href="${cs10}" rel="stylesheet" type="text/css"/>
-    <spring:url value="/resources/css/roboto.css" var="cs11" />
-    <link href="${cs11}" rel="stylesheet" type="text/css"/>
+    <%--<spring:url value="/resources/css/roboto.css" var="cs11" />
+    <link href="${cs11}" rel="stylesheet" type="text/css"/>--%>
     <spring:url value="/resources/css/style.3.1.css" var="cs31" />
     <link href="${cs31}" rel="stylesheet" type="text/css"/>
 
@@ -544,7 +544,7 @@
 </script>
 
 <!-- Google Code for Chuy&#7875;n &#273;&#7893;i &#273;&#7863;t h&agrave;ng Conversion Page -->
-<script type="text/javascript">
+<%--<script type="text/javascript">
     /* <![CDATA[ */
     var google_conversion_id = 974485475;
     var google_conversion_language = "en";
@@ -563,7 +563,7 @@
         <img height="1" width="1" style="border-style:none;" alt=""
              src="//www.googleadservices.com/pagead/conversion/974485475/?value=80000.00&amp;currency_code=VND&amp;label=9OvyCLjcrGgQ4-_V0AM&amp;guid=ON&amp;script=0"/>
     </div>
-</noscript>
+</noscript>--%>
 <!-- script comment fb -->
 <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];

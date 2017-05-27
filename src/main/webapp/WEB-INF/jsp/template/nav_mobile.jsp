@@ -5,7 +5,7 @@
 <nav id="mp-menu" class="mp-menu">
     <div class="mp-level">
         <ul class="lv1">
-            <a class="mp-back" href="#">Quay lại</a>
+            <a href="/">Quay lại</a>
             <li><a href="/">Trang Chủ</a></li>
             <li><a href="/introduce">Giới thiệu</a></li>
             <li class="has-children icon icon-arrow-left">
@@ -15,22 +15,29 @@
                     <a class="mp-back" href="#">Quay lại</a>
                     <ul class="cd-secondary-nav count-nav-11">
                         <c:forEach items="${mapping_categories}" var="m">
+                            <c:if test="${m.subSize > 0}">
                             <li class="has-children icon icon-arrow-left">
                                 <a href="/category/${m.categoryDto.id}">${m.categoryDto.name}</a>
                                 <div class="mp-level">
                                     <h2>${m.categoryDto.name}</h2>
                                     <a class="mp-back" href="#">Quay lại</a>
-                                    <c:if test="${m.subSize > 0}">
+
                                         <ul>
                                             <c:forEach items="${m.suCategories}" var="s">
                                                 <li>
-                                                    <a href="/su-category/${s.id}">${s.name}</a>
+                                                    <a href="/sub-category/${s.id}">${s.name}</a>
                                                 </li>
                                             </c:forEach>
                                         </ul>
-                                    </c:if>
+
                                 </div>
                             </li>
+                            </c:if>
+                            <c:if test="${m.subSize == null || m.subSize <=0}">
+                                <li>
+                                    <a href="/category/${m.categoryDto.id}">${m.categoryDto.name}</a>
+                                </li>
+                            </c:if>
                         </c:forEach>
                     </ul>
                 </div>

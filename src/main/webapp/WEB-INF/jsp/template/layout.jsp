@@ -9,6 +9,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <!--[if lt IE 7]><html class="no-js ie6 oldie" lang="en"><![endif]-->
 <!--[if IE 7]><html class="no-js ie7 oldie" lang="en"><![endif]-->
@@ -28,8 +29,28 @@
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=0' name='viewport'/>
     <link rel="canonical" href="${pageContext.request.contextPath}"/>
-    <meta property="fb:app_id" content="1832292157092575" />
-    <%--<script>
+    <style>
+        .activePageLink
+        {
+            background-color:#abd305;
+        }
+        .clear {
+            clear:both
+        }
+        ::-webkit-input-placeholder { /* WebKit browsers */
+            color: rgb(240, 196, 129);
+        }
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: rgb(240, 196, 129);
+        }
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: rgb(240, 196, 129);
+        }
+        :-ms-input-placeholder { /* Internet Explorer 10+ */
+            color: rgb(240, 196, 129);
+        }
+    </style>
+    <script>
         //<![CDATA[
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
@@ -67,8 +88,8 @@
         ga('send', 'pageview');
 
         //]]>
-    </script>--%>
-    <%--<script>
+    </script>
+    <script>
         //<![CDATA[
         !function (f, b, e, v, n, t, s) {
             if (f.fbq)return;
@@ -95,7 +116,7 @@
     </script>
     <noscript><img height='1' width='1' style='display:none'
                    src='https://www.facebook.com/tr?id=209722866128412&amp;ev=PageView&amp;noscript=1'
-    /></noscript>--%>
+    /></noscript>
     <script type='text/javascript'>
         //<![CDATA[
         if ((typeof Haravan) === 'undefined') {
@@ -127,7 +148,7 @@
         //]]>
     </script>
 
-   <%-- <spring:url value="/resources/js/jquery.min.1.11.0.js" var="a" />
+    <%-- <spring:url value="/resources/js/jquery.min.1.11.0.js" var="a" />
     <script src="${a}"></script>--%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <%--<spring:url value="/resources/js/bootstrap.min.js" var="b" />
@@ -141,10 +162,8 @@
     <script src="${e}"></script>
     <spring:url value="/resources/js/modernizr.custom.js" var="f" />
     <script src="${f}"></script>
-    <!--[if lt IE 9]>
     <spring:url value="/resources/js/html5shiv.js" var="g" />
     <script src="${g}"></script>
-    <![endif]-->
     <spring:url value="/resources/js/jquery-migrate-1.2.0.min.js" var="h" />
     <script src="${h}"></script>
     <spring:url value="/resources/js/jquery.touchSwipe.min.js" var="i" />
@@ -167,17 +186,21 @@
     <script src="${a1}"></script>
     <spring:url value="/resources/js/addthis_widget.js" var="a2" />
     <script src="${a2}"></script>
+    <spring:url value="/resources/js/list.min.js" var="a3" />
+    <script src="${a3}"></script>
     <spring:url value="/resources/js/libs-script.min.js" var="a22" />
     <script src="${a22}"></script>
     <spring:url value="/resources/js/main1.js" var="a122" />
     <script src="${a122}"></script>
+    <%--<spring:url value="/resources/js/cart.js" var="a3" />
+    <script src="${a3}"></script>--%>
     <!--------------CSS----------->
     <spring:url value="/resources/css/owl.carousel.css" var="cs1" />
     <link href="${cs1}" rel="stylesheet" type="text/css"/>
     <spring:url value="/resources/css/page-contact-form.css" var="cs2" />
     <link href="${cs2}" rel="stylesheet" type="text/css"/>
-    <spring:url value="/resources/css/roboto.css" var="cs3" />
-    <link href="${cs3}" rel="stylesheet" type="text/css"/>
+    <%--<spring:url value="/resources/css/roboto.css" var="cs3" />
+    <link href="${cs3}" rel="stylesheet" type="text/css"/>--%>
 
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="Trầm Hương Tuấn Anh"/>
@@ -187,9 +210,9 @@
     <meta property="og:url" content="${pageContext.request.contextPath}"/>
     <meta property="og:site_name" content="Trầm Hương Tuấn Anh"/>
     <!-- Latest compiled and minified CSS -->
-    <%--<spring:url value="/resources/css/bootstrap.3.3.1.css" var="cs4" />
-    <link href="${cs4}" rel="stylesheet" type="text/css"/>--%>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <spring:url value="/resources/css/bootstrap.3.3.1.css" var="cs4" />
+    <link href="${cs4}" rel="stylesheet" type="text/css"/>
+    <%--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--%>
     <!-- Theme haravan-->
     <spring:url value="/resources/css/haravantheme.1.0.css" var="cs5" />
     <link href="${cs5}" rel="stylesheet" type="text/css"/>
@@ -204,8 +227,8 @@
     <link href="${cs9}" rel="stylesheet" type="text/css"/>
     <spring:url value="/resources/css/sidebar.css" var="cs10" />
     <link href="${cs10}" rel="stylesheet" type="text/css"/>
-    <spring:url value="/resources/css/roboto.css" var="cs11" />
-    <link href="${cs11}" rel="stylesheet" type="text/css"/>
+    <%--<spring:url value="/resources/css/roboto.css" var="cs11" />
+    <link href="${cs11}" rel="stylesheet" type="text/css"/>--%>
     <spring:url value="/resources/css/style.3.1.css" var="cs31" />
     <link href="${cs31}" rel="stylesheet" type="text/css"/>
     <spring:url value="/resources/css/responsiveslides.css" var="cs199" />
@@ -278,14 +301,14 @@
 </head>
 <body style="background-color: #333300;"><!--Start of Zopim Live Chat Script-->
 <script>
-    window.fbAsyncInit = function() {
+    /*window.fbAsyncInit = function() {
         FB.init({
             appId      : '1832292157092575',
             xfbml      : true,
             version    : 'v2.9'
         });
         FB.AppEvents.logPageView();
-    };
+    };*/
 
     (function(d, s, id){
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -315,13 +338,11 @@
             <span class="icon-bar"></span>
         </button>
         <tiles:insertAttribute name="nav_mobile"/>
-
         <script>
             new mlPushMenu(document.getElementById('mp-menu'), document.getElementById('trigger'), {
                 type: 'cover'
             });
         </script>
-
         <div class="scroller">
             <div class="scroller-inner">
                 <tiles:insertAttribute name="header"/>
@@ -459,7 +480,7 @@
     var p_zoom = $('.image-zoom').html();
     var quickViewProduct = function (purl) {
         if ($(window).width() < 680) {
-            window.location = purl;
+            window.location = "/product/" + purl;
             return false;
         }
         modal = $('#quick-view-modal');
@@ -567,6 +588,7 @@
                     $('#'+listId[i]).removeClass( "active" )
                 }
             }
+            return;
         }
     });
     $("#slider-high-product").responsiveSlides({
@@ -586,7 +608,7 @@
 </script>
 
 <!-- Google Code for Chuy&#7875;n &#273;&#7893;i &#273;&#7863;t h&agrave;ng Conversion Page -->
-<script type="text/javascript">
+<%--<script type="text/javascript">
     /* <![CDATA[ */
     var google_conversion_id = 974485475;
     var google_conversion_language = "en";
@@ -605,7 +627,7 @@
         <img height="1" width="1" style="border-style:none;" alt=""
              src="//www.googleadservices.com/pagead/conversion/974485475/?value=80000.00&amp;currency_code=VND&amp;label=9OvyCLjcrGgQ4-_V0AM&amp;guid=ON&amp;script=0"/>
     </div>
-</noscript>
+</noscript>--%>
 </body>
 
 </html>

@@ -91,10 +91,10 @@
 		SELECT * FROM PRODUCT ORDER BY id ASC
 	</select>
 	<select id="findByTag" resultType="product">
-		SELECT * FROM PRODUCT WHERE status = 1 AND tag LIKE concat(concat('%',#{tag}), '%') ORDER BY isHigh DESC
+		SELECT * FROM PRODUCT WHERE status = 1 AND tag LIKE concat(concat('%',#{tag}), '%') ORDER BY isSale DESC, isHigh DESC
 	</select>
 	<select id="findByName" resultType="product">
-		SELECT * FROM PRODUCT WHERE status = 1 AND name LIKE concat(concat('%',#{name}), '%') ORDER BY isHigh DESC
+		SELECT * FROM PRODUCT WHERE status = 1 AND name LIKE concat(concat('%',#{name}), '%') ORDER BY isSale DESC, isHigh DESC
 	</select>
 	<select id="findByStatus" resultType="product">
 		SELECT * FROM PRODUCT WHERE status = #{status} ORDER BY id ASC
@@ -106,13 +106,13 @@
 		</if>
 	</select>
 	<select id="findByCategory" resultType="product">
-		SELECT * FROM PRODUCT WHERE categoryId = #{id} AND status = 1 ORDER BY isHigh DESC
+		SELECT * FROM PRODUCT WHERE categoryId = #{id} AND status = 1 ORDER BY isSale DESC, isHigh DESC
 		<if test="limit > 0">
 		LIMIT #{limit}
 		</if>
 	</select>
 	<select id="findBySubCategory" resultType="product">
-		SELECT * FROM PRODUCT WHERE subCategoryId = #{id} AND status = 1 ORDER BY isHigh DESC
+		SELECT * FROM PRODUCT WHERE subCategoryId = #{id} AND status = 1 ORDER BY isSale DESC, isHigh DESC
 		<if test="limit > 0">
 			LIMIT #{limit}
 		</if>
@@ -187,7 +187,7 @@
 			AND categoryId = #{dto.sortValue}
 		</if>
 		<if test="dto.sortType == 'manual'">
-			ORDER BY isHigh DESC
+			ORDER BY isSale DESC, isHigh DESC
 		</if>
 		<if test="dto.sortType == 'price-ascending'">
 			ORDER BY price ASC

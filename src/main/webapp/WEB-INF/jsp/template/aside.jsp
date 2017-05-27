@@ -148,7 +148,7 @@
                     </c:if>
                     <c:if test="${m.subSize <= 0}">
                         <li id="category_${m.categoryDto.id}" class='item last'>
-                            <a href="/sub-category/${m.categoryDto.id}">
+                            <a href="/category/${m.categoryDto.id}">
                                 <span>${m.categoryDto.name}</span>
                             </a>
                         </li>

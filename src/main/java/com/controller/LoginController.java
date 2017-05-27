@@ -141,6 +141,7 @@ public class LoginController {
 			} catch (UnsupportedEncodingException e) {
 				return "reset-password-fail";
 			}
+			mailSender.send(message);
 			return "reset-password-success";
 		}else{
 			return "reset-password-fail";

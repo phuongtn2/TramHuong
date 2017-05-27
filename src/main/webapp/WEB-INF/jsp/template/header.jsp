@@ -13,7 +13,7 @@
                Hotline: ${about.hotLine}
             </h1>
         </div>
-        <div class="col-md-9 hidden-xs">
+        <div class="col-md-9">
             <!-- BANNER -->
             <div class="banner" style="margin-top: 30px;">
                 <span style="color: white; font-size: 25px;font-style: italic;font-weight: bold;margin-top: 165px;">
