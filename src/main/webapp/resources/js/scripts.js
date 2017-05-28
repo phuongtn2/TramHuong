@@ -81,8 +81,8 @@ $(document).ready(function(){
                 function() {
                     $("#cart-animation").fadeOut(500, function() {
                         $(elem).prop("disabled", false)
-                        var cartCount =  parseInt($('#cart-count').text()) + quantity;
-                        $('#cart-count').text(cartCount)
+                        /*var cartCount =  parseInt($('#cart-count').text()) + quantity;
+                        $('#cart-count').text(cartCount)*/
                     })
                 }
             );

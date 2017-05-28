@@ -3870,7 +3870,7 @@ body,
 }
 @media screen and (max-width: 768px) {
     header.container {
-        margin-top: 40px;
+        margin-top: 0px;
     }
 }
 .responsive-menu.container-mp { height:100%;}

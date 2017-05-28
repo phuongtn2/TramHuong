@@ -7,8 +7,8 @@ public class BlogDto {
     private Integer id;
     private String name;
     private Byte status;
-    /*private Byte type;
-*/
+    private Integer position;
+
     public Integer getId() {
         return id;
     }
@@ -33,11 +33,11 @@ public class BlogDto {
         this.status = status;
     }
 
-    /*public Byte getType() {
-        return type;
+    public Integer getPosition() {
+        return position;
     }
 
-    public void setType(Byte type) {
-        this.type = type;
-    }*/
+    public void setPosition(Integer position) {
+        this.position = position;
+    }
 }

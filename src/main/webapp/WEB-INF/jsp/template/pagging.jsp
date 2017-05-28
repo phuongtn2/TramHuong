@@ -11,6 +11,7 @@
         <%--<span id="PageList" class="clear"></span>--%>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
             <span id="PageList" class="page-node"></span>
+            <span class="page-node" style="float: right;"> Tổng: ${productList.size()} sản phẩm</span>
         </div>
         <script type="text/javascript">
             $(document).ready(function() {

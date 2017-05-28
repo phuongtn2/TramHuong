@@ -27,6 +27,7 @@
 						<th><spring:message code="category.name" text="default text"/></th>
 						<th data-hide="phone,tablet">Danh Mục Con</th>
 						<th data-hide="phone,tablet"><spring:message code="common.status.title" text="default text"/></th>
+						<th data-hide="phone,tablet"><spring:message code="post.position" text="default text"/></th>
 						<th data-hide="phone,tablet" class=T"text-center"><spring:message code="common.action" text="default text"/></th>
 					</tr>
 					</thead>
@@ -48,6 +49,9 @@
 							<td data-hide="phone,tablet">
 								<c:if test="${c.status==1}"> <span class="label label-success"><spring:message code="common.active" text="default text"/></span></c:if>
 								<c:if test="${c.status==0}"> <span class="label label-danger"><spring:message code="common.deactive" text="default text"/></span></c:if>
+							</td>
+							<td data-hide="phone,tablet">
+								${c.position}
 							</td>
 							<td class="text-center">
 								<div class="btn-group">

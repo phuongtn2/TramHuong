@@ -5,7 +5,7 @@
 <nav id="mp-menu" class="mp-menu">
     <div class="mp-level">
         <ul class="lv1">
-            <a href="/">Quay lại</a>
+            <a class="mp-back" href="#">Quay lại</a>
             <li><a href="/">Trang Chủ</a></li>
             <li><a href="/introduce">Giới thiệu</a></li>
             <li class="has-children icon icon-arrow-left">

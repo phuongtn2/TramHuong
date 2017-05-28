@@ -8,25 +8,28 @@
 		INSERT INTO M_CATEGORY(
 		name
 		, status
+		, position
 		)VALUES(
 		#{dto.name}
 		, #{dto.status}
+		, #{dto.position}
 		)
 	</insert>
 	<update id="update">
-		UPDATE M_CATEGORY SET
-		name = #{dto.name}
-		, status = #{dto.status}
-		WHERE id= #{dto.id}
+		UPDATE M_CATEGORY as c SET
+		c.name = #{dto.name}
+		, c.status = #{dto.status}
+		, c.position = #{dto.position}
+		WHERE c.id= #{dto.id}
 	</update>
 	<delete id="delete">
 		DELETE FROM M_CATEGORY WHERE id = #{id}
 	</delete>
 	<select id="findAll" resultType="category">
-		SELECT * FROM M_CATEGORY ORDER BY id
+		SELECT * FROM M_CATEGORY as c ORDER BY c.position DESC
 	</select>
 	<select id="findByStatus" resultType="category">
-		SELECT * FROM M_CATEGORY WHERE status = #{status} ORDER BY id
+		SELECT * FROM M_CATEGORY as c WHERE c.status = #{status} ORDER BY c.position DESC
 	</select>
 	<select id="findById" resultType="category">
 		SELECT * FROM M_CATEGORY WHERE id=#{id}

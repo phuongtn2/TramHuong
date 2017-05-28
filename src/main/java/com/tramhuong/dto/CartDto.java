@@ -25,7 +25,7 @@ public class CartDto {
     }
 
     public Integer getCount() {
-        return count;
+        return (count != null) ? count : 0;
     }
 
     public void setCount(Integer count) {

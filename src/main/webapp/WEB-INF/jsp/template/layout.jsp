@@ -405,7 +405,7 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row">
-                        <form method="post" action="/cart/add">
+                        <%--<form method="post" action="/cart/add">--%>
                             <div class="col-lg-5 col-md-6">
                                 <div class="image-zoom row">
                                     <img class="p-product-image-feature" src="">
@@ -426,12 +426,12 @@
                                 </div>
                                 <div class="form-input ">
                                     <label>Số lượng</label>
-                                    <input name="count" type="number" min="1" value="1"/>
-                                    <input name="productId" type="hidden" class="fill-product-id"/>
+                                    <input id="quantity" name="count" type="number" min="1" value="1"/>
+                                    <input id="productId" name="productId" type="hidden" class="fill-product-id"/>
                                 </div>
 
                                 <div class="form-input" style="width: 100%">
-                                    <button type="submit"
+                                    <button type="button"
                                             class="btn-detail  btn-color-add btn-min-width btn-mgt btn-addcart">Thêm vào
                                         giỏ
                                     </button>
@@ -447,13 +447,50 @@
                             </div>
                             <div class="col-lg-7 col-md-6 pull-right">
                             </div>
-                        </form>
+                        <%--</form>--%>
                     </div>
                 </div>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<div class="modal fade" id="checkCart-Error" role="dialog" tabindex="-1" aria-hidden="false" style="z-index: 9999999;">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: antiquewhite;">
+                <h4 class="modal-title text-center">Lỗi</h4>
+            </div>
+            <div class="modal-body text-center">
+                <p style="color: red;">Số lượng sản phẩm nhập không hợp lệ</p>
+                <p>Số lượng sản phẩm không được để trống và phải lớn hơn 0</p>
+            </div>
+            <div class="modal-header text-center" style="background-color: antiquewhite;">
+               <%-- <button onclick="submit()" class="btn btn-primary" type="submit">Thêm</button>--%>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="checkCart-Error-99" role="dialog" tabindex="-1" aria-hidden="false" style="z-index: 9999999;">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: antiquewhite;">
+                <h4 class="modal-title text-center">Xác nhận</h4>
+            </div>
+            <div class="modal-body text-center">
+                <p style="color: red;">Số lượng đặt mua của sản phẩm [abc] là: xxx.</p>
+                <p>Bạn có chắc chắn không?.</p>
+            </div>
+            <div class="modal-header text-center" style="background-color: antiquewhite;">
+                <button onclick="insertValue();" class="btn btn-primary" type="button">Có</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     var callBack = function (product, selector) {
         if (product) {
@@ -519,39 +556,39 @@
                 else {
                     $('#p-sliderproduct').remove();
                     $('.image-zoom').append("<div id='p-sliderproduct'>");
-                    $('#p-sliderproduct').append("<ul class='owl-carousel'>");
-                    elem = $('<li class="item">').append('<a href="#" data-image="" data-zoom-image=""><img /></a>');
+                    $('#p-sliderproduct').append("<ul id='owId' class='owl-carousel'>");
+                    elem = $('<li class="item">').append('<a href="#" data-image="" data-zoom-image=""><img id="main_img"/></a>');
                     elem.find('a').attr('data-image', Haravan.resizeImage(product.img, 'medium'));
                     elem.find('a').attr('data-zoom-image', product.img);
-                    elem.find('img').attr('data-image', Haravan.resizeImage(product.img, 'medium'));
-                    elem.find('img').attr('data-zoom-image', product.img);
-                    elem.find('img').attr('src', product.img);
-                    modal.find('.owl-carousel').append(elem);
+                    elem.find('#main_img').attr('data-image', Haravan.resizeImage(product.img, 'medium'));
+                    elem.find('#main_img').attr('data-zoom-image', product.img);
+                    elem.find('#main_img').attr('src', product.img);
+                    modal.find('#owId').append(elem);
                     if(product.img1 != null){
-                        elem1 = $('<li class="item">').append('<a href="#" data-image="" data-zoom-image=""><img /></a>');
+                        elem1 = $('<li class="item">').append('<a href="#" data-image="" data-zoom-image=""><img id="img1" /></a>');
                         elem1.find('a').attr('data-image', Haravan.resizeImage(product.img1, 'medium'));
                         elem1.find('a').attr('data-zoom-image', product.img1);
-                        elem1.find('img').attr('data-image', Haravan.resizeImage(product.img1, 'medium'));
-                        elem1.find('img').attr('data-zoom-image', product.img1);
-                        elem1.find('img').attr('src', product.img1);
-                        modal.find('.owl-carousel').append(elem1);
+                        elem1.find('#img1').attr('data-image', Haravan.resizeImage(product.img1, 'medium'));
+                        elem1.find('#img1').attr('data-zoom-image', product.img1);
+                        elem1.find('#img1').attr('src', product.img1);
+                        modal.find('#owId').append(elem1);
                     }
                     if(product.img2 != null){
-                        elem2 = $('<li class="item">').append('<a href="#" data-image="" data-zoom-image=""><img /></a>');
+                        elem2 = $('<li class="item">').append('<a href="#" data-image="" data-zoom-image=""><img id="img2" /></a>');
                         elem2.find('a').attr('data-image', Haravan.resizeImage(product.img2, 'medium'));
                         elem2.find('a').attr('data-zoom-image', product.img2);
-                        elem2.find('img').attr('data-image', Haravan.resizeImage(product.img2, 'medium'));
-                        elem2.find('img').attr('data-zoom-image', product.img2);
-                        elem2.find('img').attr('src', product.img2);
-                        modal.find('.owl-carousel').append(elem2);
+                        elem2.find('#img2').attr('data-image', Haravan.resizeImage(product.img2, 'medium'));
+                        elem2.find('#img2').attr('data-zoom-image', product.img2);
+                        elem2.find('#img2').attr('src', product.img2);
+                        modal.find('#owId').append(elem2);
                     }
-                    var owl = $('.owl-carousel');
+                    var owl = $('#owId');
                     owl.owlCarousel({
                         items: 3,
                         navigation: true,
                         navigationText: ['owl-prev', 'owl-next']
                     });
-                    $('#p-sliderproduct .owl-carousel .owl-item').first().children('.item').addClass('active');
+                    $('#p-sliderproduct #owId').first().children('.item').addClass('active');
                     modal.find('.p-product-image-feature').attr('src', product.img);
                     $(".modal-footer .btn-readmore").attr('href', "/product/" + product.id);
                 }
@@ -574,9 +611,53 @@
         quickViewProduct($(this).attr('data-handle'));
     });
 
+    $(document).on("click", ".btn-addcart", function (event) {
+        //event.preventDefault();
+        var data = {};
+        data["count"] = $('#quantity').val();
+        data["productId"] = $('#productId').val();
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/cart/add",
+            data: JSON.stringify(data),
+            dataType: 'json',
+            timeout: 100000,
+            async: false,
+            success: function (count) {
+                //$('#cart-count').text(count);
+                $("#cart-count-mobile").empty();
+                $("#cart-count").empty();
+                $("#cart-count-mobile").append('<span id="#cart-count-mobile-temp">' + count + '</span>');
+                $("#cart-count").append('<span id="#cart-count-temp">' + count + '</span>');
+                modal = $('#quick-view-modal');
+                modal.modal('hide');
+            }
+        });
+        return false;
+    });
+
 </script>
 <!-- Quick view -->
 <script>
+    function submitSort(){
+        document.getElementById("sortForm").submit();
+    };
+    function submit(){
+        document.getElementById("cartformpage").submit();
+    };
+    function checkValidCart(){
+        var count = $('#productNumber_main').val();
+        var modal = $('#checkCart-Error');
+        for (i = 0; i < count; i ++){
+            var valueCount = $('#productNumber_' + i).val();
+            if(valueCount == null || valueCount <= 0){
+                modal.modal('show');
+                return;
+            }
+        }
+        submit();
+    }
     $(document).ready(function () {
         $('.t-fix').removeClass('in');
         function change(id) {

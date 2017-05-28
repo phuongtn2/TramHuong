@@ -101,9 +101,11 @@ public class CommonController {
 			model.addAttribute("products", productDtos);
 			model.addAttribute("carts", cartListDto);
 			if(cartListDto.getCartDtoList().size() > 0) {
+				model.addAttribute("productNumber", cartListDto.getCartDtoList().size());
 				model.addAttribute("shipping", decimalFormat.format(shipping));
 				cartListDto.setTotalPrice(sPrice);
 			}else{
+				model.addAttribute("productNumber", 0);
 				cartListDto.setTotalPrice("0");
 			}
 		}

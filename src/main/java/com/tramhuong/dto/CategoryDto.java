@@ -8,6 +8,7 @@ public class CategoryDto{
     private String name;
     private Byte status;
     private Long parent;
+    private Integer position;
 
     public Long getId() {
         return id;
@@ -39,5 +40,13 @@ public class CategoryDto{
 
     public void setParent(Long parent) {
         this.parent = parent;
+    }
+
+    public Integer getPosition() {
+        return position;
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
     }
 }

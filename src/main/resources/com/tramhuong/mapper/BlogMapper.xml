@@ -8,9 +8,11 @@
 		INSERT INTO BLOGS(
 		name
 		, status
+		, position
 		)VALUES(
 		#{dto.name}
 		, #{dto.status}
+		, #{dto.position}
 		)
 	</insert>
 
@@ -18,16 +20,17 @@
 		UPDATE BLOGS SET
 		name = #{dto.name}
 		,status = #{dto.status}
+		,position = #{dto.position}
 		WHERE id= #{dto.id}
 	</update>
 	<delete id="delete">
 		DELETE FROM BLOGS WHERE id = #{id}
 	</delete>
 	<select id="findAll" resultType="blog">
-		SELECT * FROM BLOGS ORDER BY id
+		SELECT * FROM BLOGS ORDER BY position DESC
 	</select>
 	<select id="findByStatus" resultType="blog">
-		SELECT * FROM BLOGS WHERE status = #{status} ORDER BY id
+		SELECT * FROM BLOGS WHERE status = #{status} ORDER BY position DESC
 	</select>
 	<select id="findById" resultType="blog">
 		SELECT * FROM BLOGS WHERE id=#{id}

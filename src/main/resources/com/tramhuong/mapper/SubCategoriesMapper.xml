@@ -9,10 +9,12 @@
 		name
 		, status
 		, parent
+		, position
 		)VALUES(
 		#{dto.name}
 		, #{dto.status}
 		, #{dto.parent}
+		, #{dto.position}
 		)
 	</insert>
 	<update id="update">
@@ -20,19 +22,20 @@
 		name = #{dto.name}
 		, status = #{dto.status}
 		, parent = #{dto.parent}
+		, position = #{dto.position}
 		WHERE id= #{dto.id}
 	</update>
 	<delete id="delete">
 		DELETE FROM S_CATEGORY WHERE id = #{id}
 	</delete>
 	<select id="findAll" resultType="category">
-		SELECT * FROM S_CATEGORY ORDER BY id
+		SELECT * FROM S_CATEGORY ORDER BY position DESC
 	</select>
 	<select id="findByStatus" resultType="category">
-		SELECT * FROM S_CATEGORY WHERE status = #{status} ORDER BY id
+		SELECT * FROM S_CATEGORY WHERE status = #{status} ORDER BY position DESC
 	</select>
 	<select id="findByParent" resultType="category">
-		SELECT * FROM S_CATEGORY WHERE parent=#{id} AND status = 1 ORDER BY id
+		SELECT * FROM S_CATEGORY WHERE parent=#{id} AND status = 1 ORDER BY position DESC
 	</select>
 	<select id="findById" resultType="category">
 		SELECT * FROM S_CATEGORY WHERE id=#{id}

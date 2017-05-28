@@ -35,8 +35,13 @@ public class OrderController {
 		List<OrderInfoDto> orders = (List<OrderInfoDto>) session.getAttribute("orders");
 		if(orders != null)
 			model.addAttribute("orders", orders);
-		else
-			model.addAttribute("orders", orderService.findAll());
+		else {
+			List<OrderInfoDto> orderInfoDtos = orderService.findAll();
+			if(orderInfoDtos == null){
+				orderInfoDtos = new ArrayList<OrderInfoDto>();
+			}
+			model.addAttribute("orders", orderInfoDtos);
+		}
 		SearchOrderDto searchOrderDto = (SearchOrderDto) session.getAttribute("searchOrder");
 		if(searchOrderDto != null) {
 			model.addAttribute("searchOrder", searchOrderDto);

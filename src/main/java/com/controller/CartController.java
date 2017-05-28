@@ -5,7 +5,10 @@ import com.controller.memoizer.Memoizer;
 import com.tramhuong.dto.*;
 import com.tramhuong.services.*;
 import com.tramhuong.services.error.ServiceException;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.RandomStringUtils;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -48,7 +51,7 @@ public class CartController {
 		return "cart";
 	}
 
-	public void commonAddCart(HttpServletRequest request, @ModelAttribute("cart") CartDto cartDto) throws UnsupportedEncodingException {
+	public void commonAddCart(HttpServletRequest request, CartDto cartDto) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		CartListDto cartListDto = (CartListDto) session.getAttribute("cartList");
@@ -86,16 +89,36 @@ public class CartController {
 		cartListDto.setOrderCode(RandomStringUtils.randomAlphanumeric(10).toUpperCase());
 		session.setAttribute("cartList", cartListDto);
 	}
-	@RequestMapping(value = "/cart/add", method = RequestMethod.POST)
-	public void addProductToCart(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("cart") CartDto cartDto) throws ServiceException, IOException {
-		commonAddCart(request, cartDto);
-		response.sendRedirect("/cart");
+	@RequestMapping(value = "/cart/add", method = RequestMethod.POST, headers = "Accept=application/json", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Integer addProductToCart(HttpServletRequest request, HttpServletResponse response, CartDto cartDto) throws ServiceException, IOException, JSONException {
+		CartDto cartDtoTemp = new CartDto();
+		if(cartDto != null && cartDto.getProductId() != null){
+			cartDtoTemp = cartDto;
+		}else {
+
+			String inputJson = IOUtils.toString(request.getReader());
+			JSONObject jsonObj = new JSONObject(inputJson);
+			cartDtoTemp.setCount(Integer.parseInt(jsonObj.getString("count")));
+			cartDtoTemp.setProductId(Long.parseLong(jsonObj.getString("productId")));
+		}
+		commonAddCart(request, cartDtoTemp);
+		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		CartListDto cartListDto = (CartListDto) session.getAttribute("cartList");
+		int count = 0;
+		for (CartDto dto: cartListDto.getCartDtoList()){
+			count = count + dto.getCount();
+		}
+		return count;
+		/*response.sendRedirect(request.getRequestURI());*/
 	}
 
-	@RequestMapping(method = RequestMethod.POST, params = "addToCart")
-	public void addProductToCart1(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("cart") CartDto cartDto) throws ServiceException, IOException {
-		addProductToCart(request,response, cartDto);
-	}
+	/*@RequestMapping(method = RequestMethod.POST, params = "addToCart", headers = "Accept=application/json", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Integer addProductToCart1(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("cart") CartDto cartDto) throws ServiceException, IOException, JSONException {
+		return addProductToCart(request,response, cartDto);
+	}*/
 
 	public void commonUpdateCart(HttpServletRequest request, CartListDto cartListDto) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
@@ -133,7 +156,7 @@ public class CartController {
 	@RequestMapping(method = RequestMethod.POST, params = "buyNow")
 	public void checkProductToCart(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("cart") CartDto cartDto) throws ServiceException, IOException {
 		commonAddCart(request, cartDto);
-		response.sendRedirect("/checkout");
+		response.sendRedirect("/cart");
 	}
 	@RequestMapping(method = RequestMethod.GET, value = "/checkout")
 	public String checkout(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {

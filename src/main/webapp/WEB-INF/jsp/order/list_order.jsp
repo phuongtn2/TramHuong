@@ -77,6 +77,7 @@
 					</tbody>
 					<tfoot>
 					<tr>
+						<td colspan="13" class="footable-visible">Tổng: ${orders.size()} đơn hàng</td>
 						<td colspan="13">
 							<ul class="pagination pull-right"></ul>
 						</td>

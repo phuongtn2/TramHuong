@@ -47,6 +47,16 @@
 							</select>
 						</div>
 					</div>
+					<div class="form-group">
+						<div class="col-lg-3">
+							<label class="control-label"><spring:message code="post.position" text="default text"/></label>
+						</div>
+						<div class="col-lg-6">
+							<input type="text" id="position" name="position"
+								   value="<c:if test="${blog.position != null}">${blog.position}</c:if>"
+								   class="form-control" required>
+						</div>
+					</div>
 					<div class="form-group" style="margin-top: 20px;">
 						<div class="text-center">
 							<input type="hidden" id="add" name="addBlog">

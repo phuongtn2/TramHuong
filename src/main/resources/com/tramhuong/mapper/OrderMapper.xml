@@ -51,7 +51,7 @@
 		DELETE FROM ORDER_INFO WHERE orderCode = #{orderCode}
 	</delete>
 	<select id="findAll" resultType="order">
-		SELECT * FROM ORDER_INFO ORDER BY id
+		SELECT * FROM ORDER_INFO ORDER BY orderDate DESC
 	</select>
 	<select id="findById" resultType="order">
 		SELECT * FROM ORDER_INFO WHERE id=#{id}
@@ -82,7 +82,7 @@
 		<if test="email != ''">
 			AND email = #{email}
 		</if>
-		ORDER BY id
+		ORDER BY orderDate DESC
 	</select>
 
 </mapper>

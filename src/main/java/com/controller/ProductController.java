@@ -60,7 +60,11 @@ public class ProductController {
 			SearchProductDto searchProductDto = (SearchProductDto) session.getAttribute("searchProduct");
 			model.addAttribute("searchProduct", searchProductDto);
 		}else{
-			model.addAttribute("products", productService.findAll());
+			List<ProductDto> productDtos1 = productService.findAll();
+			if(productDtos1 == null){
+				productDtos1 = new ArrayList<ProductDto>();
+			}
+			model.addAttribute("products", productDtos1);
 			SearchProductDto searchProductDto = new SearchProductDto();
 			searchProductDto.setStatus((byte)-1);
 			model.addAttribute("searchProduct", searchProductDto);

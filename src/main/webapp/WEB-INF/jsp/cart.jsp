@@ -10,12 +10,16 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <div id="cart">
-    <!-- Begin empty cart -->
-    <div class="row">
-        <div id="layout-page" class="col-md-12">
+    <div id="layout-page">
+        <form:form modelAttribute="carts" id="cartformpage">
+            <input type="hidden" id="productNumber_main" value="${productNumber}"/>
+            <!-- Begin empty cart -->
+            <div class="row">
+                <div class="col-md-12">
 			<span class="header-page clearfix">
 				<h1>Giỏ hàng</h1> </span>
-            <form:form modelAttribute="cartListDto" id="cartformpage">
+                </div>
+
                 <table>
                     <thead>
                     <tr>
@@ -27,7 +31,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:set var="count" value="0" scope="page" />
+                    <c:set var="count" value="0" scope="page"/>
                     <c:forEach items="${products}" var="p">
                         <c:set var="count" value="${count + 1}" scope="page"/>
                         <tr>
@@ -44,14 +48,22 @@
                                 </a>
                             </td>
                             <td class="qty">
+                                    <%--<input type="hidden" id="productNumber_main" value="${productNumber}"/>--%>
+                                <c:set var="count" value="0" scope="page"/>
                                 <c:forEach items="${carts.cartDtoList}" var="c">
                                     <c:if test="${c.productId == p.id}">
                                         <input type="hidden" name="cartDtoList[${count}].productId" value="${p.id}">
-                                        <input type="number" size="4" name="cartDtoList[${count}].count" min="1" id="updates_1006603133" value="${c.count}" onfocus="this.select();" class="tc item-quantity">
+                                        <input type="number" size="4" name="cartDtoList[${count}].count" min="1"
+                                               id="productNumber_${count}" value="${c.count}" onfocus="this.select();"
+                                               class="tc item-quantity">
                                     </c:if>
+                                    <c:set var="count" value="${count + 1}" scope="page"/>
                                 </c:forEach>
                             </td>
-                            <td class="price">${p.priceDisplay}₫</td>
+                            <td class="price">
+                                <c:if test="${p.isSale == 1 && p.salePrice > 0}">${p.salePriceDisplay}₫</c:if>
+                                <c:if test="${p.isSale == 0}">${p.priceDisplay}₫</c:if>
+                            </td>
                             <td class="remove">
                                 <a href="/cart/change/${p.id}" class="cart">Xóa</a>
                             </td>
@@ -81,34 +93,124 @@
                     </tr>
                     </tbody>
                 </table>
-                <div class="col-md-6 inner-left inner-right">
-                    <div class="checkout-buttons clearfix">
-                        <label for="description">Ghi chú </label>
-                        <textarea id="description" name="description" rows="8" cols="50">${carts.description}</textarea>
+                <%--<div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Hình Ảnh</label>
+
+                        </div>
+                        <!-- /.form-group -->
+                        <c:forEach items="${products}" var="p">
+                        <div class="form-group">
+                            <div class="product_image">
+                                <a href="/product/${p.id}">
+                                    <img src="${p.img}">
+                                </a>
+                            </div>
+                        </div>
+                        </c:forEach>
+                        <!-- /.form-group -->
                     </div>
-                </div>
-                <c:if test="${products != null  && products.size() > 0}">
-                    <div class="col-md-6 cart-buttons inner-right inner-left">
-                        <div class="buttons clearfix">
-                            <button type="submit" id="checkout" class="button-default" name="checkout" value="">Thanh toán</button>
-                            <button type="submit" id="update-cart" class="button-default" name="update" value="">Cập nhật</button>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Tên Sản Phẩm</label>
+
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Số Lượng</label>
+
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Giá</label>
+
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <label>Xóa</label>
+
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+            </div>--%>
+                <div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="description">Ghi chú </label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="description" name="description" rows="2"
+                                      style="width: 100%;">${carts.description}</textarea>
                         </div>
                     </div>
-                </c:if>
-                <c:if test="${products == null  || products.size() <= 0}">
-                    <div class="col-md-6 cart-buttons inner-right inner-left">
-                        <div class="buttons clearfix">
-                            <button type="submit" id="checkout" class="button-default" name="checkout" value="" disabled>Thanh toán</button>
-                            <button type="submit" id="update-cart" class="button-default" name="update" value="" disabled>Cập nhật</button>
-                        </div>
-                    </div>
-                </c:if>
-                <div class="col-md-12">
-                    <a href="/">
-                        <i class="fa fa-reply"></i> Tiếp tục mua hàng</a>
                 </div>
-            </form:form>
-        </div>
+                <div>
+
+                    <div class="col-md-4  inner-right inner-left">
+                        <a href="/" style="background: #808000;border: none;
+    padding: 0 20px;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 3px;
+    float: right;
+    height: 45px;
+    line-height: 45px;
+    position: relative;
+    cursor: pointer;
+    margin: 7px;">
+                            <i class="fa fa-reply"></i> Tiếp tục mua hàng</a>
+                    </div>
+                    <c:if test="${products != null  && products.size() > 0}">
+                        <div class="col-md-8 inner-right inner-left">
+                            <div>
+                                <button type="button" id="checkout" class="button-default"  value=""
+                                        onclick="checkValidCart();">Thanh toán
+                                </button>
+                                <button type="button" id="update-cart" class="button-default" value=""
+                                        onclick="checkValidCart();">Cập nhật
+                                </button>
+                            </div>
+                        </div>
+                    </c:if>
+                    <c:if test="${products == null  || products.size() <= 0}">
+                        <div class="col-md-8 inner-right inner-left">
+                            <div>
+                                <button type="button" class="button-default" name="checkout" value="" disabled>Thanh
+                                    toán
+                                </button>
+                                <button type="button" class="button-default" name="update" value="" disabled>Cập nhật
+                                </button>
+                            </div>
+                        </div>
+                    </c:if>
+
+                </div>
+
+            </div>
+            <!-- End cart -->
+        </form:form>
     </div>
-    <!-- End cart -->
 </div>

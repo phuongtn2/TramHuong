@@ -208,6 +208,7 @@
             classie.remove( this.wrapper, 'mp-pushed' );
             this._toggleLevels();
             this.open = false;
+            $('#mp-pusher').removeAttr("style");
         },
         // close sub menus
         _closeMenu : function() {

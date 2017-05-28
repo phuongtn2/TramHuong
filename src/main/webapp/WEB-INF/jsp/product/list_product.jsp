@@ -99,6 +99,7 @@
 					</tbody>
 					<tfoot>
 					<tr>
+						<td colspan="13" class="footable-visible">Tổng: ${products.size()} sản phẩm</td>
 						<td colspan="13">
 							<ul class="pagination pull-right"></ul>
 						</td>

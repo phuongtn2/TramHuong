@@ -214,8 +214,3 @@
     </div>
 
 </footer>
-<script>
-    function submitSort(){
-        document.getElementById("sortForm").submit();
-    };
-</script>

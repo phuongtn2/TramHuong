@@ -34,7 +34,7 @@
                         <li id="cart-target" class="cart">
                             <a href="/cart" class="cart ">
                                 <span class="fa fa-shopping-cart"></span>
-                                <span id="cart-count">${items}</span>
+                                <span id="cart-count_mobile"><span id="cart-count_mobile_temp">${items}</span></span>
                             </a>
                         </li>
                         <%--<li class="user">
@@ -134,9 +134,9 @@
                             <li id="cart-target" class="toolbar-cart ">
                                 <a href="/cart" title="Giỏ hàng" class="cart">
                                     <span class="fa fa-shopping-cart"></span>
-                                    <span>
-									<span id="cart-count">${items}</span>
-								</span>
+                                    <span id="cart-count">
+                                        <span id="cart-count-temp">${items}</span>
+								    </span>
                                 </a>
                             </li>
                         </ul>
