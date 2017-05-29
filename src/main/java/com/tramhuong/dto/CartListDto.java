@@ -8,6 +8,7 @@ public class CartListDto {
     private Integer id;
     private List<CartDto> cartDtoList;
     private String totalPrice;
+    private Double totalProductPrice;
     private String description;
     private String orderCode;
     public Integer getId() {
@@ -48,5 +49,13 @@ public class CartListDto {
 
     public void setOrderCode(String orderCode) {
         this.orderCode = orderCode;
+    }
+
+    public Double getTotalProductPrice() {
+        return totalProductPrice;
+    }
+
+    public void setTotalProductPrice(Double totalProductPrice) {
+        this.totalProductPrice = totalProductPrice;
     }
 }

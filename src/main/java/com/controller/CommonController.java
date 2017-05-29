@@ -95,16 +95,17 @@ public class CommonController {
 				}
 			DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
 			String sPrice = decimalFormat.format(totalPrice + shippingDto.getShippingCost());
-
 			model.addAttribute("products", productDtos);
 			model.addAttribute("carts", cartListDto);
 			if(cartListDto.getCartDtoList().size() > 0) {
 				model.addAttribute("productNumber", cartListDto.getCartDtoList().size());
 				model.addAttribute("shipping", decimalFormat.format(shippingDto.getShippingCost()));
 				cartListDto.setTotalPrice(sPrice);
+				cartListDto.setTotalProductPrice(totalPrice);
 			}else{
 				model.addAttribute("productNumber", 0);
 				cartListDto.setTotalPrice("0");
+				cartListDto.setTotalProductPrice(0.0);
 			}
 		}
 	}

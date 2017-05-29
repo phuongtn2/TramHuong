@@ -220,24 +220,9 @@ public class CartController {
 		Double shipping = Double.parseDouble(jsonObj.getString("cost"));
 		CartListDto cartListDto = (CartListDto) session.getAttribute("cartList");
 		List<String> strings = new ArrayList<String>(1);
-		if(cartListDto != null && cartListDto.getCartDtoList() != null){
-			Double totalPrice = 0.0;
-			if(cartListDto.getCartDtoList() != null)
-				for (CartDto cartDto : cartListDto.getCartDtoList()) {
-					ProductDto productDto = productService.findById(cartDto.getProductId());
-					Double price = 0.0;
-					if(productDto.getSalePrice() != null) {
-						if (productDto.getIsSale() == 1 && productDto.getSalePrice() > 0)
-							price = productDto.getSalePrice() * cartDto.getCount();
-						else
-							price = productDto.getPrice() * cartDto.getCount();
-					}else{
-						price = productDto.getPrice() * cartDto.getCount();
-					}
-					totalPrice = totalPrice + price;
-				}
+		if(cartListDto != null ){
 			DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-			String sPrice = decimalFormat.format(totalPrice + shipping);
+			String sPrice = decimalFormat.format(cartListDto.getTotalProductPrice() + shipping);
 			strings.add(sPrice);
 			return strings;
 		}

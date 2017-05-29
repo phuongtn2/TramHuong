@@ -55,6 +55,8 @@ public class BillingController {
 	private OrderItemService orderItemService;
 	@Autowired
 	private MailTemplateService mailTemplateService;
+	@Autowired
+	private CommonService commonService;
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -161,7 +163,10 @@ public class BillingController {
 		if(cartListDto != null){
 			//orderInfoDto.setDescription(cartListDto.getDescription());
 			orderInfoDto.setOrderCode(cartListDto.getOrderCode());
-			orderInfoDto.setTotalPrice(cartListDto.getTotalPrice());
+			ShippingDto shippingDto = commonService.findByIdShipping(orderInfoDto.getShippingType());
+			DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+			String sPrice = decimalFormat.format(cartListDto.getTotalProductPrice() + shippingDto.getShippingCost());
+			orderInfoDto.setTotalPrice(sPrice);
 			orderService.add(orderInfoDto);
 			if(cartListDto.getCartDtoList() != null){
 				for (CartDto cartDto: cartListDto.getCartDtoList()) {
@@ -175,21 +180,6 @@ public class BillingController {
 			//send mail
 			AboutDto aboutDto = aboutService.find(1);
 			MailTemplateDto mailTemplateDto = mailTemplateService.findByCode("ORDER");
-			/*MailSenderDto mailSenderDto = new MailSenderDto();
-			mailSenderDto.setEmail(aboutDto.getEmail());
-			mailSenderDto.setFullName("Trầm Hương");
-			SendMailPersonalDto sendMailPersonalDto = new SendMailPersonalDto();
-			sendMailPersonalDto.setFullName(orderInfoDto.getName());
-			sendMailPersonalDto.setEmail(orderInfoDto.getEmail());
-			sendMailPersonalDto.setTel(orderInfoDto.getTel());
-			String sig = mailTemplateDto.getFooter();
-			sendMailPersonalDto.setSignature(sig);
-			SendMailParameter sendMailParameter = new SendMailParameter();
-			//sendMailParameter.setAttachementURLList(Arrays.asList("localhost:8080"));
-			sendMailParameter.setOrderCode(cartListDto.getOrderCode());
-			sendMailParameter.setSubject("Mua Sản Phẩm Trầm Hương");
-			sendMailParameter.setToEmail(orderInfoDto.getEmail());*/
-			DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
 			List<ProductDto> productDtos = CommonController.getProductFromCart(request, productService);
 			String content = "";
 			for (ProductDto productDto : productDtos) {

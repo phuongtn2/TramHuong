@@ -646,16 +646,19 @@
                 modal.modal('show');
                 return;
             }
-            if(valueCount > 99){
-                modal_99.find('#confirm-message').empty();
-                var productName = $('#productName-Error_' + i).val();
-                modal_99.find('#confirm-message').append('<span>Số lượng đặt mua của sản phẩm [' + productName + '] là: ' + valueCount + '.</span>');
-                localStorage.setItem('id-99', '#productNumber_' + i);
-                var oValue = $('#productNumberOld_' + i).val();
-                localStorage.setItem('o-99', oValue);
-                localStorage.setItem('type-99', name);
-                modal_99.modal('show');
-                return;
+            var oValueTemp = $('#productNumberOld_' + i).val();
+            if(oValueTemp <= 99) {
+                if (valueCount > 99) {
+                    modal_99.find('#confirm-message').empty();
+                    var productName = $('#productName-Error_' + i).val();
+                    modal_99.find('#confirm-message').append('<span>Số lượng đặt mua của sản phẩm [' + productName + '] là: ' + valueCount + '.</span>');
+                    localStorage.setItem('id-99', '#productNumber_' + i);
+                    var oValue = $('#productNumberOld_' + i).val();
+                    localStorage.setItem('o-99', oValue);
+                    localStorage.setItem('type-99', name);
+                    modal_99.modal('show');
+                    return;
+                }
             }
         }
         submit(name);

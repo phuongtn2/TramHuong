@@ -61,7 +61,7 @@
                 <div class="form-group ctrl-city">
                     <div class='custom-dropdown'>
                         <select id="billing_address_province" name="provinceId" class="formcontrol"
-                                required onChange="getDistricts();">
+                                required onchange="setProvinceName()">
                             <option value="null" disabled selected hidden>Vui lòng chọn tỉnh/thành phố.</option>
                             <c:forEach items="${provinces}" var="p">
                                 <option value="${p.id}">${p.name}</option>
@@ -71,34 +71,35 @@
                     </div>
                 </div>
                 <div class="form-group ctrl-district" id="shipping_district_container">
-                    <div class='custom-dropdown'>
-                        <select id="shipping_district" name="districtId" class="formcontrol" required
+                    <%--<div class='custom-dropdown'>--%>
+                        <%--<select id="shipping_district" name="districtId" class="formcontrol" required
                                 onChange="getWards();">
                             <option value="null" disabled selected hidden>Vui lòng chọn quận/huyện.</option>
-                        </select>
-                        <input type="hidden" name="districtName" id="districtName"/>
-                    </div>
+                        </select>--%>
+                        <input type="text" name="districtName" id="districtName" class="formcontrol" required placeholder="Quận/Huyện"/>
+                    <%--</div>--%>
                 </div>
                 <div class="form-group ctrl-district" id="shipping_ward_container">
-                    <div class='custom-dropdown'>
-                        <select id="shipping_ward" name="wardId" class="formcontrol" required onchange="getWardName();">
+                    <%--<div class='custom-dropdown'>--%>
+                        <%--<select id="shipping_ward" name="wardId" class="formcontrol" required onchange="getWardName();">
                             <option value="null" disabled selected hidden>Vui lòng chọn xã/phường.</option>
                         </select>
-                        <input type="hidden" name="wardName" id="wardName"/>
-                    </div>
+                        <input type="hidden" name="wardName" id="wardName"/>--%>
+                            <input type="text" name="wardName" id="wardName" class="formcontrol" required placeholder="Phường/Xã"/>
+                    <%--</div>--%>
                 </div>
                 <div class="form-group">
                     <textarea id="billing_note" placeholder="Ghi chú đơn hàng" name="description" rows="3"
                               class="formcontrol ordernote">${carts.description}</textarea>
                     <p>Ghi chú đơn hàng</p>
                 </div>
-                <div class="error summary">
+                <%--<div class="error summary">
                     (<span class="color-red ">*</span>)Vui lòng nhập đủ thông tin
-                </div>
+                </div>--%>
             </div>
-        <div class="listerror">
+        <%--<div class="listerror">
 
-        </div>
+        </div>--%>
     </div>
         <div class="col-lg-4">
             <h3>Vận chuyển & Thanh toán</h3>
@@ -188,7 +189,10 @@
     <div id="Loading_8" class="Loading"></div>
 </div>
 <script>
-    function getDistricts() {
+    function setProvinceName() {
+        $("#provinceName").val($("#billing_address_province option:selected").text());
+    }
+   /* function getDistricts() {
         var e = document.getElementById("billing_address_province");
         var id = e.options[e.selectedIndex].value;
         $("#provinceName").val($("#billing_address_province option:selected").text());
@@ -234,6 +238,6 @@
     }
     function getWardName() {
         $("#wardName").val($("#shipping_ward option:selected").text());
-    }
+    }*/
 
 </script>

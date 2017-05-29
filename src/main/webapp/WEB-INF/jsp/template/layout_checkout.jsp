@@ -167,18 +167,31 @@
                    // && ($(".h-shipping").is(":visible") || $(".h-shipping").hasClass('hide-shipping'));
                 if (isvalid) {
                     $("#Loading").show();
-                    $(".summary").hide();
+                    /*$(".summary").hide();*/
                     $('.btn-checkout').attr('disabled', 'disabled');
                     return true;
                 } else {
                     if ($("#purchase-form").valid() == false) {
-                        $(".summary").show();
-                        $('.listerror').html("");
+                        var modal = $('#notify-error');
+                        modal.modal('show');
+                        modal.find('#error-field').empty();
+                        $(".form-group .formcontrol").each(function () {
+                            if ($(this).attr('required') && ($(this).val() == "" || $(this).val() == null)) {
+                                var field = this.placeholder;
+                                if(field === undefined){
+                                    field = "Tỉnh/Thành Phố";
+                                }
+                                modal.find('#error-field').append('<p class="color-red ">* Vui lòng nhập:' + field + '</p>');
+                            }
+                        });
+                        return false;
+                        /*$(".summary").show();*/
+                        /*$('.listerror').html("");*/
                         //$(".drop_shipping, .h-shipping").hide();
-                    } else {
+                    } /*else {
                         $('.listerror').html('<div class="error">Không tìm thấy phương thức vận chuyển.</div>');
                         //$(".drop_shipping, .h-shipping").hide();
-                    }
+                    }*/
                 }
                 return isvalid;
             });
@@ -203,18 +216,18 @@
                     var isvalid = $("#purchase-form").valid();
                     // && ($(".h-shipping").is(":visible") || $(".h-shipping").hasClass('hide-shipping'));
                     if (isvalid) {
-                        $(".summary").hide();
+                        /*$(".summary").hide();*/
                         $('.btn-checkout').attr('disabled', 'disabled');
                         return true;
                     } else {
                         if ($("#purchase-form").valid() == false) {
-                            $(".summary").show();
-                            $('.listerror').html("");
+                           /* $(".summary").show();
+                            $('.listerror').html("");*/
                             //$(".drop_shipping, .h-shipping").hide();
-                        } else {
+                        } /*else {
                             $('.listerror').html('<div class="error">Không tìm thấy phương thức vận chuyển.</div>');
                             //$(".drop_shipping, .h-shipping").hide();
-                        }
+                        }*/
                     }
                     return isvalid;
                 }
@@ -271,45 +284,23 @@
         </div>
 
     </div>
-   <%-- <div class="modal fade" id="chose-shipping-modal" role="dialog" tabindex="-1" aria-hidden="false" style="z-index: 9999999;">
+    <div class="modal fade" id="notify-error" role="dialog" tabindex="-1" aria-hidden="false" style="z-index: 9999999;">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header" style="background-color: antiquewhite;">
-                    <h4 class="modal-title text-center">Phương Thức Vận Chuyển</h4>
+                    <h4 class="modal-title text-center">Lỗi</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="shiping-ajax1">
-                        <c:forEach items="${shippings}" var="s">
-                            <label class="lb-method">
-                                <input  name="shippingType-modal" class="input-method" type="radio" checked="checked" value="${s.id}"/>
-                                <span id="shippingName-modal_${s.id}" class="label-radio">${s.name}</span>
-                            </label>
-                            <span class="desc">${s.info}</span>
-                        </c:forEach>
+                    <div id="error-field">
                     </div>
                 </div>
                 <div class="modal-header text-center" style="background-color: antiquewhite;">
-                    &lt;%&ndash;<button onclick="accept();"  class="btn btn-primary" type="button" data-dismiss="modal">Có</button>&ndash;%&gt;
-                    <button onclick="setShipping();" type="button" class="btn btn-primary" data-dismiss="modal">Chọn</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
                 </div>
             </div>
         </div>
-        <script>
-            // Hiện ẩn hiện thông tin mô tả hình thức thanh toán
-            $('.shiping-ajax1').on('change', ".input-method", function () {
-                if ($(this).is(":checked")) {
-                    var checkinput = $(this).parent(".lb-method");
-                    if (checkinput.next('.desc').is(":hidden") && checkinput.next('.desc').text().trim() != "") {
-                        $('.desc').slideUp();
-                        checkinput.next('.desc').slideDown().css('display', 'block');
-                    }
-                }
-            });
-            //Hiện thông tin mô tả default
-            $(".input-method:checked").parent(".lb-method").next('.desc').slideDown().css('display', 'block');
-        </script>
-    </div>--%>
+    </div>
 </body>
 <script>
     // Hiện ẩn hiện thông tin mô tả hình thức thanh toán
