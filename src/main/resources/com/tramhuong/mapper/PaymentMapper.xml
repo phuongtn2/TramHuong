@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tramhuong.mapper.PaymentMapper">
+
+	<insert id="add" useGeneratedKeys="true" keyProperty="dto.id">
+		INSERT INTO PAYMENT(
+		info
+		, status
+		, position
+		, name
+		)VALUES(
+		#{dto.info}
+		, #{dto.status}
+		, #{dto.position}
+		, #{dto.name}
+		)
+	</insert>
+	<update id="update">
+		UPDATE PAYMENT SET
+		info = #{dto.info}
+		, status = #{dto.status}
+		, position = #{dto.position}
+		, name = #{dto.name}
+	</update>
+	<select id="findById" resultType="payment">
+		SELECT * FROM PAYMENT WHERE id = #{id}
+	</select>
+	<select id="findAll" resultType="payment">
+		SELECT * FROM PAYMENT ORDER BY position DESC
+	</select>
+	<select id="findByStatus" resultType="payment">
+		SELECT * FROM PAYMENT WHERE status = 1 ORDER BY position DESC
+	</select>
+</mapper>

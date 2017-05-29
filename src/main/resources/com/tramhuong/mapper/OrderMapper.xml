@@ -18,6 +18,7 @@
 		, wardName
 		, description
 		, paymentType
+		, shippingType
 		, orderCode
 		, totalPrice
 		, orderDate
@@ -35,6 +36,7 @@
 		, #{dto.wardName}
 		, #{dto.description}
 		, #{dto.paymentType}
+		, #{dto.shippingType}
 		, #{dto.orderCode}
 		, #{dto.totalPrice}
 		,  NOW()

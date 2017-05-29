@@ -18,7 +18,8 @@ public class OrderInfoDto {
     private String wardId;
     private String wardName;
     private String description;
-    private byte paymentType;
+    private Integer paymentType;
+    private Integer shippingType;
     private String orderCode;
     private String totalPrice;
     private Date orderDate;
@@ -120,12 +121,20 @@ public class OrderInfoDto {
         this.description = description;
     }
 
-    public byte getPaymentType() {
+    public Integer getPaymentType() {
         return paymentType;
     }
 
-    public void setPaymentType(byte paymentType) {
+    public void setPaymentType(Integer paymentType) {
         this.paymentType = paymentType;
+    }
+
+    public Integer getShippingType() {
+        return shippingType;
+    }
+
+    public void setShippingType(Integer shippingType) {
+        this.shippingType = shippingType;
     }
 
     public String getOrderCode() {

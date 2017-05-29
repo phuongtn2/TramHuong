@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tramhuong.mapper.ShippingMapper">
+
+	<insert id="add" useGeneratedKeys="true" keyProperty="dto.id">
+		INSERT INTO SHIPPING(
+		info
+		, status
+		, position
+		, shippingCost
+		, name
+		)VALUES(
+		#{dto.info}
+		, #{dto.status}
+		, #{dto.position}
+		, #{dto.shippingCost}
+		, #{dto.name}
+		)
+	</insert>
+	<update id="update">
+		UPDATE SHIPPING SET
+		info = #{dto.info}
+		, status = #{dto.status}
+		, position = #{dto.position}
+		, shippingCost = #{dto.shippingCost}
+		, name = #{dto.name}
+	</update>
+	<select id="findById" resultType="shipping">
+		SELECT * FROM SHIPPING WHERE id = #{id}
+	</select>
+	<select id="findAll" resultType="shipping">
+		SELECT * FROM SHIPPING ORDER BY position DESC
+	</select>
+	<select id="findByStatus" resultType="shipping">
+		SELECT * FROM SHIPPING WHERE status = 1 ORDER BY position DESC
+	</select>
+</mapper>

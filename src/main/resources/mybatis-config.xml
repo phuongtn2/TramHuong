@@ -23,5 +23,7 @@
 		<typeAlias alias="post" type="com.tramhuong.dto.PostDto"/>
 		<typeAlias alias="mail" type="com.tramhuong.dto.MailTemplateDto"/>
 		<typeAlias alias="tag" type="com.tramhuong.dto.TagDto"/>
+		<typeAlias alias="payment" type="com.tramhuong.dto.PaymentDto"/>
+		<typeAlias alias="shipping" type="com.tramhuong.dto.ShippingDto"/>
 	</typeAliases>
 </configuration>

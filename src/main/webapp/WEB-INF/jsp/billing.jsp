@@ -10,8 +10,11 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <span class="fbtracker-checkout"></span>
-<a href="/cart">
-    <h1>
+
+<div class="container clearfix">
+    <div class="col-md-12">
+        <a href="/cart">
+            <h1>
         <span style="background: url(/resources/img/back-checkout.png) no-repeat center left;
     background-color: #808000;
     border: none;
@@ -25,19 +28,13 @@
     position: relative;
     cursor: pointer;
     margin: 7px;">Quay về giỏ hàng</span> Trầm Hương Tuấn Anh</h1></a>
-<div class="container clearfix">
+    </div>
     <form:form accept-charset="UTF-8" id="purchase-form" action="/saveOrder" modelAttribute="orderInfo" class="new_order">
-        <div class="col-4 step1">
-        <h2>Thông tin giao hàng</h2>
-        <%--<div class="user-login"><a href="/account/register?urlredirect=checkout">Đăng ký tài khoản mua hàng</a> | <a
-                href="/account/login?urlredirect=checkout">Đăng nhập</a></div>--%>
-
-        <div class="line"></div>
-        <div class="form-info">
-            <%--<label class="color-blue">Mua không cần tài khoản</label>--%>
-            <%--<form:form accept-charset="UTF-8" class="new_order" id="forminfo" method="post">--%>
-                <%--<input type="hidden" id="ab_number" name="ab_number" value="1008995108"/>--%>
-                <%--<input type="hidden" id="token" name="token" value=""/>--%>
+    <div class="col-md-12">
+        <div class="col-lg-4">
+            <h2>Thông tin giao hàng</h2>
+            <div class="line"></div>
+            <div class="form-info">
                 <div class="form-group">
                 </div>
                 <div class="form-group">
@@ -61,12 +58,6 @@
                            name="address" size="30" type="text" value="" required/>
                     <p>Địa chỉ</p>
                 </div>
-                <%--<input name="billing_address[zip]" type="hidden" value="70000"/>
-                <input name="billing_address[country_id]" type="hidden" value="241"/>
-                <input name="billing_address[address2]" type="hidden" value=""/>
-                <input name="is_show_shipping_address" type="hidden" value="true"/>
-                <input type="checkbox" style="display:none" name="billing_address[billing_is_shipping]" value="true"
-                       checked="checked" id="shipping-toggle" tabindex="12"/>--%>
                 <div class="form-group ctrl-city">
                     <div class='custom-dropdown'>
                         <select id="billing_address_province" name="provinceId" class="formcontrol"
@@ -81,7 +72,8 @@
                 </div>
                 <div class="form-group ctrl-district" id="shipping_district_container">
                     <div class='custom-dropdown'>
-                        <select id="shipping_district" name="districtId" class="formcontrol" required onChange="getWards();">
+                        <select id="shipping_district" name="districtId" class="formcontrol" required
+                                onChange="getWards();">
                             <option value="null" disabled selected hidden>Vui lòng chọn quận/huyện.</option>
                         </select>
                         <input type="hidden" name="districtName" id="districtName"/>
@@ -103,51 +95,26 @@
                 <div class="error summary">
                     (<span class="color-red ">*</span>)Vui lòng nhập đủ thông tin
                 </div>
-        </div>
+            </div>
         <div class="listerror">
 
         </div>
     </div>
-
-        <%--<input type="hidden" id="ab_number_fn" name="ab_number_fn" value="1008995108"/>--%>
-        <%--<input type="hidden" id="token" name="token" value=""/>--%>
-        <%--<input type="hidden" id="morecoupon" name="morecoupon" value="false"/>
-        <input type="hidden" id="order_id" value="1008995108"/>--%>
-
-        <div class="col-4">
-            <!-- Vận chuyển & Thanh Toán -->
-            <%--<div class="ctrl-shipping">
-                <h3 class="h-shipping ">Vận chuyển</h3>
-                <div class="form-group ">
-                    <div class='custom-dropdown'><select class="drop_shipping" name="shipping_rate"></select></div>
-                </div>
-            </div>--%>
-            <h3>Thanh toán</h3>
-            <div class="shiping-ajax">
-                <label class="lb-method">
-                    <input class="input-method" type="radio" checked="checked" name="paymentType" value="0"/>
-                    <span class="label-radio"> Thanh toán khi giao hàng (COD)</span>
-                </label>
-                <span class="desc">Cám ơn bạn đã tin tưởng vào sản phẩm của chúng tôi. Đơn đặt hàng này đã được gửi về mail để bạn tham khảo.
-                    Chúng tôi sẽ giao hàng trong thời gian sớm nhất. Bạn vui lòng thanh toán cho nhân viên giao hàng trực tiếp. </span>
-                <label class="lb-method">
-                    <input class="input-method" type="radio" name="paymentType" value="1"/>
-                    <span class="label-radio"> Chuyển khoản qua ngân hàng</span>
-                </label>
-                <span class="desc">Cảm ơn quí khách đã tin tưởng sản phẩm của chúng tôi.
-                        Quí khách chuyển khoản số tiền vào TK của chúng tôi.
-                        Khi chuyển khoản, vui lòng điền vào dòng ghi chú : số đơn hàng.
-                        <c:forEach items="${billings}" var="b">
-                            ${b.description}
-                            ${b.accountName}
-                        </c:forEach>
-                </span>
+        <div class="col-lg-4">
+            <h3>Vận chuyển & Thanh toán</h3>
+            <div>
+                <button type="button" class="btn-checkout" id="chosePayment" style="font-size: 14px;">Chọn Phương Thức Thanh Toán</button>
+                <label id="payment-modal"></label>
+                <input id="paymentType" name="paymentType" type="hidden" value="0"/>
+                <button type="button" class="btn-checkout" id="choseShipping" style="font-size: 14px;">Chọn Phương Thức Vận Chuyển</button>
+                <label id="shipping-modal"></label>
+                <input id="shippingType" name="shippingType" type="hidden" value="0"/>
             </div>
+            <%--<div class="shiping-ajax">
+
+            </div>--%>
         </div>
-        <%--<div class="box-btn-checkout-first">
-            <button type="submit" class="btn-checkout btn-checkout-first">Đặt hàng</button>
-        </div>--%>
-        <div class="col-4">
+        <div class="col-lg-4">
             <div class="box-cart">
                 <h2>Mã Đơn hàng: </h2>
                 <span style="color: red">${carts.orderCode}</span>
@@ -170,28 +137,18 @@
                     </c:forEach>
                 </div>
                 <div class="shiping-price">
-                    Phí vận chuyển <label>${shipping}₫</label>
+                    Phí vận chuyển <label id="shippingCost">${shipping}₫</label>
                 </div>
                 <div class="total-price">
-                    Tạm tính <label> ${carts.totalPrice}₫</label>
+                    Tạm tính <label id="totalPriceTemp"> ${carts.totalPrice}₫</label>
                 </div>
-                <%--<a class="btn-coupon btn-arrow" href="javascript:void(0);"><span></span>Sử dụng mã giảm giá </a>
-                <div class="coupon"><a class="remove-coupon">Xóa</a> <span></span> <label></label></div>
-                <div class="use-coupon">
-                    <div class="form-group">
-                        <input type="hidden" id="discount-apply" name="discount-apply"/>
-                        <input name="discount.code" class="couponcode" placeholder="Nhập mã giảm giá"/>
-                        <a class="btn-submit-coupon">Sử dụng</a>
-                        <a class="continue-coupon ">Tiếp tục sử dụng</a>
-                        <a class="cancel-coupon">Hủy</a>
-                    </div>
-                </div>--%>
-                <div class="total-checkout">
-                    Tổng cộng <span> ${carts.totalPrice}₫</span>
+                                <div class="total-checkout">
+                    Tổng cộng <span id="totalPrice"> ${carts.totalPrice}₫</span>
                 </div>
             </div>
             <button type="submit" class="btn-checkout" name="saveOrder">Đặt hàng</button>
         </div>
+    </div>
     </form:form>
 </div>
 

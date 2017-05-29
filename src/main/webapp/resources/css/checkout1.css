@@ -258,7 +258,7 @@ h1 {
 
 h2, h3 {
     color: #2c3e50;
-    font-size: 18px;
+    font-size: 18px !important;;
     font-weight: normal;
     text-transform: uppercase;
 }
@@ -871,9 +871,11 @@ margin:auto;
     .btn-back {
         display: none;
     }
-
+    .btn-checkout{
+        font-size: 10px !important;
+    }
     .container, h1 {
-        width: 96%;
+        width: 100%;
         padding: 2%;
     }
 

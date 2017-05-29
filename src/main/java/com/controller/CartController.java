@@ -41,6 +41,8 @@ public class CartController {
 	private AboutService aboutService;
 	@Autowired
 	private BlogService blogService;
+	@Autowired
+	private CommonService commonService;
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)
 	public String initForm(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {
 		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
@@ -166,8 +168,11 @@ public class CartController {
 		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		CommonController.loadContentCart(request, model, productService, setting);
 		model.addAttribute("provinces", locationService.findProvinces());
-		List<BillingAccountDto> billingAccountDtos = billingAccountService.findAll();
-		model.addAttribute("billings", billingAccountDtos);
+		//List<BillingAccountDto> billingAccountDtos = billingAccountService.findAll();
+		List<PaymentDto> paymentDtos = commonService.findByStatusPayment();
+		model.addAttribute("payments", paymentDtos);
+		List<ShippingDto> shippingDtos = commonService.findByStatusShipping();
+		model.addAttribute("shippings", shippingDtos);
 		return "checkout";
 	}
 
