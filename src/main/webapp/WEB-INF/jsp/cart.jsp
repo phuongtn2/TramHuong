@@ -53,9 +53,11 @@
                                 <c:forEach items="${carts.cartDtoList}" var="c">
                                     <c:if test="${c.productId == p.id}">
                                         <input type="hidden" name="cartDtoList[${count}].productId" value="${p.id}">
+                                        <input type="hidden" id="productNumberOld_${count}" value="${c.count}">
                                         <input type="number" size="4" name="cartDtoList[${count}].count" min="1"
                                                id="productNumber_${count}" value="${c.count}" onfocus="this.select();"
                                                class="tc item-quantity">
+                                        <input type="hidden" id="productName-Error_${count}" value="${p.name}"/>
                                     </c:if>
                                     <c:set var="count" value="${count + 1}" scope="page"/>
                                 </c:forEach>
@@ -185,12 +187,13 @@
                     </div>
                     <c:if test="${products != null  && products.size() > 0}">
                         <div class="col-md-8 inner-right inner-left">
+                            <input id="operator-cart" type="hidden" name=""/>
                             <div>
                                 <button type="button" id="checkout" class="button-default"  value=""
-                                        onclick="checkValidCart();">Thanh toán
+                                        onclick="checkValidCart('checkout');">Thanh toán
                                 </button>
                                 <button type="button" id="update-cart" class="button-default" value=""
-                                        onclick="checkValidCart();">Cập nhật
+                                        onclick="checkValidCart('update');">Cập nhật
                                 </button>
                             </div>
                         </div>

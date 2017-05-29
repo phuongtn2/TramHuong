@@ -481,12 +481,12 @@
                 <h4 class="modal-title text-center">Xác nhận</h4>
             </div>
             <div class="modal-body text-center">
-                <p style="color: red;">Số lượng đặt mua của sản phẩm [abc] là: xxx.</p>
+                <p style="color: red;" id="confirm-message"></p>
                 <p>Bạn có chắc chắn không?.</p>
             </div>
             <div class="modal-header text-center" style="background-color: antiquewhite;">
-                <button onclick="insertValue();" class="btn btn-primary" type="button">Có</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+                <button onclick="accept();"  class="btn btn-primary" type="button" data-dismiss="modal">Có</button>
+                <button onclick="revertValue();" type="button" class="btn btn-default" data-dismiss="modal">Không</button>
             </div>
         </div>
     </div>
@@ -610,9 +610,129 @@
         event.preventDefault();
         quickViewProduct($(this).attr('data-handle'));
     });
+</script>
+<!-- Quick view -->
+<script>
+    function submitSort(){
+        document.getElementById("sortForm").submit();
+    };
+    function submit(name){
+        $('#operator-cart').attr('name', name);
+        document.getElementById("cartformpage").submit();
+    };
+    function accept(){
+        var name = localStorage.getItem('type-99');
+        if(name != 'addCart'){
+            $('#operator-cart').attr('name', name);
+            document.getElementById("cartformpage").submit();
+        }else{
+            addCartSuccess();
+        }
+        return;
+    };
+    function revertValue() {
+        var retrievedObject = localStorage.getItem('id-99');
+        var oValue = localStorage.getItem('o-99');
+        $(retrievedObject).val(oValue);
+        localStorage.clear();
+    }
+    function checkValidCart(name){
+        var count = $('#productNumber_main').val();
+        var modal = $('#checkCart-Error');
+        var modal_99 = $('#checkCart-Error-99');
+        for (i = 0; i < count; i ++){
+            var valueCount = $('#productNumber_' + i).val();
+            if(valueCount == null || valueCount <= 0){
+                modal.modal('show');
+                return;
+            }
+            if(valueCount > 99){
+                modal_99.find('#confirm-message').empty();
+                var productName = $('#productName-Error_' + i).val();
+                modal_99.find('#confirm-message').append('<span>Số lượng đặt mua của sản phẩm [' + productName + '] là: ' + valueCount + '.</span>');
+                localStorage.setItem('id-99', '#productNumber_' + i);
+                var oValue = $('#productNumberOld_' + i).val();
+                localStorage.setItem('o-99', oValue);
+                localStorage.setItem('type-99', name);
+                modal_99.modal('show');
+                return;
+            }
+        }
+        submit(name);
+    }
+    function checkAddCartOrByNow(){
+        var quickModal = $('#quick-view-modal');
+        var modal = $('#checkCart-Error');
+        var modal_99 = $('#checkCart-Error-99');
 
-    $(document).on("click", ".btn-addcart", function (event) {
-        //event.preventDefault();
+        var valueCount = quickModal.find('#quantity').val();
+        if(valueCount == null || valueCount <= 0){
+            modal.modal('show');
+            return false;
+        }
+        if(valueCount > 99){
+            modal_99.find('#confirm-message').empty();
+            var productName = quickModal.find('.p-title').text();
+            modal_99.find('#confirm-message').append('<span>Số lượng đặt mua của sản phẩm [' + productName + '] là: ' + valueCount + '.</span>');
+            localStorage.setItem('id-99', '#quantity');
+            localStorage.setItem('o-99', 1);
+            localStorage.setItem('type-99', 'addCart');
+            modal_99.modal('show');
+            return false;
+        }
+        return true;
+    }
+
+    function checkAddCartOrByNowDetail(){
+        var modal = $('#checkCart-Error');
+        var modal_99 = $('#checkCart-Error-99');
+
+        var valueCount = $('#quantity-detail').val();
+        if(valueCount == null || valueCount <= 0){
+            modal.modal('show');
+            return false;
+        }
+        if(valueCount > 99){
+            modal_99.find('#confirm-message').empty();
+            var productName = $('#productName_detail').val();
+            modal_99.find('#confirm-message').append('<span>Số lượng đặt mua của sản phẩm [' + productName + '] là: ' + valueCount + '.</span>');
+            localStorage.setItem('id-99', '#quantity-detail');
+            localStorage.setItem('o-99', 1);
+            localStorage.setItem('type-99', 'addCart');
+            modal_99.modal('show');
+            return false;
+        }
+        return true;
+    }
+    function addCartSuccessDetail() {
+        var data = {};
+        data["count"] = $('#quantity-detail').val();
+        data["productId"] = $('#productId-detail').val();
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/cart/add",
+            data: JSON.stringify(data),
+            dataType: 'json',
+            timeout: 100000,
+            async: false,
+            success: function (count) {
+                //$('#cart-count').text(count);
+                $("#cart-count-mobile").empty();
+                $("#cart-count").empty();
+                $("#cart-count-mobile").append('<span id="#cart-count-mobile-temp">' + count + '</span>');
+                $("#cart-count").append('<span id="#cart-count-temp">' + count + '</span>');
+            }
+        });
+    }
+    $(document).on("click", "#add-to-cart-detail", function (event) {
+        var flg = checkAddCartOrByNowDetail();
+        if(flg === true){
+            addCartSuccessDetail();
+        }
+        return false;
+    });
+    function addCartSuccess() {
         var data = {};
         data["count"] = $('#quantity').val();
         data["productId"] = $('#productId').val();
@@ -634,30 +754,15 @@
                 modal.modal('hide');
             }
         });
+    }
+    $(document).on("click", ".btn-addcart", function (event) {
+        var flg = checkAddCartOrByNow();
+        if(flg === true){
+            addCartSuccess();
+        }
         return false;
     });
 
-</script>
-<!-- Quick view -->
-<script>
-    function submitSort(){
-        document.getElementById("sortForm").submit();
-    };
-    function submit(){
-        document.getElementById("cartformpage").submit();
-    };
-    function checkValidCart(){
-        var count = $('#productNumber_main').val();
-        var modal = $('#checkCart-Error');
-        for (i = 0; i < count; i ++){
-            var valueCount = $('#productNumber_' + i).val();
-            if(valueCount == null || valueCount <= 0){
-                modal.modal('show');
-                return;
-            }
-        }
-        submit();
-    }
     $(document).ready(function () {
         $('.t-fix').removeClass('in');
         function change(id) {

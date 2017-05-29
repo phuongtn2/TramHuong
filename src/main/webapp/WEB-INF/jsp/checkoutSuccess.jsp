@@ -10,7 +10,20 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <span class="fbtracker-checkout"></span>
-<a href="/"><h1><span class="btn-back">Quay về Trang Chủ</span> Trầm Hương Tuấn Anh</h1></a>
+<a href="/"><h1>
+        <span style="background: url(/resources/img/back-checkout.png) no-repeat center left;
+    background-color: #808000;
+    border: none;
+    padding: 0 20px;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 3px;
+    float: left;
+    height: 45px;
+    line-height: 45px;
+    position: relative;
+    cursor: pointer;
+    margin: 7px;">Quay về Trang Chủ</span> Trầm Hương Tuấn Anh</h1></a>
 <div class="container clearfix">
     <div class="col-4 step1">
         <h2>Đặt hàng thành công. Chúng tôi sẽ giao hàng đến quí khách trong thời gian sớm nhất</h2>

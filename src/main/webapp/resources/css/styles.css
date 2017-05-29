@@ -354,7 +354,8 @@ footer #mail { width: 168px; }
 .product-options label { display: block; margin-bottom: 3px; }
 .product-options select { margin-bottom: 20px; }
 .product-options textarea { width: 30px; line-height: 18px; height: 18px; min-height: 18px; margin-bottom: 20px; }
-#quantity { width: 50px; margin-bottom: 20px; }
+#quantity { width: 60px; margin-bottom: 20px; }
+#quantity-detail { width: 60px; margin-bottom: 20px; }
 @-moz-document url-prefix() { .product-options select { height: 30px; line-height: 30px; } } /* Firefox fix */
 
 #collection h1 { float: left; font-size:18px;color:#808000;text-transform: uppercase;}
@@ -1877,6 +1878,13 @@ li {
     white-space: nowrap;
 }
 #quantity {
+    text-indent : 10px;
+    height: 35px;
+    border: 1px solid #ccc;
+    max-width: 100%;
+    border-radius: 5px;
+}
+#quantity-detail {
     text-indent : 10px;
     height: 35px;
     border: 1px solid #ccc;

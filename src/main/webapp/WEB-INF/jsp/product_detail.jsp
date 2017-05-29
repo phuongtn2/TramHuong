@@ -57,13 +57,14 @@
             <form:form id="add-item-form" class="variants clearfix">
                 <div class="select-wrapper ">
                     <label>Số lượng</label>
-                    <input id="quantity" type="number" name="count" min="1" value="1" class="tc item-quantity">
-                    <input id="productId" name="productId" type="hidden" class="fill-product-id" value="${product.id}"/>
+                    <input id="quantity-detail" type="number" name="count" min="1" value="1" class="tc item-quantity">
+                    <input id="productId-detail" name="productId" type="hidden" class="fill-product-id" value="${product.id}"/>
+                    <input id="productName-detail" type="hidden" class="fill-product-id" value="${product.name}"/>
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-12 col-sm-6 col-xs-12">
                         <c:if test="${product.isEffete == 0}">
-                            <button type="button" id="add-to-cart" class="btn-addcart btn-detail addtocart btn-color-add btn-min-width btn-mgt">
+                            <button type="button" id="add-to-cart-detail" class="btn-detail addtocart btn-color-add btn-min-width btn-mgt">
                                 Thêm vào giỏ
                             </button>
                         </c:if>
@@ -80,7 +81,7 @@
                             </button>
                         </c:if>
                         <c:if test="${product.isEffete == 1}">
-                            <button type="submit" id="buy-now" class=" btn-detail btn-color-buy btn-min-width btn-mgt" disabled name="checkout">
+                            <button type="button" class=" btn-detail btn-color-buy btn-min-width btn-mgt" disabled name="checkout">
                                 Mua ngay
                             </button>
                         </c:if>
