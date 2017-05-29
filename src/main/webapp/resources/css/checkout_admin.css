@@ -400,8 +400,29 @@ input[type=radio]:checked + .label-radio {
     width: 100%;
     line-height: 35px;
 }
+.lb-method-s {
+    display: block;
+    width: 100%;
+    line-height: 35px;
+}
+.lb-method-p {
+    display: block;
+    width: 100%;
+    line-height: 35px;
+}
 
 .desc {
+    padding-left: 30px;
+    display: none;
+    white-space: pre-line;
+}
+
+.desc-s {
+    padding-left: 30px;
+    display: none;
+    white-space: pre-line;
+}
+.desc-p {
     padding-left: 30px;
     display: none;
     white-space: pre-line;

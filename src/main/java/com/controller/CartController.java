@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -46,7 +47,7 @@ public class CartController {
 	@RequestMapping(value = "/cart", method = RequestMethod.GET)
 	public String initForm(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {
 		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
-		CommonController.loadContentCart(request, model, productService, setting);
+		CommonController.loadContentCart(request, model, productService, new ShippingDto());
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
 		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
@@ -166,13 +167,13 @@ public class CartController {
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
 		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
-		CommonController.loadContentCart(request, model, productService, setting);
+		List<ShippingDto> shippingDto = commonService.findAllShipping();
+		CommonController.loadContentCart(request, model, productService, shippingDto.get(0));
 		model.addAttribute("provinces", locationService.findProvinces());
 		//List<BillingAccountDto> billingAccountDtos = billingAccountService.findAll();
 		List<PaymentDto> paymentDtos = commonService.findByStatusPayment();
 		model.addAttribute("payments", paymentDtos);
-		List<ShippingDto> shippingDtos = commonService.findByStatusShipping();
-		model.addAttribute("shippings", shippingDtos);
+		model.addAttribute("shippings", shippingDto);
 		return "checkout";
 	}
 
@@ -206,6 +207,42 @@ public class CartController {
 	@ResponseBody
 	public List<LocationDto> getWard(HttpServletRequest request, @PathVariable int id) throws ServiceException {
 		return locationService.findWards(id);
+	}
+
+
+	@RequestMapping(value = "/setTotalPrice", method = RequestMethod.POST, headers = "Accept=application/json", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<String> setTotalPrice(HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, JSONException {
+		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		String inputJson = IOUtils.toString(request.getReader());
+		JSONObject jsonObj = new JSONObject(inputJson);
+		Double shipping = Double.parseDouble(jsonObj.getString("cost"));
+		CartListDto cartListDto = (CartListDto) session.getAttribute("cartList");
+		List<String> strings = new ArrayList<String>(1);
+		if(cartListDto != null && cartListDto.getCartDtoList() != null){
+			Double totalPrice = 0.0;
+			if(cartListDto.getCartDtoList() != null)
+				for (CartDto cartDto : cartListDto.getCartDtoList()) {
+					ProductDto productDto = productService.findById(cartDto.getProductId());
+					Double price = 0.0;
+					if(productDto.getSalePrice() != null) {
+						if (productDto.getIsSale() == 1 && productDto.getSalePrice() > 0)
+							price = productDto.getSalePrice() * cartDto.getCount();
+						else
+							price = productDto.getPrice() * cartDto.getCount();
+					}else{
+						price = productDto.getPrice() * cartDto.getCount();
+					}
+					totalPrice = totalPrice + price;
+				}
+			DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+			String sPrice = decimalFormat.format(totalPrice + shipping);
+			strings.add(sPrice);
+			return strings;
+		}
+		strings.add("0");
+		return strings;
 	}
 }
 

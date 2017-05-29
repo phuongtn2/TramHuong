@@ -226,6 +226,7 @@ public class BillingController {
 
 				helper.setFrom(new InternetAddress(setting.getProperty("mailTransfer.smtp.server.user"), setting.getProperty("mailTransfer.infoMailFullName"), headerCharset));
 				helper.setTo(orderInfoDto.getEmail());
+				helper.setCc(setting.getProperty("mailTransfer.smtp.server.user"));
 				helper.setSubject(setting.getProperty("mailTransfer.subject"));
 				helper.setText(body, true);
 			} catch (MessagingException e) {

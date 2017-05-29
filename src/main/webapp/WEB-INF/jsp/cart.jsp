@@ -71,7 +71,7 @@
                             </td>
                         </tr>
                     </c:forEach>
-                    <tr class="summary">
+                    <%--<tr class="summary">
                         <td class="image">&nbsp;</td>
                         <td>&nbsp;</td>
                         <td class="text-center"><b>Phí vận chuyển:</b></td>
@@ -79,9 +79,9 @@
                             <span class="total">
                                 <strong>${shipping}₫</strong>
                             </span>
-                        </td>
+                        </td>&ndash;%&gt;
                         <td>&nbsp;</td>
-                    </tr>
+                    </tr>--%>
                     <tr class="summary">
                         <td class="image">&nbsp;</td>
                         <td>&nbsp;</td>

@@ -254,11 +254,11 @@ public class ProductController {
 		model.addAttribute("mSize", mappingCategoryDtos.size());
 		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		ProductDto productDto = new ProductDto();
-		if(Memoizer.getInstance().get("product") == null) {
+		if(Memoizer.getInstance().get("product" + String.valueOf(id)) == null) {
 			productDto = productService.findById(id);
 			Memoizer.getInstance().put("product", productDto);
 		}else{
-			productDto = (ProductDto) Memoizer.getInstance().get("product");
+			productDto = (ProductDto) Memoizer.getInstance().get("product" + String.valueOf(id));
 		}
 		model.addAttribute("product", productDto);
 		//Get product relation

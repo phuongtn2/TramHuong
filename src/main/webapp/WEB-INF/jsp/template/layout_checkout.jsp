@@ -252,7 +252,7 @@
                     <h4 class="modal-title text-center">Phương Thức Thanh Toán</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="shiping-ajax">
+                    <%--<div class="shiping-ajax">
 
                         <c:forEach items="${payments}" var="p">
                             <label class="lb-method">
@@ -261,7 +261,7 @@
                             </label>
                             <span class="desc">${p.info}</span>
                         </c:forEach>
-                    </div>
+                    </div>--%>
                 </div>
                 <div class="modal-header text-center" style="background-color: antiquewhite;">
                     <%-- <button onclick="submit()" class="btn btn-primary" type="submit">Thêm</button>--%>
@@ -269,22 +269,9 @@
                 </div>
             </div>
         </div>
-        <script>
-            // Hiện ẩn hiện thông tin mô tả hình thức thanh toán
-            $('.shiping-ajax').on('change', ".input-method", function () {
-                if ($(this).is(":checked")) {
-                    var checkinput = $(this).parent(".lb-method");
-                    if (checkinput.next('.desc').is(":hidden") && checkinput.next('.desc').text().trim() != "") {
-                        $('.desc').slideUp();
-                        checkinput.next('.desc').slideDown().css('display', 'block');
-                    }
-                }
-            });
-            //Hiện thông tin mô tả default
-            $(".input-method:checked").parent(".lb-method").next('.desc').slideDown().css('display', 'block');
-        </script>
+
     </div>
-    <div class="modal fade" id="chose-shipping-modal" role="dialog" tabindex="-1" aria-hidden="false" style="z-index: 9999999;">
+   <%-- <div class="modal fade" id="chose-shipping-modal" role="dialog" tabindex="-1" aria-hidden="false" style="z-index: 9999999;">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -303,7 +290,7 @@
                     </div>
                 </div>
                 <div class="modal-header text-center" style="background-color: antiquewhite;">
-                    <%--<button onclick="accept();"  class="btn btn-primary" type="button" data-dismiss="modal">Có</button>--%>
+                    &lt;%&ndash;<button onclick="accept();"  class="btn btn-primary" type="button" data-dismiss="modal">Có</button>&ndash;%&gt;
                     <button onclick="setShipping();" type="button" class="btn btn-primary" data-dismiss="modal">Chọn</button>
                 </div>
             </div>
@@ -322,8 +309,56 @@
             //Hiện thông tin mô tả default
             $(".input-method:checked").parent(".lb-method").next('.desc').slideDown().css('display', 'block');
         </script>
-    </div>
+    </div>--%>
 </body>
+<script>
+    // Hiện ẩn hiện thông tin mô tả hình thức thanh toán
+    $('.shiping-ajax-s').on('change', ".input-method-s", function () {
+        if ($(this).is(":checked")) {
+            var checkinput = $(this).parent(".lb-method-s");
+            if (checkinput.next('.desc-s').is(":hidden") && checkinput.next('.desc-s').text().trim() != "") {
+                $('.desc-s').slideUp();
+                checkinput.next('.desc-s').slideDown().css('display', 'block');
+            }
+        }
+        var id = document.querySelector('input[name="shippingType"]:checked').value;
+        var cost = $('#shippingType-cost_' + id).val();
+        var costMain = $('#shippingType-cost_main_' + id).val();
+        $('#shippingCost').empty();
+        $('#shippingCost').text(cost + 'đ');
+        var data = {};
+        data["cost"] = costMain;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/setTotalPrice",
+            data: JSON.stringify(data),
+            dataType: 'json',
+            timeout: 100000,
+            async: false,
+            success: function (res) {
+                $('#totalPriceTemp').empty();
+                $('#totalPriceTemp').text(res[0] + 'đ');
+                $('#totalPriceMain').empty();
+                $('#totalPriceMain').text(res[0] + 'đ');
+            }
+        });
+
+    });
+    $('.shiping-ajax-p').on('change', ".input-method-p", function () {
+        if ($(this).is(":checked")) {
+            var checkinput = $(this).parent(".lb-method-p");
+            if (checkinput.next('.desc-p').is(":hidden") && checkinput.next('.desc-p').text().trim() != "") {
+                $('.desc-p').slideUp();
+                checkinput.next('.desc-p').slideDown().css('display', 'block');
+            }
+        }
+
+    });
+    //Hiện thông tin mô tả default
+    $(".input-method-s:checked").parent(".lb-method-s").next('.desc-s').slideDown().css('display', 'block');
+    $(".input-method-p:checked").parent(".lb-method-p").next('.desc-p').slideDown().css('display', 'block');
+</script>
 <script>
     $(document).on("click", "#chosePayment", function (event) {
         event.preventDefault();
@@ -331,7 +366,8 @@
         modal.modal('show');
         return false;
     });
-    $(document).on("click", "#choseShipping", function (event) {
+
+    /*$(document).on("click", "#choseShipping", function (event) {
         event.preventDefault();
         var modal = $('#chose-shipping-modal');
         modal.modal('show');
@@ -346,6 +382,6 @@
         var id = document.querySelector('input[name="shippingType-modal"]:checked').value;
         $('#shipping-modal').text($('#shippingName-modal_' + id).text());
         $('#shippingType').val(id);
-    }
+    }*/
 </script>
 </html>

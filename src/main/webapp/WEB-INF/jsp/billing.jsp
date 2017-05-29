@@ -102,17 +102,42 @@
     </div>
         <div class="col-lg-4">
             <h3>Vận chuyển & Thanh toán</h3>
-            <div>
+            <%--<div>
                 <button type="button" class="btn-checkout" id="chosePayment" style="font-size: 14px;">Chọn Phương Thức Thanh Toán</button>
                 <label id="payment-modal"></label>
                 <input id="paymentType" name="paymentType" type="hidden" value="0"/>
                 <button type="button" class="btn-checkout" id="choseShipping" style="font-size: 14px;">Chọn Phương Thức Vận Chuyển</button>
                 <label id="shipping-modal"></label>
                 <input id="shippingType" name="shippingType" type="hidden" value="0"/>
-            </div>
-            <%--<div class="shiping-ajax">
-
             </div>--%>
+
+                <h2 class="section-title">Phương thức vận chuyển</h2>
+            <div class="shiping-ajax-s">
+                <c:set var="count1" value="0" scope="page" />
+                <c:forEach items="${shippings}" var="s">
+                    <c:set var="count1" value="${count1 + 1}" scope="page"/>
+                    <label class="lb-method-s">
+                        <input name="shippingType" class="input-method-s" type="radio" <c:if test="${count1 == 1}">checked="checked" </c:if>value="${s.id}"/>
+                        <span class="label-radio">${s.name}</span>
+                        <input id="shippingType-cost_${s.id}" type="hidden" value="${s.costDisplay}"/>
+                        <input id="shippingType-cost_main_${s.id}" type="hidden" value="${s.shippingCost}"/>
+
+                    </label>
+                    <span class="desc-s">${s.info}</span>
+                </c:forEach>
+            </div>
+                <h2 class="section-title">Phương thức Thanh Toán</h2>
+            <div class="shiping-ajax-p">
+                <c:set var="count" value="0" scope="page" />
+                <c:forEach items="${payments}" var="p">
+                    <c:set var="count" value="${count + 1}" scope="page"/>
+                    <label class="lb-method-p">
+                        <input name="paymentType" class="input-method-p" type="radio" <c:if test="${count == 1}">checked="checked" </c:if>value="${p.id}"/>
+                        <span class="label-radio">${p.name}</span>
+                    </label>
+                    <span class="desc-p">${p.info}</span>
+                </c:forEach>
+            </div>
         </div>
         <div class="col-lg-4">
             <div class="box-cart">
@@ -143,7 +168,7 @@
                     Tạm tính <label id="totalPriceTemp"> ${carts.totalPrice}₫</label>
                 </div>
                                 <div class="total-checkout">
-                    Tổng cộng <span id="totalPrice"> ${carts.totalPrice}₫</span>
+                    Tổng cộng <span id="totalPriceMain"> ${carts.totalPrice}₫</span>
                 </div>
             </div>
             <button type="submit" class="btn-checkout" name="saveOrder">Đặt hàng</button>

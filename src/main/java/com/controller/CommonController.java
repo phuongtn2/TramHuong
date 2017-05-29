@@ -71,7 +71,7 @@ public class CommonController {
 			}
 		}
 	}
-	public static void loadContentCart(HttpServletRequest request, ModelMap model, ProductService productService, Properties setting) throws ServiceException, UnsupportedEncodingException {
+	public static void loadContentCart(HttpServletRequest request, ModelMap model, ProductService productService, ShippingDto shippingDto) throws ServiceException, UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		CartListDto cartListDto = (CartListDto) session.getAttribute("cartList");
@@ -93,15 +93,14 @@ public class CommonController {
 					}
 					totalPrice = totalPrice + price;
 				}
-			Double shipping = Double.valueOf(setting.getProperty("shipping.cost"));
 			DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-			String sPrice = decimalFormat.format(totalPrice + shipping);
+			String sPrice = decimalFormat.format(totalPrice + shippingDto.getShippingCost());
 
 			model.addAttribute("products", productDtos);
 			model.addAttribute("carts", cartListDto);
 			if(cartListDto.getCartDtoList().size() > 0) {
 				model.addAttribute("productNumber", cartListDto.getCartDtoList().size());
-				model.addAttribute("shipping", decimalFormat.format(shipping));
+				model.addAttribute("shipping", decimalFormat.format(shippingDto.getShippingCost()));
 				cartListDto.setTotalPrice(sPrice);
 			}else{
 				model.addAttribute("productNumber", 0);

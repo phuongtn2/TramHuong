@@ -406,6 +406,28 @@ input[type=radio]:checked + .label-radio {
     display: none;
     white-space: pre-line;
 }
+.lb-method-s {
+    display: block;
+    width: 100%;
+    line-height: 35px;
+}
+
+.desc-s {
+    padding-left: 30px;
+    display: none;
+    white-space: pre-line;
+}
+.lb-method-p {
+    display: block;
+    width: 100%;
+    line-height: 35px;
+}
+
+.desc-p {
+    padding-left: 30px;
+    display: none;
+    white-space: pre-line;
+}
 
 .box-cart {
     border-radius: 5px;
