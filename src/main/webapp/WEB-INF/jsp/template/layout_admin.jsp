@@ -186,6 +186,10 @@
             $("#mail_header").resizable();
             $("#mail_footer").resizable();
         } );
+        function setValueContent() {
+            var aHTML = $('.summernote').code();
+            $('#content').val(aHTML);
+        }
     </script>
 </body>
 </html>

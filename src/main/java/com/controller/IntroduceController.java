@@ -4,10 +4,7 @@ import com.controller.memoizer.Memoizer;
 import com.tramhuong.dto.CategoryDto;
 import com.tramhuong.dto.IntroduceDto;
 import com.tramhuong.dto.MappingCategoryDto;
-import com.tramhuong.services.AboutService;
-import com.tramhuong.services.BlogService;
-import com.tramhuong.services.CategoriesService;
-import com.tramhuong.services.IntroduceService;
+import com.tramhuong.services.*;
 import com.tramhuong.services.error.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +31,8 @@ public class IntroduceController {
 	private BlogService blogService;
 	@Autowired
 	private AboutService aboutService;
+	@Autowired
+	private StaticService staticService;
 	@RequestMapping(value = "/admin/introduce", method = RequestMethod.GET)
 	public String initForm(ModelMap model) throws ServiceException {
 		IntroduceDto introduceDto = introduceService.find();

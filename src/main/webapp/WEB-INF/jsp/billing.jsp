@@ -60,7 +60,7 @@
                 </div>
                 <div class="form-group ctrl-city">
                     <div class='custom-dropdown'>
-                        <select id="billing_address_province" name="provinceId" class="formcontrol"
+                        <select id="billing_address_province" class="formcontrol"
                                 required onchange="setProvinceName()">
                             <option value="null" disabled selected hidden>Vui lòng chọn tỉnh/thành phố.</option>
                             <c:forEach items="${provinces}" var="p">
@@ -103,6 +103,7 @@
     </div>
         <div class="col-lg-4">
             <h3>Vận chuyển & Thanh toán</h3>
+            <button type="button" class="btn-checkout" id="term-shipping-payment" style="font-size: 14px;">Qui Định Vận Chuyển/Thanh Toán</button>
             <%--<div>
                 <button type="button" class="btn-checkout" id="chosePayment" style="font-size: 14px;">Chọn Phương Thức Thanh Toán</button>
                 <label id="payment-modal"></label>

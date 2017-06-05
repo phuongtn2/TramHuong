@@ -194,12 +194,6 @@
         </div>
     </div>
 </div>
-<script>
-    function setValueContent() {
-        var aHTML = $('.summernote').code();
-        $('#content').val(aHTML);
-    }
-</script>
 
 
 

@@ -1,5 +1,6 @@
 package com.tramhuong.dto;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -11,11 +12,11 @@ public class OrderInfoDto {
     private String tel;
     private String email;
     private String address;
-    private String provinceId;
+    /*private String provinceId;*/
     private String provinceName;
-    private String districtId;
+    /*private String districtId;*/
     private String districtName;
-    private String wardId;
+    /*private String wardId;*/
     private String wardName;
     private String description;
     private Integer paymentType;
@@ -23,6 +24,7 @@ public class OrderInfoDto {
     private String orderCode;
     private String totalPrice;
     private Date orderDate;
+    private String dateDisplay;
     private byte status;
 
     public Long getId() {
@@ -65,13 +67,13 @@ public class OrderInfoDto {
         this.address = address;
     }
 
-    public String getProvinceId() {
+    /*public String getProvinceId() {
         return provinceId;
     }
 
     public void setProvinceId(String provinceId) {
         this.provinceId = provinceId;
-    }
+    }*/
 
     public String getProvinceName() {
         return provinceName;
@@ -81,13 +83,13 @@ public class OrderInfoDto {
         this.provinceName = provinceName;
     }
 
-    public String getDistrictId() {
+   /* public String getDistrictId() {
         return districtId;
     }
 
     public void setDistrictId(String districtId) {
         this.districtId = districtId;
-    }
+    }*/
 
     public String getDistrictName() {
         return districtName;
@@ -97,13 +99,13 @@ public class OrderInfoDto {
         this.districtName = districtName;
     }
 
-    public String getWardId() {
+    /*public String getWardId() {
         return wardId;
     }
 
     public void setWardId(String wardId) {
         this.wardId = wardId;
-    }
+    }*/
 
     public String getWardName() {
         return wardName;
@@ -159,6 +161,17 @@ public class OrderInfoDto {
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public String getDateDisplay() {
+        if(orderDate != null)
+            return new SimpleDateFormat("MM/dd/yyyy").format(orderDate);
+        else
+            return "";
+    }
+
+    public void setDateDisplay(String dateDisplay) {
+        this.dateDisplay = dateDisplay;
     }
 
     public byte getStatus() {

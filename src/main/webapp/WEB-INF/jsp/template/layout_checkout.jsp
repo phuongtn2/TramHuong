@@ -24,6 +24,10 @@
     <link href="${b}" rel="stylesheet" type="text/css"/>
     <spring:url value="/resources/css/bootstrap.3.3.1.css" var="cs4" />
     <link href="${cs4}" rel="stylesheet" type="text/css"/>
+    <spring:url value="/resources/css/plugins/dataTables/datatables.min.css" var="dataTablesCs" />
+    <link href="${dataTablesCs}" rel="stylesheet" type="text/css"/>
+    <spring:url value="/resources/font-awesome/css/font-awesome.css" var="cs6" />
+    <link href="${cs6}" rel="stylesheet" type="text/css"/>
     <spring:url value="/resources/js/jquery-2.1.1.js" var="jqueryJs" />
     <script src="${jqueryJs}"></script>
     <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>--%>
@@ -34,6 +38,8 @@
     <script src="${a22}"></script>
     <spring:url value="/resources/js/main1.js" var="a122" />
     <script src="${a122}"></script>
+    <spring:url value="/resources/js/plugins/dataTables/datatables.min.js" var="dataTablesJs" />
+    <script src="${dataTablesJs}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=no">
 
     <script>
@@ -257,7 +263,7 @@
 
 <body class="step1" style="background-color: #333300;">
     <tiles:insertAttribute name="body" />
-    <div class="modal fade" id="chose-payment-modal" role="dialog" tabindex="-1" aria-hidden="false" style="z-index: 9999999;">
+    <div class="modal fade" id="term-shipping-payment-modal" role="dialog" tabindex="-1" aria-hidden="false" style="z-index: 9999999;">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -265,20 +271,13 @@
                     <h4 class="modal-title text-center">Phương Thức Thanh Toán</h4>
                 </div>
                 <div class="modal-body">
-                    <%--<div class="shiping-ajax">
-
-                        <c:forEach items="${payments}" var="p">
-                            <label class="lb-method">
-                                <input name="paymentType-modal" class="input-method" type="radio" checked="checked" value="${p.id}"/>
-                                <span id="paymentName-modal_${p.id}" class="label-radio">${p.name}</span>
-                            </label>
-                            <span class="desc">${p.info}</span>
-                        </c:forEach>
-                    </div>--%>
+                    <div class="shiping-ajax">
+                        ${term.content}
+                    </div>
                 </div>
                 <div class="modal-header text-center" style="background-color: antiquewhite;">
                     <%-- <button onclick="submit()" class="btn btn-primary" type="submit">Thêm</button>--%>
-                    <button onclick="setPayment()" type="button" class="btn btn-primary" data-dismiss="modal">Chọn</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
                 </div>
             </div>
         </div>
@@ -351,11 +350,36 @@
     $(".input-method-p:checked").parent(".lb-method-p").next('.desc-p').slideDown().css('display', 'block');
 </script>
 <script>
-    $(document).on("click", "#chosePayment", function (event) {
+    $(document).on("click", "#term-shipping-payment", function (event) {
         event.preventDefault();
-        var modal = $('#chose-payment-modal');
+        var modal = $('#term-shipping-payment-modal');
         modal.modal('show');
         return false;
+    });
+    $(document).ready(function() {
+        $('.dataTables-example').DataTable({
+            "pageLength": 1000,
+            "order": [],
+            dom: '<"html5buttons"B>lTfgitp',
+            buttons: [
+                {
+                    extend: 'print',
+                    customize: function (win) {
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]
+
+        });
+        $('#DataTables_Table_0_length').hide();
+        $('#DataTables_Table_0_filter').hide();
+        $('#DataTables_Table_0_info').hide();
+        $('#DataTables_Table_0_paginate').hide();
     });
 
     /*$(document).on("click", "#choseShipping", function (event) {

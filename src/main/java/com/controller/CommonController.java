@@ -2,10 +2,7 @@
 package com.controller;
 
 import com.tramhuong.dto.*;
-import com.tramhuong.services.AboutService;
-import com.tramhuong.services.BlogService;
-import com.tramhuong.services.CategoriesService;
-import com.tramhuong.services.ProductService;
+import com.tramhuong.services.*;
 import com.tramhuong.services.error.ServiceException;
 import org.cache2k.Cache;
 import org.springframework.ui.ModelMap;
@@ -78,24 +75,26 @@ public class CommonController {
 		if(cartListDto != null) {
 			List<ProductDto> productDtos = new ArrayList<ProductDto>();
 			Double totalPrice = 0.0;
-			if(cartListDto.getCartDtoList() != null)
+			if(cartListDto.getCartDtoList() != null) {
 				for (CartDto cartDto : cartListDto.getCartDtoList()) {
 					ProductDto productDto = productService.findById(cartDto.getProductId());
 					productDtos.add(productDto);
 					Double price = 0.0;
-					if(productDto.getSalePrice() != null) {
+					if (productDto.getSalePrice() != null) {
 						if (productDto.getIsSale() == 1 && productDto.getSalePrice() > 0)
 							price = productDto.getSalePrice() * cartDto.getCount();
 						else
 							price = productDto.getPrice() * cartDto.getCount();
-					}else{
+					} else {
 						price = productDto.getPrice() * cartDto.getCount();
 					}
 					totalPrice = totalPrice + price;
 				}
+			}
 			DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
 			String sPrice = decimalFormat.format(totalPrice + shippingDto.getShippingCost());
 			model.addAttribute("products", productDtos);
+			session.setAttribute("productSessions", productDtos);
 			model.addAttribute("carts", cartListDto);
 			if(cartListDto.getCartDtoList().size() > 0) {
 				model.addAttribute("productNumber", cartListDto.getCartDtoList().size());

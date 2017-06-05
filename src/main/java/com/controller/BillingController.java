@@ -44,7 +44,7 @@ public class BillingController {
 	@Autowired
 	private BlogService blogService;
 	@Autowired
-	private MailTransferService mailTransferService;
+	private StaticService staticService;
 	@Autowired
 	private ProductService productService;
 	@Resource
@@ -155,7 +155,7 @@ public class BillingController {
 		return properties;
 	}
 	@RequestMapping(method = RequestMethod.POST, value = "/saveOrder")
-	public void saveOrder(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("orderInfo") OrderInfoDto orderInfoDto) throws ServiceException, IOException {
+	public String saveOrder(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("orderInfo") OrderInfoDto orderInfoDto, Model model) throws ServiceException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
@@ -202,7 +202,7 @@ public class BillingController {
 					+ "</tr>"
 					+ content
 					+ "</table>"
-					+ "<p> Phí Vận Chuyển: " + decimalFormat.format(Double.parseDouble(setting.getProperty("shipping.cost"))) + "đ</p>"
+					+ "<p> Phí Vận Chuyển: " + shippingDto.getCostDisplay() + "đ</p>"
 					+ "<p style='color:red'> TỔNG CỘNG: " + cartListDto.getTotalPrice() + "đ</p>"
 					+ mailTemplateDto.getFooter();
 			//sendMailParameter.setBody(body);
@@ -226,11 +226,20 @@ public class BillingController {
 				orderItemService.delete(orderInfoDto.getOrderCode());
 			}
 
-			mailSender.send(message);
+			//mailSender.send(message);
+			orderInfoDto.setOrderDate(new Date());
+			model.addAttribute("orderInfo", orderInfoDto);
+			PaymentDto paymentDto = commonService.findByIdPayment(orderInfoDto.getPaymentType());
+			model.addAttribute("payment", paymentDto);
+			model.addAttribute("shipping", shippingDto);
+			model.addAttribute("cartDto", cartListDto);
+			List<ProductDto> productSessions = (List<ProductDto>) session.getAttribute("productSessions");
+			model.addAttribute("productSessions", productSessions);
 			// delete session
 			session.removeAttribute("cartList");
+			session.removeAttribute("productSessions");
 		}
-		response.sendRedirect("/checkoutSuccess");
+		return "checkoutSuccess";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/page/payment")
@@ -239,8 +248,14 @@ public class BillingController {
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
 		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
-		List<BillingAccountDto> billingAccountDtos = billingAccountService.findAll();
-		model.addAttribute("billings", billingAccountDtos);
+		//List<BillingAccountDto> billingAccountDtos = billingAccountService.findAll();
+		//model.addAttribute("billings", billingAccountDtos);
+		StaticDto staticDto = (StaticDto) Memoizer.getInstance().get("paymentHome");
+		if(staticDto == null){
+			staticDto = staticService.find(2);
+			Memoizer.getInstance().put("paymentHome", staticDto);
+		}
+		model.addAttribute("payment", staticDto);
 		return "payment";
 	}
 	@RequestMapping(method = RequestMethod.GET, value = "/page/buy")
@@ -249,6 +264,12 @@ public class BillingController {
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
 		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
+		StaticDto staticDto = (StaticDto) Memoizer.getInstance().get("buyHome");
+		if(staticDto == null){
+			staticDto = staticService.find(1);
+			Memoizer.getInstance().put("buyHome", staticDto);
+		}
+		model.addAttribute("buyHome", staticDto);
 		return "buy";
 	}
 	@RequestMapping(method = RequestMethod.GET, value = "/page/shipping")
@@ -257,6 +278,12 @@ public class BillingController {
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
 		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
+		StaticDto staticDto = (StaticDto) Memoizer.getInstance().get("shippingHome");
+		if(staticDto == null){
+			staticDto = staticService.find(3);
+			Memoizer.getInstance().put("shippingHome", staticDto);
+		}
+		model.addAttribute("shippingHome", staticDto);
 		return "shipping";
 	}
 

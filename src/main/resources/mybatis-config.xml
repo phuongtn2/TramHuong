@@ -25,5 +25,7 @@
 		<typeAlias alias="tag" type="com.tramhuong.dto.TagDto"/>
 		<typeAlias alias="payment" type="com.tramhuong.dto.PaymentDto"/>
 		<typeAlias alias="shipping" type="com.tramhuong.dto.ShippingDto"/>
+		<typeAlias alias="term" type="com.tramhuong.dto.TermDto"/>
+		<typeAlias alias="static" type="com.tramhuong.dto.StaticDto"/>
 	</typeAliases>
 </configuration>

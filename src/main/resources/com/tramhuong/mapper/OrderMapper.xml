@@ -10,11 +10,8 @@
 		, tel
 		, email
 		, address
-		, provinceId
 		, provinceName
-		, districtId
 		, districtName
-		, wardId
 		, wardName
 		, description
 		, paymentType
@@ -28,11 +25,8 @@
 		, #{dto.tel}
 		, #{dto.email}
 		, #{dto.address}
-		, #{dto.provinceId}
 		, #{dto.provinceName}
-		, #{dto.districtId}
 		, #{dto.districtName}
-		, #{dto.wardId}
 		, #{dto.wardName}
 		, #{dto.description}
 		, #{dto.paymentType}

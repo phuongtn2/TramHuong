@@ -46,6 +46,8 @@ public class ProductController {
 	private TagService tagService;
 	@Autowired
 	private ServletContext servletContext;
+	@Autowired
+	private StaticService staticService;
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");

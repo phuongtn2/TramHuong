@@ -56,9 +56,12 @@
             <li id="mail" class="active">
                 <a href="/admin/mails"><i class="fa fa-th-large"></i> <span class="nav-label">Email Template</span> <span class="fa arrow"></span></a>
             </li>
-            <%--<li id="banner" class="active">
-                <a href="/admin/banners"><i class="fa fa-th-large"></i> <span class="nav-label">Banner</span> <span class="fa arrow"></span></a>
-            </li>--%>
+            <li id="rule" class="active">
+                <a href="/admin/rule"><i class="fa fa-th-large"></i> <span class="nav-label">Qui Định Vận Chuyển&Mua Hàng</span> <span class="fa arrow"></span></a>
+            </li>
+            <li id="static" class="active">
+                <a href="/admin/static"><i class="fa fa-th-large"></i> <span class="nav-label">Cách Mua Hàng | Cách Thanh Toán | Phương Thức Vận Chuyển</span> <span class="fa arrow"></span></a>
+            </li>
         </ul>
 
     </div>
