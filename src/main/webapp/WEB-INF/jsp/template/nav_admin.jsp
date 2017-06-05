@@ -44,7 +44,10 @@
                 <a href="/admin/about"><i class="fa fa-th-large"></i> <span class="nav-label">Thông Tin WebSite</span> <span class="fa arrow"></span></a>
             </li>
             <li id="payment" class="active">
-                <a href="/admin/payments"><i class="fa fa-th-large"></i> <span class="nav-label">Thông Tin Thanh Toán</span> <span class="fa arrow"></span></a>
+                <a href="/admin/payments"><i class="fa fa-th-large"></i> <span class="nav-label">Thanh Toán</span> <span class="fa arrow"></span></a>
+            </li>
+            <li id="shipping" class="active">
+                <a href="/admin/shippings"><i class="fa fa-th-large"></i> <span class="nav-label">Vận Chuyển</span> <span class="fa arrow"></span></a>
             </li>
             <li id="introduce" class="active">
                 <a href="/admin/introduce"><i class="fa fa-th-large"></i> <span class="nav-label">Trang Giới Thiệu</span> <span class="fa arrow"></span></a>

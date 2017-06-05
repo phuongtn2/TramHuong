@@ -26,6 +26,7 @@
 		, position = #{dto.position}
 		, shippingCost = #{dto.shippingCost}
 		, name = #{dto.name}
+		WHERE id = #{dto.id}
 	</update>
 	<select id="findById" resultType="shipping">
 		SELECT * FROM SHIPPING WHERE id = #{id}

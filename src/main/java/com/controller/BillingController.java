@@ -62,46 +62,6 @@ public class BillingController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
-
-	@RequestMapping(value = "/admin/payments", method = RequestMethod.GET)
-	public String initForm(ModelMap model) throws ServiceException {
-		List<BillingAccountDto> billingAccountDtos = billingAccountService.findAll();
-		model.addAttribute("payments", billingAccountDtos);
-		model.addAttribute("payment", new BillingAccountDto());
-		return "payments";
-	}
-	@RequestMapping(method = RequestMethod.POST, params = "addPayment")
-	public void addAbout(@ModelAttribute("payment") BillingAccountDto billingAccountDto, HttpServletResponse response) throws ServiceException, IOException {
-		if(billingAccountDto.getId() != null && billingAccountDto.getId() > 0){
-			billingAccountService.update(billingAccountDto);
-		}else{
-			billingAccountService.add(billingAccountDto);
-		}
-		response.sendRedirect("/admin/payments");
-	}
-	@RequestMapping(value = "/admin/payment/edit/{id}", method = RequestMethod.GET)
-	public String getEdit(@PathVariable int id, Model model, HttpServletRequest request)  throws ServiceException {
-		BillingAccountDto billingAccountDto = billingAccountService.findById(id);
-		model.addAttribute("payment",billingAccountDto);
-		return "payment-add";
-	}
-	@RequestMapping(value = "/admin/payment", method = RequestMethod.GET)
-	public String getAdd(Model model, HttpServletRequest request)  throws ServiceException {
-		model.addAttribute("payment", new BillingAccountDto());
-		return "payment-add";
-	}
-	@RequestMapping(value = "/admin/payment/edit/{id}", method = RequestMethod.POST)
-	public void saveEdit(HttpServletResponse response, @ModelAttribute("payment") BillingAccountDto billingAccountDto, @PathVariable int id) throws ServiceException, IOException {
-		billingAccountService.update(billingAccountDto);
-		response.sendRedirect("/admin/payments");
-	}
-
-	@RequestMapping(value = "/admin/payment/delete/{id}", method = RequestMethod.GET)
-	public void delete(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException {
-		billingAccountService.delete(id);
-		response.sendRedirect("/admin/payments");
-	}
-
 	@RequestMapping(method = RequestMethod.GET, value = "/admin/order/view/{id}")
 	public String orderDetail(HttpServletRequest request, ModelMap model, @PathVariable long id) throws ServiceException, UnsupportedEncodingException {
 		OrderInfoDto orderInfoDto = orderService.findById(id);

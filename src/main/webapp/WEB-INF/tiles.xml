@@ -182,6 +182,14 @@
 		<put-attribute name="title" value="Trầm Hương" />
 		<put-attribute name="body" value="/WEB-INF/jsp/payment/add.jsp" />
 	</definition>
+	<definition name="shippings" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/shipping/list_shipping.jsp" />
+	</definition>
+	<definition name="shipping-add" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/shipping/add.jsp" />
+	</definition>
 	<definition name="mails" extends="base.admin">
 		<put-attribute name="title" value="Trầm Hương" />
 		<put-attribute name="body" value="/WEB-INF/jsp/mail/view.jsp" />

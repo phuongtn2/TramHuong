@@ -7,7 +7,7 @@
 		<div class="ibox float-e-margins">
 			<div class="ibox-title">
 				<h5><spring:message code="payment.title" text="default text"/></h5>
-				<a href="/admin/payment" class="btn btn-primary" style="margin-left: 20px; padding: 0px">
+				<a href="/admin/shipping" class="btn btn-primary" style="margin-left: 20px; padding: 0px">
 					<i class="fa fa-plus"></i><spring:message code="common.button.add" text="default text"/>
 				</a>
 				<div class="ibox-tools">
@@ -27,13 +27,14 @@
 						<th data-hide="phone,tablet"><spring:message code="payment.common" text="default text"/></th>
 						<th data-hide="phone,tablet"><spring:message code="common.status.title" text="default text"/></th>
 						<th data-hide="phone,tablet"><spring:message code="static.content" text="default text"/></th>
+						<th data-hide="phone,tablet">Phí Vận Chuyển</th>
 						<th data-hide="phone,tablet"><spring:message code="post.position" text="default text"/></th>
 						<th data-hide="phone,tablet" class="text-center"><spring:message code="common.action"
 																						 text="default text"/></th>
 					</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${payments}" var="p">
+						<c:forEach items="${shippings}" var="p">
 							<tr class="gradeC text-center">
 								<td>${p.name}</td>
 								<td data-hide="phone,tablet">
@@ -49,12 +50,15 @@
 									${p.info}
 								</td>
 								<td data-hide="phone,tablet">
+										${p.costDisplay}đ
+								</td>
+								<td data-hide="phone,tablet">
 										${p.position}
 								</td>
 								<td data-hide="phone,tablet text-center">
 									<div class="btn-group">
 										<a class="btn-success btn btn-xs"
-										   href="/admin/payment/edit/${p.id}"><i class="fa fa-edit"><spring:message code="common.button.update" text="default text"/></i></a>
+										   href="/admin/shipping/edit/${p.id}"><i class="fa fa-edit"><spring:message code="common.button.update" text="default text"/></i></a>
 									</div>
 								</td>
 							</tr>

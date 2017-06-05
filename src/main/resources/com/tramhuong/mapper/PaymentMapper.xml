@@ -23,6 +23,7 @@
 		, status = #{dto.status}
 		, position = #{dto.position}
 		, name = #{dto.name}
+		WHERE id = #{dto.id}
 	</update>
 	<select id="findById" resultType="payment">
 		SELECT * FROM PAYMENT WHERE id = #{id}
