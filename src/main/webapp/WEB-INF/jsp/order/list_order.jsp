@@ -24,6 +24,7 @@
 						<th data-hide="all"><spring:message code="customer.tel" text="default text"/></th>
 						<th data-hide="all"><spring:message code="customer.email" text="default text"/></th>
 						<th data-hide="phone,tablet"><spring:message code="customer.payment" text="default text"/></th>
+						<th data-hide="phone,tablet">Vận Chuyển</th>
 						<th data-hide="all"><spring:message code="customer.address" text="default text"/></th>
 						<th data-hide="phone,tablet"><spring:message code="common.status.title" text="default text"/></th>
 						<th data-hide="phone,tablet"><spring:message code="order.price" text="default text"/></th>
@@ -41,10 +42,18 @@
 							<td data-hide="phone,tablet">${o.tel}</td>
 							<td data-hide="phone,tablet">${o.email}</td>
 							<td data-hide="phone,tablet">
-								<c:if test="${o.paymentType==0}"> <span class="label label-success"><spring:message
-										code="customer.payment_1" text="default text"/></span> </c:if>
-								<c:if test="${user.userStatus==1}"> <span class="label label-danger"><spring:message
-										code="customer.payment_2" text="default text"/></span> </c:if>
+								<c:forEach items="${payments}" var="pp">
+									<c:if test="${o.paymentType==pp.id}">
+										<span class="label label-success">${pp.name}</span>
+									</c:if>
+								</c:forEach>
+							</td>
+							<td data-hide="phone,tablet">
+								<c:forEach items="${shippings}" var="ss">
+									<c:if test="${o.shippingType==ss.id}">
+										<label class="label-success">${ss.name}</label>
+									</c:if>
+								</c:forEach>
 							</td>
 							<td data-hide="phone,tablet">${o.address} - ${o.wardName} - ${o.districtName} - ${o.provinceName}</td>
 							<td data-hide="phone,tablet">
@@ -63,8 +72,8 @@
 							<td data-hide="phone,tablet">${o.description}</td>
 							<td class="text-center">
 								<div class="btn-group">
-									<%--<a class="btn-success btn btn-xs"
-									   href="/admin/order/edit/${o.id}"><i class="fa fa-edit"><spring:message code="common.button.update" text="default text"/></i></a>--%>
+									<a class="btn-success btn btn-xs"
+									   href="/admin/order/edit/${o.id}"><i class="fa fa-edit"><spring:message code="common.button.update" text="default text"/></i></a>
 									<%--<a type="button" data-toggle="modal" data-target="#deleteButton"
 								   		class="btn-danger btn btn-xs"
 								   		onclick="setUrl('/admin/order/delete/${o.id}')"><i class="fa fa-trash-o"><spring:message code="common.button.delete" text="default text"/></i></a>--%>

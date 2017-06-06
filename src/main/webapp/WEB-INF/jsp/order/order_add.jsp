@@ -17,12 +17,14 @@
 					</a>
 				</div>
 			</div>
+<form:form modelAttribute="order" method="post" action="/admin/order/save" class="form-horizontal new_order">
 			<div class="ibox-content m-b-sm border-bottom">
 				<div class="row">
 					<div class="col-sm-3">
 						<label class="control-label"><spring:message code="order.code"	text="default text"/></label>
 					</div>
 					<div class="col-sm-9">
+						<input type="hidden" value="${order.id}" name="id"/>
 						<label class="control-label" style="color: red;">${order.orderCode}</label>
 					</div>
 				</div>
@@ -107,15 +109,21 @@
 					<div class="col-sm-3">
 						<label class="control-label"><spring:message code="common.status.title" text="default text"/></label>
 					</div>
-					<div class="col-sm-9">
-						<c:if test="${order.status==0}"> <span class="label label-primary"><spring:message
-								code="order.new" text="default text"/></span> </c:if>
-						<c:if test="${order.status==1}"> <span class="label label-success"><spring:message
-								code="order.shipping" text="default text"/></span> </c:if>
-						<c:if test="${order.status==2}"> <span class="label label-danger"><spring:message
-								code="order.cancel" text="default text"/></span> </c:if>
-						<c:if test="${order.status==3}"> <span class="label label-warning"><spring:message
-								code="order.expried" text="default text"/></span> </c:if>
+					<div class="col-sm-6">
+						<select id="status" name="status" class="form-control m-b" required>
+							<option
+									<c:if test="${order.status==0}">selected</c:if> value="0">
+								<spring:message code="order.new" text="default text"/></option>
+							<option
+									<c:if test="${order.status==1}">selected</c:if> value="1">
+								<spring:message code="order.shipping" text="default text"/></option>
+							<option
+									<c:if test="${order.status==2}">selected</c:if> value="2">
+								<spring:message code="order.cancel" text="default text"/></option>
+							<option
+									<c:if test="${order.status==3}">selected</c:if> value="3">
+								<spring:message code="order.expried" text="default text"/></option>
+						</select>
 					</div>
 				</div>
 				<div class="row">
@@ -214,6 +222,14 @@
 				</div>
 			</div>
 		</div>
+		<div class="form-group" style="margin-top: 20px;">
+			<div class="text-center">
+				<button type="submit" class="btn btn-primary">
+					<i class="fa fa-check"></i><spring:message code="common.button.save" text="default text"/>
+				</button>
+			</div>
+		</div>
+		</form:form>
 	</div>
 </div>
 

@@ -16,7 +16,7 @@
 		<intercept-url pattern="/admin/logout" access="permitAll()"></intercept-url>
 		<intercept-url pattern="/admin/accessdenied" access="permitAll()"></intercept-url>
 		<intercept-url pattern="/admin/**" access="isAuthenticated()"></intercept-url>
-		<form-login login-page="/admin/login" default-target-url="/admin/categories" authentication-failure-url="/admin/accessdenied"></form-login>
+		<form-login login-page="/admin/login" default-target-url="/admin/dashboard" authentication-failure-url="/admin/accessdenied"></form-login>
 		<logout logout-success-url="/admin/logout"></logout>
 	</http>
 

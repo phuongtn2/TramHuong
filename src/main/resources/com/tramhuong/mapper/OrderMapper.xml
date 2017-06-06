@@ -49,8 +49,20 @@
 	<select id="findAll" resultType="order">
 		SELECT * FROM ORDER_INFO ORDER BY orderDate DESC
 	</select>
+	<select id="findNew" resultType="order">
+		SELECT * FROM ORDER_INFO WHERE status = 0 ORDER BY orderDate DESC
+	</select>
 	<select id="findById" resultType="order">
 		SELECT * FROM ORDER_INFO WHERE id=#{id}
+	</select>
+	<select id="findOrderCancel" resultType="Long">
+		SELECT COUNT(id) FROM ORDER_INFO WHERE status = 2 ORDER BY orderDate DESC
+	</select>
+	<select id="findOrderThisDay" resultType="Long">
+		SELECT COUNT(id) FROM ORDER_INFO WHERE to_days(orderDate) > to_days(NOW()) - 1 AND to_days(NOW()) + 1 > to_days(orderDate)  ORDER BY orderDate DESC
+	</select>
+	<select id="findPayment" resultType="order">
+		SELECT * FROM ORDER_INFO WHERE to_days(orderDate) > to_days(NOW()) - 1 AND to_days(NOW()) + 1 > to_days(orderDate)  ORDER BY orderDate DESC
 	</select>
 	<select id="findByCondition" resultType="order">
 		SELECT * FROM ORDER_INFO  WHERE
@@ -65,6 +77,9 @@
 		</if>
 		<if test="paymentType != -1">
 			AND paymentType = #{paymentType}
+		</if>
+		<if test="shippingType != -1">
+			AND shippingType = #{shippingType}
 		</if>
 		<if test="dateSearch != null">
 			AND orderDate LIKE concat(concat('%',#{dateSearch}), '%')
@@ -81,4 +96,9 @@
 		ORDER BY orderDate DESC
 	</select>
 
+	<select id="chart" resultType="chart">
+		SELECT COUNT(p.id) as value,  c.name as label  FROM product p
+		INNER JOIN m_category c ON (p.categoryId = c.id)
+		INNER  JOIN order_item o ON ( o.productId = p.id) GROUP BY c.id
+	</select>
 </mapper>

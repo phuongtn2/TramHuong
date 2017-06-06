@@ -191,5 +191,42 @@
             $('#content').val(aHTML);
         }
     </script>
+
+    <%--<script>
+        $(document).ready(function() {
+            $.ajax({
+                type: "GET",
+                contentType: "application/json",
+                url: "/chart",
+                dataType: 'json',
+                timeout: 100000,
+                async: false,
+                success: function (chartData) {
+                    var doughnutData = [
+                    ];
+
+                    for(var i=0 ; i < chartData.length ;i ++ ){
+                        var object = {value: chartData[i]["value"], color: "#a3e1d4",highlight: "#1ab394",label: chartData[i]["label"]};
+                        doughnutData.push(object);
+                    }
+
+                    var doughnutOptions = {
+                        segmentShowStroke: true,
+                        segmentStrokeColor: "#fff",
+                        segmentStrokeWidth: 2,
+                        percentageInnerCutout: 45, // This is 0 for Pie charts
+                        animationSteps: 100,
+                        animationEasing: "easeOutBounce",
+                        animateRotate: true,
+                        animateScale: false
+                    };
+
+                    var ctx = document.getElementById("doughnutChart").getContext("2d");
+                    var DoughnutChart = new Chart(ctx).Doughnut(doughnutData, doughnutOptions);
+                }
+            });
+        });
+
+    </script>--%>
 </body>
 </html>

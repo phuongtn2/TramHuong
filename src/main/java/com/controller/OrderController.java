@@ -3,9 +3,11 @@ package com.controller;
 import com.tramhuong.dto.*;
 import com.tramhuong.services.*;
 import com.tramhuong.services.error.ServiceException;
+import com.tramhuong.util.str.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +24,14 @@ import java.util.*;
 public class OrderController {
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private OrderItemService orderItemService;
+	@Autowired
+	private ProductService productService;
+	@Autowired
+	private CategoriesService categoriesService;
+	@Autowired
+	private CommonService commonService;
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -49,6 +59,8 @@ public class OrderController {
 		}else{
 			model.addAttribute("searchOrder", null);
 		}
+		model.addAttribute("payments", commonService.findByStatusPayment());
+		model.addAttribute("shippings", commonService.findByStatusShipping());
 		session.removeAttribute("orders");
 		return "orders";
 	}
@@ -72,7 +84,7 @@ public class OrderController {
 			searchOrderDto.setDateSearch(onlyDate);
 		}
 		List<OrderInfoDto> orderInfoDtos = orderService.findByCondition(
-				searchOrderDto.getStatus(), searchOrderDto.getOrderCode(), searchOrderDto.getPaymentType()
+				searchOrderDto.getStatus(), searchOrderDto.getOrderCode(), searchOrderDto.getPaymentType(), searchOrderDto.getShippingType()
 				, searchOrderDto.getDateSearch(), searchOrderDto.getName(), searchOrderDto.getTel(), searchOrderDto.getEmail());
 		session.setAttribute("orders", orderInfoDtos);
 		session.setAttribute("searchOrder", searchOrderDto);
@@ -80,4 +92,35 @@ public class OrderController {
 		//return "redirect:/admin/orders";
 	}
 
+	@RequestMapping(value = "/admin/order/edit/{id}", method = RequestMethod.GET)
+	public String getEditShipping(@PathVariable long id, Model model, HttpServletRequest request)  throws ServiceException {
+		OrderInfoDto orderInfoDto = orderService.findById(id);
+		model.addAttribute("order", orderInfoDto);
+		List<OrderItemDto> orderItemDtos = orderItemService.findByOrderCode(orderInfoDto.getOrderCode());
+
+		List<ProductDto> productDtos = new ArrayList<ProductDto>();
+		if(orderItemDtos != null) {
+			for (OrderItemDto orderItemDto : orderItemDtos) {
+				ProductDto productDto = productService.findById(orderItemDto.getProductId());
+				productDto.setCount(orderItemDto.getCount());
+				productDtos.add(productDto);
+			}
+		}
+		model.addAttribute("payments", commonService.findByStatusPayment());
+		model.addAttribute("shippings", commonService.findByStatusShipping());
+		model.addAttribute("products", productDtos);
+		List<CategoryDto> categoryDtos = categoriesService.findAll();
+		List<CategoryDto> subCategoryDtos = categoriesService.findAllS();
+		model.addAttribute("categories", categoryDtos);
+		model.addAttribute("subCategories", subCategoryDtos);
+		return "order-add";
+	}
+	@RequestMapping(value = "/admin/order/save",method = RequestMethod.POST)
+	public void addAbout(@ModelAttribute("order") OrderInfoDto orderInfoDto, HttpServletResponse response) throws ServiceException, IOException {
+		if(orderInfoDto.getId() != null && orderInfoDto.getId() > 0){
+			orderService.update(orderInfoDto);
+		}
+		response.sendRedirect("/admin/order/view/" + orderInfoDto.getId());
+		/*return "redirect:/admin/about";*/
+	}
 }

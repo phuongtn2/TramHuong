@@ -76,6 +76,8 @@ public class BillingController {
 				productDtos.add(productDto);
 			}
 		}
+		model.addAttribute("payments", commonService.findByStatusPayment());
+		model.addAttribute("shippings", commonService.findByStatusShipping());
 		model.addAttribute("products", productDtos);
 		List<CategoryDto> categoryDtos = categoriesService.findAll();
 		List<CategoryDto> subCategoryDtos = categoriesService.findAllS();
@@ -186,7 +188,7 @@ public class BillingController {
 				orderItemService.delete(orderInfoDto.getOrderCode());
 			}
 
-			//mailSender.send(message);
+			mailSender.send(message);
 			orderInfoDto.setOrderDate(new Date());
 			model.addAttribute("orderInfo", orderInfoDto);
 			PaymentDto paymentDto = commonService.findByIdPayment(orderInfoDto.getPaymentType());

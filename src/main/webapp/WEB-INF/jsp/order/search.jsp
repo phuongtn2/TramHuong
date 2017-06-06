@@ -48,16 +48,26 @@
 
 					</div>
 					<div class="row">
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<label for="paymentType"><spring:message code="customer.payment"
 																		 text="default text"/></label>
 							<select id="paymentType" class="form-control m-b" name="paymentType">
 								<option <c:if test="${searchOrder == null}">selected</c:if> value="-1"><spring:message code="common.all" text="default text"/></option>
-								<option <c:if test="${searchOrder != null && searchOrder.paymentType == 0}">selected</c:if> value="0"><spring:message code="customer.payment_1" text="default text"/></option>
-								<option <c:if test="${searchOrder != null && searchOrder.paymentType == 1}">selected</c:if> value="1"><spring:message code="customer.payment_2" text="default text"/></option>
+								<c:forEach items="${payments}" var="pp">
+									<option <c:if test="${searchOrder.paymentType == pp.id}">selected</c:if> value="${pp.id}">${pp.name}</option>
+								</c:forEach>
 							</select>
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
+							<label for="shippingType">Vận Chuyển</label>
+							<select id="shippingType" class="form-control m-b" name="shippingType">
+								<option <c:if test="${searchOrder == null}">selected</c:if> value="-1"><spring:message code="common.all" text="default text"/></option>
+								<c:forEach items="${shippings}" var="ss">
+									<option <c:if test="${searchOrder.shippingType == ss.id}">selected</c:if> value="${ss.id}">${ss.name}</option>
+								</c:forEach>
+							</select>
+						</div>
+						<div class="col-sm-3">
 							<div>
 								<label class="control-label" for="status"><spring:message code="common.status.title"
 																			 text="default text"/></label>
@@ -74,7 +84,7 @@
 								</select>
 							</div>
 						</div>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<div>
 								<label class="control-label" for="orderDate"><spring:message code="product.created"
 																			 text="default text"/></label>

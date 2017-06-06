@@ -170,6 +170,10 @@
 		<put-attribute name="title" value="Trầm Hương" />
 		<put-attribute name="body" value="/WEB-INF/jsp/order/order_detail.jsp" />
 	</definition>
+	<definition name="order-add" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/order/order_add.jsp" />
+	</definition>
 	<definition name="about" extends="base.admin">
 		<put-attribute name="title" value="Trầm Hương" />
 		<put-attribute name="body" value="/WEB-INF/jsp/about/view.jsp" />
@@ -245,6 +249,10 @@
 	<definition name="rule" extends="base.admin">
 		<put-attribute name="title" value="Trầm Hương" />
 		<put-attribute name="body" value="/WEB-INF/jsp/rule/view.jsp" />
+	</definition>
+	<definition name="dashboard" extends="base.admin">
+		<put-attribute name="title" value="Trầm Hương" />
+		<put-attribute name="body" value="/WEB-INF/jsp/dashboard/view.jsp" />
 	</definition>
 	<!--Admin-->
 	<!--Login Admin-->

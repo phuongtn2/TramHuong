@@ -1,6 +1,7 @@
 package com.tramhuong.mapper;
 
 import com.tramhuong.dto.BlogDto;
+import com.tramhuong.dto.ChartDto;
 import com.tramhuong.dto.OrderInfoDto;
 import com.tramhuong.services.error.ServiceException;
 import org.apache.ibatis.annotations.Param;
@@ -18,6 +19,11 @@ public interface OrderMapper {
     void delete(@Param("orderCode") String orderCode) throws ServiceException;
     OrderInfoDto findById(@Param("id") long id);
     List<OrderInfoDto> findAll();
-    List<OrderInfoDto> findByCondition(@Param("status") byte status,@Param("orderCode") String orderCode,@Param("paymentType") byte paymentType,
+    List<OrderInfoDto> findNew();
+    Long findOrderCancel();
+    Long findOrderThisDay();
+    List<ChartDto> chart();
+    List<OrderInfoDto> findPayment();
+    List<OrderInfoDto> findByCondition(@Param("status") byte status,@Param("orderCode") String orderCode,@Param("paymentType") Integer paymentType, @Param("shippingType") Integer shippingType,
                                        @Param("dateSearch") String orderDate, @Param("name")String name, @Param("tel") String tel, @Param("email") String email);
 }

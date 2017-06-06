@@ -8,7 +8,8 @@ import java.util.Date;
 public class SearchOrderDto {
 
     private byte status;
-    private byte paymentType;
+    private Integer paymentType;
+    private Integer shippingType;
     private String name;
     private String tel;
     private String email;
@@ -24,12 +25,20 @@ public class SearchOrderDto {
         this.status = status;
     }
 
-    public byte getPaymentType() {
+    public Integer getPaymentType() {
         return paymentType;
     }
 
-    public void setPaymentType(byte paymentType) {
+    public void setPaymentType(Integer paymentType) {
         this.paymentType = paymentType;
+    }
+
+    public Integer getShippingType() {
+        return shippingType;
+    }
+
+    public void setShippingType(Integer shippingType) {
+        this.shippingType = shippingType;
     }
 
     public String getName() {

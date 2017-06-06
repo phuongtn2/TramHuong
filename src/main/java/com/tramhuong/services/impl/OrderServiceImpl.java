@@ -1,5 +1,6 @@
 package com.tramhuong.services.impl;
 
+import com.tramhuong.dto.ChartDto;
 import com.tramhuong.dto.OrderInfoDto;
 import com.tramhuong.mapper.OrderMapper;
 import com.tramhuong.services.OrderService;
@@ -43,7 +44,32 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderInfoDto> findByCondition(byte status, String orderCode, byte paymentType, String orderDate, String name, String tel, String email) throws ServiceException {
-        return orderMapper.findByCondition(status, orderCode, paymentType, orderDate, name, tel, email);
+    public List<OrderInfoDto> findNew() throws ServiceException {
+        return orderMapper.findNew();
+    }
+
+    @Override
+    public Long findOrderCancel() throws ServiceException {
+        return orderMapper.findOrderCancel();
+    }
+
+    @Override
+    public Long findOrderThisDay() throws ServiceException {
+        return orderMapper.findOrderThisDay();
+    }
+
+    @Override
+    public List<OrderInfoDto> findPayment() throws ServiceException {
+        return orderMapper.findPayment();
+    }
+
+    @Override
+    public List<ChartDto> chart() throws ServiceException {
+        return orderMapper.chart();
+    }
+
+    @Override
+    public List<OrderInfoDto> findByCondition(byte status, String orderCode, Integer paymentType, Integer shippingType, String orderDate, String name, String tel, String email) throws ServiceException {
+        return orderMapper.findByCondition(status, orderCode, paymentType, shippingType,  orderDate, name, tel, email);
     }
 }
