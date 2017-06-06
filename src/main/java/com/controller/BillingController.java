@@ -217,7 +217,7 @@ public class BillingController {
 			staticDto = staticService.find(2);
 			Memoizer.getInstance().put("paymentHome", staticDto);
 		}
-		model.addAttribute("payment", staticDto);
+		model.addAttribute("paymentHome", staticDto);
 		return "payment";
 	}
 	@RequestMapping(method = RequestMethod.GET, value = "/page/buy")

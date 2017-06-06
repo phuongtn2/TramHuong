@@ -50,7 +50,7 @@
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <span class="label label-success pull-right">&nbsp;</span>
-                <h5>Đơn Hàng Mới</h5>
+                <h5>Đơn Hàng Chưa Xử Lý</h5>
             </div>
             <div class="ibox-content">
         <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="10" data-filter=#filter
