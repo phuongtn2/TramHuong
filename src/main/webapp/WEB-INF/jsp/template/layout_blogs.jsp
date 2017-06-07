@@ -23,7 +23,7 @@
     <!--[if IE]>
     <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/><![endif]-->
     <title>
-        Trầm Hương Tuấn Anh
+        Nhang Hoạt Tính
     </title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=0' name='viewport'/>
@@ -190,12 +190,12 @@
     <link href="${cs3}" rel="stylesheet" type="text/css"/>--%>
 
     <meta property="og:type" content="website"/>
-    <meta property="og:title" content="Trầm Hương Tuấn Anh"/>
+    <meta property="og:title" content="Nhang Hoạt Tính"/>
 
     <meta property="og:image" content="/resource/img/logo.jpg"/>
     <meta property="og:image" content="/resource/img/logo.jpg"/>
     <meta property="og:url" content="${pageContext.request.contextPath}"/>
-    <meta property="og:site_name" content="Trầm Hương Tuấn Anh"/>
+    <meta property="og:site_name" content="Nhang Hoạt Tính"/>
     <!-- Latest compiled and minified CSS -->
     <spring:url value="/resources/css/bootstrap.3.3.1.css" var="cs4" />
     <link href="${cs4}" rel="stylesheet" type="text/css"/>

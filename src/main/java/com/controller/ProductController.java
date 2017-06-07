@@ -276,7 +276,7 @@ public class ProductController {
 			productDtoList = (List<ProductDto>) Memoizer.getInstance().get("product-relation");
 		}
 		model.addAttribute("relations", productDtoList);
-		model.addAttribute("active", "_4");
+		/*model.addAttribute("active", "_4");*/
 		if(!StringUtil.isEmpty(productDto.getTag())) {
 			String[] tagsP = productDto.getTag().split(",");
 			List<String> strings = new ArrayList<String>();
@@ -312,7 +312,7 @@ public class ProductController {
 			productDtoList = (List<ProductDto>) Memoizer.getInstance().get("product-categories"+id);
 		}
 		model.addAttribute("productList", productDtoList);
-		model.addAttribute("active", "_4");
+		/*model.addAttribute("active", "_4");*/
 		SortDto sortDto = new SortDto();
 		sortDto.setSort("category");
 		sortDto.setSortValue(id + "");
@@ -345,7 +345,7 @@ public class ProductController {
 			}
 		}
 		model.addAttribute("productList", productDtoList);
-		model.addAttribute("active", "_4");
+		/*model.addAttribute("active", "_4");*/
 		model.addAttribute("sort", "subCategory");
 		model.addAttribute("sortValue", id + "");
 		SortDto sortDto = new SortDto();
@@ -371,7 +371,7 @@ public class ProductController {
 		}
 		model.addAttribute("bre", "Sản Phẩm Nổi Bật");
 		model.addAttribute("productList", productDtoList);
-		model.addAttribute("active", "_4");
+		/*model.addAttribute("active", "_4");*/
 		SortDto sortDto = new SortDto();
 		sortDto.setSort("highs");
 		sortDto.setSortValue("NO");
@@ -418,7 +418,7 @@ public class ProductController {
 			productDtoList = (List<ProductDto>) Memoizer.getInstance().get("tag");
 		}
 		model.addAttribute("productList", productDtoList);
-		model.addAttribute("active", "_4");
+		/*model.addAttribute("active", "_4");*/
 		SortDto sortDto = new SortDto();
 		sortDto.setSort("tag");
 		sortDto.setSortValue(tag);
@@ -441,7 +441,7 @@ public class ProductController {
 		//	productDtoList = (List<ProductDto>) Memoizer.getInstance().get("search");
 		//}
 		model.addAttribute("productList", productDtoList);
-		model.addAttribute("active", "_4");
+		/*model.addAttribute("active", "_4");*/
 		SortDto sortDto = new SortDto();
 		sortDto.setSort("name");
 		sortDto.setSortValue(name);
@@ -480,7 +480,7 @@ public class ProductController {
 			}
 		}
 		model.addAttribute("productList", productDtoList);
-		model.addAttribute("active", "_4");
+		/*model.addAttribute("active", "_4");*/
 		if(sortDto != null){
 			model.addAttribute("sortDto", sortDto);
 		}

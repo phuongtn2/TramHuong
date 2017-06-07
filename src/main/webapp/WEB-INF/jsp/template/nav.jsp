@@ -187,7 +187,7 @@
         });
         $(document).ready(function () {
             var id = $('#active').val();
-            var listId = ["_1", "_2", "_3", "_4" , "_5", "_6"];
+            var listId = ["_1", "_2", "_5", "_6"];
             for (i = 0; i <=  listId.length; i++) {
                 if(id === listId[i]){
                     $('#'+listId[i]).addClass( "active" );

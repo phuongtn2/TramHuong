@@ -208,7 +208,7 @@
                             </li>
                         </c:if>
                         <c:if test="${blogs0.size() > 1}">
-                            <c:if test="${countS1 == 1}">
+                            <c:if test="${countS0 == 1}">
                                 <li class="first">
                                     <a href="/blog/${b0.id}">
                                             ${b0.name}

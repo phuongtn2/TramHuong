@@ -15,7 +15,7 @@
     <spring:url value="/resources/img/favicon/favicon.png" var="fava"/>
     <link rel="shortcut icon" href="${fava}" type="image/png"/>
     <title>
-        Trầm Hương Tuấn Anh - Thanh toán đơn hàng
+        Nhang Hoạt Tính - Thanh toán đơn hàng
     </title>
 
     <spring:url value="/resources/css/checkout1.css" var="a" />

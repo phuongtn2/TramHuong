@@ -88,7 +88,7 @@ public class BlogController {
 			/*if(id==1)
 				model.addAttribute("active", "_6");
 			else*/
-			model.addAttribute("active", "_3");
+			/*model.addAttribute("active", "_3");*/
 			return "blog";
 		//}
 	}

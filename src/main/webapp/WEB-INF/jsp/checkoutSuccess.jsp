@@ -12,7 +12,7 @@
 <span class="fbtracker-checkout"></span>
 <div class="container clearfix">
     <div class="col-md-12">
-        <a href="/cart">
+        <a href="/">
             <h1>
         <span style="background: url(/resources/img/back-checkout.png) no-repeat center left;
     background-color: #808000;
@@ -26,7 +26,7 @@
     line-height: 45px;
     position: relative;
     cursor: pointer;
-    margin: 7px;">Quay Về Trang Chủ</span> Trầm Hương Tuấn Anh</h1></a>
+    margin: 7px;">Quay Về Trang Chủ</span> Nhang Hoạt Tính</h1></a>
     </div>
     <div class="col-md-12">
         <table class="table table-striped table-bordered table-hover dataTables-example" >
@@ -83,6 +83,38 @@
                 <tr class="gradeX">
                     <td class="center">Phương Thức Thanh Toán</td>
                     <td class="center">${payment.name}</td>
+                </tr>
+                <tr class="gradeX">
+                    <td class="center">Mã Đơn Hàng</td>
+                    <td class="center" style="color: red">${orderInfo.orderCode}</td>
+                </tr>
+                <c:set var="count" value="0" scope="page" />
+                    <c:forEach items="${productSessions}" var="p">
+                        <c:set var="count" value="${count + 1}" scope="page"/>
+                        <c:forEach items="${cartListDto.cartDtoList}" var="c">
+                            <c:if test="${c.productId == p.id}">
+                                <c:if test="${count == 1}">
+                                    <tr class="gradeX">
+                                        <td class="center">Thông Tin Sản Phẩm</td>
+                                        <td class="center">${c.count} x ${p.name} = ${p.priceDisplay}đ </td>
+                                    </tr>
+                                </c:if>
+                                <c:if test="${count > 1}">
+                                <tr class="gradeX">
+                                    <td class="center">&nbsp;</td>
+                                    <td class="center">${c.count} x ${p.name} = ${p.priceDisplay}đ </td>
+                                </tr>
+                                </c:if>
+                            </c:if>
+                    </c:forEach>
+                </c:forEach>
+                <tr class="gradeX">
+                    <td class="center">Phí Vận Chuyển</td>
+                    <td class="center" style="color: red">${shipping.costDisplay}đ</td>
+                </tr>
+                <tr class="gradeX">
+                    <td class="center">Tổng Cộng</td>
+                    <td class="center" style="color: red">${cartListDto.totalPrice}đ</td>
                 </tr>
             </tfoot>
         </table>

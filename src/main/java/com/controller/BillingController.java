@@ -194,7 +194,7 @@ public class BillingController {
 			PaymentDto paymentDto = commonService.findByIdPayment(orderInfoDto.getPaymentType());
 			model.addAttribute("payment", paymentDto);
 			model.addAttribute("shipping", shippingDto);
-			model.addAttribute("cartDto", cartListDto);
+			model.addAttribute("cartListDto", cartListDto);
 			List<ProductDto> productSessions = (List<ProductDto>) session.getAttribute("productSessions");
 			model.addAttribute("productSessions", productSessions);
 			// delete session

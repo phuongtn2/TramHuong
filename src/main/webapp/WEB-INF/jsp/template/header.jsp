@@ -6,7 +6,7 @@
             <h1>
                 <a href="/">
                     <img src="/resources/img/logo.jpg"
-                         alt="Trầm Hương Tuấn Anh" class="img-responsive" style="height: 50px;"/>
+                         alt="Nhang Hoạt Tính" class="img-responsive" style="height: 50px;"/>
                 </a>
             </h1>
             <h1 style="color: white">
