@@ -15,8 +15,8 @@
                 <c:set var="count" value="${count + 1}" scope="page"/>
                 <c:if test="${count == 1}">
                     <c:if test="${m.subSize > 0}">
-                        <li id="category_${m.categoryDto.id}" class='item has-sub  first'>
-                            <a href='/category/${m.categoryDto.id}' <%--style="z-index: 99999;"--%>>
+                        <li id="aside_category_${m.categoryDto.id}" class='item has-sub  first' onclick="setLocal('category_${m.categoryDto.id}');">
+                            <a href='#' <%--style="z-index: 99999;"--%>>
                                 <span class="lbl">${m.categoryDto.name}</span>
                                 <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-${count}"
                                       class="sign">
@@ -28,21 +28,21 @@
                                 <c:forEach items="${m.suCategories}" var="s">
                                     <c:set var="countS" value="${countS + 1}" scope="page"/>
                                     <c:if test="${countS == 1}">
-                                        <li class="first">
+                                        <li class="first" id="aside_sub_category_${s.id}" onclick="setLocal('sub_category_${s.id}');">
                                             <a href="/sub-category/${s.id}">
                                                 <span>${s.name}</span>
                                             </a>
                                         </li>
                                     </c:if>
                                     <c:if test="${countS > 1 && countS < m.subSize}">
-                                        <li class="">
+                                        <li class="" id="aside_sub_category_${s.id}" onclick="setLocal('sub_category_${s.id}');">
                                             <a href="/sub-category/${s.id}">
                                                 <span>${s.name}</span>
                                             </a>
                                         </li>
                                     </c:if>
                                     <c:if test="${countS == m.subSize && m.subSize > 1}">
-                                        <li class="last">
+                                        <li class="last" id="aside_sub_category_${s.id}" onclick="setLocal('sub_category_${s.id}');">
                                             <a href="/sub-category/${s.id}">
                                                 <span>${s.name}</span>
                                             </a>
@@ -53,7 +53,7 @@
                         </li>
                     </c:if>
                     <c:if test="${m.subSize <= 0}">
-                        <li id="category_${m.categoryDto.id}" class='item  first'>
+                        <li id="aside_category_${m.categoryDto.id}" class='item  first' onclick="setLocal('category_${m.categoryDto.id}');">
                             <a href="/category/${m.categoryDto.id}">
                                 <span>${m.categoryDto.name}</span>
                             </a>
@@ -62,8 +62,8 @@
                 </c:if>
                 <c:if test="${count < mSize && count > 1}">
                     <c:if test="${m.subSize > 0}">
-                        <li id="category_${m.categoryDto.id}" class='item has-sub'>
-                            <a href='/category/${m.categoryDto.id}' <%--style="z-index: 99999;"--%>>
+                        <li id="aside_category_${m.categoryDto.id}" class='item has-sub' onclick="setLocal('category_${m.categoryDto.id}');">
+                            <a href='#' <%--style="z-index: 99999;"--%>>
                                 <span class="lbl">${m.categoryDto.name}</span>
                                 <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-${count}"
                                       class="sign">
@@ -75,21 +75,21 @@
                                 <c:forEach items="${m.suCategories}" var="s">
                                     <c:set var="countS" value="${countS + 1}" scope="page"/>
                                     <c:if test="${countS == 1}">
-                                        <li class="first">
+                                        <li class="first" id="aside_sub_category_${s.id}" onclick="setLocal('sub_category_${s.id}');">
                                             <a href="/sub-category/${s.id}">
                                                 <span>${s.name}</span>
                                             </a>
                                         </li>
                                     </c:if>
                                     <c:if test="${countS > 1 && countS < m.subSize}">
-                                        <li class="">
+                                        <li class="" id="aside_sub_category_${s.id}" onclick="setLocal('sub_category_${s.id}');">
                                             <a href="/sub-category/${s.id}">
                                                 <span>${s.name}</span>
                                             </a>
                                         </li>
                                     </c:if>
                                     <c:if test="${countS == m.subSize && m.subSize > 1}">
-                                        <li class="last">
+                                        <li class="last" id="aside_sub_category_${s.id}" onclick="setLocal('sub_category_${s.id}');">
                                             <a href="/sub-category/${s.id}">
                                                 <span>${s.name}</span>
                                             </a>
@@ -100,7 +100,7 @@
                         </li>
                     </c:if>
                     <c:if test="${m.subSize <= 0}">
-                        <li id="category_${m.categoryDto.id}" class='item'>
+                        <li id="aside_category_${m.categoryDto.id}" class='item' onclick="setLocal('category_${m.categoryDto.id}');">
                             <a href="/category/${m.categoryDto.id}">
                                 <span>${m.categoryDto.name}</span>
                             </a>
@@ -109,8 +109,8 @@
                 </c:if>
                 <c:if test="${count == mSize && mSize > 1}">
                     <c:if test="${m.subSize > 0}">
-                        <li id="category_${m.categoryDto.id}" class='item has-sub  last'>
-                            <a href='/category/${m.categoryDto.id}'<%-- style="z-index: 99999;"--%>>
+                        <li id="aside_category_${m.categoryDto.id}" class='item has-sub  last' onclick="setLocal('category_${m.categoryDto.id}');">
+                            <a href='#'<%-- style="z-index: 99999;"--%>>
                                 <span class="lbl">${m.categoryDto.name}</span>
                                 <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-${count}"
                                       class="sign">
@@ -122,21 +122,21 @@
                                 <c:forEach items="${m.suCategories}" var="s">
                                     <c:set var="countS" value="${countS + 1}" scope="page"/>
                                     <c:if test="${countS == 1}">
-                                        <li class="first">
+                                        <li class="first" id="aside_sub_category_${s.id}" onclick="setLocal('sub_category_${s.id}');">
                                             <a href="/sub-category/${s.id}">
                                                 <span>${s.name}</span>
                                             </a>
                                         </li>
                                     </c:if>
                                     <c:if test="${countS > 1 && countS < m.subSize}">
-                                        <li class="">
+                                        <li class="" id="aside_sub_category_${s.id}" onclick="setLocal('sub_category_${s.id}');">
                                             <a href="/sub-category/${s.id}">
                                                 <span>${s.name}</span>
                                             </a>
                                         </li>
                                     </c:if>
                                     <c:if test="${countS == m.subSize && m.subSize > 1}">
-                                        <li class="last">
+                                        <li class="last" id="aside_sub_category_${s.id}" onclick="setLocal('sub_category_${s.id}');">
                                             <a href="/sub-category/${s.id}">
                                                 <span>${s.name}</span>
                                             </a>
@@ -147,7 +147,7 @@
                         </li>
                     </c:if>
                     <c:if test="${m.subSize <= 0}">
-                        <li id="category_${m.categoryDto.id}" class='item last'>
+                        <li id="aside_category_${m.categoryDto.id}" class='item last' onclick="setLocal('category_${m.categoryDto.id}');">
                             <a href="/category/${m.categoryDto.id}">
                                 <span>${m.categoryDto.name}</span>
                             </a>
@@ -164,11 +164,11 @@
             $('#cssmenu ul ul li:odd').addClass('odd');
             $('#cssmenu ul ul li:even').addClass('even');
             $('#cssmenu > ul > li > a').click(function () {
-                $('#cssmenu li').removeClass('active');
-                $(this).closest('li').addClass('active');
+                /*$('#cssmenu li').removeClass('active');
+                $(this).closest('li').addClass('active');*/
                 var checkElement = $(this).nextS();
                 if ((checkElement.is('ul')) && (checkElement.is(':visible'))) {
-                    $(this).closest('li').removeClass('active');
+                   /* $(this).closest('li').removeClass('active');*/
                     checkElement.slideUp('normal');
                 }
                 if ((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
@@ -196,12 +196,6 @@
 
                 }
             });
-
-            var url = window.location.href;
-            var position = url.lastIndexOf("/") + 1;
-            var idActive = url.substring(position,url.length);
-            $('#category_'+ idActive).addClass( "current active" );
-
         });
 
         $("#list-group-l ul.navs li.active").parents('ul.children').addClass("in");

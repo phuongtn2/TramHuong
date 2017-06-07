@@ -207,10 +207,21 @@
     </div>
     <div class="footer-bottom">
         <div class="container copyright">
-            <p>Copyright &copy; 2017 PhuongTN2 <a target="_blank"
+            <p>Copyright &copy; 2017 NhangHoatTinh <a target="_blank"
                                                           href="/"></a>
             </p>
         </div>
     </div>
 
 </footer>
+<script>
+    function setLocal(id) {
+        localStorage.setItem("id_click", id);
+    }
+    $(document).ready(function () {
+        var id = localStorage.getItem("id_click");
+        $('#nav_' + id).addClass( "current active" );
+        $('#nav_blog_' + id).addClass( "current active" );
+        $('#aside_' + id).addClass( "current active" );
+    });
+</script>

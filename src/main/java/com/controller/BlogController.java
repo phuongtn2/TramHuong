@@ -65,24 +65,12 @@ public class BlogController {
 			postNews = (List<PostDto>) Memoizer.getInstance().get("post");
 		}
 		model.addAttribute("postNews", postNews);
-		/*if(id == 2){
-			List<PostDto> postDtos = blogService.findPostByBlogId(id,(byte) 1);
-			model.addAttribute("posts", postDtos);
-			model.addAttribute("postFirst", postDtos.get(0));
-			model.addAttribute("active", "_6");
-			return "music";
-		}else if(id == 3){
-			List<PostDto> postDtos = blogService.findPostByBlogId(id, (byte) 1);
-			model.addAttribute("posts", postDtos);
-			model.addAttribute("active", "_6");
-			return "danhngon";
-		}else{*/
 		List<PostDto> postDtos = new ArrayList<PostDto>();
-		if(Memoizer.getInstance().get("post-home") == null) {
+		if(Memoizer.getInstance().get("post-home" + id) == null) {
 			postDtos = blogService.findPostByBlogId(id, (byte) 1);
-			Memoizer.getInstance().put("post-home", postDtos);
+			Memoizer.getInstance().put("post-home" + id, postDtos);
 		}else{
-			postDtos = (List<PostDto>) Memoizer.getInstance().get("post-home");
+			postDtos = (List<PostDto>) Memoizer.getInstance().get("post-home" + id);
 		}
 			model.addAttribute("posts", postDtos);
 			/*if(id==1)
@@ -147,9 +135,7 @@ public class BlogController {
 		}else{
 			blogService.add(blogDto);
 		}
-		Memoizer.getInstance().remove("post");
-		Memoizer.getInstance().remove("post-home");
-		Memoizer.getInstance().remove("blogs");
+		Memoizer.getInstance().removeAll();
 		response.sendRedirect("/admin/blogs");
 	}
 
@@ -213,8 +199,7 @@ public class BlogController {
 		else {
 			blogService.addPost(postDto);
 		}
-		Memoizer.getInstance().remove("post");
-		Memoizer.getInstance().remove("post-home");
+		Memoizer.getInstance().removeAll();
 		response.sendRedirect("/admin/post/view/" + postDto.getId());
 	}
 }

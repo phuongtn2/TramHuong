@@ -62,16 +62,19 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <c:forEach items="${mapping_categories}" var="m">
-                                <li>
-                                    <a href="/category/${m.categoryDto.id}">${m.categoryDto.name}</a>
+                                <li id="nav_category_${m.categoryDto.id}" onclick="setLocal('category_${m.categoryDto.id}');">
                                     <c:if test="${m.subSize > 0}">
+                                        <a href="#" >${m.categoryDto.name}</a>
                                         <ul class="dropdown-menu drop-menu-2">
                                             <c:forEach items="${m.suCategories}" var="s">
-                                                <li>
+                                                <li id="nav_sub_category_${s.id}" onclick="setLocal('sub_category_${s.id}');">
                                                     <a href="/sub-category/${s.id}">${s.name}</a>
                                                 </li>
                                             </c:forEach>
                                         </ul>
+                                    </c:if>
+                                    <c:if test="${m.subSize <= 0}">
+                                        <a href="/category/${m.categoryDto.id}">${m.categoryDto.name}</a>
                                     </c:if>
                                 </li>
                             </c:forEach>
@@ -92,7 +95,7 @@
                         <a href="#">Bài Viết</a>
                         <ul class="dropdown-menu" role="menu">
                             <c:forEach items="${blogs0}" var="b0">
-                                <li>
+                                <li id="aside_blog_${b0.id}" onclick="setLocal('blog_${b0.id}');">
                                     <a href="/blog/${b0.id}">
                                             ${b0.name}
                                     </a>
@@ -174,7 +177,7 @@
     </div><!-- End container  -->
     <script>
         $(window).resize(function () {
-            $('li.dropdown li.active').parents('.dropdown').addClass('active');
+            /*$('li.dropdown li.active').parents('.dropdown').addClass('active');*/
             if ($('.right-menu').width() + $('#navbar').width() > $('.check_nav.nav-wrapper').width() - 40) {
                 $('.container-mp.nav-wrapper').addClass('responsive-menu');
             }
