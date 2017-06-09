@@ -15,11 +15,10 @@
 				</div>
 			</div>
 			<div class="ibox-content">
-				<form:form modelAttribute="payment" method="post" id="userForm" class="form-horizontal new_order">
+				<form:form modelAttribute="payment" method="post" class="form-horizontal new_order">
 					<div class="form-group">
 						<div class="col-lg-3">
-							<label class="control-label"><spring:message code="payment.common"
-																		 text="default text"/></label>
+							<label class="control-label">Tên</label>
 						</div>
 						<div class="col-lg-6">
 							<input type="hidden" id="id" name="id"

@@ -34,6 +34,12 @@ public class StaticController {
 		}else{
 			model.addAttribute("statics", new ArrayList<StaticDto>());
 		}
+		/*List<TermDto> termDtos = termService.findAll();
+		if(termDtos != null){
+			model.addAttribute("terms", termDtos);
+		}else {
+			model.addAttribute("terms", new ArrayList<TermDto>());
+		}*/
 		return "static";
 	}
 	@RequestMapping(value = "/admin/static/edit/{id}", method = RequestMethod.GET)
@@ -54,9 +60,9 @@ public class StaticController {
 		Memoizer.getInstance().remove("paymentHome");
 		response.sendRedirect("/admin/static");
 	}
-	@RequestMapping(value = "/admin/rule", method = RequestMethod.GET)
-	public String initRule(ModelMap model) throws ServiceException {
-		TermDto termDto = termService.find();
+	@RequestMapping(value = "/admin/rule/edit/{type}", method = RequestMethod.GET)
+	public String initRule(ModelMap model, @PathVariable int type) throws ServiceException {
+		TermDto termDto = termService.findByType(type);
 		if(termDto != null){
 			model.addAttribute("rule", termDto);
 		}else{
@@ -71,6 +77,6 @@ public class StaticController {
 		}else{
 			termService.add(termDto);
 		}
-		response.sendRedirect("/admin/rule");
+		response.sendRedirect("/admin/static");
 	}
 }

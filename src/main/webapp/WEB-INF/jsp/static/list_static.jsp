@@ -7,9 +7,9 @@
 		<div class="ibox float-e-margins">
 			<div class="ibox-title">
 				<h5><spring:message code="static.name" text="default text"/></h5>
-				<a href="/admin/category" class="btn btn-primary" style="margin-left: 20px; padding: 0px">
+				<%--<a href="/admin/static" class="btn btn-primary" style="margin-left: 20px; padding: 0px">
 					<i class="fa fa-plus"></i><spring:message code="common.button.add" text="default text"/>
-				</a>
+				</a>--%>
 				<div class="ibox-tools">
 					<a class="collapse-link">
 						<i class="fa fa-chevron-up"></i>
@@ -17,9 +17,6 @@
 				</div>
 			</div>
 			<div class="ibox-content">
-				<input type="text" class="form-control input-sm m-b-xs" id="filter"
-				       placeholder="Tiềm Kiếm...">
-
 				<table class="footable emp-sales table table-stripped table-bordered table-hover dataTables-example"
 				       data-page-size="8" data-filter=#filter style="font-size: 12px;">
 					<thead>
@@ -67,4 +64,55 @@
 			</div>
 		</div>
 	</div>
+	<%--<div class="col-lg-12">
+		<div class="ibox float-e-margins">
+			<div class="ibox-title">
+				<h5>Qui Định Thanh Toán&Vận Chuyển</h5>
+				&lt;%&ndash;<a href="/admin/static" class="btn btn-primary" style="margin-left: 20px; padding: 0px">
+					<i class="fa fa-plus"></i><spring:message code="common.button.add" text="default text"/>
+				</a>&ndash;%&gt;
+				<div class="ibox-tools">
+					<a class="collapse-link">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+				</div>
+			</div>
+			<div class="ibox-content">
+				<table class="footable emp-sales table table-stripped table-bordered table-hover dataTables-example"
+					   data-page-size="8" data-filter=#filter style="font-size: 12px;">
+					<thead>
+					<tr>
+						<th data-toggle="true">Qui Định</th>
+						<th data-hide="phone,tablet">Nội Dung</th>
+						<th data-hide="phone,tablet" class=T"text-center"><spring:message code="common.action" text="default text"/></th>
+					</tr>
+					</thead>
+					<tbody>
+					<c:forEach items="${terms}" var="t">
+						<tr class="gradeC">
+							<td data-hide="phone,tablet">
+								<c:if test="${t.type==1}"> <span class="label label-success">Qui Định Vận Chuyển</span></c:if>
+								<c:if test="${t.type==2}"> <span class="label label-info">Qui Định Thanh Toán</span></c:if>
+							</td>
+							<td data-hide="phone,tablet">${t.content}</td>
+							<td class="text-center">
+								<div class="btn-group">
+									<a class="btn-success btn btn-xs"
+									   href="/admin/rule/edit/${t.type}"><i class="fa fa-edit"><spring:message code="common.button.update" text="default text"/></i></a>
+								</div>
+							</td>
+						</tr>
+					</c:forEach>
+					</tbody>
+					<tfoot>
+					<tr>
+						<td colspan="13">
+							<ul class="pagination pull-right"></ul>
+						</td>
+					</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>--%>
 </div>

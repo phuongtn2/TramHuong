@@ -59,7 +59,7 @@ public class IndexController {
 		List<OrderInfoDto> paymentAll = orderService.findPayment();
 		if(paymentAll != null && paymentAll.size() > 0){
 			for (OrderInfoDto orderInfoDto:paymentAll) {
-				total = total + Double.parseDouble(orderInfoDto.getTotalPrice().replace(".", ""));
+				total = total + Double.parseDouble(orderInfoDto.getTotalPrice().replace(".", "").replace(",",""));
 			}
 		}
 		DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
@@ -81,6 +81,8 @@ public class IndexController {
 			}
 			model.addAttribute("chart", chartDtos1);
 
+		}else {
+			model.addAttribute("chart", new ArrayList<ChartDto>());
 		}
 		return "dashboard";
 	}

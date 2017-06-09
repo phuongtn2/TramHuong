@@ -56,7 +56,7 @@ public class PaymentShippingController {
 	}
 	@RequestMapping(value = "/admin/payment", method = RequestMethod.GET)
 	public String getAdd(Model model, HttpServletRequest request)  throws ServiceException {
-		model.addAttribute("payment", new BillingAccountDto());
+		model.addAttribute("payment", new PaymentDto());
 		return "payment-add";
 	}
 	@RequestMapping(value = "/admin/payment/edit/{id}", method = RequestMethod.POST)

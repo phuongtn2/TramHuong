@@ -27,7 +27,7 @@
     line-height: 45px;
     position: relative;
     cursor: pointer;
-    margin: 7px;">Quay về giỏ hàng</span> Trầm Hương Tuấn Anh</h1></a>
+    margin: 7px;">Quay về giỏ hàng</span> Nhang Hoạt Tính</h1></a>
     </div>
     <form:form accept-charset="UTF-8" id="purchase-form" action="/saveOrder" modelAttribute="orderInfo" class="new_order">
     <div class="col-md-12">
@@ -103,7 +103,7 @@
     </div>
         <div class="col-lg-4">
             <h3>Vận chuyển & Thanh toán</h3>
-            <button type="button" class="btn-checkout" id="term-shipping-payment" style="font-size: 14px;">Qui Định Vận Chuyển/Thanh Toán</button>
+            <%--<button type="button" class="btn-checkout" id="term-shipping-payment" style="font-size: 14px;">Qui Định Vận Chuyển/Thanh Toán</button>--%>
             <%--<div>
                 <button type="button" class="btn-checkout" id="chosePayment" style="font-size: 14px;">Chọn Phương Thức Thanh Toán</button>
                 <label id="payment-modal"></label>
@@ -113,8 +113,10 @@
                 <input id="shippingType" name="shippingType" type="hidden" value="0"/>
             </div>--%>
 
-                <h2 class="section-title">Phương thức vận chuyển</h2>
+                <%--<h2 class="section-title">Phương thức vận chuyển</h2>--%>
+
             <div class="shiping-ajax-s">
+                <button type="button" class="btn-checkout" id="term-shipping" style="font-size: 14px;">Xem Qui Định</button>
                 <c:set var="count1" value="0" scope="page" />
                 <c:forEach items="${shippings}" var="s">
                     <c:set var="count1" value="${count1 + 1}" scope="page"/>
@@ -128,8 +130,9 @@
                     <span class="desc-s">${s.info}</span>
                 </c:forEach>
             </div>
-                <h2 class="section-title">Phương thức Thanh Toán</h2>
+                <%--<h2 class="section-title">Phương thức Thanh Toán</h2>--%>
             <div class="shiping-ajax-p">
+                <button type="button" class="btn-checkout" id="term-payment" style="font-size: 14px;">Xem Qui Định</button>
                 <c:set var="count" value="0" scope="page" />
                 <c:forEach items="${payments}" var="p">
                     <c:set var="count" value="${count + 1}" scope="page"/>
@@ -159,7 +162,7 @@
                             </c:forEach>
                             <span> ${p.name}</span>
                             <span class="price">${p.priceDisplay}₫</span>
-                            <p class="variant-title">${p.code}</p>
+                            <%--<p class="variant-title">${p.code}</p>--%>
                         </div>
                     </c:forEach>
                 </div>

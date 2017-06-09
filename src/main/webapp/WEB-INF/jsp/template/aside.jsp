@@ -15,8 +15,8 @@
                 <c:set var="count" value="${count + 1}" scope="page"/>
                 <c:if test="${count == 1}">
                     <c:if test="${m.subSize > 0}">
-                        <li id="aside_category_${m.categoryDto.id}" class='item has-sub  first' onclick="setLocal('category_${m.categoryDto.id}');">
-                            <a href='#' <%--style="z-index: 99999;"--%>>
+                        <li id="aside_category_${m.categoryDto.id}" class='item has-sub  first' <%--onclick="setLocal('category_${m.categoryDto.id}');"--%>>
+                            <a href='#'>
                                 <span class="lbl">${m.categoryDto.name}</span>
                                 <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-${count}"
                                       class="sign">
@@ -62,8 +62,8 @@
                 </c:if>
                 <c:if test="${count < mSize && count > 1}">
                     <c:if test="${m.subSize > 0}">
-                        <li id="aside_category_${m.categoryDto.id}" class='item has-sub' onclick="setLocal('category_${m.categoryDto.id}');">
-                            <a href='#' <%--style="z-index: 99999;"--%>>
+                        <li id="aside_category_${m.categoryDto.id}" class='item has-sub' <%--onclick="setLocal('category_${m.categoryDto.id}');"--%>>
+                            <a href='#'>
                                 <span class="lbl">${m.categoryDto.name}</span>
                                 <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-${count}"
                                       class="sign">
@@ -109,7 +109,7 @@
                 </c:if>
                 <c:if test="${count == mSize && mSize > 1}">
                     <c:if test="${m.subSize > 0}">
-                        <li id="aside_category_${m.categoryDto.id}" class='item has-sub  last' onclick="setLocal('category_${m.categoryDto.id}');">
+                        <li id="aside_category_${m.categoryDto.id}" class='item has-sub  last' <%--onclick="setLocal('category_${m.categoryDto.id}');"--%>>
                             <a href='#'<%-- style="z-index: 99999;"--%>>
                                 <span class="lbl">${m.categoryDto.name}</span>
                                 <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-${count}"
@@ -209,10 +209,17 @@
         <h3> Hỗ trợ trực tuyến</h3>
         <div class="support">
             <div class="text-center">
-                <span class="supp-name">Số hotline	</span>
+                <span class="supp-name">Ms Minh Thu: 0972 211 191</span>
                 <br>
                 <p>
-                    ${about.hotLine}
+                    thu.thuanthanhtien@gmail.com
+                </p>
+            </div>
+            <div class="text-center">
+                <span class="supp-name">Mr Tuấn Anh: 0901 798 910</span>
+                <br>
+                <p>
+                    vinhthuantien@outlook.com
                 </p>
             </div>
             <div class="text-center">

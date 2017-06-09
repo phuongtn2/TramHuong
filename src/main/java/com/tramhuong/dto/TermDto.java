@@ -6,6 +6,7 @@ package com.tramhuong.dto;
 public class TermDto {
     private Integer id;
     private String content;
+    private Integer type;
 
     public Integer getId() {
         return id;
@@ -21,5 +22,13 @@ public class TermDto {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

@@ -67,6 +67,19 @@
 					</div>
 					<div class="form-group">
 						<div class="col-lg-3">
+							<label class="control-label">Role</label>
+						</div>
+						<div class="col-lg-6">
+							<select id="role" name="role" class="form-control m-b" required>
+								<option
+										<c:if test="${account.role=='ORDER'}">selected</c:if> value="ORDER">ORDER</option>
+								<option
+										<c:if test="${account.role=='ADMIN'}">selected</c:if> value="ADMIN">ADMIN</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-lg-3">
 							<label class="control-label"><spring:message code="common.status.title" text="default text"/></label>
 						</div>
 						<div class="col-lg-6">

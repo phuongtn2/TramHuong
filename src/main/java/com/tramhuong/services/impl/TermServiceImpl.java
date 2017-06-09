@@ -7,6 +7,8 @@ import com.tramhuong.services.error.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by PhuongTN1 on 11/4/2016.
  */
@@ -28,7 +30,12 @@ public class TermServiceImpl implements TermService {
     }
 
     @Override
-    public TermDto find() throws ServiceException {
-        return termMapper.find();
+    public TermDto findByType(int type) throws ServiceException {
+        return termMapper.findByType(type);
+    }
+
+    @Override
+    public List<TermDto> findAll() throws ServiceException {
+        return termMapper.findAll();
     }
 }

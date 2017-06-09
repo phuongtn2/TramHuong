@@ -67,6 +67,8 @@ public class CategoriesController {
 	@RequestMapping(value = "/admin/categories/edit/{id}", method = RequestMethod.POST)
 	public void saveEdit(@ModelAttribute("category") CategoryDto categoryDto, @PathVariable long id, HttpServletResponse response) throws ServiceException, IOException {
 		categoriesService.update(categoryDto);
+		Memoizer.getInstance().remove("categories");
+		Memoizer.getInstance().remove("subCategories");
 		response.sendRedirect("/admin/categories");
 	}
 

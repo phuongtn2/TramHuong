@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 public enum Role {
-	MEMBER()
+	ORDER()
 	, ADMIN();
 	private Role() {
 		;
@@ -18,7 +18,7 @@ public enum Role {
 			try {
 				al.add(Role.valueOf(roleStr));
 			} catch (Exception e) {
-				//LOG 存在しないロール定数
+				e.printStackTrace();
 			}
 		}
 		return al;

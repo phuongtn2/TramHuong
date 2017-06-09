@@ -263,19 +263,39 @@
 
 <body class="step1" style="background-color: #333300;">
     <tiles:insertAttribute name="body" />
-    <div class="modal fade" id="term-shipping-payment-modal" role="dialog" tabindex="-1" aria-hidden="false" style="z-index: 9999999;">
+    <div class="modal fade" id="term-shipping-modal" role="dialog" tabindex="-1" aria-hidden="false" style="z-index: 9999999;">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
-                <div class="modal-header" style="background-color: antiquewhite;">
-                    <h4 class="modal-title text-center">Phương Thức Thanh Toán</h4>
+                <div class="modal-header" style="background-color: #808000;">
+                    <h4 class="modal-title text-center">Qui Định</h4>
                 </div>
                 <div class="modal-body">
                     <div class="shiping-ajax">
-                        ${term.content}
+                        ${termS.content}
                     </div>
                 </div>
-                <div class="modal-header text-center" style="background-color: antiquewhite;">
+                <div class="modal-header text-center" style="background-color: #808000;">
+                    <%-- <button onclick="submit()" class="btn btn-primary" type="submit">Thêm</button>--%>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="term-payment-modal" role="dialog" tabindex="-1" aria-hidden="false" style="z-index: 9999999;">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #808000;">
+                    <h4 class="modal-title text-center">Qui Định</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="shiping-ajax">
+                        ${termP.content}
+                    </div>
+                </div>
+                <div class="modal-header text-center" style="background-color: #808000;">
                     <%-- <button onclick="submit()" class="btn btn-primary" type="submit">Thêm</button>--%>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
                 </div>
@@ -287,14 +307,14 @@
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
-                <div class="modal-header" style="background-color: antiquewhite;">
+                <div class="modal-header" style="background-color: #808000;;">
                     <h4 class="modal-title text-center">Lỗi</h4>
                 </div>
                 <div class="modal-body">
                     <div id="error-field">
                     </div>
                 </div>
-                <div class="modal-header text-center" style="background-color: antiquewhite;">
+                <div class="modal-header text-center" style="background-color: #808000;;">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
                 </div>
             </div>
@@ -350,9 +370,15 @@
     $(".input-method-p:checked").parent(".lb-method-p").next('.desc-p').slideDown().css('display', 'block');
 </script>
 <script>
-    $(document).on("click", "#term-shipping-payment", function (event) {
+    $(document).on("click", "#term-shipping", function (event) {
         event.preventDefault();
-        var modal = $('#term-shipping-payment-modal');
+        var modal = $('#term-shipping-modal');
+        modal.modal('show');
+        return false;
+    });
+    $(document).on("click", "#term-payment", function (event) {
+        event.preventDefault();
+        var modal = $('#term-payment-modal');
         modal.modal('show');
         return false;
     });

@@ -15,6 +15,7 @@ public class AuthorizedUserInfo implements UserDetails, Serializable {
 	private String password;
 	private String token;
 	private byte status;
+	private String role;
 	public Integer getUserId() {
 		return userId;
 	}
@@ -117,9 +118,18 @@ public class AuthorizedUserInfo implements UserDetails, Serializable {
 		c.setMail(this.getMail());
 		c.setToken(this.getToken());
 		c.setFullName(this.getFullName());
+		c.setRole(this.getRole());
 		return c;
 	}
 	private static Date cloneDate(Date d) {
 		return d==null ? null : new Date(d.getTime());
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 }

@@ -217,6 +217,7 @@
 <script>
     function setLocal(id) {
         localStorage.setItem("id_click", id);
+        return;
     }
     $(document).ready(function () {
         var id = localStorage.getItem("id_click");
@@ -224,4 +225,7 @@
         $('#nav_blog_' + id).addClass( "current active" );
         $('#aside_' + id).addClass( "current active" );
     });
+    function onloadChat() {
+        $('.zopim').css('margin-right',40);
+    }
 </script>

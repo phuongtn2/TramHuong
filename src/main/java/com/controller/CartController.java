@@ -22,9 +22,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 @Controller
 public class CartController {
@@ -37,7 +35,7 @@ public class CartController {
 	@Autowired
 	private LocationService locationService;
 	@Autowired
-	private BillingAccountService billingAccountService;
+	private StaticService staticService;
 	@Autowired
 	private AboutService aboutService;
 	@Autowired
@@ -91,7 +89,26 @@ public class CartController {
 				cartListDto.setCartDtoList(cartDtos);
 			}
 		}
-		cartListDto.setOrderCode(RandomStringUtils.randomAlphanumeric(10).toUpperCase());
+		//cartListDto.setOrderCode(RandomStringUtils.randomAlphanumeric(10).toUpperCase());
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int day = cal.get(Calendar.DATE );
+		int month = cal.get(Calendar.MONTH ) + 1;
+		int year = cal.get(Calendar.YEAR);
+		int hour = cal.get(Calendar.HOUR);
+		int min = cal.get(Calendar.MINUTE);
+		int sec = cal.get(Calendar.SECOND);
+		int mm = cal.get(Calendar.MILLISECOND);
+		int count = 0;
+		if(cartListDto != null && cartListDto.getCartDtoList() != null) {
+			for (CartDto cartDtoCount : cartListDto.getCartDtoList()) {
+				count = count + cartDtoCount.getCount();
+			}
+			String orderCode = "TTT_" + year + "" + month + "" + day + "_" + hour + "" + min + "" + sec + "." + mm + "_" + count;
+			cartListDto.setOrderCode(orderCode);
+		}
+
+
 		session.setAttribute("cartList", cartListDto);
 	}
 	@RequestMapping(value = "/cart/add", method = RequestMethod.POST, headers = "Accept=application/json", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -176,7 +193,8 @@ public class CartController {
 		List<PaymentDto> paymentDtos = commonService.findByStatusPayment();
 		model.addAttribute("payments", paymentDtos);
 		model.addAttribute("shippings", shippingDto);
-		model.addAttribute("term", termService.find() );
+		model.addAttribute("termS", staticService.find(3) );
+		model.addAttribute("termP", staticService.find(2) );
 		return "checkout";
 	}
 

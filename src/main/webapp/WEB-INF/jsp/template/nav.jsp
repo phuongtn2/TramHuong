@@ -62,21 +62,23 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <c:forEach items="${mapping_categories}" var="m">
-                                <li id="nav_category_${m.categoryDto.id}" onclick="setLocal('category_${m.categoryDto.id}');">
-                                    <c:if test="${m.subSize > 0}">
-                                        <a href="#" >${m.categoryDto.name}</a>
-                                        <ul class="dropdown-menu drop-menu-2">
-                                            <c:forEach items="${m.suCategories}" var="s">
-                                                <li id="nav_sub_category_${s.id}" onclick="setLocal('sub_category_${s.id}');">
-                                                    <a href="/sub-category/${s.id}">${s.name}</a>
-                                                </li>
-                                            </c:forEach>
-                                        </ul>
-                                    </c:if>
-                                    <c:if test="${m.subSize <= 0}">
-                                        <a href="/category/${m.categoryDto.id}">${m.categoryDto.name}</a>
-                                    </c:if>
+                                <c:if test="${m.subSize > 0}">
+                                <li>
+                                    <a href="#" >${m.categoryDto.name}</a>
+                                    <ul class="dropdown-menu drop-menu-2">
+                                        <c:forEach items="${m.suCategories}" var="s">
+                                            <li id="nav_sub_category_${s.id}" onclick="setLocal('sub_category_${s.id}');">
+                                                <a href="/sub-category/${s.id}">${s.name}</a>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
                                 </li>
+                                </c:if>
+                                <c:if test="${m.subSize <= 0}">
+                                    <li id="nav_category_${m.categoryDto.id}" onclick="setLocal('category_${m.categoryDto.id}');">
+                                        <a href="/category/${m.categoryDto.id}">${m.categoryDto.name}</a>
+                                    </li>
+                                </c:if>
                             </c:forEach>
                         </ul>
                     </li>

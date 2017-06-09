@@ -299,7 +299,7 @@
         }
     </style>
 </head>
-<body style="background-color: #333300;"><!--Start of Zopim Live Chat Script-->
+<body style="background-color: #333300;" onload="onloadChat();"><!--Start of Zopim Live Chat Script-->
 <script>
     /*window.fbAsyncInit = function() {
         FB.init({

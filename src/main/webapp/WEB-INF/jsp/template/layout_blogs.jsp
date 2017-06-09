@@ -284,7 +284,7 @@
         }
     </style>
 </head>
-<body style="background-color: #333300;">
+<body style="background-color: #333300;" onload="onloadChat();">
 <div class="container-mp nav-wrapper">
     <!-- Begin: wrapper -->
     <div class="wrapper mp-pusher" id="mp-pusher">

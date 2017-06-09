@@ -10,12 +10,14 @@
 		, mail
 		, password
 		, status
+		, role
 		)VALUES(
 		#{dto.userName}
 		, #{dto.fullName}
 		, #{dto.mail}
 		, #{dto.password}
 		, #{dto.status}
+		, #{dto.role}
 		)
 	</insert>
 	<select id="getByName" resultType="empAuth">
@@ -39,6 +41,7 @@
 		, fullName = #{dto.fullName}
 		, mail = #{dto.mail}
 		, status = #{dto.status}
+		, role = #{dto.role}
 		WHERE userId= #{dto.userId}
 	</update>
 	<select id="findAll" resultType="empAuth">

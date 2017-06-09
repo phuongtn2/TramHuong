@@ -6,9 +6,11 @@
 
 	<insert id="add" useGeneratedKeys="true" keyProperty="dto.id">
 		INSERT INTO TERM(
-		content
+		content,
+		type
 		)VALUES(
-		#{dto.content}
+		#{dto.content},
+		#{dto.type}
 		)
 	</insert>
 	<update id="update">
@@ -16,8 +18,10 @@
 		content = #{dto.content}
 		WHERE id= #{dto.id}
 	</update>
-	<select id="find" resultType="term">
-		SELECT * FROM TERM LIMIT 1
+	<select id="findByType" resultType="term">
+		SELECT * FROM TERM WHERE type = #{type} LIMIT 1
 	</select>
-
+	<select id="findAll" resultType="term">
+		SELECT * FROM TERM
+	</select>
 </mapper>

@@ -97,8 +97,8 @@
 	</select>
 
 	<select id="chart" resultType="chart">
-		SELECT COUNT(p.id) as value,  c.name as label  FROM product p
-		INNER JOIN m_category c ON (p.categoryId = c.id)
-		INNER  JOIN order_item o ON ( o.productId = p.id) GROUP BY c.id
-	</select>
+		SELECT COUNT(p.id) as value,  c.name as label  FROM PRODUCT p
+		INNER JOIN M_CATEGORY c ON (p.categoryId = c.id)
+		INNER  JOIN ORDER_ITEM o ON ( o.productId = p.id) GROUP BY c.id
+    </select>
 </mapper>

@@ -34,7 +34,7 @@
     <div class="col-lg-4">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <span class="label label-success pull-right">Tổng Doanh Thu</span>
+                <span class="label label-success pull-right">Doanh Thu Trong Ngày</span>
                 <h5>Doanh Thu</h5>
             </div>
             <div class="ibox-content">

@@ -280,7 +280,7 @@
     <!--End of Zendesk Chat Script-->
 
 </head>
-<body style="background-color: #333300;">
+<body style="background-color: #333300;" onload="onloadChat();">
 <div class="container-mp nav-wrapper">
     <!-- Begin: wrapper -->
     <div class="wrapper mp-pusher" id="mp-pusher">
@@ -666,7 +666,7 @@
             return;
         }
     });
-    $("#slider-high-product").responsiveSlides({
+    /*$("#slider-high-product").responsiveSlides({
         auto: false,
         pager: true,
         nav: true,
@@ -679,7 +679,7 @@
         nav: true,
         speed: 500,
         namespace: "centered-btns"
-    });
+    });*/
 </script>
 
 <!-- Google Code for Chuy&#7875;n &#273;&#7893;i &#273;&#7863;t h&agrave;ng Conversion Page -->
