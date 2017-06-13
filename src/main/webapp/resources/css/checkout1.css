@@ -275,7 +275,7 @@ h3 {
 
 .line {
     border-bottom: 1px solid #0082dd;
-    padding-bottom: 17px;
+    /*padding-bottom: 17px;*/
     width: 320px;
 }
 
@@ -442,14 +442,14 @@ input[type=radio]:checked + .label-radio {
 }
 
 .cart-items {
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .cart-items, .total-price, .promotion-name {
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
 
 .promotion-name {
@@ -458,7 +458,7 @@ input[type=radio]:checked + .label-radio {
 
 .cart-item {
     border-top: 1px dashed #eee;
-    padding: 10px 0;
+    padding: 5px 0;
     text-align: left;
 }
 
@@ -482,8 +482,8 @@ input[type=radio]:checked + .label-radio {
 }
 
 .shiping-price {
-    padding-bottom: 10px;
-    padding-top: 10px;
+    /*padding-bottom: 10px;*/
+    padding-top: 5px;
 }
 
 .btn-coupon {

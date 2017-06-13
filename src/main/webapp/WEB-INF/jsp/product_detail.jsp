@@ -108,20 +108,18 @@
             <div class="pt20">
                 <!-- Begin social icons -->
                 <div class="addthis_toolbox addthis_default_style ">
-                    <a class="addthis_button_facebook_like at300b" fb:like:layout="button_count">
-                        <div class="fb-like fb_iframe_widget" data-layout="button_count" data-show_faces="false"
-                             data-share="false" data-action="like" data-width="90" data-height="25"
-                             data-font="arial"
-                             data-href="${pageContext.request.contextPath}"
-                             data-send="false" style="height: 25px;" fb-xfbml-state="rendered"
-                             fb-iframe-plugin-query="action=like&amp;app_id=&amp;container_width=68&amp;font=arial&amp;height=25&amp;href=http%3A%2F%2Ftramhuongkyanh.com%2Fproducts%2Flo-xong-tram-dung-dien-lx100&amp;layout=button_count&amp;locale=vi_VN&amp;sdk=joey&amp;send=false&amp;share=false&amp;show_faces=false&amp;width=90">
-                                <span style="vertical-align: bottom; width: 68px; height: 20px;">
-                                    <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&width=58&layout=button&action=like&size=small&show_faces=true&share=false&height=65&appId=1832292157092575"
-                                                                                                         width="58" height="65" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-                                                                                                         allowTransparency="true">
-
-                                    </iframe></span></div>
-                    </a>
+                    <div class="fb-root"></div>
+                    <div class="fb-like" data-href="${pageContext.request.contextPath}" style="padding-bottom: 10px;"
+                         data-layout="button_count" data-action="like" data-size="small" data-show-faces="true"
+                         data-share="true"></div>
+                    <script type="text/javascript">(function(d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id;
+                        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+                    </script>
 
                     <%--<a class="addthis_button_tweet at300b">
                         <div class="tweet_iframe_widget" style="width: 62px; height: 25px;"><span><iframe
@@ -189,14 +187,17 @@
                         <h2>Bình luận</h2>
                     </div>
                     <div class="container-fluid">
-                        <div style="position: absolute; top: -10000px; height: 0px; width: 0px;">
-                            <div>
-                                <div class="fb-comments"
-                                     data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
-                                     data-numposts="5">
-                                </div>
-                            </div>
-                        </div>
+                        <div id="fb-root"></div>
+                        <div class="fb-comments" data-href="${pageContext.request.contextPath}" data-numposts="5" width="100%" data-colorscheme="light"></div>
+                        <!-- script comment fb -->
+                        <script type="text/javascript">(function(d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) return;
+                            js = d.createElement(s); js.id = id;
+                            js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        </script>
                         <div style="position: absolute; top: -10000px; height: 0px; width: 0px;">
                             <div></div>
                         </div>

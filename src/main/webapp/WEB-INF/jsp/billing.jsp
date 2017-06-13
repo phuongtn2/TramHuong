@@ -113,10 +113,10 @@
                 <input id="shippingType" name="shippingType" type="hidden" value="0"/>
             </div>--%>
 
-                <%--<h2 class="section-title">Phương thức vận chuyển</h2>--%>
-
+            <div class="box-cart">
+                <h2 class="section-title">Phương thức vận chuyển</h2>
             <div class="shiping-ajax-s">
-                <button type="button" class="btn-checkout" id="term-shipping" style="font-size: 14px;">Xem Qui Định</button>
+                <button type="button" class="btn-checkout" id="term-shipping" style="font-size: 14px; width: 100%;">Xem Qui Định</button>
                 <c:set var="count1" value="0" scope="page" />
                 <c:forEach items="${shippings}" var="s">
                     <c:set var="count1" value="${count1 + 1}" scope="page"/>
@@ -130,9 +130,11 @@
                     <span class="desc-s">${s.info}</span>
                 </c:forEach>
             </div>
-                <%--<h2 class="section-title">Phương thức Thanh Toán</h2>--%>
+            </div>
+            <div class="box-cart" style="margin-top: 20px;">
+            <h2 class="section-title">Phương thức Thanh Toán</h2>
             <div class="shiping-ajax-p">
-                <button type="button" class="btn-checkout" id="term-payment" style="font-size: 14px;">Xem Qui Định</button>
+                <button type="button" class="btn-checkout" id="term-payment" style="font-size: 14px; width: 100%;">Xem Qui Định</button>
                 <c:set var="count" value="0" scope="page" />
                 <c:forEach items="${payments}" var="p">
                     <c:set var="count" value="${count + 1}" scope="page"/>
@@ -143,8 +145,10 @@
                     <span class="desc-p">${p.info}</span>
                 </c:forEach>
             </div>
+            </div>
         </div>
         <div class="col-lg-4">
+            <h3>Thông Tin Đơn Hàng</h3>
             <div class="box-cart">
                 <h2>Mã Đơn hàng: </h2>
                 <span style="color: red">${carts.orderCode}</span>

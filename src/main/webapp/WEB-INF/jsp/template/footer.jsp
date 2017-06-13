@@ -226,6 +226,6 @@
         $('#aside_' + id).addClass( "current active" );
     });
     function onloadChat() {
-        $('.zopim').css('margin-right',40);
+        //$('.zopim').css('margin-right',40);
     }
 </script>

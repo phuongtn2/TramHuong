@@ -88,7 +88,7 @@
 
         //]]>
     </script>
-    <script>
+    <%--<script>
         //<![CDATA[
         !function (f, b, e, v, n, t, s) {
             if (f.fbq)return;
@@ -145,7 +145,7 @@
             window.attachEvent ? window.attachEvent('onload', asyncLoad) : window.addEventListener('load', asyncLoad, false);
         })();
         //]]>
-    </script>
+    </script>--%>
 
     <%-- <spring:url value="/resources/js/jquery.min.1.11.0.js" var="a" />
     <script src="${a}"></script>--%>
@@ -231,7 +231,7 @@
     <link href="${cs31}" rel="stylesheet" type="text/css"/>
 
     <!-- Facebook Pixel Code -->
-    <script>
+   <%-- <script>
         !function (f, b, e, v, n, t, s) {
             if (f.fbq)return;
             n = f.fbq = function () {
@@ -265,21 +265,47 @@
     </script>
     <noscript><img height="1" width="1" style="display:none"
                    src="https://www.facebook.com/tr?id=1440058032900495&ev=PageView&noscript=1"
-    /></noscript>
+    /></noscript>--%>
     <!-- End Facebook Pixel Code -->
 
     <!--Start of Zendesk Chat Script-->
-    <script type="text/javascript">
+    <%--<script type="text/javascript">
         window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
             d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
         _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
             $.src="https://v2.zopim.com/?4p8ZFgO1mPLfKYsoJSABkYvwJ2NwKOTP";z.t=+new Date;$.
                 type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
-    </script>
+    </script>--%>
     <!--End of Zendesk Chat Script-->
 
 </head>
 <body style="background-color: #333300;">
+<div id="fb-root"></div>
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '1832292157092575',
+            xfbml      : true,
+            version    : 'v2.9'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=1832292157092575";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div class="container-mp nav-wrapper">
     <!-- Begin: wrapper -->
     <div class="wrapper mp-pusher" id="mp-pusher">
