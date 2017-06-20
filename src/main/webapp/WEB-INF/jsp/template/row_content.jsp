@@ -9,21 +9,13 @@
             <div class="flexslider-container">
                 <div class="flexslider">
                     <ul class="slides">
-                        <li>
-                            <a href="/">
-                                <img src="/resources/img/banner/slideshow_1.jpg" style="width: 100%;"/>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/">
-                                <img src="/resources/img/banner/slideshow_2.jpg" style="width: 100%;"/>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/">
-                                <img src="/resources/img/banner/slideshow_3.jpg" style="width: 100%;"/>
-                            </a>
-                        </li>
+                        <c:forEach items="${banners}" var="b">
+                            <li>
+                                <a href="/">
+                                    <img src="${b.img}" style="width: 100%; height: 372px;"/>
+                                </a>
+                            </li>
+                        </c:forEach>
                     </ul>
                     <div class="flex-controls"></div>
                 </div>

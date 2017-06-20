@@ -63,9 +63,9 @@
             <li id="shipping" class="active">
                 <a href="/admin/shippings"><i class="fa fa-th-large"></i> <span class="nav-label">Vận Chuyển</span> <span class="fa arrow"></span></a>
             </li>
-           <%-- <li id="rule" class="active">
-                <a href="/admin/rule"><i class="fa fa-th-large"></i> <span class="nav-label">Qui Định Vận Chuyển&Mua Hàng</span> <span class="fa arrow"></span></a>
-            </li>--%>
+            <li id="banner" class="active">
+                <a href="/admin/banners"><i class="fa fa-th-large"></i> <span class="nav-label">Slider Banner</span> <span class="fa arrow"></span></a>
+            </li>
             <li id="static" class="active">
                 <a href="/admin/static"><i class="fa fa-th-large"></i> <span class="nav-label">Qui Định Chung</span> <span class="fa arrow"></span></a>
             </li>

@@ -28,5 +28,6 @@
 		<typeAlias alias="term" type="com.tramhuong.dto.TermDto"/>
 		<typeAlias alias="static" type="com.tramhuong.dto.StaticDto"/>
 		<typeAlias alias="chart" type="com.tramhuong.dto.ChartDto"/>
+		<typeAlias alias="banner" type="com.tramhuong.dto.BannerDto"/>
 	</typeAliases>
 </configuration>

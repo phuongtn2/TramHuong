@@ -131,8 +131,11 @@ public class LoginController {
 			try {
 				final String headerCharset = setting.getProperty("mailTransfer.headerCharset");
 				MimeMessageHelper helper = new MimeMessageHelper(message, true);
-
-				helper.setFrom(new InternetAddress(setting.getProperty("mailTransfer.smtp.server.user"), setting.getProperty("mailTransfer.infoMailFullName"), headerCharset));
+				String info = setting.getProperty("mailTransfer.infoMailFullName");
+				if(request.getRequestURI().contains("dinhtamhuong")){
+					info =setting.getProperty("mailTransfer.infoMailFullName1");
+				}
+				helper.setFrom(new InternetAddress(setting.getProperty("mailTransfer.smtp.server.user"), info, headerCharset));
 				helper.setTo(authorizedUserInfo.getMail());
 				helper.setSubject("Reset Password");
 				helper.setText(body, true);

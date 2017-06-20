@@ -36,6 +36,8 @@ public class IndexController {
 	private OrderService orderService;
 	@Autowired
 	private CommonService commonService;
+	@Autowired
+	private BannerService bannerService;
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -110,7 +112,14 @@ public class IndexController {
 			sales = (List<ProductDto>) Memoizer.getInstance().get("sale-home");
 		}
 		model.addAttribute("pSales", sales);
-		/*model.addAttribute("pNews", productService.findNew(9));*/
+		List<BannerDto> banners = new ArrayList<BannerDto>();
+		if(Memoizer.getInstance().get("banner") == null){
+			banners = bannerService.findByStatus((byte)1);
+			Memoizer.getInstance().put("banner", banners);
+		}else{
+			banners = (List<BannerDto>) Memoizer.getInstance().get("banner");
+		}
+		model.addAttribute("banners", banners);
 		model.addAttribute("active", "_1");
 		return "index";
 	}

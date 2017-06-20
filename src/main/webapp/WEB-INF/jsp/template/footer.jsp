@@ -161,20 +161,17 @@
                                 </form><!-- / MailChimp for WordPress Plugin --></aside>
                             <aside id="penci_social_widget-2" class="widget penci_social_widget">
                                 <div class="widget-social">
-                                    <a href="https://www.facebook.com/Fury.com.vn/?fref=ts" target="_blank"><i class="fa fa-facebook"></i><span>Facebook</span></a>
+                                    <a href="https://www.facebook.com/pg/NhangThanHoatTinh" target="_blank"><i class="fa fa-facebook"></i><span>Facebook</span></a>
 
-                                    <a href="https://www.facebook.com/Fury.com.vn/?fref=ts" target="_blank"><i class="fa fa-twitter"></i><span>Twitter</span></a>
+                                    <a href="https://www.facebook.com/pg/NhangThanHoatTinh" target="_blank"><i class="fa fa-twitter"></i><span>Twitter</span></a>
 
+                                    <a href="https://www.facebook.com/pg/NhangThanHoatTinh" target="_blank"><i class="fa fa-instagram"></i><span>Instagram</span></a>
 
-                                    <a href="https://www.facebook.com/Fury.com.vn/?fref=ts" target="_blank"><i class="fa fa-instagram"></i><span>Instagram</span></a>
+                                    <a href="https://www.facebook.com/pg/NhangThanHoatTinh" target="_blank"><i class="fa fa-pinterest"></i><span>Pinterest</span></a>
 
-                                    <a href="https://www.facebook.com/Fury.com.vn/?fref=ts" target="_blank"><i class="fa fa-pinterest"></i><span>Pinterest</span></a>
+                                    <a href="mailto:thu.thuanthanhtien@gmail.com"><i class="fa fa-envelope-o"></i><span>Email</span></a>
 
-
-                                    <a href="mailto:thanhluan321988@gmail.com"><i class="fa fa-envelope-o"></i><span>Email</span></a>
-
-
-                                    <a href="https://www.facebook.com/Fury.com.vn/?fref=ts" target="_blank"><i class="fa fa-snapchat-ghost"></i><span>Snapchat</span></a>
+                                    <a href="https://www.facebook.com/pg/NhangThanHoatTinh" target="_blank"><i class="fa fa-snapchat-ghost"></i><span>Snapchat</span></a>
                                 </div>
                             </aside>
                         </div>

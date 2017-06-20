@@ -136,7 +136,7 @@
 </head>
 <body style="background-color: #333300;" onload="onloadChat();">
 <div class="zopim" __jx__id="___$_61 ___$_61"
-     style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; padding: 0px; border: 0px; background: transparent; overflow: hidden; position: fixed; z-index: 16000002; height: 30px; right: 50px; bottom: 0px; width: 300px;">
+     style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; padding: 0px; border: 0px; background: transparent; overflow: hidden; position: fixed; z-index: 16000002; height: 30px; right: 50px; bottom: 0px; width: 120px;">
     <script>
         window.fbAsyncInit = function() {
             FB.init({
@@ -155,14 +155,14 @@
     </script>
     <%--<div class="fb-send-to-messenger"
          messenger_app_id="1832292157092575"
-         page_id="1484647908416608"
+         page_id="1382882181793393"
          data-ref="PASS_THROUGH_PARAM"
          color="blue"
          size="standard">
     </div>--%>
     <div class="fb-messengermessageus"
          messenger_app_id="1832292157092575"
-         page_id="1484647908416608"
+         page_id="1382882181793393"
          color="blue"
          size="large">
     </div>

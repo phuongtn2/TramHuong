@@ -218,6 +218,14 @@
 		<put-attribute name="title" value="Nhang Hoạt Tính" />
 		<put-attribute name="body" value="/WEB-INF/jsp/tag/add.jsp" />
 	</definition>
+	<definition name="banners" extends="base.admin">
+		<put-attribute name="title" value="Nhang Hoạt Tính" />
+		<put-attribute name="body" value="/WEB-INF/jsp/banner/list_banners.jsp" />
+	</definition>
+	<definition name="banner-add" extends="base.admin">
+		<put-attribute name="title" value="Nhang Hoạt Tính" />
+		<put-attribute name="body" value="/WEB-INF/jsp/banner/add.jsp" />
+	</definition>
 	<definition name="blog-admin" extends="base.admin">
 		<put-attribute name="title" value="Nhang Hoạt Tính" />
 		<put-attribute name="body" value="/WEB-INF/jsp/blog/list_blogs.jsp" />

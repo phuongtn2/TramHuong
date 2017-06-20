@@ -183,7 +183,6 @@ public class ProductController {
 		}
 		String path = servletContext.getRealPath("/");
 		if(productDto.getFile() != null && !productDto.getFile().isEmpty()){
-
 			String fileName = "/resources/img/products/" + RandomStringUtils.randomAlphanumeric(10)+ "_" + productDto.getFile().getOriginalFilename();
 			productDto.setImg(fileName);
 			OutputStream outputStream = new FileOutputStream(path + fileName);
