@@ -113,21 +113,6 @@ public class ProductController {
 		model.addAttribute("categories", categoryDtos);
 		model.addAttribute("subCategories", subCategoryDtos);
 		ProductDto productDto = new ProductDto();
-		String detail = "<div class='container-fluid product-description-wrapper'>"
-				+ "<p style='font-family: verdana; font-size: medium;' data-mce-style='font-family: verdana; font-size: medium;'>"
-				+ "<strong>Trầm Hương Kỳ Anh - Trầm hương tự nhiên cam kết đúng chất lượng.</strong></p>"
-				+ "<div style='font-family: verdana; font-size: medium;' data-mce-style='font-family: verdana; font-size: medium;'><p>"
-				+ "<strong>Kích thước:</strong>&nbsp;20cm.</p>"
-				+ "<p><strong>Đường kính:</strong>&nbsp;1mm.</p>"
-				+ "<p><strong>Số lượng:</strong>&nbsp;100 cây - giá 410,000đ</p>"
-				+ "<p><strong>Thời gian cháy:</strong>&nbsp;20-25 phút.</p>"
-				+ "<p><strong>Tác dụng:</strong>&nbsp;giảm stress, thư giãn thần kinh dịu nhẹ.&nbsp;</p>"
-				+ "<p style='text-align: justify;' data-mce-style='text-align: justify;'>"
-				+ "<strong>Lưu ý: không dùng cho phụ nữ cóthai.</strong>"
-				+ "</p>"
-				+ "</div>"
-				+ "</div>";
-		productDto.setDescription(detail);
 		model.addAttribute("product", productDto);
 		List<TagDto> tagDtos = new ArrayList<TagDto>();
 		if(Memoizer.getInstance().get("tagList") == null){

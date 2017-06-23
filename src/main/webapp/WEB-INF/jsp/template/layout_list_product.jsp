@@ -19,6 +19,7 @@
 <!--<![endif]-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="pragma" content="no-cache">
     <spring:url value="/resources/img/favicon/favicon.png" var="fava"/>
     <link rel="shortcut icon" href="${fava}" type="image/png"/>
     <!--[if IE]>
@@ -306,15 +307,14 @@
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header" style="background-color: antiquewhite;">
+            <div class="modal-header" style="background-color: #808000;">
                 <h4 class="modal-title text-center">Lỗi</h4>
             </div>
             <div class="modal-body text-center">
                 <p style="color: red;">Số lượng sản phẩm nhập không hợp lệ</p>
                 <p>Số lượng sản phẩm không được để trống và phải lớn hơn 0</p>
             </div>
-            <div class="modal-header text-center" style="background-color: antiquewhite;">
-                <%-- <button onclick="submit()" class="btn btn-primary" type="submit">Thêm</button>--%>
+            <div class="modal-header text-center" style="background-color: #808000;">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
             </div>
         </div>
@@ -324,15 +324,15 @@
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header" style="background-color: antiquewhite;">
+            <div class="modal-header" style="background-color: #808000;">
                 <h4 class="modal-title text-center">Xác nhận</h4>
             </div>
             <div class="modal-body text-center">
                 <p style="color: red;" id="confirm-message"></p>
                 <p>Bạn có chắc chắn không?.</p>
             </div>
-            <div class="modal-header text-center" style="background-color: antiquewhite;">
-                <button onclick="accept();"  class="btn btn-primary" type="button" data-dismiss="modal">Có</button>
+            <div class="modal-header text-center" style="background-color: #808000;">
+                <button onclick="accept();"  class="btn btn-primary" type="button" data-dismiss="modal" style="background-color: #337ab7;">Có</button>
                 <button onclick="revertValue();" type="button" class="btn btn-default" data-dismiss="modal">Không</button>
             </div>
         </div>
@@ -539,6 +539,12 @@
     });
 
     $(document).ready(function () {
+        if (!!window.performance && window.performance.navigation.type === 2) {
+            // value 2 means "The page was accessed by navigating into the history"
+            console.log('Reloading');
+            window.location.reload(); // reload whole page
+
+        }
         $('.t-fix').removeClass('in');
         function change(id) {
             var listId = ["_1", "_2" , "_5", "_6"];
@@ -552,51 +558,7 @@
             return;
         }
     });
-    /*$("#slider-high-product").responsiveSlides({
-        auto: false,
-        pager: true,
-        nav: true,
-        speed: 500,
-        namespace: "centered-btns"
-    });
-    $("#slider-sale-product").responsiveSlides({
-        auto: false,
-        pager: true,
-        nav: true,
-        speed: 500,
-        namespace: "centered-btns"
-    });*/
 </script>
-
-<!-- Google Code for Chuy&#7875;n &#273;&#7893;i &#273;&#7863;t h&agrave;ng Conversion Page -->
-<%--<script type="text/javascript">
-    /* <![CDATA[ */
-    var google_conversion_id = 974485475;
-    var google_conversion_language = "en";
-    var google_conversion_format = "3";
-    var google_conversion_color = "ffffff";
-    var google_conversion_label = "9OvyCLjcrGgQ4-_V0AM";
-    var google_conversion_value = 80000.00;
-    var google_conversion_currency = "VND";
-    var google_remarketing_only = false;
-    /* ]]> */
-</script>
-<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-</script>
-<noscript>
-    <div style="display:inline;">
-        <img height="1" width="1" style="border-style:none;" alt=""
-             src="//www.googleadservices.com/pagead/conversion/974485475/?value=80000.00&amp;currency_code=VND&amp;label=9OvyCLjcrGgQ4-_V0AM&amp;guid=ON&amp;script=0"/>
-    </div>
-</noscript>--%>
-<!-- script comment fb -->
-<script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 </body>
 
 </html>

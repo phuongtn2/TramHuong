@@ -211,17 +211,26 @@
                             <label class="control-label"><spring:message code="common.description"
                                                                          text="default text"/></label>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-9">
                             <%--<c:if test="${product.id!= null}">--%>
-                            <div id="product_description_div" class="ui-widget-content" style="height: 50%;width: 100%;">
+                            <%--<div id="product_description_div" class="ui-widget-content" style="height: 50%;width: 100%;">
                                     <textarea rows="10" style="width: 100%; height: 100%"
                                               name="description" required>${product.description}</textarea>
-                            </div>
-                            <%--</c:if>--%>
-                            <%--<c:if test="${product.id== null}">
-                                    <textarea id="product_description" style="display: none;"
-                                              name="description"></textarea>
-                            </c:if>--%>
+                            </div>--%>
+                                <%--<div class="ibox float-e-margins">--%>
+                                    <input type="hidden" required="required" name="description" id="description"/>
+                                    <div class="ibox-content no-padding">
+                                        <c:if test="${product.id!= null}">
+                                            <div class="summernote">
+                                                    ${product.content}
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${product.id== null}">
+                                            <div class="summernote">
+                                            </div>
+                                        </c:if>
+                                    </div>
+                                <%--</div>--%>
                         </div>
                     </div>
                    <div class="form-group">
@@ -310,14 +319,16 @@
         });
     }
     function checkSalePrice() {
+        var aHTML = $('.summernote').code();
+        $('#description').val(aHTML);
         if($('#salePrice').prop('disabled') == false){
             var price = $('#price').val();
             if(price != null && price != ''){
-                var salePriceCheckMax = (price*70)/100;
+                //var salePriceCheckMax = (price*70)/100;
                 var salePriceCheckMin = price/2;
                 var salePrice = $('#salePrice').val();
-                if(salePrice > salePriceCheckMax){
-                    alert('Giá khuyến mãi <= 70% giá bán');
+                if(salePrice >= price){
+                    alert('Giá khuyến mãi <= giá bán');
                     return false;
                 }else if(salePrice < salePriceCheckMin) {
                     alert('Giá khuyến mãi >= 50% giá bán');

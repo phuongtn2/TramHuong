@@ -18,6 +18,7 @@
 <!--<![endif]-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="pragma" content="no-cache">
     <spring:url value="/resources/img/favicon/favicon.png" var="fava"/>
     <link rel="shortcut icon" href="${fava}" type="image/png"/>
     <!--[if IE]>
@@ -37,103 +38,6 @@
             clear:both
         }
     </style>
-    <script>
-        //<![CDATA[
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-43568928-1', 'auto');
-        try {
-
-            (function (i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function () {
-                        (i[r].q = i[r].q || []).push(arguments)
-                    }, i[r].l = 1 * new Date();
-                a = s.createElement(o),
-                    m = s.getElementsByTagName(o)[0];
-                a.async = 1;
-                a.src = g;
-                m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-            ga('create', 'UA-43568928-1', 'auto');
-            ga('send', 'pageview');
-
-
-        } catch (e) {
-        }
-        ;
-        ga('send', 'pageview');
-
-        //]]>
-    </script>
-    <%--<script>
-        //<![CDATA[
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq)return;
-            n = f.fbq = function () {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n;
-            n.push = n;
-            n.loaded = !0;
-            n.version = '2.0';
-            n.queue = [];
-            t = b.createElement(e);
-            t.async = !0;
-            t.src = v;
-            s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window,
-            document, 'script', '//connect.facebook.net/en_US/fbevents.js');
-        // Insert Your Facebook Pixel ID below.
-        fbq('init', '209722866128412');
-        fbq('track', 'PageView');
-        //]]>
-    </script>
-    <noscript><img height='1' width='1' style='display:none'
-                   src='https://www.facebook.com/tr?id=209722866128412&amp;ev=PageView&amp;noscript=1'
-    /></noscript>
-    <script type='text/javascript'>
-        //<![CDATA[
-        if ((typeof Haravan) === 'undefined') {
-            Haravan = {};
-        }
-        Haravan.culture = 'vi-VN';
-        Haravan.shop = '${pageContext.request.contextPath}';
-        Haravan.theme = {"name": "admin", "id": 1000151899, "role": "main"};
-        Haravan.domain = '${pageContext.request.contextPath}';
-        //]]>
-    </script>
-    <script>
-        //<![CDATA[
-        (function () {
-            function asyncLoad() {
-                var urls = ["/resources/js/noname.js"];
-                for (var i = 0; i < urls.length; i++) {
-                    var s = document.createElement('script');
-                    s.type = 'text/javascript';
-                    s.async = true;
-                    s.src = urls[i];
-                    var x = document.getElementsByTagName('script')[0];
-                    x.parentNode.insertBefore(s, x);
-                }
-            }
-
-            window.attachEvent ? window.attachEvent('onload', asyncLoad) : window.addEventListener('load', asyncLoad, false);
-        })();
-        //]]>
-    </script>--%>
 
     <%-- <spring:url value="/resources/js/jquery.min.1.11.0.js" var="a" />
     <script src="${a}"></script>--%>
@@ -222,53 +126,6 @@
     <spring:url value="/resources/css/style.3.1.css" var="cs31" />
     <link href="${cs31}" rel="stylesheet" type="text/css"/>
 
-    <!-- Facebook Pixel Code -->
-    <%--<script>
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq)return;
-            n = f.fbq = function () {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n;
-            n.push = n;
-            n.loaded = !0;
-            n.version = '2.0';
-            n.queue = [];
-            t = b.createElement(e);
-            t.async = !0;
-            t.src = v;
-            s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window,
-            document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-
-        fbq('init', '1440058032900495');
-        fbq('track', "PageView");
-        //Theo dõi số lượt xem trang chính (ví dụ: trang sản phẩm, trang đích hoặc bài viết)
-
-
-        //Theo dõi tìm kiếm trên trang web của bạn (ví dụ: tìm kiếm sản phẩm)
-
-
-        //Theo dõi khi mặt hàng được thêm vào giỏ hàng (vì dụ: nhấp/trang đích trên nút Thêm vào giỏ hàng)
-
-
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-                   src="https://www.facebook.com/tr?id=1440058032900495&ev=PageView&noscript=1"
-    /></noscript>--%>
-    <!-- End Facebook Pixel Code -->
-
-    <!--Start of Zendesk Chat Script-->
-    <%--<script type="text/javascript">
-        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-            d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
-            $.src="https://v2.zopim.com/?4p8ZFgO1mPLfKYsoJSABkYvwJ2NwKOTP";z.t=+new Date;$.
-                type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
-    </script>--%>
-    <!--End of Zendesk Chat Script-->
     <style>
         ::-webkit-input-placeholder { /* WebKit browsers */
             color: rgb(240, 196, 129);
@@ -284,7 +141,7 @@
         }
     </style>
 </head>
-<body style="background-color: #333300;" onload="onloadChat();">
+<body style="background-color: #333300;">
 <div class="zopim" __jx__id="___$_61 ___$_61"
      style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; padding: 0px; border: 0px; background: transparent; overflow: hidden; position: fixed; z-index: 16000002; height: 30px; right: 50px; bottom: 0px; width: 120px;">
     <script>
@@ -381,6 +238,12 @@
 </div>
 <script>
     $(document).ready(function () {
+        if (!!window.performance && window.performance.navigation.type === 2) {
+            // value 2 means "The page was accessed by navigating into the history"
+            console.log('Reloading');
+            window.location.reload(); // reload whole page
+
+        }
         $('.t-fix').removeClass('in');
     })
 </script>

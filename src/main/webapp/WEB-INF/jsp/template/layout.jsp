@@ -19,6 +19,7 @@
 <!--<![endif]-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="pragma" content="no-cache">
     <spring:url value="/resources/img/favicon/favicon.png" var="fava"/>
     <link rel="shortcut icon" href="${fava}" type="image/png"/>
     <!--[if IE]>
@@ -50,74 +51,6 @@
             color: rgb(240, 196, 129);
         }
     </style>
-    <script>
-        //<![CDATA[
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-43568928-1', 'auto');
-        try {
-
-            (function (i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function () {
-                        (i[r].q = i[r].q || []).push(arguments)
-                    }, i[r].l = 1 * new Date();
-                a = s.createElement(o),
-                    m = s.getElementsByTagName(o)[0];
-                a.async = 1;
-                a.src = g;
-                m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-            ga('create', 'UA-43568928-1', 'auto');
-            ga('send', 'pageview');
-
-
-        } catch (e) {
-        }
-        ;
-        ga('send', 'pageview');
-
-        //]]>
-    </script>
-    <script>
-        //<![CDATA[
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq)return;
-            n = f.fbq = function () {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n;
-            n.push = n;
-            n.loaded = !0;
-            n.version = '2.0';
-            n.queue = [];
-            t = b.createElement(e);
-            t.async = !0;
-            t.src = v;
-            s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window,
-            document, 'script', '//connect.facebook.net/en_US/fbevents.js');
-        // Insert Your Facebook Pixel ID below.
-        fbq('init', '1832292157092575');
-        fbq('track', 'PageView');
-        //]]>
-    </script>
-    <noscript><img height='1' width='1' style='display:none'
-                   src='https://www.facebook.com/tr?id=1832292157092575&amp;ev=PageView&amp;noscript=1'
-    />
-    </noscript>
 
     <%-- <spring:url value="/resources/js/jquery.min.1.11.0.js" var="a" />
     <script src="${a}"></script>--%>
@@ -222,28 +155,9 @@
             color: rgb(240, 196, 129);
         }
     </style>
-    <%--<div id="fb-root"></div>
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '1832292157092575',
-                xfbml      : true,
-                version    : 'v2.9'
-            });
-            FB.AppEvents.logPageView();
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>--%>
 
 </head>
-<body style="background-color: #333300;" onload="onloadChat();"><!--Start of Zopim Live Chat Script-->
+<body style="background-color: #333300;"><!--Start of Zopim Live Chat Script-->
 <div class="zopim" __jx__id="___$_61 ___$_61"
      style="margin-top: 0px; margin-right: 0px; margin-bottom: 0px; padding: 0px; border: 0px; background: transparent; overflow: hidden; position: fixed; z-index: 16000002; height: 30px; right: 50px; bottom: 0px; width: 120px;">
     <script>
@@ -262,13 +176,6 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
     </script>
-    <%--<div class="fb-send-to-messenger"
-         messenger_app_id="1832292157092575"
-         page_id="1382882181793393"
-         data-ref="PASS_THROUGH_PARAM"
-         color="blue"
-         size="standard">
-    </div>--%>
     <div class="fb-messengermessageus"
          messenger_app_id="1832292157092575"
          page_id="1382882181793393"
@@ -407,15 +314,14 @@
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header" style="background-color: antiquewhite;">
+            <div class="modal-header" style="background-color: #808000;">
                 <h4 class="modal-title text-center">Lỗi</h4>
             </div>
             <div class="modal-body text-center">
                 <p style="color: red;">Số lượng sản phẩm nhập không hợp lệ</p>
                 <p>Số lượng sản phẩm không được để trống và phải lớn hơn 0</p>
             </div>
-            <div class="modal-header text-center" style="background-color: antiquewhite;">
-               <%-- <button onclick="submit()" class="btn btn-primary" type="submit">Thêm</button>--%>
+            <div class="modal-header text-center" style="background-color: #808000;">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
             </div>
         </div>
@@ -425,21 +331,30 @@
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header" style="background-color: antiquewhite;">
+            <div class="modal-header" style="background-color: #808000;">
                 <h4 class="modal-title text-center">Xác nhận</h4>
             </div>
             <div class="modal-body text-center">
                 <p style="color: red;" id="confirm-message"></p>
                 <p>Bạn có chắc chắn không?.</p>
             </div>
-            <div class="modal-header text-center" style="background-color: antiquewhite;">
-                <button onclick="accept();"  class="btn btn-primary" type="button" data-dismiss="modal">Có</button>
+            <div class="modal-header text-center" style="background-color: #808000;">
+                <button onclick="accept();"  class="btn btn-primary" type="button" data-dismiss="modal" style="background-color: #337ab7;">Có</button>
                 <button onclick="revertValue();" type="button" class="btn btn-default" data-dismiss="modal">Không</button>
             </div>
         </div>
     </div>
 </div>
 <script>
+    $(document).ready(function () {
+        if (!!window.performance && window.performance.navigation.type === 2) {
+            // value 2 means "The page was accessed by navigating into the history"
+            console.log('Reloading');
+            window.location.reload(); // reload whole page
+
+        }
+    });
+
     var callBack = function (product, selector) {
         if (product) {
             modal = $('#quick-view-modal');
@@ -574,7 +489,12 @@
             $('#operator-cart').attr('name', name);
             document.getElementById("cartformpage").submit();
         }else{
-            addCartSuccess();
+            var key = localStorage.getItem("key-submit-detail");
+            if(key === "yes" || key === "yes-buy-now"){
+                addCartSuccessDetail();
+            }else{
+                addCartSuccessQickView();
+            }
         }
         return;
     };
@@ -611,7 +531,7 @@
         }
         submit(name);
     }
-    function checkAddCartOrByNow(){
+    function checkAddCartQickView(){
         var quickModal = $('#quick-view-modal');
         var modal = $('#checkCart-Error');
         var modal_99 = $('#checkCart-Error-99');
@@ -673,17 +593,32 @@
                 $("#cart-count").empty();
                 $("#cart-count-mobile").append('<span id="#cart-count-mobile-temp">' + count + '</span>');
                 $("#cart-count").append('<span id="#cart-count-temp">' + count + '</span>');
+                var key = localStorage.getItem("key-submit-detail");
+                if(key === "yes-buy-now"){
+                    window.location.href = '/cart'
+                }
+                localStorage.removeItem("key-submit-detail");
             }
         });
     }
     $(document).on("click", "#add-to-cart-detail", function (event) {
         var flg = checkAddCartOrByNowDetail();
         if(flg === true){
+            localStorage.setItem("key-submit-detail","yes");
             addCartSuccessDetail();
         }
         return false;
     });
-    function addCartSuccess() {
+    $(document).on("click", "#buy-now", function (event) {
+        var flg = checkAddCartOrByNowDetail();
+        if(flg === true){
+            localStorage.setItem("key-submit-detail","yes-buy-now");
+            addCartSuccessDetail();
+        }
+
+        return false;
+    });
+    function addCartSuccessQickView() {
         var data = {};
         data["count"] = $('#quantity').val();
         data["productId"] = $('#productId').val();
@@ -707,9 +642,9 @@
         });
     }
     $(document).on("click", ".btn-addcart", function (event) {
-        var flg = checkAddCartOrByNow();
+        var flg = checkAddCartQickView();
         if(flg === true){
-            addCartSuccess();
+            addCartSuccessQickView();
         }
         return false;
     });

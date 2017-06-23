@@ -18,7 +18,7 @@
                 <li>
             </c:if>
             <div class="news-content">
-                <div class="col-md-2 hidden-xs hidden-sm">
+                <%--<div class="col-md-2 hidden-xs hidden-sm">
                     <!--Begin:ngày giờ đăng bài viết  -->
                     <div class="author-date">
                         <div class="date-post">
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <!-- End: Nội dung bài viết -->
-                </div>
+                </div>--%>
                 <div class="col-md-5 col-xs-12 col-sm-12 img-article">
                     <img
                             src="${p.img}"

@@ -146,7 +146,7 @@
                             </li>
                         </ul>
                     </li> <!-- Card -->
-                    <li class="" style="margin-left: 15px;">
+                    <li class="" style="margin-left: 30px;">
                             <ul class="nodrop">
                                 <li id="search-icon" class="drop-control">
                                     <div class="btn-group">

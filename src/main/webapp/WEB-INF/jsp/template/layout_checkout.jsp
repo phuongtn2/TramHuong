@@ -12,6 +12,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+    <meta http-equiv="pragma" content="no-cache">
     <spring:url value="/resources/img/favicon/favicon.png" var="fava"/>
     <link rel="shortcut icon" href="${fava}" type="image/png"/>
     <title>
@@ -41,85 +42,6 @@
     <spring:url value="/resources/js/plugins/dataTables/datatables.min.js" var="dataTablesJs" />
     <script src="${dataTablesJs}"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=no">
-
-    <script>
-        //<![CDATA[
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-43568928-1', 'auto');
-        try {
-
-            (function (i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function () {
-                        (i[r].q = i[r].q || []).push(arguments)
-                    }, i[r].l = 1 * new Date();
-                a = s.createElement(o),
-                    m = s.getElementsByTagName(o)[0];
-                a.async = 1;
-                a.src = g;
-                m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-            ga('create', 'UA-43568928-1', 'auto');
-            ga('send', 'pageview');
-
-
-        } catch (e) {
-        }
-        ;
-        ga('send', 'pageview');
-
-        //]]>
-    </script>
-    <script>
-        //<![CDATA[
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq)return;
-            n = f.fbq = function () {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n;
-            n.push = n;
-            n.loaded = !0;
-            n.version = '2.0';
-            n.queue = [];
-            t = b.createElement(e);
-            t.async = !0;
-            t.src = v;
-            s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window,
-            document, 'script', '//connect.facebook.net/en_US/fbevents.js');
-        // Insert Your Facebook Pixel ID below.
-        fbq('init', '209722866128412');
-        fbq('track', 'PageView');
-        //]]>
-    </script>
-    <noscript><img height='1' width='1' style='display:none'
-                   src='https://www.facebook.com/tr?id=209722866128412&amp;ev=PageView&amp;noscript=1'
-    /></noscript>
-    <script type='text/javascript'>
-        //<![CDATA[
-        if ((typeof Haravan) === 'undefined') {
-            Haravan = {};
-        }
-        Haravan.culture = 'vi-VN';
-        Haravan.shop = '${pageContext.request.contextPath}';
-        Haravan.theme = {"name": "Admin", "id": 1000151899, "role": "main"};
-        Haravan.domain = '${pageContext.request.contextPath}';
-        //]]>
-    </script>
 
     <script type="text/javascript">
         var parseQueryString = function () {
@@ -296,7 +218,6 @@
                     </div>
                 </div>
                 <div class="modal-header text-center" style="background-color: #808000;">
-                    <%-- <button onclick="submit()" class="btn btn-primary" type="submit">Thêm</button>--%>
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
                 </div>
             </div>

@@ -14,7 +14,7 @@
 <div class="container clearfix">
     <div class="col-md-12">
         <a href="/cart">
-            <h1>
+
         <span style="background: url(/resources/img/back-checkout.png) no-repeat center left;
     background-color: #808000;
     border: none;
@@ -27,11 +27,13 @@
     line-height: 45px;
     position: relative;
     cursor: pointer;
-    margin: 7px;">Quay về giỏ hàng</span> Nhang Hoạt Tính</h1></a>
+    z-index: 10;
+    margin: 7px;">Quay về giỏ hàng</span></a>
+        <h1>Thông Tin Đơn Hàng</h1>
     </div>
     <form:form accept-charset="UTF-8" id="purchase-form" action="/saveOrder" modelAttribute="orderInfo" class="new_order">
     <div class="col-md-12">
-        <div class="col-lg-4">
+        <div class="col-lg-4 box-cart">
             <h2>Thông tin giao hàng</h2>
             <div class="line"></div>
             <div class="form-info">
@@ -102,7 +104,7 @@
         </div>--%>
     </div>
         <div class="col-lg-4">
-            <h3>Vận chuyển & Thanh toán</h3>
+            <%--<h3>Vận chuyển & Thanh toán</h3>--%>
             <%--<button type="button" class="btn-checkout" id="term-shipping-payment" style="font-size: 14px;">Qui Định Vận Chuyển/Thanh Toán</button>--%>
             <%--<div>
                 <button type="button" class="btn-checkout" id="chosePayment" style="font-size: 14px;">Chọn Phương Thức Thanh Toán</button>
@@ -115,6 +117,7 @@
 
             <div class="box-cart">
                 <h2 class="section-title">Phương thức vận chuyển</h2>
+                <div class="line"></div>
             <div class="shiping-ajax-s">
                 <button type="button" class="btn-checkout" id="term-shipping" style="font-size: 14px; width: 100%;">Xem Qui Định</button>
                 <c:set var="count1" value="0" scope="page" />
@@ -133,6 +136,7 @@
             </div>
             <div class="box-cart" style="margin-top: 20px;">
             <h2 class="section-title">Phương thức Thanh Toán</h2>
+                <div class="line"></div>
             <div class="shiping-ajax-p">
                 <button type="button" class="btn-checkout" id="term-payment" style="font-size: 14px; width: 100%;">Xem Qui Định</button>
                 <c:set var="count" value="0" scope="page" />
@@ -148,9 +152,10 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <h3>Thông Tin Đơn Hàng</h3>
+            <%--<h3>Thông Tin Đơn Hàng</h3>--%>
             <div class="box-cart">
                 <h2>Mã Đơn hàng: </h2>
+                <div class="line"></div>
                 <span style="color: red">${carts.orderCode}</span>
                 <div class="cart-items">
                     <div class="list_item cart-item">

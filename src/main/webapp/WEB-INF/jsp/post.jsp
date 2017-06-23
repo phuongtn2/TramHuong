@@ -12,7 +12,7 @@
     </span>
 
     <div class="content-page row">
-        <div class="col-md-2">
+        <%--<div class="col-md-2">
             <!--Begin:ngày giờ đăng bài viết  -->
             <div class="author-date">
                 <ul class="date-post">
@@ -29,7 +29,7 @@
             <!--Begin: số bình luận  -->
 
             <!--End: số đăng bình luận   -->
-        </div>
+        </div>--%>
 
         <div class="col-md-10 article-content">
 

@@ -61,7 +61,7 @@
 		SELECT * FROM POST WHERE id=#{id}
 	</select>
 	<select id="findPostNew" resultType="post">
-		SELECT * FROM POST WHERE status = 1 ORDER BY created LIMIT 4
+		SELECT * FROM POST WHERE status = 1 ORDER BY id DESC LIMIT 4
 	</select>
 
 </mapper>

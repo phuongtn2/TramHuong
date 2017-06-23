@@ -237,7 +237,7 @@
     </div>
     <div class="news-latest list-group">
             <span class="list-group-item active">
-                Bài viết mới nhất
+                Bài viết nổi bật
             </span>
 
         <c:forEach items="${postNews}" var="p">
@@ -249,8 +249,8 @@
                     </a>
                 </div>
                 <div class="post-content  col-lg-9 col-md-9 col-sm-8 col-xs-8 ">
-                    <a href="/blogs/post/${p.id}">${p.title}</a><span class="date"> <i
-                        class="time-date"></i>${p.dateDisplay}</span>
+                    <a href="/blogs/post/${p.id}">${p.title}</a>
+                    <%--<span class="date"><i class="time-date"></i>${p.dateDisplay}</span>--%>
                 </div>
             </div>
         </c:forEach>
