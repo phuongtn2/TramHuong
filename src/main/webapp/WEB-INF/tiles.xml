@@ -69,7 +69,7 @@
 	</definition>-->
 	<definition name="post" extends="base.blog">
 		<put-attribute name="title" value="Nhang Hoạt Tính" />
-		<put-attribute name="breadcurmb_blog" value="/WEB-INF/jsp/template/breadcrumb_blog.jsp"/>
+		<put-attribute name="breadcurmb_blog" value="/WEB-INF/jsp/template/breadcrumb_post.jsp"/>
 		<put-attribute name="content_blog" value="/WEB-INF/jsp/post.jsp" />
 	</definition>
 	<!--Blog-->

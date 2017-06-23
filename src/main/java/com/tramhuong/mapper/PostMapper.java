@@ -19,4 +19,6 @@ public interface PostMapper {
     List<PostDto> findByStatus();
     List<PostDto> findByBlogId(@Param("id") int id, @Param("status") byte status);
     List<PostDto> findPostNew();
-}
+    List<PostDto> findAllPost();
+    List<PostDto> findByTag(@Param("tag") String tag);
+ }

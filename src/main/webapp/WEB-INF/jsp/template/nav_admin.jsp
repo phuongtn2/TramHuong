@@ -40,7 +40,7 @@
                 <a href="/admin/products"><i class="fa fa-th-large"></i> <span class="nav-label">Quản Lý Sản Phẩm</span> <span class="fa arrow"></span></a>
             </li>
             <li id="blogs" class="active">
-                <a href="/admin/blogs"><i class="fa fa-th-large"></i> <span class="nav-label">Quản Lý Bài Viết</span> <span class="fa arrow"></span></a>
+                <a href="/admin/posts"><i class="fa fa-th-large"></i> <span class="nav-label">Quản Lý Bài Viết</span> <span class="fa arrow"></span></a>
             </li>
             <li id="tags" class="active">
                 <a href="/admin/tags"><i class="fa fa-th-large"></i> <span class="nav-label">Quản Lý Tag</span> <span class="fa arrow"></span></a>

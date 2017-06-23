@@ -33,31 +33,26 @@
                                 <input type="hidden" class="form-control" name="id"
                                        value=""/>
                             </c:if>
-                            <c:if test="${blogId!= null}">
+                            <%--<c:if test="${blogId!= null}">
                                 <input type="hidden" class="form-control" name="blogId"
                                        value="${blogId}"/>
-                            </c:if>
-                            <input type="text" class="form-control" name="title"
+                            </c:if>--%>
+                            <input type="text" class="form-control" name="title" max="1024"
                                    value="<c:if test="${post.title != null}">${post.title}</c:if>" required/>
                         </div>
                     </div>
-                    <c:if test="${blogId == null}">
-                        <div class="form-group">
-                            <div class="col-lg-3">
-                                <label class="control-label"><spring:message code="blog.name"
-                                                                             text="default text"/></label>
-                            </div>
-                            <div class="col-lg-6">
-                                <select id="blogId" name="blogId" class="form-control m-b" required>
-                                    <c:forEach items="${blogs}" var="b">
-                                        <option
-                                                <c:if test="${b.id==post.blogId}">selected</c:if>
-                                                value="${b.id}">${b.name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
+                    <div class="form-group">
+                        <div class="col-lg-3">
+                            <label class="control-label">Tag</label>
                         </div>
-                    </c:if>
+                        <div class="col-lg-6">
+                            <select name="tagList" class="form-control select2" multiple="multiple" data-placeholder="Chọn Tag">
+                                <c:forEach items="${tags}" var="t">
+                                    <option <c:forEach items="${tagsP}" var="p"> <c:if test="${t.tag == p}"> selected="selected" </c:if> </c:forEach>>${t.tag}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="col-lg-3">
                             <label class="control-label"><spring:message code="post.sub"
@@ -65,16 +60,16 @@
                         </div>
                         <div class="col-lg-6">
                             <c:if test="${post.id!= null}">
-                                <div id="subContent_div" class="ui-widget-content" style="height: 25%;width: 100%;">
-                                    <textarea rows="5" style="width: 100%; height: 100%"
-                                              name="subContent" required maxlength="512">${post.subContent}</textarea>
-                                </div>
+                               <%-- <div id="subContent_div" class="ui-widget-content" style="height: 25%;width: 100%;">--%>
+                                    <textarea rows="1" style="width: 100%;"
+                                              name="subContent" required maxlength="2048">${post.subContent}</textarea>
+                                <%--</div>--%>
                             </c:if>
                             <c:if test="${post.id== null}">
-                                <div id="subContent_div" class="ui-widget-content" style="height: 25%;width: 100%;">
-                                    <textarea rows="5" style="width: 100%; height: 100%"
-                                              name="subContent" required maxlength="512"></textarea>
-                                </div>
+                                <%--<div id="subContent_div" class="ui-widget-content" style="height: 25%;width: 100%;">--%>
+                                    <textarea rows="1" style="width: 100%;"
+                                              name="subContent" required maxlength="2048"></textarea>
+                                <%--</div>--%>
                             </c:if>
                         </div>
                     </div>
@@ -84,19 +79,6 @@
                                                                          text="default text"/></label>
                         </div>
                         <div class="col-lg-6">
-                            <%--<c:if test="${post.id!= null}">
-                                &lt;%&ndash;<textarea id="post_content" style="display: none;" name="content">${post.content}</textarea>&ndash;%&gt;
-                                <div id="content_div" class="ui-widget-content" style="height: 50%;width: 100%;">
-                                    <textarea rows="10" style="width: 100%; height: 100%"
-                                              name="content" required>${post.content}</textarea>
-                                </div>
-                            </c:if>
-                            <c:if test="${post.id== null}">
-                                <div id="content_div" class="ui-widget-content" style="height: 50%;width: 100%;">
-                                    <textarea rows="10" style="width: 100%; height: 100%"
-                                              name="content" required></textarea>
-                                </div>
-                            </c:if>--%>
                                 <div class="ibox float-e-margins">
                                     <input type="hidden" required="required" name="content" id="content"/>
                                     <div class="ibox-content no-padding">
@@ -152,41 +134,34 @@
                     </div>
                     <div class="form-group">
                         <div class="col-lg-3">
-                            <label class="control-label"><spring:message code="post.position"
-                                                                         text="default text"/></label>
+                            <label class="control-label">Nguồn Bài Viết</label>
                         </div>
                         <div class="col-lg-6">
-                            <select id="position" name="position" class="form-control m-b">
-                                <option <c:if test="${post.position==1}">selected</c:if> value="1">1</option>
-                                <option <c:if test="${post.position==2}">selected</c:if> value="2">2</option>
-                                <option <c:if test="${post.position==3}">selected</c:if> value="3">3</option>
-                                <option <c:if test="${post.position==4}">selected</c:if> value="4">4</option>
-                                <option <c:if test="${post.position==5}">selected</c:if> value="5">5</option>
-                                <option <c:if test="${post.position==6}">selected</c:if> value="6">6</option>
-                                <option <c:if test="${post.position==7}">selected</c:if> value="7">7</option>
-                                <option <c:if test="${post.position==8}">selected</c:if> value="8">8</option>
-                                <option <c:if test="${post.position==9}">selected</c:if> value="9">9</option>
-                            </select>
+                            <input type="text" class="form-control" name="source"
+                                   value="<c:if test="${post.source != null}">${post.source}</c:if>"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-3">
+                            <label class="control-label">Bài Viết Nổi Bật</label>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="i-checks"><label>
+                                <input type="checkbox" name="sHigh"
+                                       <c:if test="${post.isHigh==1}">checked=""</c:if> /></label>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group" style="margin-top: 20px;">
                         <div class="text-center">
-                           <%-- <c:if test="${post.id != null}">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-edit"></i><spring:message code="common.button.update"
-                                                                              text="default text"/>
-                                </button>
-                            </c:if>
-                            <c:if test="${post.id == null}">--%>
-                                <button type="submit" class="btn btn-primary" onclick="setValueContent();">
-                                    <i class="fa fa-check"></i><spring:message code="common.button.save"
-                                                                               text="default text"/>
-                                </button>
-                                <button name="reset" class="btn btn-danger" type="reset">
-                                    <i class="fa fa-refresh"></i><spring:message code="common.button.refresh"
-                                                                                 text="default text"/>
-                                </button>
-                            <%--</c:if>--%>
+                            <button type="submit" class="btn btn-primary" onclick="setValueContent();">
+                                <i class="fa fa-check"></i><spring:message code="common.button.save"
+                                                                           text="default text"/>
+                            </button>
+                            <button name="reset" class="btn btn-danger" type="reset">
+                                <i class="fa fa-refresh"></i><spring:message code="common.button.refresh"
+                                                                             text="default text"/>
+                            </button>
                         </div>
                     </div>
                 </form:form>

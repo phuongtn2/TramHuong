@@ -185,18 +185,17 @@
             <li class="item ">
                 <a href="/product/sales">
                     <span class="lbl">Khuyến Mãi</span>
-                    </span>
                 </a>
             </li>
-            <li class="item has-sub  ">
-                <a href="#">
+            <li class="item last" id="nav_blog_post">
+                <a href="/posts">
                     <span class="lbl">Bài Viết</span>
-                    <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-3"
+                   <%-- <span data-toggle="collapse" data-parent="#cssmenu" href="#sub-item-3"
                           class="sign">
 						    <img src="/resources/img/arrow-right.png">
-					    </span>
+					    </span>--%>
                 </a>
-                <ul class="nav children collapse menu-bar t-fix" id="sub-item-3">
+                <%--<ul class="nav children collapse menu-bar t-fix" id="sub-item-3">
                     <c:set var="countS0" value="0" scope="page" />
                     <c:forEach items="${blogs0}" var="b0">
                         <c:set var="countS0" value="${countS0 + 1}" scope="page"/>
@@ -231,7 +230,7 @@
                             </c:if>
                         </c:if>
                     </c:forEach>
-                </ul>
+                </ul>--%>
             </li>
         </ul>
     </div>
@@ -243,13 +242,13 @@
         <c:forEach items="${postNews}" var="p">
             <div class="article">
                 <div class="col-ld-3 col-md-3 col-sm-4 col-xs-4">
-                    <a href="/blogs/post/${p.id}">
+                    <a href="/post/${p.id}">
                         <img style="width: 50px; height: 40px;"
                              src="${p.img}"/>
                     </a>
                 </div>
                 <div class="post-content  col-lg-9 col-md-9 col-sm-8 col-xs-8 ">
-                    <a href="/blogs/post/${p.id}">${p.title}</a>
+                    <a href="/post/${p.id}">${p.title}</a>
                     <%--<span class="date"><i class="time-date"></i>${p.dateDisplay}</span>--%>
                 </div>
             </div>

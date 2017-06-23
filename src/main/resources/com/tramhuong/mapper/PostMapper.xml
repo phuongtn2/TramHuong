@@ -7,31 +7,33 @@
 	<insert id="add" useGeneratedKeys="true" keyProperty="dto.id">
 		INSERT INTO POST(
 		title
-		, blogId
+		, tag
 		, img
 		, url
 		, created
 		, subContent
 		, status
 		, content
-		, position
+		, isHigh
+		, source
 		)VALUES(
 		#{dto.title}
-		, #{dto.blogId}
+		, #{dto.tag}
 		, #{dto.img}
 		, #{dto.url}
 		, NOW()
 		, #{dto.subContent}
 		, #{dto.status}
 		, #{dto.content}
-		, #{dto.position}
+		, #{dto.isHigh}
+		, #{dto.source}
 		)
 	</insert>
 
 	<update id="update">
 		UPDATE POST SET
 		title = #{dto.title}
-		,blogId = #{dto.blogId}
+		,tag = #{dto.tag}
 		, content = #{dto.content}
 		<if test="dto.img != null">
 		,img = #{dto.img}
@@ -39,7 +41,8 @@
 		,url = #{dto.url}
 		,subContent= #{dto.subContent}
 		,status=#{dto.status}
-		,position=#{dto.position}
+		,isHigh=#{dto.isHigh}
+		, source = #{dto.source}
 		WHERE id= #{dto.id}
 	</update>
 	<delete id="delete">
@@ -49,7 +52,7 @@
 		SELECT * FROM POST ORDER BY position DESC
 	</select>
 	<select id="findByStatus" resultType="post">
-		SELECT * FROM POST WHERE status = 1 ORDER BY position DESC
+		SELECT * FROM POST WHERE status = 1 ORDER BY id DESC
 	</select>
 	<select id="findByBlogId" resultType="post">
 		SELECT * FROM POST WHERE blogId = #{id}
@@ -61,7 +64,12 @@
 		SELECT * FROM POST WHERE id=#{id}
 	</select>
 	<select id="findPostNew" resultType="post">
-		SELECT * FROM POST WHERE status = 1 ORDER BY id DESC LIMIT 4
+		SELECT * FROM POST WHERE isHigh = 1 ORDER BY id DESC
 	</select>
-
+	<select id="findAllPost" resultType="post">
+		SELECT * FROM POST ORDER BY id DESC
+	</select>
+	<select id="findByTag" resultType="post">
+		SELECT * FROM POST WHERE status = 1 AND tag LIKE concat(concat('%',#{tag}), '%') ORDER BY id DESC
+	</select>
 </mapper>

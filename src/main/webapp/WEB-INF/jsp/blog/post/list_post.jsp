@@ -7,15 +7,11 @@
 		<div class="ibox float-e-margins">
 			<div class="ibox-title">
 				<h5><spring:message code="post.title" text="default text"/></h5>
-				<a href="/admin/post/add/${blogId}" class="btn btn-primary" style="margin-left: 20px; padding: 0px">
+				<a href="/admin/post/add/" class="btn btn-primary" style="margin-left: 20px; padding: 0px">
 					<i class="fa fa-plus"></i><spring:message code="common.button.add" text="default text"/>
 				</a>
 
 				<div class="ibox-tools">
-					<%--<a onclick="goBack()" class="btn btn-success btn btn-xs"><i class="fa fa-backward"><spring:message
-							code="common.button.back"
-							text="default text"/></i></a>--%>
-					<%--<a href="/admin/post/add/${blogId}" class="btn btn-success btn btn-xs"><i class="fa fa-plus-square-o"><spring:message code="common.button.add" text="default text"/></i></a>--%>
 					<a class="collapse-link">
 						<i class="fa fa-chevron-up"></i>
 					</a>
@@ -27,12 +23,13 @@
 					<thead>
 					<tr>
 						<th data-toggle="true"><spring:message code="post.name" text="default text"/></th>
-						<th data-hide="phone,tablet"><spring:message code="blog.name" text="default text"/></th>
+						<th data-hide="phone,tablet"><spring:message code="tag.name" text="default text"/></th>
 						<th data-hide="all"><spring:message code="post.sub" text="default text"/></th>
+						<th data-hide="phone,tablet">Nổi Bật</th>
 						<th data-hide="phone,tablet"><spring:message code="common.status.title" text="default text"/></th>
 						<th data-hide="phone,tablet"><spring:message code="product.img" text="default text"/></th>
 						<th data-hide="phone,tablet"><spring:message code="post.url" text="default text"/></th>
-						<th data-hide="phone,tablet"><spring:message code="post.position" text="default text"/></th>
+						<th data-hide="phone,tablet">Nguồn</th>
 						<th data-hide="phone,tablet" class=T"text-center"><spring:message code="common.action" text="default text"/></th>
 					</tr>
 					</thead>
@@ -42,11 +39,16 @@
 						<tr class="gradeC">
 							<td>${p.title}</td>
 							<td data-hide="phone,tablet">
-								<c:forEach items="${blogs}" var="b">
-									<c:if test="${p.blogId == b.id}">${b.name}</c:if>
-								</c:forEach>
+								${p.tag}
 							</td>
 							<td data-hide="phone,tablet">${p.subContent}</td>
+							<td data-hide="phone,tablet">
+								<c:if test="${p.isHigh==1}">
+									<div class="i-checks"><label> <input type="checkbox" value="" disabled=""
+																		 checked=""></label></div> </c:if>
+								<c:if test="${p.isHigh==0}">
+									<div class="i-checks"><label> <input type="checkbox" value="" disabled=""></label></div> </c:if>
+							</td>
 							<td data-hide="phone,tablet">
 								<c:if test="${p.status==1}"> <span class="label label-success"><spring:message code="common.active" text="default text"/></span></c:if>
 								<c:if test="${p.status==0}"> <span class="label label-danger"><spring:message code="common.deactive" text="default text"/></span></c:if>
@@ -58,7 +60,7 @@
 								<a href="${p.url}">${p.url}</a>
 							</td>
 							<td data-hide="phone,tablet">
-								${p.position}
+								${p.source}
 							</td>
 							<td class="text-center">
 								<div class="btn-group">

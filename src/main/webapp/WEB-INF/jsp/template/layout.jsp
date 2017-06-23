@@ -652,12 +652,17 @@
     $(document).ready(function () {
         $('.t-fix').removeClass('in');
         function change(id) {
-            var listId = ["_1", "_2", "_5", "_6"];
+            var listId = ["_1", "_2","_3", "_5", "_6"];
             for (i = 0; i <=  listId.length; i++) {
                 if(id === listId[i]){
                     $('#'+listId[i]).addClass( "active" );
                 }else{
-                    $('#'+listId[i]).removeClass( "active" )
+                    $('#'+listId[i]).removeClass( "active" );
+                }
+                if(id === "_3"){
+                    $('#nav_blog_post').addClass( "current active" );
+                }else{
+                    $('#nav_blog_post').removeClass( "current active" );
                 }
             }
             return;

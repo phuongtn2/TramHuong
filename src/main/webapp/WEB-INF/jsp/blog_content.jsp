@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <div class="main-content">
     <!-- Begin: Nội dung blog -->
     <ul id="pagging_product">
@@ -68,16 +69,20 @@
                 <div class=" col-md-5  hidden-xs hidden-sm">
                     <!-- Begin: Nội dung bài viết -->
                     <h2 class="title-article"><a
-                            href="/blogs/post/${p.id}" style="color: white">${p.title}</a></h2>
+                            href="/post/${p.id}" style="color: white">${p.title}</a></h2>
                     <div class="body-content">
                         <div class="info-more">
-                            <div><i class="icon-info icon-hot clearfix"></i> <a href="#" style="color: cornsilk">${b.name}</a></div>
+                            <div><i class="icon-info icon-hot clearfix">Tag:</i>
+                                <c:forEach items="${fn:split(p.tag,',')}" var="t">
+                                    <a href="/posts/${t}" target="_self" style="color: #FF3869;">${t}</a>
+                                </c:forEach>
+                            </div>
                         </div>
                         <p style="color: white">${p.subContent}</p>
                     </div>
                     <!-- End: Nội dung bài viết -->
                     <a class="readmore clear-fix"
-                       href="/blogs/post/${p.id}"
+                       href="/post/${p.id}"
                        role="button" style="color: red">Xem tiếp <span class="fa fa-angle-double-right"></span></a>
                 </div>
 
@@ -86,7 +91,7 @@
                     <p class="text-mobi-blog">${p.subContent}</p>
 
                     <a class="readmore clear-fix"
-                       href="/blogs/post/${p.id}"
+                       href="/post/${p.id}"
                        role="button" style="color: red">Xem tiếp <span class="fa fa-angle-double-right"></span></a>
 
                 </div>

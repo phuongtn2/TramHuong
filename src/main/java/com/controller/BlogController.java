@@ -5,10 +5,13 @@ import com.controller.memoizer.Memoizer;
 import com.tramhuong.dto.BlogDto;
 import com.tramhuong.dto.MappingCategoryDto;
 import com.tramhuong.dto.PostDto;
+import com.tramhuong.dto.TagDto;
 import com.tramhuong.services.AboutService;
 import com.tramhuong.services.BlogService;
 import com.tramhuong.services.CategoriesService;
+import com.tramhuong.services.TagService;
 import com.tramhuong.services.error.ServiceException;
+import com.tramhuong.util.str.StringUtil;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -35,6 +38,8 @@ public class BlogController {
 	@Autowired
 	private AboutService aboutService;
 	@Autowired
+	private TagService tagService;
+	@Autowired
 	private ServletContext servletContext;
 
 	@InitBinder
@@ -43,19 +48,12 @@ public class BlogController {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 
-	@RequestMapping(value = "/blog/{id}", method = RequestMethod.GET)
-	public String initForm(HttpServletRequest request, ModelMap model, @PathVariable int id) throws ServiceException, UnsupportedEncodingException {
+	@RequestMapping(value = "/posts", method = RequestMethod.GET)
+	public String initForm(HttpServletRequest request, ModelMap model) throws ServiceException, UnsupportedEncodingException {
 		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
-		BlogDto blogDto = new BlogDto();
-		if(Memoizer.getInstance().get("blog" + id) == null) {
-			blogDto = blogService.findById(id);
-			Memoizer.getInstance().put("blog" + id, blogDto);
-		}else{
-			blogDto = (BlogDto) Memoizer.getInstance().get("blog" + id);
-		}
-		model.addAttribute("b", blogDto);
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
+		model.addAttribute("bre", "Bài Viết");
 		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
 		List<PostDto> postNews = new ArrayList<PostDto>();
 		if(Memoizer.getInstance().get("post") == null) {
@@ -66,32 +64,47 @@ public class BlogController {
 		}
 		model.addAttribute("postNews", postNews);
 		List<PostDto> postDtos = new ArrayList<PostDto>();
-		if(Memoizer.getInstance().get("post-home" + id) == null) {
-			postDtos = blogService.findPostByBlogId(id, (byte) 1);
-			Memoizer.getInstance().put("post-home" + id, postDtos);
+		if(Memoizer.getInstance().get("post-home") == null) {
+			postDtos = blogService.findByStatus();
+			Memoizer.getInstance().put("post-home", postDtos);
 		}else{
-			postDtos = (List<PostDto>) Memoizer.getInstance().get("post-home" + id);
+			postDtos = (List<PostDto>) Memoizer.getInstance().get("post-home");
 		}
-			model.addAttribute("posts", postDtos);
-			/*if(id==1)
-				model.addAttribute("active", "_6");
-			else*/
-			/*model.addAttribute("active", "_3");*/
-			return "blog";
-		//}
+		model.addAttribute("posts", postDtos);
+		model.addAttribute("active", "_3");
+		return "blog";
 	}
 
-	@RequestMapping(value = "/blogs/post/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/posts/{tag}", method = RequestMethod.GET)
+	public String searchByTag(HttpServletRequest request, ModelMap model, @PathVariable String tag) throws ServiceException, UnsupportedEncodingException {
+		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
+		model.addAttribute("mapping_categories", mappingCategoryDtos);
+		model.addAttribute("mSize", mappingCategoryDtos.size());
+		model.addAttribute("bre", "Bài Viết");
+		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
+		List<PostDto> postNews = new ArrayList<PostDto>();
+		if(Memoizer.getInstance().get("post") == null) {
+			postNews = blogService.findPostNew();
+			Memoizer.getInstance().put("post", postNews);
+		}else{
+			postNews = (List<PostDto>) Memoizer.getInstance().get("post");
+		}
+		model.addAttribute("postNews", postNews);
+		List<PostDto> postDtos = new ArrayList<PostDto>();
+		if(Memoizer.getInstance().get("post-" + tag) == null) {
+			postDtos = blogService.findByTag(tag);
+			Memoizer.getInstance().put("post-" + tag, postDtos);
+		}else{
+			postDtos = (List<PostDto>) Memoizer.getInstance().get("post-" + tag);
+		}
+		model.addAttribute("posts", postDtos);
+		model.addAttribute("active", "_3");
+		return "blog";
+	}
+
+	@RequestMapping(value = "/post/{id}", method = RequestMethod.GET)
 	public String postContent(HttpServletRequest request, ModelMap model, @PathVariable int id) throws ServiceException, UnsupportedEncodingException {
 		List<MappingCategoryDto> mappingCategoryDtos = CommonController.loadCategory(categoriesService, Memoizer.getInstance());
-		/*BlogDto blogDto = new BlogDto();
-		if(Memoizer.getInstance().get("blog" + id) == null) {
-			blogDto = blogService.findById(id);
-			Memoizer.getInstance().put("blog" + id, blogDto);
-		}else{
-			blogDto = (BlogDto) Memoizer.getInstance().get("blog" + id);
-		}
-		model.addAttribute("b", blogDto);*/
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
 		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
@@ -103,19 +116,28 @@ public class BlogController {
 			postNews = (List<PostDto>) Memoizer.getInstance().get("post");
 		}
 		model.addAttribute("postNews", postNews);
-		model.addAttribute("post", blogService.findPostById(id));
+		PostDto postDto = blogService.findPostById(id);
+		model.addAttribute("post", postDto);
+		if(!StringUtil.isEmpty(postDto.getTag())) {
+			String[] tagsP = postDto.getTag().split(",");
+			List<String> strings = new ArrayList<String>();
+			for (String s : tagsP) {
+				strings.add(s);
+			}
+			model.addAttribute("tagsOfPost", strings);
+		}
 		return "post";
 	}
 
-	@RequestMapping(value = "/admin/blogs", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/posts", method = RequestMethod.GET)
 	public String initForm(ModelMap model) throws ServiceException {
-		List<BlogDto> blogDtos = blogService.findAll();
-		if(blogDtos != null){
-			model.addAttribute("blogs", blogDtos);
+		List<PostDto> postDtos = blogService.findAllPost();
+		if(postDtos != null){
+			model.addAttribute("posts", postDtos);
 		}else{
-			model.addAttribute("blogs", new ArrayList<BlogDto>());
+			model.addAttribute("posts", new ArrayList<BlogDto>());
 		}
-		return "blog-admin";
+		return "post-admin";
 	}
 	@RequestMapping(value = "/admin/blog", method = RequestMethod.GET)
 	public String redirectAdd(ModelMap model) throws ServiceException {
@@ -161,20 +183,44 @@ public class BlogController {
 	@RequestMapping(value = "/admin/post/view/{id}", method = RequestMethod.GET)
 	public String managerViewPost(ModelMap model, @PathVariable long id) throws ServiceException {
 		model.addAttribute("post", blogService.findPostById(id));
-		model.addAttribute("blogs",  blogService.findAll());
+		/*model.addAttribute("blogs",  blogService.findAll());*/
 		return "post-detail";
 	}
 
 	@RequestMapping(value = "/admin/post/edit/{id}", method = RequestMethod.GET)
 	public String managerEditPost(ModelMap model, @PathVariable long id) throws ServiceException {
-		model.addAttribute("post", blogService.findPostById(id));
-		model.addAttribute("blogs",  blogService.findAll());
+		PostDto postDto = blogService.findPostById(id);
+		model.addAttribute("post", postDto);
+		List<TagDto> tagDtos = new ArrayList<TagDto>();
+		if(Memoizer.getInstance().get("tagList") == null){
+			tagDtos = tagService.findByStatus((byte)1);
+			Memoizer.getInstance().put("tagList", tagDtos);
+		}else{
+			tagDtos = (List<TagDto>) Memoizer.getInstance().get("tagList");
+		}
+		model.addAttribute("tags", tagDtos);
+		if(!StringUtil.isEmpty(postDto.getTag())) {
+			String[] tagsP = postDto.getTag().split(",");
+			List<String> strings = new ArrayList<String>();
+			for (String s : tagsP) {
+				strings.add(s);
+			}
+			model.addAttribute("tagsP", strings);
+		}
 		return "post-add";
 	}
 
-	@RequestMapping(value = "/admin/post/add/{id}", method = RequestMethod.GET)
-	public String managerAddPost(ModelMap model, @PathVariable long id) throws ServiceException {
-		model.addAttribute("blogId",id);
+	@RequestMapping(value = "/admin/post/add", method = RequestMethod.GET)
+	public String managerAddPost(ModelMap model) throws ServiceException {
+		List<TagDto> tagDtos = new ArrayList<TagDto>();
+		if(Memoizer.getInstance().get("tagList") == null){
+			tagDtos = tagService.findByStatus((byte)1);
+			Memoizer.getInstance().put("tagList", tagDtos);
+		}else{
+			tagDtos = (List<TagDto>) Memoizer.getInstance().get("tagList");
+		}
+		model.addAttribute("tags", tagDtos);
+		model.addAttribute("post", new PostDto());
 		return "post-add";
 	}
 

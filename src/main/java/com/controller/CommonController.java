@@ -20,7 +20,7 @@ public class CommonController {
 	, AboutService aboutService, BlogService blogService) throws UnsupportedEncodingException, ServiceException {
 		loadCart(request, model);
 		loadAbout(model,aboutService, cache);
-		loadBlog(model,blogService, cache);
+		/*loadBlog(model,blogService, cache);*/
 	}
 	public static List<MappingCategoryDto> loadCategory(CategoriesService categoriesService, Cache cache) throws ServiceException {
 		List<CategoryDto> categoryDtos = new ArrayList<CategoryDto>();

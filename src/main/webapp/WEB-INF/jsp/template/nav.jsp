@@ -37,9 +37,6 @@
                                 <span id="cart-count_mobile"><span id="cart-count_mobile_temp">${items}</span></span>
                             </a>
                         </li>
-                        <%--<li class="user">
-                            <a href="/account/login"class="fa fa-user"></a>
-                        </li>--%>
 
                     </ul>
                 </div>
@@ -86,16 +83,10 @@
                         <a href="/product/sales" title="Khuyến Mãi" class="">
                             <span>Khuyến Mãi</span>
                         </a>
-                        <%--<ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="/blogs/tin-khuyen-mai" title="Nhang Trầm Có Tăm">Nhang Trầm Có
-                                    Tăm</a>
-                            </li>
-                        </ul>--%>
                     </li>
                     <li id="_3" class="dropdown">
-                        <a href="#">Bài Viết</a>
-                        <ul class="dropdown-menu" role="menu">
+                        <a href="/posts">Bài Viết</a>
+                       <%-- <ul class="dropdown-menu" role="menu">
                             <c:forEach items="${blogs0}" var="b0">
                                 <li id="aside_blog_${b0.id}" onclick="setLocal('blog_${b0.id}');">
                                     <a href="/blog/${b0.id}">
@@ -103,35 +94,12 @@
                                     </a>
                                 </li>
                             </c:forEach>
-                        </ul>
+                        </ul>--%>
                     </li>
-                    <%--<li id="_6" class="dropdown">
-                        <a href="#">THẾ GIỚI TÂM LINH</a>
-                        <ul class="dropdown-menu" role="menu">
-                            <c:forEach items="${blogs1}" var="b1">
-                                <li>
-                                    <a href="/blog/${b1.id}">${b1.name}
-                                    </a>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                    </li>--%>
-                    <%--<li>
-                        <a href="/pages/nhan-xet-cua-khach-hang" class="">
-                            <span>NHẬN XÉT KH</span>
-                        </a>
-                    </li>--%>
                 </ul>
             </div>
             <div class="hidden-xs pull-right right-menu">
                 <ul class="nav navbar-nav pull-right">
-                    <%--<li id="user-icon">
-                        <ul>
-                            <li><a class="reg" href="/account/register" title="Đăng ký">ĐĂNG KÝ</a></li>
-                            <li>hay <a class="log" href="/account/login" title="Đăng nhập">Đăng nhập</a>
-                            </li>
-                        </ul>
-                    </li>--%>
 
                     <!-- Card -->
                     <li class="">
@@ -192,12 +160,17 @@
         });
         $(document).ready(function () {
             var id = $('#active').val();
-            var listId = ["_1", "_2", "_5", "_6"];
+            var listId = ["_1", "_2","_3", "_5", "_6"];
             for (i = 0; i <=  listId.length; i++) {
                 if(id === listId[i]){
                     $('#'+listId[i]).addClass( "active" );
                 }else{
-                    $('#'+listId[i]).removeClass( "active" )
+                    $('#'+listId[i]).removeClass( "active" );
+                }
+                if(id === "_3"){
+                    $('#nav_blog_post').addClass( "current active" );
+                }else{
+                    $('#nav_blog_post').removeClass( "current active" );
                 }
             }
         });

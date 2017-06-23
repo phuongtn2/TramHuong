@@ -415,11 +415,11 @@ public class ProductController {
 		model.addAttribute("mapping_categories", mappingCategoryDtos);
 		model.addAttribute("mSize", mappingCategoryDtos.size());
 		CommonController.loadCommon(Memoizer.getInstance(), request, model, aboutService, blogService);
-		model.addAttribute("bre", name != null ? name: "tram huong");
+		model.addAttribute("bre", name != null ? name: "nhang");
 		//Get list product by category
 		List<ProductDto> productDtoList = new ArrayList<ProductDto>();
 		//if(Memoizer.getInstance().get("search") == null) {
-			productDtoList = productService.findByName(name != null ? name : "tram huong");
+			productDtoList = productService.findByName(name != null ? name : "nhang");
 		//	Memoizer.getInstance().put("search", productDtoList);
 		//}else {
 		//	productDtoList = (List<ProductDto>) Memoizer.getInstance().get("search");

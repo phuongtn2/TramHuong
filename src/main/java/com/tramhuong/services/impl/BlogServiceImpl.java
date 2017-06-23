@@ -87,4 +87,14 @@ public class BlogServiceImpl implements BlogService {
     public List<PostDto> findByStatus() throws ServiceException {
         return postMapper.findByStatus();
     }
+
+    @Override
+    public List<PostDto> findAllPost() throws ServiceException {
+        return postMapper.findAllPost();
+    }
+
+    @Override
+    public List<PostDto> findByTag(String tag) throws ServiceException {
+        return postMapper.findByTag(tag);
+    }
 }

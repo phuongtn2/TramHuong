@@ -4,6 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by PhuongTN1 on 11/4/2016.
@@ -11,7 +12,8 @@ import java.util.Date;
 public class PostDto {
     private Long id;
     private String title;
-    private Integer blogId;
+    private Byte isHigh;
+    private String sHigh;
     private String content;
     private String subContent;
     private String url;
@@ -20,7 +22,72 @@ public class PostDto {
     private String img;
     private byte status;
     private MultipartFile file;
-    private Integer position;
+    private String source;
+    private String tag;
+
+    public void setIsHigh(byte isHigh) {
+        this.isHigh = isHigh;
+    }
+
+    public String getsHigh() {
+        return sHigh;
+    }
+
+    public void setsHigh(String sHigh) {
+        this.sHigh = sHigh;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public String getTag() {
+        if(tagList != null && tagList.size() >0) {
+            String str = "";
+            int count = 0;
+            for (String s : tagList) {
+                count++;
+                if (count == tagList.size()) {
+                    str = str + s;
+                } else {
+                    str = str + s + ",";
+                }
+            }
+            return str;
+        }else {
+            return tag;
+        }
+    }
+
+    public List<String> getTagList() {
+        return tagList;
+    }
+
+    public void setTagList(List<String> tagList) {
+        this.tagList = tagList;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    private List<String> tagList;
+
+    public Byte getIsHigh() {
+        if(isHigh == null) {
+            if (sHigh != null) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }else{
+            return isHigh;
+        }
+    }
 
     public Long getId() {
         return id;
@@ -36,14 +103,6 @@ public class PostDto {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Integer getBlogId() {
-        return blogId;
-    }
-
-    public void setBlogId(Integer blogId) {
-        this.blogId = blogId;
     }
 
     public String getContent() {
@@ -111,13 +170,5 @@ public class PostDto {
 
     public void setFile(MultipartFile file) {
         this.file = file;
-    }
-
-    public Integer getPosition() {
-        return position;
-    }
-
-    public void setPosition(Integer position) {
-        this.position = position;
     }
 }

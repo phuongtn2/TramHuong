@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: phuon
@@ -11,7 +12,9 @@
         <div class="col-md-12 ">
             <ol class="breadcrumb breadcrumb-arrow hidden-sm hidden-xs">
                 <li><a href="/" target="_self">Trang chủ</a></li>
-                <li class="active"><span> ${bre}</span></li>
+                <c:forEach items="${tagsOfPost}" var="t">
+                    <li><a href="/posts/${t}" target="_self">${t}</a></li>
+                </c:forEach>
             </ol>
         </div>
     </div>

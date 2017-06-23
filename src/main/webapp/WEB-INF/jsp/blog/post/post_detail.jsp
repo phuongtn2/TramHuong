@@ -9,9 +9,6 @@
 			<div class="ibox-title">
 				<h5><spring:message code="post.title" text="default text"/></h5>
 				<div class="ibox-tools">
-					<%--<a onclick="goBack()" class="btn btn-success btn btn-xs"><i class="fa fa-backward"><spring:message
-							code="common.button.back"
-							text="default text"/></i></a>--%>
 					<a class="collapse-link">
 						<i class="fa fa-chevron-up"></i>
 					</a>
@@ -44,12 +41,22 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-3">
-						<label class="control-label"><spring:message code="blog.name" text="default text"/></label>
+						<label class="control-label">Tag</label>
 					</div>
 					<div class="col-sm-9">
-						<c:forEach items="${blogs}" var="b">
-							<c:if test="${post.blogId == b.id}"><label class="control-label">${b.name}</label></c:if>
-						</c:forEach>
+						<label class="control-label">${post.tag}</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<label class="control-label">Bài Viết Nổi Bật</label>
+					</div>
+					<div class="col-sm-9">
+						<c:if test="${post.isHigh==1}">
+							<div class="i-checks"><label> <input type="checkbox" value="" disabled=""
+																 checked=""></label></div> </c:if>
+						<c:if test="${post.isHigh==0}">
+							<div class="i-checks"><label> <input type="checkbox" value="" disabled=""></label></div> </c:if>
 					</div>
 				</div>
 				<div class="row">
@@ -81,10 +88,10 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-3">
-						<label class="control-label"><spring:message code="post.position" text="default text"/></label>
+						<label class="control-label">Nguồn Bài Viết</label>
 					</div>
 					<div class="col-sm-9">
-						${post.position}
+						${post.source}
 					</div>
 				</div>
 				<div class="row">
